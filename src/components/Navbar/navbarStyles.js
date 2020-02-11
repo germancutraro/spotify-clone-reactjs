@@ -31,7 +31,7 @@ export const UpgradeButton = styled.div`
   align-items: center;
   background-color: transparent;
   width: 115px;
-  height: 23px;
+  height: 24px;
   border-radius: 100px;
   border: 1px solid #fff;
   margin: 1rem;

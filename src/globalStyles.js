@@ -16,7 +16,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    text-decoration:none;
+    text-decoration: none;
+    cursor: default;
   }
 
   ul {

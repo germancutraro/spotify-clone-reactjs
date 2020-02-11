@@ -21,6 +21,7 @@ export const Item = styled.div`
   margin: 0.5rem 1rem;
   height: 2rem;
   width: 100%;
+  cursor: default;
 `;
 
 export const ItemsTitle = styled.p`
