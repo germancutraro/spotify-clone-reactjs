@@ -6,8 +6,8 @@ const Playlists = () => {
   const { list } = useSelector(({ playlists }) => playlists);
   return (
     <>
-      {list.map(({ name }) => (
-        <PlaylistsItem key={name} name={name} />
+      {list.map(playlist => (
+        <PlaylistsItem key={playlist.id} {...playlist} />
       ))}
     </>
   );

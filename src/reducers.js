@@ -13,9 +13,15 @@ const authPersistConfig = {
   whitelist: ['user']
 };
 
+const playlistsPersistConfig = {
+  key: 'playlists',
+  storage,
+  whitelist: ['list']
+};
+
 export default history =>
   combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
-    playlists: playlistsReducer,
+    playlists: persistReducer(playlistsPersistConfig, playlistsReducer),
     router: connectRouter(history)
   });
