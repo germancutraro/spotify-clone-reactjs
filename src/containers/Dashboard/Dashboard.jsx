@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 // redux
 import { useDispatch } from 'react-redux';
 import { getUserStart } from '../Auth/authActions';
+import { getUserPlaylistsStart } from '../Playlists/playlistsActions';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserStart());
+    dispatch(getUserPlaylistsStart());
   }, [dispatch]);
 
   return (

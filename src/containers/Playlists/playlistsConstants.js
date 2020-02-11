@@ -1,0 +1,6 @@
+export const GET_USER_PLAYLISTS_START =
+  'app/Playlists/GET_USER_PLAYLISTS_START';
+export const GET_USER_PLAYLISTS_SUCCESS =
+  'app/Playlists/GET_USER_PLAYLISTS_SUCCESS';
+export const GET_USER_PLAYLISTS_FAILURE =
+  'app/Playlists/GET_USER_PLAYLISTS_FAILURE';

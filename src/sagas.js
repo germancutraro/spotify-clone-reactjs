@@ -1,8 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
-import authSaga from './containers/Auth/authSaga';
 
 // sagas
+import authSaga from './containers/Auth/authSaga';
+import playlistsSaga from './containers/Playlists/playlistsSaga';
 
 export default function* root() {
-  yield all([fork(authSaga)]);
+  yield all([fork(authSaga), fork(playlistsSaga)]);
 }
