@@ -1,13 +1,13 @@
 import React from 'react';
-import MaterialIcon, { colorPalette } from 'material-icons-react';
-import { SearchContainer, Input, SearchIcon } from './searchStyles';
+import { SearchContainer, Input, SearchIconWrapper } from './searchStyles';
+import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 
 const Search = () => {
   return (
     <SearchContainer>
-      <SearchIcon>
-        <MaterialIcon icon='search' size={18} color={colorPalette.grey} />
-      </SearchIcon>
+      <SearchIconWrapper>
+        <SearchIcon fill='#333' width={15} height={15} />
+      </SearchIconWrapper>
       <Input type='text' placeholder='Search' />
     </SearchContainer>
   );
