@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SideContainer = styled.div`
-  width: 200px;
+  width: 180px;
   height: 100vh;
   background-color: #121212;
   position: fixed;
@@ -12,30 +12,34 @@ export const Items = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin: 1rem 1rem 1rem;
 `;
 
 export const Item = styled.div`
   display: flex;
   align-items: center;
-  margin: 0.5rem 0;
+  margin: 0.5rem 1rem;
   height: 2rem;
   width: 100%;
-  cursor: pointer;
 `;
 
 export const ItemsTitle = styled.p`
   color: #b3b3b3;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
+  margin-left: 1rem;
   font-weight: 400;
   letter-spacing: 2px;
 `;
 
 export const ItemText = styled.p`
-  font-family: 'Montserrat-Bold', sans-serif;
+  font-family: ${({ light }) => (light ? 'Montserrat' : 'Montserrat-Bold')};
   color: #b3b3b3;
   font-size: 0.8rem;
   padding: 0.6rem 0; // padding for icons
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     color: #fff;
   }
@@ -43,8 +47,9 @@ export const ItemText = styled.p`
 
 export const ScrollContainer = styled.div`
   width: 100%;
+  height: 80%;
   overflow-y: auto;
-
+  overflow-x: hidden;
   ::-webkit-scrollbar {
     width: 6px;
   }

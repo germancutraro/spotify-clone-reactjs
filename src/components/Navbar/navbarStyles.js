@@ -38,6 +38,7 @@ export const UpgradeButton = styled.div`
 
   &:hover {
     transform: scale(1.1);
+    transition: all ease 0.3s;
   }
 `;
 

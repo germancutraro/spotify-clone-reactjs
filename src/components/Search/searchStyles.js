@@ -20,7 +20,7 @@ export const Input = styled.input`
   height: 25px;
   width: 12em;
   font-size: 0.8em;
-  font-weight: 700;
+  font-family: 'Montserrat-SemiBold';
   border: none;
   outline: none;
   ::placeholder {

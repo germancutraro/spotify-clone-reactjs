@@ -53,23 +53,38 @@ const Sidebar = () => {
 
         <PlaylistContainer>
           <ItemsTitle>PLAYLIST</ItemsTitle>
-          <Item light>
-            <ItemText>This is Imagine Dragons</ItemText>
+          <Item>
+            <ItemText light>Novedades Viernes Argentina</ItemText>
           </Item>
-          <Item light>
-            <ItemText>Recently Played</ItemText>
+          <Item>
+            <ItemText light>This is Imagine Dragons</ItemText>
           </Item>
-          <Item light>
-            <ItemText>Liked Songs</ItemText>
+          <Item>
+            <ItemText light>No Te Va A Gustar</ItemText>
           </Item>
-          <Item light>
-            <ItemText>Albums</ItemText>
+          <Item>
+            <ItemText light>Iconos del Rock Argentino</ItemText>
           </Item>
-          <Item light>
-            <ItemText>Artists</ItemText>
+          <Item>
+            <ItemText light>This is: Gustavo Cerati</ItemText>
           </Item>
-          <Item light>
-            <ItemText>Podcasts</ItemText>
+          <Item>
+            <ItemText light>This is Pink Floyd</ItemText>
+          </Item>
+          <Item>
+            <ItemText light>This is Coldplay</ItemText>
+          </Item>
+          <Item>
+            <ItemText light>POP en Inglės 2020</ItemText>
+          </Item>
+          <Item>
+            <ItemText light>Rock Argentino</ItemText>
+          </Item>
+          <Item>
+            <ItemText light>This is Gun's And Roses</ItemText>
+          </Item>
+          <Item>
+            <ItemText light>This is Arctic Monkeys</ItemText>
           </Item>
         </PlaylistContainer>
       </ScrollContainer>
