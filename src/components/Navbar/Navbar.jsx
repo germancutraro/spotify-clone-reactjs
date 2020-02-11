@@ -7,12 +7,13 @@ import {
   Avatar,
   UpgradeText
 } from './navbarStyles';
+import Search from '../Search/Search';
 
 const Navbar = () => {
   return (
     <NavContainer>
       <NavRightWrapper>
-        <input type='text' placeholder='Name...' />
+        <Search />
       </NavRightWrapper>
       <NavLeftWrapper>
         <UpgradeButton>
