@@ -11,7 +11,7 @@ import {
   Name,
   Icon
 } from './navbarStyles';
-import MaterialIcon, { colorPalette } from 'material-icons-react';
+import { ReactComponent as ArrowDown } from '../../assets/icons/arrow_down.svg';
 
 const Navbar = () => {
   return (
@@ -25,13 +25,8 @@ const Navbar = () => {
         </UpgradeButton>
         <Avatar src='https://profile-images.scdn.co/images/userprofile/default/e3a22d031a8b9245d40fe20860461a21d68a198b' />
         <Name>Germán Cutraro</Name>
-
         <Icon>
-          <MaterialIcon
-            icon='expand_more'
-            size={30}
-            color={colorPalette.grey._50}
-          />
+          <ArrowDown />
         </Icon>
       </NavLeftWrapper>
     </NavContainer>
