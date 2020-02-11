@@ -39,14 +39,17 @@ const Playlist = () => {
               <td>TITLE</td>
               <td>ARTIST</td>
               <td>ALBUM</td>
+              <td>DATE</td>
+              <td>DURATION</td>
             </tr>
           </thead>
           <tbody>
-            {tracks.map(({ track }) => (
+            {tracks.map(track => (
               <TrackItem
                 key={track.id}
                 query={query.trim().toLowerCase()}
-                {...track}
+                added_at={track.added_at}
+                {...track.track}
               />
             ))}
           </tbody>
