@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
-    background-color: #1a1a1a;
+    background-color: #0C0C0C;
     /* font-family: 'Roboto', sans-serif; */
   }
 

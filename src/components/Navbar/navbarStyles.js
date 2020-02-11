@@ -6,7 +6,7 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   width: 100vw;
   height: 80px;
-  background-color: #000;
+  background-color: #121212;
 `;
 
 export const Avatar = styled.img`
