@@ -13,17 +13,24 @@ export const Avatar = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  margin: 1rem;
+`;
+
+export const Name = styled.p`
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.6rem;
 `;
 
 export const UpgradeButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 110px;
-  height: 24px;
+  width: 115px;
+  height: 28px;
   border-radius: 10px;
   border: 1px solid #fff;
+  margin: 1rem;
 `;
 
 export const UpgradeText = styled.p`
@@ -37,9 +44,14 @@ export const UpgradeText = styled.p`
 export const NavLeftWrapper = styled.div`
   display: flex;
   align-items: center;
+  padding: 1rem;
 `;
 
 export const NavRightWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const Icon = styled.div`
+  padding: 1rem;
 `;
