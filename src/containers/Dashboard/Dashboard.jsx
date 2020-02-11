@@ -11,7 +11,7 @@ const Dashboard = () => {
   });
   return (
     <div>
-      <h1>dashboard</h1>
+      <h1 style={{ color: '#fff' }}>dashboard</h1>
     </div>
   );
 };
