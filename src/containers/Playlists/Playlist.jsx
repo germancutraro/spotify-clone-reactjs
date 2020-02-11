@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 // components
 import TrackItem from '../../components/TrackItem/TrackItem';
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlaylistTracksStart } from './playlistsActions';
 
 const Playlist = () => {
+  const [query, setQuery] = useState('');
   const { state } = useLocation();
   const dispatch = useDispatch();
 
@@ -24,7 +25,11 @@ const Playlist = () => {
       <small>
         Created by {state.owner} - {state.totalSongs} songs{' '}
       </small>
-      <input type='text' placeholder='Filter...' />
+      <input
+        type='text'
+        placeholder='Filter...'
+        onChange={e => setQuery(e.target.value)}
+      />
       {loading ? (
         <h1>Loading...</h1>
       ) : (
@@ -38,7 +43,11 @@ const Playlist = () => {
           </thead>
           <tbody>
             {tracks.map(({ track }) => (
-              <TrackItem key={track.id} {...track} />
+              <TrackItem
+                key={track.id}
+                query={query.trim().toLowerCase()}
+                {...track}
+              />
             ))}
           </tbody>
         </table>

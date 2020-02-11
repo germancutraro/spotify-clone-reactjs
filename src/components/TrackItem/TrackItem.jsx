@@ -1,12 +1,40 @@
 import React from 'react';
+import Highlight from 'react-highlighter';
 
-const TrackItem = ({ name, artists, album }) => {
+const TrackItem = ({ name, artists, album, query }) => {
   return (
-    <tr>
-      <td style={{ fontSize: '.7rem' }}>{name}</td>
-      <td style={{ fontSize: '.7rem' }}>{artists[0].name}</td>
-      <td style={{ fontSize: '.7rem' }}>{album.name}</td>
-    </tr>
+    <>
+      {name.toLowerCase().includes(query) ||
+      artists[0].name.toLowerCase().includes(query) ||
+      album.name.toLowerCase().includes(query) ? (
+        <tr>
+          <td style={{ fontSize: '.7rem' }}>
+            <Highlight
+              search={query}
+              matchStyle={{ background: 'blue', color: '#fff' }}
+            >
+              {name}
+            </Highlight>
+          </td>
+          <td style={{ fontSize: '.7rem' }}>
+            <Highlight
+              search={query}
+              matchStyle={{ background: 'blue', color: '#fff' }}
+            >
+              {artists[0].name}
+            </Highlight>
+          </td>
+          <td style={{ fontSize: '.7rem' }}>
+            <Highlight
+              search={query}
+              matchStyle={{ background: 'blue', color: '#fff' }}
+            >
+              {album.name}
+            </Highlight>
+          </td>
+        </tr>
+      ) : null}
+    </>
   );
 };
 
