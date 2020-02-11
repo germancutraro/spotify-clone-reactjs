@@ -1,14 +1,15 @@
-import React from 'react';
-import api from '../../utils/api';
+import React, { useEffect } from 'react';
+// redux
+import { useDispatch } from 'react-redux';
+import { getUserStart } from '../Auth/authActions';
 
 const Dashboard = () => {
-  React.useEffect(() => {
-    const fetchUser = async () => {
-      const res = await api('https://api.spotify.com/v1/me');
-      console.log(res);
-    };
-    fetchUser();
-  });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserStart());
+  }, [dispatch]);
+
   return (
     <div>
       <h1 style={{ color: '#fff' }}>dashboard</h1>
