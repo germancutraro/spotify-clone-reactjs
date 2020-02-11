@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from '../Search/Search';
-
+import { useSelector } from 'react-redux';
 import {
   NavContainer,
   NavRightWrapper,
@@ -15,6 +15,7 @@ import {
 import { ReactComponent as ArrowDown } from '../../assets/icons/down-arrow.svg';
 
 const Navbar = () => {
+  const { images, display_name } = useSelector(({ auth }) => auth.user);
   return (
     <NavContainer>
       <NavRightWrapper>
@@ -31,8 +32,8 @@ const Navbar = () => {
             <UpgradeText>upgrade</UpgradeText>
           </UpgradeButton>
         </UpgradeLink>
-        <Avatar src='https://profile-images.scdn.co/images/userprofile/default/e3a22d031a8b9245d40fe20860461a21d68a198b' />
-        <Name>Germán Cutraro</Name>
+        <Avatar src={images[0].url} />
+        <Name>{display_name}</Name>
         <Icon>
           <ArrowDown fill='#fff' width={16} height={16} />
         </Icon>
