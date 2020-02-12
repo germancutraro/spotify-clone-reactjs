@@ -1,46 +1,37 @@
 import React from 'react';
 import moment from 'moment';
 import Highlight from 'react-highlighter';
+// styles
+import { ItemContainer, ItemText } from './trackItemStyles';
+
+const highlightStyle = { background: 'blue', color: '#fff' };
 
 const TrackItem = ({ name, artists, album, added_at, duration_ms, query }) => (
   <>
     {name.toLowerCase().includes(query) ||
     artists[0].name.toLowerCase().includes(query) ||
     album.name.toLowerCase().includes(query) ? (
-      <tr>
-        <td style={{ fontSize: '.7rem', textAlign: 'center' }}>
-          <Highlight
-            search={query}
-            matchStyle={{ background: 'blue', color: '#fff' }}
-          >
+      <ItemContainer>
+        <ItemText>
+          <Highlight search={query} matchStyle={highlightStyle}>
             {name}
           </Highlight>
-        </td>
-        <td style={{ fontSize: '.7rem', textAlign: 'center' }}>
-          <Highlight
-            search={query}
-            matchStyle={{ background: 'blue', color: '#fff' }}
-          >
+        </ItemText>
+        <ItemText>
+          <Highlight search={query} matchStyle={highlightStyle}>
             {artists[0].name}
           </Highlight>
-        </td>
-        <td style={{ fontSize: '.7rem', textAlign: 'center' }}>
-          <Highlight
-            search={query}
-            matchStyle={{ background: 'blue', color: '#fff' }}
-          >
+        </ItemText>
+        <ItemText>
+          <Highlight search={query} matchStyle={highlightStyle}>
             {album.name}
           </Highlight>
-        </td>
+        </ItemText>
 
-        <td style={{ fontSize: '.7rem', textAlign: 'center' }}>
-          {moment(added_at).format('YYYY-MM-DD')}
-        </td>
+        <ItemText>{moment(added_at).format('YYYY-MM-DD')}</ItemText>
 
-        <td style={{ fontSize: '.7rem', textAlign: 'center' }}>
-          {moment(duration_ms).format('mm:ss')}
-        </td>
-      </tr>
+        <ItemText>{moment(duration_ms).format('mm:ss')}</ItemText>
+      </ItemContainer>
     ) : null}
   </>
 );
