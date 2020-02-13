@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const SideContainer = styled.div`
-  width: 180px;
+  width: 230px;
   height: 100vh;
   background-color: #121212;
   position: fixed;
   top: 0;
+`;
+
+export const SpotifyLogo = styled.img`
+  margin: 1.5rem 0 0 1.5rem;
 `;
 
 export const Items = styled.div`
@@ -19,9 +23,9 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   margin: 0.5rem 1rem;
-  height: 2rem;
+  height: ${({ hasIcon = true }) => (hasIcon ? '2rem' : '1.4rem')};
   width: 100%;
-  cursor: default;
+  cursor: pointer;
 `;
 
 export const ItemsTitle = styled.p`
@@ -33,26 +37,29 @@ export const ItemsTitle = styled.p`
 `;
 
 export const ItemText = styled.p`
-  font-family: ${({ light }) => (light ? 'Montserrat' : 'Montserrat-Bold')};
+  font-family: ${({ light }) =>
+    light ? 'Montserrat-Light' : 'Montserrat-Bold'};
   color: #b3b3b3;
   font-size: 0.8rem;
-  padding: 0.6rem 0; // padding for icons
-  width: 90%;
+  padding: ${({ hasIcon = true }) => (hasIcon ? '0.6rem 1rem' : '0.6rem 0')};
+  width: 85%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   &:hover {
     color: #fff;
+    transition: 0.6s all ease;
   }
 `;
 
 export const ScrollContainer = styled.div`
   width: 100%;
-  height: 80%;
+  height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
+
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 9px;
   }
 
   ::-webkit-scrollbar-track {
@@ -60,17 +67,35 @@ export const ScrollContainer = styled.div`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #b3b3b3;
+    background: #4f4f4f;
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
+    background: #4f4f4f;
   }
 `;
 
 export const LibraryContainer = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 0.6rem;
 `;
 
-export const PlaylistContainer = styled.div``;
+export const PlaylistContainer = styled.div`
+  border-top: 0.5px solid #333;
+  margin-top: 1rem;
+  height: 400px;
+`;
+
+export const IconSquare = styled.div`
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${({ gradient }) =>
+    gradient ? 'linear-gradient(135deg,#450af5,#c4efd9)' : '#9b9b9b'};
+  &:hover {
+    background-color: #fff;
+    transition: 0.4s ease all;
+  }
+`;

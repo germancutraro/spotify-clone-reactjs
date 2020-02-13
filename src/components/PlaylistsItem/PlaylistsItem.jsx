@@ -13,8 +13,9 @@ const PlaylistsItem = ({
 }) => {
   const history = useHistory();
   return (
-    <Item>
+    <Item hasIcon={false}>
       <ItemText
+        hasIcon={false}
         onClick={() =>
           history.push('/app/playlist', {
             id,

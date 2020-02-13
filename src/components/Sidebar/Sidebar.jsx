@@ -1,62 +1,72 @@
 import React from 'react';
+import Playlists from '../../containers/Playlists/Playlists';
+import SpotifyWhite from '../../assets/images/spotify.png';
+// Icons
+import { ReactComponent as DownloadIcon } from '../../assets/icons/download.svg';
+import { ReactComponent as HomeOutline } from '../../assets/icons/home-outline.svg';
+import { ReactComponent as Search } from '../../assets/icons/search.svg';
+import { ReactComponent as LibraryIcon } from '../../assets/icons/library.svg';
+import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
+import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
+// styles
 import {
   SideContainer,
+  SpotifyLogo,
   Items,
   Item,
   ItemText,
   LibraryContainer,
+  IconSquare,
   ItemsTitle,
   ScrollContainer,
   PlaylistContainer
 } from './sidebarStyles';
-import Playlists from '../../containers/Playlists/Playlists';
 
 const Sidebar = () => {
   return (
     <SideContainer>
+      <SpotifyLogo src={SpotifyWhite} alt='' width={131} height={40} />
       <Items>
         <Item>
-          {/* <MaterialIcon icon='home' color={colorPalette.grey._50} /> */}
+          <HomeOutline fill='#a8a8a8' width={23} height={23} />
           <ItemText>Home</ItemText>
         </Item>
         <Item>
-          {/* <MaterialIcon icon='headset' color={colorPalette.grey._50} /> */}
-          <ItemText>Browse</ItemText>
+          <Search fill='#a8a8a8' width={23} height={23} />
+          <ItemText>Search</ItemText>
         </Item>
         <Item>
-          {/* <MaterialIcon icon='radio' color={colorPalette.grey._50} /> */}
-          <ItemText>Radio</ItemText>
+          <LibraryIcon fill='#a8a8a8' width={23} height={23} />
+          <ItemText>Your Library</ItemText>
         </Item>
       </Items>
 
-      <ScrollContainer>
-        <LibraryContainer>
-          <ItemsTitle>YOUR LIBRARY</ItemsTitle>
-          <Item>
-            <ItemText>Made For You</ItemText>
-          </Item>
-          <Item>
-            <ItemText>Recently Played</ItemText>
-          </Item>
-          <Item>
-            <ItemText>Liked Songs</ItemText>
-          </Item>
-          <Item>
-            <ItemText>Albums</ItemText>
-          </Item>
-          <Item>
-            <ItemText>Artists</ItemText>
-          </Item>
-          <Item>
-            <ItemText>Podcasts</ItemText>
-          </Item>
-        </LibraryContainer>
+      <LibraryContainer>
+        <ItemsTitle>PLAYLISTS</ItemsTitle>
+        <Item>
+          <IconSquare>
+            <PlusIcon fill='#333' width={23} height={23} />
+          </IconSquare>
+          <ItemText>Create Playlist</ItemText>
+        </Item>
+        <Item>
+          <IconSquare gradient>
+            <HeartIcon fill='#fff' width={16} height={16} />
+          </IconSquare>
+          <ItemText>Liked Songs</ItemText>
+        </Item>
+      </LibraryContainer>
 
-        <PlaylistContainer>
-          <ItemsTitle>PLAYLIST</ItemsTitle>
+      <PlaylistContainer>
+        <ScrollContainer>
           <Playlists />
-        </PlaylistContainer>
-      </ScrollContainer>
+        </ScrollContainer>
+      </PlaylistContainer>
+
+      <Item>
+        <DownloadIcon fill='#a8a8a8' width={20} height={20} />
+        <ItemText>Install App</ItemText>
+      </Item>
     </SideContainer>
   );
 };
