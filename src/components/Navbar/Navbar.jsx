@@ -32,7 +32,7 @@ const Navbar = () => {
             <UpgradeText>upgrade</UpgradeText>
           </UpgradeButton>
         </UpgradeLink>
-        <Avatar src={images[0].url} />
+        {images && <Avatar src={images[0].url} />}
         <Name>{display_name}</Name>
         <Icon>
           <ArrowDown fill='#fff' width={16} height={16} />
