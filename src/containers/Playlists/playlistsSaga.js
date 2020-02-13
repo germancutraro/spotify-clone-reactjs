@@ -21,7 +21,7 @@ function* getUserPlaylistsSaga() {
 function* getPlaylistTracks({ payload: { id } }) {
   try {
     const { items: tracks } = yield services.getPlaylistTracks(id);
-    console.log('Tracks from saga: ', tracks);
+    // console.log('Tracks from saga: ', tracks);
     if (tracks) yield put(actions.getPlaylistTracksSuccess({ tracks }));
   } catch (err) {
     yield put(actions.getPlaylistTracksFailure({ error: err.message }));

@@ -30,31 +30,15 @@ const Playlist = () => {
         placeholder='Filter...'
         onChange={e => setQuery(e.target.value)}
       />
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <table style={{ marginTop: '1rem' }}>
-          <thead>
-            <tr>
-              <td>TITLE</td>
-              <td>ARTIST</td>
-              <td>ALBUM</td>
-              <td>DATE</td>
-              <td>DURATION</td>
-            </tr>
-          </thead>
-          <tbody>
-            {tracks.map(track => (
-              <TrackItem
-                key={track.id}
-                query={query.trim().toLowerCase()}
-                added_at={track.added_at}
-                {...track.track}
-              />
-            ))}
-          </tbody>
-        </table>
-      )}
+      {!loading &&
+        tracks.map(track => (
+          <TrackItem
+            key={track.track.id}
+            query={query.trim().toLowerCase()}
+            added_at={track.added_at}
+            {...track.track}
+          />
+        ))}
     </div>
   );
 };

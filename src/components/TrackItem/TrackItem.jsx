@@ -12,8 +12,8 @@ const TrackItem = ({ name, artists, album, added_at, duration_ms, query }) => (
     artists[0].name.toLowerCase().includes(query) ||
     album.name.toLowerCase().includes(query) ? (
       <ItemContainer>
-        {[name, artists[0].name, album.name].map(el => (
-          <ItemText>
+        {[name, artists[0].name, album.name].map((el, i) => (
+          <ItemText key={i}>
             <Highlight search={query} matchStyle={highlightStyle}>
               {el}
             </Highlight>
