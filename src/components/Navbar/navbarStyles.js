@@ -6,8 +6,8 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   height: 55px;
   background-color: #121212;
-  margin-left: 200px;
-  width: calc(100vw - 200px);
+  margin-left: 230px;
+  width: calc(100vw - 230px);
 `;
 
 export const Avatar = styled.img`
@@ -30,8 +30,8 @@ export const UpgradeButton = styled.div`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  width: 115px;
-  height: 24px;
+  width: 140px;
+  height: 36px;
   border-radius: 100px;
   border: 1px solid #fff;
   margin: 1rem;
@@ -43,10 +43,10 @@ export const UpgradeButton = styled.div`
 `;
 
 export const UpgradeText = styled.p`
-  font-family: 'Montserrat-SemiBold', sans-serif;
+  font-family: 'Circular-Sp', sans-serif;
   text-transform: uppercase;
   color: #fff;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 2.3px;
 `;
 

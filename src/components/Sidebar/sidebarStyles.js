@@ -37,15 +37,16 @@ export const ItemsTitle = styled.p`
 `;
 
 export const ItemText = styled.p`
-  font-family: ${({ light }) =>
-    light ? 'Montserrat-Light' : 'Montserrat-Bold'};
   color: #b3b3b3;
-  font-size: 0.8rem;
-  padding: ${({ hasIcon = true }) => (hasIcon ? '0.6rem 1rem' : '0.6rem 0')};
-  width: 85%;
+  width: 78%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 14px;
+  padding: ${({ hasIcon = true }) => (hasIcon ? '0.6rem 1rem' : '0.6rem 0')};
+  font-weight: ${({ light }) => (light ? '400' : '700')};
+  letter-spacing: ${({ light }) => (light ? '.015em' : 'normal')};
+  -webkit-font-smoothing: antialiased;
   &:hover {
     color: #fff;
     transition: 0.6s all ease;
