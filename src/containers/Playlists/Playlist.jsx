@@ -5,9 +5,18 @@ import TrackItem from '../../components/TrackItem/TrackItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlaylistTracksStart } from './playlistsActions';
+import {
+  PlaylistTitle,
+  PlaylistOwner,
+  PlaylistPlay,
+  PlaylistTotalSongs,
+  PlaylistIconsWrapper,
+  PlaylistImage
+} from './playlistsStyles';
+import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 
 const Playlist = () => {
-  const [query, setQuery] = useState('');
+  const [query /* ,setQuery*/] = useState('');
   const { state } = useLocation();
   const dispatch = useDispatch();
 
@@ -19,17 +28,19 @@ const Playlist = () => {
 
   return (
     <div style={{ color: '#fff', marginLeft: '30%' }}>
-      <h1>{state.name}</h1>
-      <img src={state.image} alt='' />
-      <h5>{state.description}</h5>
-      <small>
-        Created by {state.owner} - {state.totalSongs} songs{' '}
-      </small>
-      <input
+      <PlaylistImage src={state.image} alt='' />
+      <PlaylistTitle>{state.name}</PlaylistTitle>
+      <PlaylistOwner>{state.owner}</PlaylistOwner>
+      <PlaylistPlay>PLAY</PlaylistPlay>
+      <PlaylistTotalSongs>54 songs</PlaylistTotalSongs>
+      <PlaylistIconsWrapper>
+        <HeartIcon fill='#fff' width={20} height={20} />
+      </PlaylistIconsWrapper>
+      {/* <input
         type='text'
         placeholder='Filter...'
         onChange={e => setQuery(e.target.value)}
-      />
+      /> */}
       {!loading &&
         tracks.map(track => (
           <TrackItem

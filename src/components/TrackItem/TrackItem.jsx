@@ -1,12 +1,12 @@
 import React from 'react';
-import moment from 'moment';
+// import moment from 'moment';
 import Highlight from 'react-highlighter';
 // styles
 import { ItemContainer, ItemText } from './trackItemStyles';
 
 const highlightStyle = { background: 'blue', color: '#fff' };
 
-const TrackItem = ({ name, artists, album, added_at, duration_ms, query }) => (
+const TrackItem = ({ name, artists, album, query }) => (
   <>
     {name.toLowerCase().includes(query) ||
     artists[0].name.toLowerCase().includes(query) ||
@@ -19,8 +19,6 @@ const TrackItem = ({ name, artists, album, added_at, duration_ms, query }) => (
             </Highlight>
           </ItemText>
         ))}
-        <ItemText>{moment(added_at).format('YYYY-MM-DD')}</ItemText>
-        <ItemText>{moment(duration_ms).format('mm:ss')}</ItemText>
       </ItemContainer>
     ) : null}
   </>
