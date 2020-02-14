@@ -122,7 +122,7 @@ export const Link = styled(NavLink)`
     transition: 0.6s all ease;
   }
   &.active {
-    background-color: #282828;
+    background-color: red;
     color: #fff;
   }
 `;
