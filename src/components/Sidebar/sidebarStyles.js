@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const SideContainer = styled.div`
   width: 230px;
@@ -98,5 +99,30 @@ export const IconSquare = styled.div`
   &:hover {
     background-color: #fff;
     transition: 0.4s ease all;
+  }
+`;
+
+export const Link = styled(NavLink)`
+  color: #b3b3b3;
+  width: 78%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0 16px;
+  height: 40px;
+  &:hover {
+    color: #fff;
+    transition: 0.6s all ease;
+  }
+  &.active {
+    background-color: #282828;
+    color: #fff;
   }
 `;

@@ -11,8 +11,13 @@ import Playlist from '../Playlists/Playlist';
 export default () => (
   <>
     <GlobalStyle />
-    <Navbar />
-    <Sidebar />
+    {window.location.pathname !== '/' && (
+      <>
+        <Navbar />
+        <Sidebar />
+      </>
+    )}
+
     <Switch>
       <Route path='/' component={Login} exact />
       <Route path='/app' component={Dashboard} exact />

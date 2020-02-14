@@ -8,6 +8,7 @@ import { ReactComponent as Search } from '../../assets/icons/search.svg';
 import { ReactComponent as LibraryIcon } from '../../assets/icons/library.svg';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
+import { ReactComponent as HomeSolid } from '../../assets/icons/home-solid.svg';
 // styles
 import {
   SideContainer,
@@ -15,29 +16,42 @@ import {
   Items,
   Item,
   ItemText,
+  Link,
   LibraryContainer,
   IconSquare,
   ItemsTitle,
   ScrollContainer,
   PlaylistContainer
 } from './sidebarStyles';
+import { useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
+  const { pathname } = useLocation();
   return (
     <SideContainer>
       <SpotifyLogo src={SpotifyWhite} alt='' width={131} height={40} />
       <Items>
         <Item>
-          <HomeOutline fill='#a8a8a8' width={23} height={23} />
-          <ItemText>Home</ItemText>
+          <Link to='/app'>
+            {pathname === '/app' ? (
+              <HomeSolid fill='#fff' width={23} height={23} />
+            ) : (
+              <HomeOutline fill='#a8a8a8' width={23} height={23} />
+            )}
+            Home
+          </Link>
         </Item>
         <Item>
-          <Search fill='#a8a8a8' width={23} height={23} />
-          <ItemText>Search</ItemText>
+          <Link to='/search'>
+            <Search fill='#a8a8a8' width={23} height={23} />
+            <ItemText>Search</ItemText>
+          </Link>
         </Item>
         <Item>
-          <LibraryIcon fill='#a8a8a8' width={23} height={23} />
-          <ItemText>Your Library</ItemText>
+          <Link to='/library'>
+            <LibraryIcon fill='#a8a8a8' width={23} height={23} />
+            <ItemText>Your Library</ItemText>
+          </Link>
         </Item>
       </Items>
 
