@@ -2,15 +2,18 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const SideContainer = styled.div`
+  grid-area: sidebar;
   width: 230px;
-  height: 100vh;
+  height: calc(100vh - 90px);
   background-color: #121212;
-  position: fixed;
-  top: 0;
+  background-color: green;
+  padding: 24px 0 0 24px;
 `;
 
 export const SpotifyLogo = styled.img`
-  margin: 1.5rem 0 0 1.5rem;
+  padding-bottom: 18px;
+  width: 100%;
+  max-width: 131px;
 `;
 
 export const Items = styled.div`
@@ -56,7 +59,7 @@ export const ItemText = styled.p`
 
 export const ScrollContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 

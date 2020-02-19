@@ -29,7 +29,8 @@ const Sidebar = () => {
   const { pathname } = useLocation();
   return (
     <SideContainer>
-      <SpotifyLogo src={SpotifyWhite} alt='' width={131} height={40} />
+      <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
+      {/* <SpotifyLogo src={SpotifyWhite} alt='' width={131} height={40} />
       <Items>
         <Item>
           <Link to='/app'>
@@ -80,7 +81,7 @@ const Sidebar = () => {
       <Item>
         <DownloadIcon fill='#a8a8a8' width={20} height={20} />
         <ItemText>Install App</ItemText>
-      </Item>
+      </Item> */}
     </SideContainer>
   );
 };

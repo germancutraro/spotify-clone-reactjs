@@ -27,7 +27,7 @@ const Playlist = () => {
   }, [dispatch, state.id]);
 
   return (
-    <div style={{ color: '#fff', marginLeft: '30%' }}>
+    <div style={{ color: '#fff' }}>
       <PlaylistImage src={state.image} alt='' />
       <PlaylistTitle>{state.name}</PlaylistTitle>
       <PlaylistOwner>{state.owner}</PlaylistOwner>

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const NavContainer = styled.nav`
+  grid-area: nav;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 55px;
   background-color: #121212;
-  margin-left: 230px;
-  width: calc(100vw - 230px);
+  width: 100%;
 `;
 
 export const Avatar = styled.img`
