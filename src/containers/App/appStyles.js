@@ -8,6 +8,7 @@ export const GridContainer = styled.div`
     'player player';
 
   grid-template-columns: 230px 1fr;
+  grid-template-rows: 60px 1fr 90px;
 `;
 
 export const SectionContainer = styled.div`

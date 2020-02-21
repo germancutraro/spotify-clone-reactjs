@@ -13,15 +13,16 @@ import { ReactComponent as HomeSolid } from '../../assets/icons/home-solid.svg';
 import {
   SideContainer,
   SpotifyLogo,
-  Items,
+  NavItemsContainer,
   Item,
   ItemText,
-  Link,
+  ItemLink,
   LibraryContainer,
   IconSquare,
-  ItemsTitle,
-  ScrollContainer,
-  PlaylistContainer
+  SectionTitle,
+  LibraryItem
+  // ScrollContainer,
+  // PlaylistContainer
 } from './sidebarStyles';
 import { useLocation } from 'react-router-dom';
 
@@ -30,8 +31,53 @@ const Sidebar = () => {
   return (
     <SideContainer>
       <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
+      <NavItemsContainer>
+        <Item>
+          <ItemLink to='/app'>
+            {pathname === '/app' ? (
+              <HomeSolid fill='#fff' width={23} height={23} />
+            ) : (
+              <HomeOutline fill='#a8a8a8' width={23} height={23} />
+            )}
+            <ItemText>Home</ItemText>
+          </ItemLink>
+        </Item>
+        <Item>
+          <ItemLink to='/search'>
+            <Search fill='#a8a8a8' width={23} height={23} />
+            <ItemText>Search</ItemText>
+          </ItemLink>
+        </Item>
+        <Item>
+          <ItemLink to='/library'>
+            <LibraryIcon fill='#a8a8a8' width={23} height={23} />
+            <ItemText>Your Library</ItemText>
+          </ItemLink>
+        </Item>
+      </NavItemsContainer>
+
+      <LibraryContainer>
+        <SectionTitle>PLAYLISTS</SectionTitle>
+        <LibraryItem>
+          <Item>
+            <IconSquare>
+              <PlusIcon fill='#333' width={23} height={23} />
+            </IconSquare>
+            <ItemText>Create Playlist</ItemText>
+          </Item>
+        </LibraryItem>
+        <LibraryItem>
+          <Item>
+            <IconSquare gradient>
+              <HeartIcon fill='#fff' width={16} height={16} />
+            </IconSquare>
+            <ItemText>Liked Songs</ItemText>
+          </Item>
+        </LibraryItem>
+      </LibraryContainer>
+
       {/* <SpotifyLogo src={SpotifyWhite} alt='' width={131} height={40} />
-      <Items>
+      <NavItemsContainer>
         <Item>
           <Link to='/app'>
             {pathname === '/app' ? (
@@ -54,10 +100,10 @@ const Sidebar = () => {
             Your Library
           </Link>
         </Item>
-      </Items>
+      </NavItemsContainer>
 
       <LibraryContainer>
-        <ItemsTitle>PLAYLISTS</ItemsTitle>
+        <SectionTitle>PLAYLISTS</SectionTitle>
         <Item>
           <IconSquare>
             <PlusIcon fill='#333' width={23} height={23} />
