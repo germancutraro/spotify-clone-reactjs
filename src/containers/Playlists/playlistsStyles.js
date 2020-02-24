@@ -4,6 +4,7 @@ export const PlaylistImage = styled.img``;
 
 export const PlaylistTitle = styled.h1`
   color: #509bf5;
+  color: red
 `;
 
 export const PlaylistOwner = styled.p`

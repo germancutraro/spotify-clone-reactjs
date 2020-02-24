@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Item
-  // ItemText
+  Item,
+  PlaylistItemText
 } from '../Sidebar/sidebarStyles';
 import { useHistory } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const PlaylistsItem = ({
   const history = useHistory();
   return (
     <Item hasIcon={false}>
-      {/* <ItemText
+      <PlaylistItemText
         hasIcon={false}
         onClick={() =>
           history.push('/app/playlist', {
@@ -32,7 +32,7 @@ const PlaylistsItem = ({
         light
       >
         {name}
-      </ItemText> */}
+      </PlaylistItemText>
     </Item>
   );
 };

@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const SideContainer = styled.div`
   grid-area: sidebar;
   width: 230px;
-  height: calc(100vh - 90px);
-  background-color: #121212;
-  background-color: green;
+  max-height: calc(100vh - 90px);
+  background-color: rgba(0,0,0,.8);
   padding: 24px 0 0 8px;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SpotifyLogo = styled.img`
@@ -24,12 +26,37 @@ export const NavItemsContainer = styled.div`
   padding-right: 8px;
 `;
 
+export const ItemText = styled.p`
+  color: #b3b3b3;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-size: 14px;
+  font-weight: ${({ light }) => (light ? '400' : '700')};
+  letter-spacing: ${({ light }) => (light ? '.015em' : 'normal')};
+
+  margin-left: ${({ hasIcon = true }) => (hasIcon ? '16px' : 0)};
+  -webkit-font-smoothing: antialiased;
+  transition: 0.3s all ease;
+`;
+
 export const Item = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  /* height: ${({ hasIcon = true }) => (hasIcon ? '2rem' : '1.4rem')}; */
   cursor: pointer;
+
+  svg { 
+    transition: 0.3s all ease;
+  }
+
+  :hover {
+    ${ItemText} { color: #ffffff }
+    ${({svgTransition = true}) => svgTransition ? css`svg { fill: #ffffff }` : null}
+    
+  }
 `;
 
 export const ItemLink = styled(NavLink)`
@@ -55,25 +82,20 @@ export const ItemLink = styled(NavLink)`
   }
 `;
 
-export const ItemText = styled.p`
-  color: #b3b3b3;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
-  font-size: 14px;
-  font-weight: ${({ light }) => (light ? '400' : '700')};
-  letter-spacing: ${({ light }) => (light ? '.015em' : 'normal')};
 
-  margin-left: ${({ hasIcon = true }) => (hasIcon ? '16px' : 0)};
-  -webkit-font-smoothing: antialiased;
-  transition: 0.3s all ease;
+export const RootListContainer = styled.div`
+
+  /* overflow-y: auto; */
 `;
 
 // library
 export const LibraryContainer = styled.div`
   margin: 1.6rem 16px 0.6rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #282828;
+ 
 `;
 
 export const SectionTitle = styled.p`
@@ -82,17 +104,37 @@ export const SectionTitle = styled.p`
   font-weight: 400;
   letter-spacing: 2px;
   margin-bottom: 1rem;
+
+`;
+
+const IconSquareGradientBackground = css`
+  ::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(135deg,#450af5,#c4efd9);
+    z-index: 0;
+    transition: 0.3s all ease;
+    opacity: .6;
+  }
 `;
 
 export const IconSquare = styled.div`
   width: 32px;
   height: 32px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ gradient }) =>
-    gradient ? 'linear-gradient(135deg,#450af5,#c4efd9);' : '#9b9b9b'};
+ ${({ gradient }) => gradient ? IconSquareGradientBackground : 'background-color: #9b9b9b'};
   transition: 0.3s all ease;
+
+  svg {
+    z-index: 10
+  }
 `;
 
 export const LibraryItem = styled.div`
@@ -102,64 +144,46 @@ export const LibraryItem = styled.div`
     ${ItemText} {
       color: #fff;
     }
+    
 
     ${IconSquare} {
-      background-color: #fff;
+      ${({ gradient }) => gradient ? css`::before { opacity: 1 }` : css`background-color: #ffffff`};
     }
   }
 `;
 
-// export const ScrollContainer = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   overflow-y: auto;
-//   overflow-x: hidden;
+// Playlist
 
-//   ::-webkit-scrollbar {
-//     width: 9px;
-//   }
+export const PlaylistContainer = styled.div`
+  margin: .5rem 16px .25rem;
+  max-width: 100%;
+  min-height: 0;
+  display: flex; 
+  flex-direction: column;
+`;
 
-//   ::-webkit-scrollbar-track {
-//     border-radius: 10px;
-//   }
+export const ScrollContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  
 
-//   ::-webkit-scrollbar-thumb {
-//     background: #4f4f4f;
-//     border-radius: 10px;
-//   }
+  ::-webkit-scrollbar { width: 9px; }
+  ::-webkit-scrollbar-track { border-radius: 10px; }
+  ::-webkit-scrollbar-thumb { background: #4f4f4f; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #4f4f4f; }
+`;
 
-//   ::-webkit-scrollbar-thumb:hover {
-//     background: #4f4f4f;
-//   }
-// `;
 
-// export const PlaylistContainer = styled.div`
-//   border-top: 0.5px solid #333;
-//   margin-top: 1rem;
-//   height: 400px;
-// `;
 
-// export const Link = styled(NavLink)`
-//   color: #b3b3b3;
-//   width: 78%;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   font-size: 14px;
-//   padding: 0.6rem 1rem;
-//   font-weight: 700;
-//   width: 100%;
-//   -webkit-font-smoothing: antialiased;
-//   border-radius: 4px;
-//   width: 100%;
-//   padding: 0 16px;
-//   height: 40px;
-//   &:hover {
-//     color: #fff;
-//     transition: 0.6s all ease;
-//   }
-//   &.active {
-//     background-color: red;
-//     color: #fff;
-//   }
-// `;
+export const PlaylistItemText = styled(ItemText)`
+  padding: 8px 0;
+  transition: all .3s ease;
+
+`;
+
+
+export const InstallItem = styled(Item)`
+  padding: .7rem 1rem
+`;
