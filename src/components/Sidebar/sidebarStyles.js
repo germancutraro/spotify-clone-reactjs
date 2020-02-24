@@ -83,13 +83,6 @@ export const ItemLink = styled(NavLink)`
 `;
 
 
-
-
-export const RootListContainer = styled.div`
-
-  /* overflow-y: auto; */
-`;
-
 // library
 export const LibraryContainer = styled.div`
   margin: 1.6rem 16px 0.6rem;
