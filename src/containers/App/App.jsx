@@ -8,11 +8,8 @@ import Dashboard from '../Dashboard/Dashboard';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Playlist from '../Playlists/Playlist';
-import MadeForYou from '../Library/MadeForYou';
-import Albums from '../Library/Albums';
-import Artists from '../Library/Artists';
-import Podcasts from '../Library/Podcasts';
 import LibraryPlaylists from '../Library/LibraryPlaylists';
+import Library from '../Library/Library';
 
 export default () => (
   <>
@@ -26,15 +23,12 @@ export default () => (
           <Route path='/' component={Login} exact />
           <Route path='/app' component={Dashboard} exact />
           <Route path='/app/playlist' component={Playlist} exact />
+          <Route path='/app/collection' component={Library} />
           <Route
             path='/collection/playlists'
             component={LibraryPlaylists}
             exact
           />
-          <Route path='/collection/made-for-you' component={MadeForYou} exact />
-          <Route path='/collection/artists' component={Artists} exact />
-          <Route path='/collection/albums' component={Albums} exact />
-          <Route path='/collection/podcasts' component={Podcasts} exact />
         </Switch>
       </SectionContainer>
       <div

@@ -44,13 +44,13 @@ const Sidebar = () => {
           </ItemLink>
         </Item>
         <Item>
-          <ItemLink to='/search'>
+          <ItemLink to='app/search'>
             <Search fill='#a8a8a8' width={23} height={23} />
             <ItemText>Search</ItemText>
           </ItemLink>
         </Item>
         <Item>
-          <ItemLink to='/collection/playlists'>
+          <ItemLink to='app/collection/playlists'>
             <LibraryIcon fill='#a8a8a8' width={23} height={23} />
             <ItemText>Your Library</ItemText>
           </ItemLink>
