@@ -52,7 +52,7 @@ export const Item = styled.div`
     transition: 0.3s all ease;
   }
 
-  :hover {
+  :hover, .active {
     ${ItemText} { color: #ffffff }
     ${({svgTransition = true}) => svgTransition ? css`svg { fill: #ffffff }` : null}
     
