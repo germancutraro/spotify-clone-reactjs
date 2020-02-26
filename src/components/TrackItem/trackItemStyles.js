@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ItemContainer = styled.div`
   /* background-color: red; */
-  display: none;
+  /* display: none; */
 `;
 
 export const ItemText = styled.p`

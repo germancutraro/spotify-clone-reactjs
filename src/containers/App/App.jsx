@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import GlobalStyle from '../../globalStyles';
+import { GridContainer, SectionContainer } from './appStyles';
 // components
 import Login from '../Auth/Login';
 import Dashboard from '../Dashboard/Dashboard';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Playlist from '../Playlists/Playlist';
-import { GridContainer, SectionContainer } from './appStyles';
+import LibraryPlaylists from '../Library/LibraryPlaylists';
+import Library from '../Library/Library';
 
 export default () => (
   <>
@@ -21,6 +23,12 @@ export default () => (
           <Route path='/' component={Login} exact />
           <Route path='/app' component={Dashboard} exact />
           <Route path='/app/playlist' component={Playlist} exact />
+          <Route path='/app/collection' component={Library} />
+          <Route
+            path='/collection/playlists'
+            component={LibraryPlaylists}
+            exact
+          />
         </Switch>
       </SectionContainer>
       <div
