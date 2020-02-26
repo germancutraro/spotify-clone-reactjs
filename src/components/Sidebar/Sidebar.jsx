@@ -1,14 +1,14 @@
-import React from "react";
-import Playlists from "../../containers/Playlists/Playlists";
-import SpotifyWhite from "../../assets/images/spotify.png";
+import React from 'react';
+import Playlists from '../../containers/Playlists/Playlists';
+import SpotifyWhite from '../../assets/images/spotify.png';
 // Icons
-import { ReactComponent as DownloadIcon } from "../../assets/icons/download.svg";
-import { ReactComponent as HomeOutline } from "../../assets/icons/home-outline.svg";
-import { ReactComponent as Search } from "../../assets/icons/search.svg";
-import { ReactComponent as LibraryIcon } from "../../assets/icons/library.svg";
-import { ReactComponent as PlusIcon } from "../../assets/icons/plus.svg";
-import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
-import { ReactComponent as HomeSolid } from "../../assets/icons/home-solid.svg";
+import { ReactComponent as DownloadIcon } from '../../assets/icons/download.svg';
+import { ReactComponent as HomeOutline } from '../../assets/icons/home-outline.svg';
+import { ReactComponent as Search } from '../../assets/icons/search.svg';
+import { ReactComponent as LibraryIcon } from '../../assets/icons/library.svg';
+import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
+import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
+import { ReactComponent as HomeSolid } from '../../assets/icons/home-solid.svg';
 // styles
 import {
   SideContainer,
@@ -24,70 +24,68 @@ import {
   ScrollContainer,
   PlaylistContainer,
   InstallItem
-} from "./sidebarStyles";
-import { useLocation } from "react-router-dom";
+} from './sidebarStyles';
+import { useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
   const { pathname } = useLocation();
   return (
     <SideContainer>
-     
-      <SpotifyLogo src={SpotifyWhite} alt="spotify logo" />
+      <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
       <NavItemsContainer>
         <Item>
-          <ItemLink to="/app">
-            {pathname === "/app" ? (
-              <HomeSolid fill="#fff" width={23} height={23} />
+          <ItemLink to='/app'>
+            {pathname === '/app' ? (
+              <HomeSolid fill='#fff' width={23} height={23} />
             ) : (
-              <HomeOutline fill="#a8a8a8" width={23} height={23} />
+              <HomeOutline fill='#a8a8a8' width={23} height={23} />
             )}
             <ItemText>Home</ItemText>
           </ItemLink>
         </Item>
         <Item>
-          <ItemLink to="/search">
-            <Search fill="#a8a8a8" width={23} height={23} />
+          <ItemLink to='/search'>
+            <Search fill='#a8a8a8' width={23} height={23} />
             <ItemText>Search</ItemText>
           </ItemLink>
         </Item>
         <Item>
-          <ItemLink to="/library">
-            <LibraryIcon fill="#a8a8a8" width={23} height={23} />
+          <ItemLink to='/collection/playlists'>
+            <LibraryIcon fill='#a8a8a8' width={23} height={23} />
             <ItemText>Your Library</ItemText>
           </ItemLink>
         </Item>
       </NavItemsContainer>
 
-        <LibraryContainer>
-          <SectionTitle>PLAYLISTS</SectionTitle>
-          <LibraryItem>
-            <Item svgTransition={false}>
-              <IconSquare>
-                <PlusIcon fill="#333" width={23} height={23} />
-              </IconSquare>
-              <ItemText>Create Playlist</ItemText>
-            </Item>
-          </LibraryItem>
-          <LibraryItem gradient>
-            <Item svgTransition={false}>
-              <IconSquare gradient>
-                <HeartIcon fill="#fff" width={16} height={16} />
-              </IconSquare>
-              <ItemText>Liked Songs</ItemText>
-            </Item>
-          </LibraryItem>
-        </LibraryContainer>
-        <PlaylistContainer>
-          <ScrollContainer>
-            <Playlists />
-          </ScrollContainer>
-        </PlaylistContainer>
+      <LibraryContainer>
+        <SectionTitle>PLAYLISTS</SectionTitle>
+        <LibraryItem>
+          <Item svgTransition={false}>
+            <IconSquare>
+              <PlusIcon fill='#333' width={23} height={23} />
+            </IconSquare>
+            <ItemText>Create Playlist</ItemText>
+          </Item>
+        </LibraryItem>
+        <LibraryItem gradient>
+          <Item svgTransition={false}>
+            <IconSquare gradient>
+              <HeartIcon fill='#fff' width={16} height={16} />
+            </IconSquare>
+            <ItemText>Liked Songs</ItemText>
+          </Item>
+        </LibraryItem>
+      </LibraryContainer>
+      <PlaylistContainer>
+        <ScrollContainer>
+          <Playlists />
+        </ScrollContainer>
+      </PlaylistContainer>
 
       <InstallItem>
         <DownloadIcon fill='#a8a8a8' width={20} height={20} />
         <ItemText>Install App</ItemText>
       </InstallItem>
-    
 
       {/* <SpotifyLogo src={SpotifyWhite} alt='' width={131} height={40} />
       <NavItemsContainer>
