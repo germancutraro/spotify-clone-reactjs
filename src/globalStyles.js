@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: spotify-circular, spotify-circular-cyrillic,
     spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, Helvetica,
     Arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
+  }
+
+  :root {
+    --opacity: 0;
   }
 
   a {
