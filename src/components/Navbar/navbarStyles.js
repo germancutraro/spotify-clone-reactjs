@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NavContainer = styled.nav`
   --color: red;
   height: 60px;
-  padding: 0 1rem;
+  padding: 0 2rem;
   width: 100%;
   position: sticky;
   top: 0;
@@ -13,10 +13,10 @@ export const NavContainer = styled.nav`
   ::before,
   ::after {
     content: "";
-    position: absolute;
+    position: fixed;
+    height: 60px; /* nav height */
     top: 0;
-    bottom: 0;
-    left: 0;
+    left: 230px; /* sidebar width */
     right: 0;
     background-color: var(--color);
     z-index: 0;

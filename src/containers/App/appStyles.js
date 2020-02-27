@@ -17,4 +17,14 @@ export const SectionContainer = styled.div`
   position: relative;
   background-color: ${({ color = "#121212" }) => color};
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), #121212 40%);
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4f4f4f;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+  }
 `;
