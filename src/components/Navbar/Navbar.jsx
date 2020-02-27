@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchInput from "../SearchInput/SearchInput";
 import { useSelector } from "react-redux";
 import {
@@ -19,11 +19,6 @@ import { useLocation } from "react-router-dom";
 const Navbar = () => {
   const { images, display_name } = useSelector(({ auth }) => auth.user);
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => console.log("hola"));
-  }, []);
-
   return (
     <NavContainer>
       <NavSubcontainer>
