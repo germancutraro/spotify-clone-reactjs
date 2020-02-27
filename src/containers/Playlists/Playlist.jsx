@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 // components
 import TrackItem from '../../components/TrackItem/TrackItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlaylistTracksStart } from './playlistsActions';
+import { getPlaylistStart } from './playlistsActions';
 import {
   PlaylistTitle,
   PlaylistOwner,
@@ -16,40 +16,36 @@ import {
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 
 const Playlist = () => {
-  const [query /* ,setQuery*/] = useState('');
-  const { state } = useLocation();
   const dispatch = useDispatch();
 
-  const { tracks, loading } = useSelector(({ playlists }) => playlists);
+  const { playlist, loading } = useSelector(({ playlists }) => playlists);
+
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getPlaylistTracksStart({ id: state.id }));
-  }, [dispatch, state.id]);
+    dispatch(getPlaylistStart({ id }));
+  }, [dispatch, id]);
+
+  if (loading) return <h1>loading</h1>;
 
   return (
     <div style={{ color: '#fff' }}>
-      <PlaylistImage src={state.image} alt='' />
-      <PlaylistTitle>{state.name}</PlaylistTitle>
-      <PlaylistOwner>{state.owner}</PlaylistOwner>
+      <PlaylistImage src={playlist?.images[0].url} alt='' />
+      <PlaylistTitle>{playlist?.name}</PlaylistTitle>
+      <PlaylistOwner>{playlist?.owner.display_name}</PlaylistOwner>
       <PlaylistPlay>PLAY</PlaylistPlay>
-      <PlaylistTotalSongs>54 songs</PlaylistTotalSongs>
+      <PlaylistTotalSongs>{playlist?.tracks?.total} songs</PlaylistTotalSongs>
       <PlaylistIconsWrapper>
         <HeartIcon fill='#fff' width={20} height={20} />
       </PlaylistIconsWrapper>
-      {/* <input
-        type='text'
-        placeholder='Filter...'
-        onChange={e => setQuery(e.target.value)}
-      /> */}
-      {!loading &&
-        tracks.map(track => (
-          <TrackItem
-            key={track.track.id}
-            query={query.trim().toLowerCase()}
-            added_at={track.added_at}
-            {...track.track}
-          />
-        ))}
+
+      {playlist?.tracks.items.map(track => (
+        <TrackItem
+          key={track.track.id}
+          added_at={track.added_at}
+          {...track.track}
+        />
+      ))}
     </div>
   );
 };

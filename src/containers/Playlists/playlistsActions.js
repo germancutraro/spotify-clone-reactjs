@@ -14,17 +14,18 @@ export const getUserPlaylistsFailure = payload => ({
   payload
 });
 
-export const getPlaylistTracksStart = payload => ({
-  type: constants.GET_PLAYLIST_TRACKS_START,
+// Playlist
+export const getPlaylistStart = payload => ({
+  type: constants.GET_PLAYLIST_START,
   payload
 });
 
-export const getPlaylistTracksSuccess = payload => ({
-  type: constants.GET_PLAYLIST_TRACKS_SUCCESS,
+export const getPlaylistSuccess = payload => ({
+  type: constants.GET_PLAYLIST_SUCCESS,
   payload
 });
 
-export const getPlaylistTracksFailure = payload => ({
-  type: constants.GET_PLAYLIST_TRACKS_FAILURE,
+export const getPlaylistFailure = payload => ({
+  type: constants.GET_PLAYLIST_FAILURE,
   payload
 });

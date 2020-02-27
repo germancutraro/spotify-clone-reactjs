@@ -21,7 +21,7 @@ export default () => (
         <Switch>
           <Route path='/' component={Login} exact />
           <Route path='/app' component={Dashboard} exact />
-          <Route path='/app/playlist' component={Playlist} exact />
+          <Route path='/app/playlist/:id' component={Playlist} exact />
           <Route path='/app/collection' component={Library} />
           <Route
             path='/collection/playlists'
