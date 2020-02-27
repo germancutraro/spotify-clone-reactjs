@@ -14,7 +14,6 @@ import Library from '../Library/Library';
 export default () => (
   <>
     <GlobalStyle />
-
     <GridContainer>
       <Navbar />
       <Sidebar />

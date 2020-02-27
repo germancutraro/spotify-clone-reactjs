@@ -16,9 +16,8 @@ export const Link = styled(NavLink)`
   margin: 5px;
   font-size: 12px;
   -webkit-font-smoothing: antialiased;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.16em;
-  opacity: 0.6;
   line-height: 2;
   cursor: pointer;
   &:hover {

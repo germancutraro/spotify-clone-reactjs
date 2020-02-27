@@ -1,9 +1,11 @@
 import React from 'react';
+import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 import {
   LibraryPlaylistWrapper,
   LibraryPlaylistCover,
   LibraryPlaylistTitle,
-  LibraryPlaylistAuthor
+  LibraryPlaylistAuthor,
+  LibraryPlaylistPlay
 } from './playlistItemStyles';
 
 const LibraryPlaylistItem = ({ name, cover, author }) => {
@@ -12,6 +14,9 @@ const LibraryPlaylistItem = ({ name, cover, author }) => {
       <LibraryPlaylistCover src={cover} alt='' />
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
       <LibraryPlaylistAuthor>{author}</LibraryPlaylistAuthor>
+      <LibraryPlaylistPlay>
+        <PlayIcon fill='#fff' />
+      </LibraryPlaylistPlay>
     </LibraryPlaylistWrapper>
   );
 };

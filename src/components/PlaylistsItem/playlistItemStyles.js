@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const LibraryPlaylistWrapper = styled.div`
   background-color: #333;
   width: 200px;
-  height: 300px;
+  height: 310px;
   margin: 20px;
 `;
 
@@ -35,4 +35,17 @@ export const LibraryPlaylistAuthor = styled.span`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   -webkit-font-smoothing: antialiased;
+`;
+
+export const LibraryPlaylistPlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #1db954;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
