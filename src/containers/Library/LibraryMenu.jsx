@@ -1,28 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { LibraryMenuContainer, Link } from './libraryStyles';
 
-const LibraryMenu = () => {
-  const path = '/app/collection';
+const path = '/app/collection';
 
-  return (
-    <div style={{ marginLeft: '25%', marginTop: '2%', display: 'flex' }}>
-      <Link to={`${path}/playlists`} style={{ color: '#fff', margin: 5 }}>
-        PLAYLISTS
-      </Link>
-      <Link to={`${path}/made-for-you`} style={{ color: '#fff', margin: 5 }}>
-        MADE FOR YOU
-      </Link>
-      <Link to={`${path}/albums`} style={{ color: '#fff', margin: 5 }}>
-        ALBUMS
-      </Link>
-      <Link to={`${path}/artists`} style={{ color: '#fff', margin: 5 }}>
-        ARTISTS
-      </Link>
-      <Link to={`${path}/podcasts`} style={{ color: '#fff', margin: 5 }}>
-        PODCASTS
-      </Link>
-    </div>
-  );
-};
+const LibraryMenu = () => (
+  <LibraryMenuContainer>
+    <Link to={`${path}/playlists`}>PLAYLISTS</Link>
+    <Link to={`${path}/made-for-you`}>MADE FOR YOU</Link>
+    <Link to={`${path}/albums`}>ALBUMS</Link>
+    <Link to={`${path}/artists`}>ARTISTS</Link>
+    <Link to={`${path}/podcasts`}>PODCASTS</Link>
+  </LibraryMenuContainer>
+);
 
 export default LibraryMenu;

@@ -32,7 +32,7 @@ export default () => (
         </Switch>
       </SectionContainer>
       <div
-        style={{ gridArea: 'player', height: 90, backgroundColor: 'red' }}
+        style={{ gridArea: 'player', height: 90, backgroundColor: '#333' }}
       ></div>
     </GridContainer>
   </>
