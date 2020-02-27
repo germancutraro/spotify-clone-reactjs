@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 import {
   LibraryPlaylistWrapper,
@@ -8,9 +9,10 @@ import {
   LibraryPlaylistPlay
 } from './playlistItemStyles';
 
-const LibraryPlaylistItem = ({ name, cover, author }) => {
+const LibraryPlaylistItem = ({ id, name, cover, author }) => {
+  const history = useHistory();
   return (
-    <LibraryPlaylistWrapper>
+    <LibraryPlaylistWrapper onClick={() => history.push(`/app/playlist/${id}`)}>
       <LibraryPlaylistCover src={cover} alt='' />
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
       <LibraryPlaylistAuthor>{author}</LibraryPlaylistAuthor>

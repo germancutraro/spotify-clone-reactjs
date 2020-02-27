@@ -17,6 +17,7 @@ const LibraryPlaylists = () => {
       {playlists.map(({ id, name, images, description, owner }) => (
         <LibraryPlaylistItem
           key={id}
+          id={id}
           name={name}
           cover={images[0].url}
           author={description || `By ${owner.display_name}`}
