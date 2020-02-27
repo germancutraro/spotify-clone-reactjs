@@ -29,12 +29,14 @@ import { useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
   const { pathname } = useLocation();
+
+  console.log(pathname)
   return (
     <SideContainer>
       <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
       <NavItemsContainer>
         <Item>
-          <ItemLink to='/app'>
+          <ItemLink exact to='/app'>
             {pathname === '/app' ? (
               <HomeSolid fill='#fff' width={23} height={23} />
             ) : (
