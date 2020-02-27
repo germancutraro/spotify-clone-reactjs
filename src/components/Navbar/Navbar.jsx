@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from '../Search/Search';
+import SearchInput from '../SearchInput/SearchInput';
 import { useSelector } from 'react-redux';
 import {
   NavContainer,
@@ -13,13 +13,15 @@ import {
   Icon
 } from './navbarStyles';
 import { ReactComponent as ArrowDown } from '../../assets/icons/down-arrow.svg';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const { images, display_name } = useSelector(({ auth }) => auth.user);
+  const { pathname } = useLocation();
   return (
     <NavContainer>
       <NavRightWrapper>
-        <Search />
+        {pathname === '/app/search' && <SearchInput />}
       </NavRightWrapper>
       <NavLeftWrapper>
         <UpgradeLink

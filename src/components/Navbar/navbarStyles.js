@@ -59,6 +59,7 @@ export const NavLeftWrapper = styled.div`
 export const NavRightWrapper = styled.div`
   display: flex;
   align-items: center;
+  /* background-color: red; */
 `;
 
 export const Icon = styled.div`

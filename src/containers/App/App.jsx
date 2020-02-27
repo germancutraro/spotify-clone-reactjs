@@ -10,6 +10,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Playlist from '../Playlists/Playlist';
 import LibraryPlaylists from '../Library/LibraryPlaylists';
 import Library from '../Library/Library';
+import Search from '../Search/Search';
 
 export default () => (
   <>
@@ -21,6 +22,7 @@ export default () => (
         <Switch>
           <Route path='/' component={Login} exact />
           <Route path='/app' component={Dashboard} exact />
+          <Route path='/app/search' component={Search} exact />
           <Route path='/app/playlist/:id' component={Playlist} exact />
           <Route path='/app/collection' component={Library} />
           <Route

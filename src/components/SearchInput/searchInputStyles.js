@@ -14,14 +14,14 @@ export const SearchIcon = styled(SearchIconSvg)`
 `;
 
 export const Input = styled.input`
-  padding: .4rem 1rem .4rem 2rem;
-  border-radius: 20px;
-  width: 12rem;
-  font-size: 0.8rem;
-  font-family: 'Montserrat-SemiBold';
+  color: #000;
+  padding: 6px 48px;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
   border: 0;
-  outline: 0;
-  ::placeholder {
-    color: #333;
-  }
+  border-radius: 500px;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 0.015em;
 `;
