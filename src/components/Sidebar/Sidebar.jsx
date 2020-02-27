@@ -30,7 +30,6 @@ import { useLocation } from 'react-router-dom';
 const Sidebar = () => {
   const { pathname } = useLocation();
 
-  console.log(pathname)
   return (
     <SideContainer>
       <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
