@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const LibraryPlaylistContainer = styled.section`
   display: flex;
+  flex-direction: column;
 `;
 
 export const LibraryMenuContainer = styled.nav`

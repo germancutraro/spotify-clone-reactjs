@@ -1,14 +1,40 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavContainer = styled.nav`
-  grid-area: nav;
+  --color: red;
+  height: 60px;
+  padding: 0 1rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  transition: background-color 0.25s;
+  opacity: 1;
+
+  ::before,
+  ::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color);
+    z-index: 0;
+    opacity: var(--opacity);
+  }
+
+  ::after {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+`;
+
+export const NavSubcontainer = styled.div`
+  position: relative;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  padding: 0 1rem;
-  background-color: #121212;
-  width: 100%;
+  height: 100%;
 `;
 
 export const Avatar = styled.img`
@@ -43,7 +69,7 @@ export const UpgradeButton = styled.div`
 `;
 
 export const UpgradeText = styled.p`
-  font-family: 'Circular-Sp', sans-serif;
+  font-family: "Circular-Sp", sans-serif;
   text-transform: uppercase;
   color: #fff;
   font-size: 12px;
@@ -53,13 +79,12 @@ export const UpgradeText = styled.p`
 export const NavLeftWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 0 1rem;
 `;
 
 export const NavRightWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* background-color: red; */
 `;
 
 export const Icon = styled.div`
