@@ -9,7 +9,7 @@ import {
   LibraryPlaylistPlay
 } from './playlistItemStyles';
 
-const LibraryPlaylistItem = ({ id, name, cover, author }) => {
+const LibraryItem = ({ id, name, cover, author }) => {
   const history = useHistory();
   return (
     <LibraryPlaylistWrapper onClick={() => history.push(`/app/playlist/${id}`)}>
@@ -23,4 +23,4 @@ const LibraryPlaylistItem = ({ id, name, cover, author }) => {
   );
 };
 
-export default React.memo(LibraryPlaylistItem);
+export default React.memo(LibraryItem);

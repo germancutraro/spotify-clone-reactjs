@@ -1,5 +1,5 @@
 import React from 'react';
-import { LibraryMenuContainer, Link } from './libraryStyles';
+import { LibraryMenuContainer, Link } from './libraryMenuStyles';
 
 const path = '/app/collection';
 

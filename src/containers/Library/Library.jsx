@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 // components
-import LibraryMenu from './LibraryMenu';
+import LibraryMenu from '../../components/LibraryMenu/LibraryMenu';
 import Albums from './Albums';
 import Artists from './Artists';
 import MadeForYou from './MadeForYou';

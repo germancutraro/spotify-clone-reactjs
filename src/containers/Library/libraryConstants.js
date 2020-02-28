@@ -1,0 +1,3 @@
+export const GET_TOP_ARTISTS_START = 'app/Library/GET_TOP_ARTISTS_START';
+export const GET_TOP_ARTISTS_SUCCESS = 'app/Library/GET_TOP_ARTISTS_SUCCESS';
+export const GET_TOP_ARTISTS_FAILURE = 'app/Library/GET_TOP_ARTISTS_FAILURE';
