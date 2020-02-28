@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { ReactComponent as SearchIconSvg } from "../../assets/icons/search.svg";
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.label`
   display: flex;
   align-items: center;
   position: relative;
   margin-right: 1rem;
+  width: 100%;
 `;
 
 export const SearchIcon = styled(SearchIconSvg)`
-  font-size: 0.9rem;
   position: absolute;
-  left: 10px;
+  left: 12px;
 `;
 
 export const Input = styled.input`
@@ -20,9 +20,11 @@ export const Input = styled.input`
   height: 40px;
   line-height: 40px;
   width: 100%;
+  max-width: 360px;
   border: 0;
-  border-radius: 500px;
+  border-radius: 100px;
   outline: none;
   font-size: 14px;
-  letter-spacing: 0.015em;
+  font-weight: 400;
+  letter-spacing: 0.015rem;
 `;

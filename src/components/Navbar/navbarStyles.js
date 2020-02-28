@@ -43,11 +43,12 @@ export const NavSubcontainer = styled.div`
 export const NavLeftWrapper = styled.div`
   display: flex;
   align-items: center;
+  flex: 1;
 `;
 export const NavRightWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: auto;
+  /* margin-left: auto; */
 `;
 
 // Right side
