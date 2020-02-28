@@ -5,7 +5,6 @@ import LibraryMenu from '../../components/LibraryMenu/LibraryMenu';
 import Albums from './Albums';
 import Artists from './Artists';
 import LibraryPlaylists from './LibraryPlaylists';
-import Podcasts from './Podcasts';
 
 const Library = () => {
   const path = '/app/collection';
