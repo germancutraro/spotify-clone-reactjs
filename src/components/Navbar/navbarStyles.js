@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const NavContainer = styled.nav`
   --color: red;
@@ -12,7 +12,7 @@ export const NavContainer = styled.nav`
 
   ::before,
   ::after {
-    content: "";
+    content: '';
     position: fixed;
     height: 60px; /* nav height */
     top: 0;
@@ -69,7 +69,7 @@ export const UpgradeButton = styled.div`
 `;
 
 export const UpgradeText = styled.p`
-  font-family: "Circular-Sp", sans-serif;
+  font-family: 'Circular-Sp', sans-serif;
   text-transform: uppercase;
   color: #fff;
   font-size: 12px;
@@ -85,6 +85,7 @@ export const NavLeftWrapper = styled.div`
 export const NavRightWrapper = styled.div`
   display: flex;
   align-items: center;
+  background-color: red;
 `;
 
 export const Icon = styled.div`

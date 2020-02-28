@@ -7,7 +7,8 @@ import * as services from './searchServices';
 function* getBrowse() {
   try {
     const browse = yield services.getBrowse();
-    if (browse) yield put(actions.getBrowseSuccess({ browse }));
+    if (browse)
+      yield put(actions.getBrowseSuccess({ browse: browse.content.items }));
   } catch (err) {
     yield put(actions.getBrowseFailure({ error: err.message }));
   }
