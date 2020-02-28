@@ -93,17 +93,18 @@ export const Avatar = styled.img`
   width: 24px;
   height: 24px;
   border-radius: 100%;
+  margin-right: 0.5rem;
 `;
 
 export const Name = styled.p`
   color: #fff;
   font-weight: 500;
   font-size: 0.8rem;
-  margin: 0 0.5rem;
 `;
 
 export const ArrowDownIconContainer = styled.div`
   display: flex;
+  margin-left: 0.5rem;
 `;
 
 // left
