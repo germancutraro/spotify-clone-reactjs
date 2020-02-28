@@ -8,7 +8,6 @@ const LibraryMenu = () => (
     <Link to={`${path}/playlists`}>PLAYLISTS</Link>
     <Link to={`${path}/albums`}>ALBUMS</Link>
     <Link to={`${path}/artists`}>ARTISTS</Link>
-    <Link to={`${path}/podcasts`}>PODCASTS</Link>
   </LibraryMenuContainer>
 );
 

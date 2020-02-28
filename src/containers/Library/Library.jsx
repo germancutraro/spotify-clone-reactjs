@@ -17,7 +17,6 @@ const Library = () => {
         <Route path={`${path}/playlists`} exact component={LibraryPlaylists} />
         <Route path={`${path}/albums`} exact component={Albums} />
         <Route path={`${path}/artists`} exact component={Artists} />
-        <Route path={`${path}/podcasts`} exact component={Podcasts} />
       </Switch>
     </div>
   );
