@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
-    background-color: #0C0C0C;
+    background-color: #121212;
     font-family: spotify-circular, spotify-circular-cyrillic,
     spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, Helvetica,
     Arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;

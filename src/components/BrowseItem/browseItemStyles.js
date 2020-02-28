@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const BrowseContainer = styled.div`
   overflow: hidden;
-  position: relative;
+  /* position: relative; */
   width: 250px;
   height: 250px;
   margin: 10px;

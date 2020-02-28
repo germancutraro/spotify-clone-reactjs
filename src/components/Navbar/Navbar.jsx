@@ -10,10 +10,15 @@ import {
   Avatar,
   UpgradeText,
   Name,
-  Icon,
-  NavSubcontainer
+  ArrowDownIconContainer,
+  NavSubcontainer,
+  ArrowsContainer,
+  ArrowIconContainer,
+  UserContainer
 } from "./navbarStyles";
 import { ReactComponent as ArrowDown } from "../../assets/icons/down-arrow.svg";
+import { ReactComponent as ArrowLeft } from "../../assets/icons/arrow-left.svg";
+import { ReactComponent as ArrowRight } from "../../assets/icons/arrow-right.svg";
 import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -22,10 +27,18 @@ const Navbar = () => {
   return (
     <NavContainer>
       <NavSubcontainer>
-        <NavRightWrapper>
-          {pathname === "/app/search" && <SearchInput />}
-        </NavRightWrapper>
         <NavLeftWrapper>
+          <ArrowsContainer>
+            <ArrowIconContainer>
+              <ArrowLeft fill="#fff" width={22} height={22} />
+            </ArrowIconContainer>
+            <ArrowIconContainer>
+              <ArrowRight fill="#fff" width={22} height={22} />
+            </ArrowIconContainer>
+          </ArrowsContainer>
+          {pathname === "/app/search" && <SearchInput />}
+        </NavLeftWrapper>
+        <NavRightWrapper>
           <UpgradeLink
             href="https://www.spotify.com/premium"
             target="_blank"
@@ -36,12 +49,14 @@ const Navbar = () => {
               <UpgradeText>upgrade</UpgradeText>
             </UpgradeButton>
           </UpgradeLink>
-          {images && <Avatar src={images[0].url} />}
-          <Name>{display_name}</Name>
-          <Icon>
-            <ArrowDown fill="#fff" width={16} height={16} />
-          </Icon>
-        </NavLeftWrapper>
+          <UserContainer>
+            {images && <Avatar src={images[0].url} />}
+            <Name>{display_name}</Name>
+            <ArrowDownIconContainer>
+              <ArrowDown fill="#fff" width={16} height={16} />
+            </ArrowDownIconContainer>
+          </UserContainer>
+        </NavRightWrapper>
       </NavSubcontainer>
     </NavContainer>
   );
