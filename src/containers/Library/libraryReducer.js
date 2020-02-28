@@ -11,6 +11,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case constants.GET_TOP_ARTISTS_START:
+    case constants.GET_ALBUMS_START:
       return { ...state, loading: true, error: null };
 
     case constants.GET_TOP_ARTISTS_SUCCESS:
@@ -20,9 +21,23 @@ export default (state = initialState, { type, payload }) => {
         error: null,
         artists: payload.artists
       };
+    case constants.GET_ALBUMS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        albums: payload.albums
+      };
 
     case constants.GET_TOP_ARTISTS_FAILURE:
-      return { ...state, loading: false, artists: [], error: payload.error };
+    case constants.GET_ALBUMS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        artists: [],
+        albums: [],
+        error: payload.error
+      };
 
     default:
       return state;
