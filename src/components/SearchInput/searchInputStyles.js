@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import { ReactComponent as SearchIconSvg } from '../../assets/icons/search.svg';
+import styled from "styled-components";
+import { ReactComponent as SearchIconSvg } from "../../assets/icons/search.svg";
 
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: 1rem;
 `;
 
 export const SearchIcon = styled(SearchIconSvg)`
@@ -15,7 +16,7 @@ export const SearchIcon = styled(SearchIconSvg)`
 
 export const Input = styled.input`
   color: #000;
-  padding: 6px 48px;
+  padding: 0.375rem 3rem;
   height: 40px;
   line-height: 40px;
   width: 100%;
