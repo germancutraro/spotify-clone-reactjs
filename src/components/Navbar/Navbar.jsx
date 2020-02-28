@@ -5,7 +5,6 @@ import {
   NavContainer,
   NavRightWrapper,
   NavLeftWrapper,
-  UpgradeLink,
   UpgradeButton,
   Avatar,
   UpgradeText,
@@ -40,16 +39,15 @@ const Navbar = () => {
           {pathname === "/app/search" && <SearchInput />}
         </NavLeftWrapper>
         <NavRightWrapper>
-          <UpgradeLink
+          <UpgradeButton
             href="https://www.spotify.com/premium"
             target="_blank"
             rel="noopener noreferrer"
             title="Upgrade to Premium"
           >
-            <UpgradeButton>
-              <UpgradeText>upgrade</UpgradeText>
-            </UpgradeButton>
-          </UpgradeLink>
+            <UpgradeText>upgrade</UpgradeText>
+          </UpgradeButton>
+
           <UserContainer>
             {images && <Avatar src={images[0].url} />}
             <Name>{display_name}</Name>

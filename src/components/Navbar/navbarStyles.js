@@ -47,27 +47,24 @@ export const NavLeftWrapper = styled.div`
 export const NavRightWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 1rem;
+  margin-left: auto;
 `;
 
 // Right side
 
-export const UpgradeLink = styled.a``;
-
-export const UpgradeButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const UpgradeButton = styled.a`
   background-color: transparent;
-  width: 140px;
-  height: 36px;
   border-radius: 100px;
-  border: 1px solid #fff;
-  margin: 1rem;
+  border: 2px solid #fff;
+  padding: 0.5rem 2.125rem;
+  margin-right: 2rem;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.06);
   }
 `;
 
@@ -93,13 +90,17 @@ export const Avatar = styled.img`
   width: 24px;
   height: 24px;
   border-radius: 100%;
-  margin-right: 0.5rem;
 `;
 
 export const Name = styled.p`
   color: #fff;
   font-weight: 500;
   font-size: 0.8rem;
+  margin-left: 0.5rem;
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const ArrowDownIconContainer = styled.div`
