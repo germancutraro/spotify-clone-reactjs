@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 /* containers */
 export const NavContainer = styled.nav`
@@ -13,7 +13,7 @@ export const NavContainer = styled.nav`
 
   ::before,
   ::after {
-    content: "";
+    content: '';
     position: fixed;
     height: 60px; /* nav height */
     top: 0;
@@ -97,10 +97,10 @@ export const UpgradeButton = styled.a`
 `;
 
 export const UpgradeText = styled.p`
-  font-family: "Circular-Sp", sans-serif;
+  -webkit-font-smoothing: antialiased;
   text-transform: uppercase;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 2.3px;
 `;
 

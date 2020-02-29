@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBrowseStart, getReleasesStart } from './browseActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
-import GenreItem from '../../components/BrowseItem/GenreItem';
+import GenreItem from '../../components/GenreItem/GenreItem';
 import { GenresContainer } from './browseStyles';
 
 const Browse = () => {
@@ -16,11 +16,12 @@ const Browse = () => {
   }, [dispatch]);
 
   if (loading) return <h1>loading</h1>;
+
   return (
     <div>
       <h1 style={{ color: '#fff' }}>New Releases</h1>
-      {releases?.map(({ name, images }) => (
-        <LibraryItem key={name} name={name} cover={images[0].url} />
+      {releases?.map(({ id, name, images }) => (
+        <LibraryItem key={name} id={id} name={name} cover={images[0].url} />
       ))}
       <h1 style={{ color: '#fff' }}>Your top genres</h1>
       <GenresContainer>

@@ -4,9 +4,9 @@ import * as constants from './searchConstants';
 import * as actions from './searchActions';
 import * as services from './searchServices';
 
-function* getResults() {
+function* getResults({ payload: { query } }) {
   try {
-    const results = yield services.getSearch();
+    const results = yield services.getSearch(query);
     if (results) yield put(actions.searchSuccess({ results }));
   } catch (err) {
     yield put(actions.searchFailure({ error: err.message }));
