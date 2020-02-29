@@ -6,8 +6,8 @@ import * as services from './searchServices';
 
 function* getResults({ payload: { query } }) {
   try {
-    const results = yield services.getSearch(query);
-    if (results) yield put(actions.searchSuccess({ results }));
+    const response = yield services.getSearch(query);
+    if (response) yield put(actions.searchSuccess({ results: response }));
   } catch (err) {
     yield put(actions.searchFailure({ error: err.message }));
   }
