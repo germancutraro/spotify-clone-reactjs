@@ -37,6 +37,7 @@ const Search = () => {
                     if (i < 3)
                       return (
                         <Songs
+                          key={i}
                           name={track.name}
                           artists={track.artists
                             .map(art => art.name)
@@ -53,6 +54,7 @@ const Search = () => {
 
                 {list.artists.items.map(artist => (
                   <Artists
+                    key={artist.id}
                     name={artist.name}
                     cover={artist.images.length ? artist.images[0].url : null}
                   />
@@ -64,8 +66,9 @@ const Search = () => {
           <div>
             <h1 style={{ color: '#fff' }}>Albums:</h1>
             {list.tracks &&
-              list.tracks.items.map(({ album }) => (
+              list.tracks.items.map(({ album }, i) => (
                 <Albums
+                  key={i}
                   name={album.name}
                   cover={album.images[0].url}
                   artist={album.artists[0].name}
