@@ -19,7 +19,7 @@ const Search = () => {
   }, [dispatch, searchValue]);
 
   if (loading) return <h1>loading</h1>;
-  console.log(list);
+  // console.log(list);
 
   const canRender = () => {
     if (Object.keys(list).length)
