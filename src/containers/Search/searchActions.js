@@ -1,15 +1,15 @@
 import * as constants from './searchConstants';
 
-export const getBrowseStart = () => ({
-  type: constants.GET_BROWSE_START
+export const searchStart = () => ({
+  type: constants.GET_SEARCH_START
 });
 
-export const getBrowseSuccess = payload => ({
-  type: constants.GET_BROWSE_SUCCESS,
+export const searchSuccess = payload => ({
+  type: constants.GET_SEARCH_SUCCESS,
   payload
 });
 
-export const getBrowseFailure = payload => ({
-  type: constants.GET_BROWSE_FAILURE,
+export const searchFailure = payload => ({
+  type: constants.GET_SEARCH_FAILURE,
   payload
 });

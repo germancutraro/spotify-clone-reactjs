@@ -1,31 +1,24 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBrowseStart } from './searchActions';
-import BrowseItem from '../../components/BrowseItem/BrowseItem';
-import GenreItem from '../../components/BrowseItem/GenreItem';
+import Browse from '../Browse/Browse';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { searchStart } from './searchActions';
+// import BrowseItem from '../../components/BrowseItem/BrowseItem';
+// import GenreItem from '../../components/BrowseItem/GenreItem';
 
 const Search = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { browse, topGenres, loading } = useSelector(({ search }) => search);
+  // const { list, loading } = useSelector(({ search }) => search);
 
-  React.useEffect(() => {
-    dispatch(getBrowseStart());
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   dispatch(searchStart());
+  // }, [dispatch]);
 
-  if (loading) return <h1>loading</h1>;
-  console.log(browse);
+  // if (loading) return <h1>loading</h1>;
+  // console.log(list);
   return (
     <div>
-      <h1 style={{ color: '#fff' }}>Your top genres</h1>
-      {topGenres?.map(({ name, images }) => (
-        <GenreItem key={name} name={name} cover={images[0].url} />
-      ))}
-
-      <h1 style={{ color: '#fff' }}>Browse all</h1>
-      {browse?.map(({ name }) => (
-        <BrowseItem key={name} name={name} />
-      ))}
+      <Browse />
     </div>
   );
 };

@@ -1,3 +1,3 @@
-export const GET_BROWSE_START = 'app/Search/GET_BROWSE_START';
-export const GET_BROWSE_SUCCESS = 'app/Search/GET_BROWSE_SUCCESS';
-export const GET_BROWSE_FAILURE = 'app/Search/GET_BROWSE_FAILURE';
+export const GET_SEARCH_START = 'app/Search/GET_SEARCH_START';
+export const GET_SEARCH_SUCCESS = 'app/Search/GET_SEARCH_SUCCESS';
+export const GET_SEARCH_FAILURE = 'app/Search/GET_SEARCH_FAILURE';

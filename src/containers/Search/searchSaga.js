@@ -4,20 +4,19 @@ import * as constants from './searchConstants';
 import * as actions from './searchActions';
 import * as services from './searchServices';
 
-function* getBrowse() {
+function* getResults() {
   try {
-    const browse = yield services.getBrowse();
-    if (browse)
-      yield put(actions.getBrowseSuccess({ browse: browse.content.items }));
+    const results = yield services.getSearch();
+    if (results) yield put(actions.searchSuccess({ results }));
   } catch (err) {
-    yield put(actions.getBrowseFailure({ error: err.message }));
+    yield put(actions.searchFailure({ error: err.message }));
   }
 }
 
-function* getBrowseSaga() {
-  yield takeLatest(constants.GET_BROWSE_START, getBrowse);
+function* getResultsSaga() {
+  yield takeLatest(constants.GET_SEARCH_START, getResults);
 }
 
 export default function* searchSaga() {
-  yield all([fork(getBrowseSaga)]);
+  yield all([fork(getResultsSaga)]);
 }
