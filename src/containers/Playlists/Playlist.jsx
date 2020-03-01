@@ -4,11 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import TrackItem from "../../components/TrackItem/TrackItem";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getPlaylistStart,
-  getUserTracksStart,
-  cleanLoading
-} from "./playlistsActions";
+import { getPlaylistStart, getUserTracksStart } from "./playlistsActions";
 import {
   PlaylistTitle,
   PlaylistOwner,

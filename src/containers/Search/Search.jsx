@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Browse from '../Browse/Browse';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +20,6 @@ const Search = () => {
   }, [dispatch, searchValue]);
 
   if (loading) return <h1>loading</h1>;
-  // console.log(list);
 
   const canRender = () => {
     if (Object.keys(list).length)
@@ -41,6 +41,7 @@ const Search = () => {
                   list?.artists?.items[0]?.images[0]?.url ||
                   list?.tracks.items[0]?.album?.images[0].url
                 }
+                type={list?.artists?.items.length ? 'ARTIST' : 'SONG'}
               />
 
               {list.tracks && (
@@ -65,27 +66,49 @@ const Search = () => {
 
               <div>
                 <h1 style={{ color: '#fff' }}>Artists:</h1>
+                <Link
+                  to={`/app/search/${searchValue.toLowerCase()}/artists`}
+                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                >
+                  SEE ALL
+                </Link>
 
-                {list.artists.items.map(artist => (
-                  <Artists
-                    key={artist.id}
-                    name={artist.name}
-                    cover={artist.images.length ? artist.images[0].url : null}
-                  />
-                ))}
+                {list.artists.items.map((artist, i) => {
+                  if (i < 6)
+                    return (
+                      <Artists
+                        key={artist.id}
+                        name={artist.name}
+                        cover={
+                          artist.images.length ? artist.images[0].url : null
+                        }
+                      />
+                    );
+                  return null;
+                })}
               </div>
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
+                <Link
+                  to={`/app/search/${searchValue.toLowerCase()}/albums`}
+                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                >
+                  SEE ALL
+                </Link>
                 {list.tracks &&
-                  list.tracks.items.map(({ album }, i) => (
-                    <Albums
-                      key={i}
-                      name={album.name}
-                      cover={album.images[0].url}
-                      artist={album.artists[0].name}
-                    />
-                  ))}
+                  list.tracks.items.map(({ album }, i) => {
+                    if (i < 6)
+                      return (
+                        <Albums
+                          key={i}
+                          name={album.name}
+                          cover={album.images[0].url}
+                          artist={album.artists[0].name}
+                        />
+                      );
+                    return null;
+                  })}
               </div>
             </div>
           ) : (
