@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     --opacity: 0;
-    --color: green;
+    --color: #121212;
   }
 
   a {
