@@ -47,6 +47,21 @@ export const getArtistAlbumsFailure = payload => ({
   payload
 });
 
+export const getRelatedArtistsStart = payload => ({
+  type: constants.GET_RELATED_ARTISTS_START,
+  payload
+});
+
+export const getRelatedArtistsSuccess = payload => ({
+  type: constants.GET_RELATED_ARTISTS_SUCCESS,
+  payload
+});
+
+export const getRelatedArtistsFailure = payload => ({
+  type: constants.GET_RELATED_ARTISTS_FAILURE,
+  payload
+});
+
 // set search value
 export const setSearchValue = payload => ({
   type: constants.SET_SEARCH_VALUE,

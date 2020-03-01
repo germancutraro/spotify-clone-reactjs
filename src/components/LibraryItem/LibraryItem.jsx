@@ -10,7 +10,14 @@ import {
   LibraryPlaylistPlay
 } from './playlistItemStyles';
 
-const LibraryItem = ({ id, name, cover, author, isLikedSongs }) => {
+const LibraryItem = ({
+  id,
+  name,
+  cover,
+  author,
+  isLikedSongs,
+  isPlayable = true
+}) => {
   const history = useHistory();
 
   const handleChangeRoute = () => {
@@ -23,9 +30,11 @@ const LibraryItem = ({ id, name, cover, author, isLikedSongs }) => {
       <LibraryPlaylistCover src={cover} alt='' />
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
       <LibraryPlaylistAuthor>{author}</LibraryPlaylistAuthor>
-      <LibraryPlaylistPlay>
-        <PlayIcon fill='#fff' />
-      </LibraryPlaylistPlay>
+      {isPlayable && (
+        <LibraryPlaylistPlay>
+          <PlayIcon fill='#fff' />
+        </LibraryPlaylistPlay>
+      )}
     </LibraryPlaylistWrapper>
   );
 };
@@ -34,7 +43,8 @@ LibraryItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
-  author: PropTypes.string
+  author: PropTypes.string,
+  isPlayable: PropTypes.bool
 };
 
 export default React.memo(LibraryItem);

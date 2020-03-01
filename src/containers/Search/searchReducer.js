@@ -13,6 +13,7 @@ export default (state = initialState, { type, payload }) => {
     case constants.GET_SEARCH_START:
     case constants.GET_ARTIST_ALBUMS_START:
     case constants.GET_ARTIST_SONGS_START:
+    case constants.GET_RELATED_ARTISTS_START:
       return { ...state, loading: true, error: null };
 
     case constants.GET_SEARCH_SUCCESS:
@@ -25,6 +26,7 @@ export default (state = initialState, { type, payload }) => {
 
     case constants.GET_ARTIST_ALBUMS_SUCCESS:
     case constants.GET_ARTIST_SONGS_SUCCESS:
+    case constants.GET_RELATED_ARTISTS_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -40,6 +42,7 @@ export default (state = initialState, { type, payload }) => {
 
     case constants.GET_ARTIST_ALBUMS_FAILURE:
     case constants.GET_ARTIST_SONGS_FAILURE:
+    case constants.GET_RELATED_ARTISTS_FAILURE:
       return { ...state, loading: false, artist: [], error: payload.error };
 
     default:

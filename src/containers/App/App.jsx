@@ -13,6 +13,7 @@ import Library from '../Library/Library';
 import Search from '../Search/Search';
 import ArtistSongs from '../Search/ArtistSongs';
 import ArtistAlbums from '../Search/ArtistAlbums';
+import RelatedArtists from '../Search/RelatedArtists';
 
 export default () => (
   <>
@@ -40,6 +41,11 @@ export default () => (
           <Route
             path='/app/search/:name/tracks'
             component={ArtistSongs}
+            exact
+          />
+          <Route
+            path='/app/search/:name/artists'
+            component={RelatedArtists}
             exact
           />
           <Route path='/app/playlist/:id' component={Playlist} exact />

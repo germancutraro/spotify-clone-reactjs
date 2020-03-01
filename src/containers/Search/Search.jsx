@@ -83,7 +83,17 @@ const Search = () => {
 
               <div>
                 <h1 style={{ color: '#fff' }}>Artists:</h1>
-
+                <p
+                  onClick={() =>
+                    handleSeeAll(
+                      list?.artists?.items[0]?.id || list.tracks.items[0].id,
+                      'artists'
+                    )
+                  }
+                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                >
+                  SEE ALL
+                </p>
                 {list.artists.items.map((artist, i) => {
                   if (i < 6)
                     return (

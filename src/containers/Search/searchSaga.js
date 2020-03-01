@@ -47,10 +47,25 @@ function* getArtistSongsSaga() {
   yield takeLatest(constants.GET_ARTIST_SONGS_START, getArtistSongs);
 }
 
+function* getRelatedArtists({ payload: { id } }) {
+  try {
+    const response = yield services.getRelatedArtists(id);
+    if (response)
+      yield put(actions.getRelatedArtistsSuccess({ data: response.artists }));
+  } catch (err) {
+    yield put(actions.getRelatedArtistsFailure({ error: err.message }));
+  }
+}
+
+function* getRelatedArtistsSaga() {
+  yield takeLatest(constants.GET_RELATED_ARTISTS_START, getRelatedArtists);
+}
+
 export default function* searchSaga() {
   yield all([
     fork(getResultsSaga),
     fork(getArtistAlbumsSaga),
-    fork(getArtistSongsSaga)
+    fork(getArtistSongsSaga),
+    fork(getRelatedArtistsSaga)
   ]);
 }
