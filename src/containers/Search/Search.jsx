@@ -19,7 +19,6 @@ const Search = () => {
   }, [dispatch, searchValue]);
 
   if (loading) return <h1>loading</h1>;
-  // console.log(list);
 
   const canRender = () => {
     if (Object.keys(list).length)
@@ -41,6 +40,7 @@ const Search = () => {
                   list?.artists?.items[0]?.images[0]?.url ||
                   list?.tracks.items[0]?.album?.images[0].url
                 }
+                type={list?.artists?.items.length ? 'ARTIST' : 'SONG'}
               />
 
               {list.tracks && (

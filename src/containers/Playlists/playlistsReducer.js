@@ -25,14 +25,10 @@ export default (state = initialState, { type, payload }) => {
         error: null,
         playlist: payload.playlist
       };
-
     case constants.GET_USER_PLAYLISTS_FAILURE:
     case constants.GET_PLAYLIST_FAILURE:
     case constants.GET_USER_TRACKS_FAILURE:
       return { ...state, loading: false, error: payload.error };
-    case 'CLEAN_LOADING':
-      alert('r');
-      return { ...state, loading: true };
     default:
       return state;
   }
