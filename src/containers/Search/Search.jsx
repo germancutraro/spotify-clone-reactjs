@@ -53,17 +53,20 @@ const Search = () => {
               {list.tracks && (
                 <div>
                   <h1 style={{ color: '#fff' }}>Songs:</h1>
-                  <p
-                    onClick={() =>
-                      handleSeeAll(
-                        list?.artists?.items[0]?.id || list.tracks.items[0].id,
-                        'tracks'
-                      )
-                    }
-                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                  >
-                    SEE ALL
-                  </p>
+                  {list?.artists?.items.length ? (
+                    <p
+                      onClick={() =>
+                        handleSeeAll(
+                          list?.artists?.items[0]?.id ||
+                            list.tracks.items[0].id,
+                          'tracks'
+                        )
+                      }
+                      style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                    >
+                      SEE ALL
+                    </p>
+                  ) : null}
                   {list.tracks.items.map((track, i) => {
                     if (i < 3)
                       return (
@@ -80,38 +83,39 @@ const Search = () => {
                   })}
                 </div>
               )}
-
-              <div>
-                <h1 style={{ color: '#fff' }}>Artists:</h1>
-                <p
-                  onClick={() =>
-                    handleSeeAll(
-                      list?.artists?.items[0]?.id || list.tracks.items[0].id,
-                      'artists'
-                    )
-                  }
-                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                >
-                  SEE ALL
-                </p>
-                {list.artists.items.map((artist, i) => {
-                  if (i < 6)
-                    return (
-                      <Artists
-                        key={artist.id}
-                        name={artist.name}
-                        cover={
-                          artist.images.length ? artist.images[0].url : null
-                        }
-                      />
-                    );
-                  return null;
-                })}
-              </div>
+              {list.artists.items.length ? (
+                <div>
+                  <h1 style={{ color: '#fff' }}>Artists:</h1>
+                  <p
+                    onClick={() =>
+                      handleSeeAll(
+                        list?.artists?.items[0]?.id || list.tracks.items[0].id,
+                        'artists'
+                      )
+                    }
+                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                  >
+                    SEE ALL
+                  </p>
+                  {list.artists.items.map((artist, i) => {
+                    if (i < 6)
+                      return (
+                        <Artists
+                          key={artist.id}
+                          name={artist.name}
+                          cover={
+                            artist.images.length ? artist.images[0].url : null
+                          }
+                        />
+                      );
+                    return null;
+                  })}
+                </div>
+              ) : null}
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
-                {list?.artists?.items.length && (
+                {list?.artists?.items.length ? (
                   <p
                     onClick={() =>
                       handleSeeAll(list?.artists?.items[0]?.id, 'albums')
@@ -120,7 +124,7 @@ const Search = () => {
                   >
                     SEE ALL
                   </p>
-                )}
+                ) : null}
 
                 {list.tracks &&
                   list.tracks.items.map(({ album }, i) => {
