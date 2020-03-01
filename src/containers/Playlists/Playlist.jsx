@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 // components
-import TrackItem from '../../components/TrackItem/TrackItem';
+import TrackItem from "../../components/TrackItem/TrackItem";
 // redux
-import { useDispatch, useSelector } from 'react-redux';
-import { getPlaylistStart, getUserTracksStart } from './playlistsActions';
+import { useDispatch, useSelector } from "react-redux";
+import { getPlaylistStart, getUserTracksStart } from "./playlistsActions";
 import {
   PlaylistTitle,
   PlaylistOwner,
   PlaylistPlay,
   PlaylistTotalSongs,
   PlaylistIconsWrapper,
-  PlaylistImage
-} from './playlistsStyles';
-import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
+  PlaylistImage,
+  PlaylistContainer,
+  PlaylistLeftWrapper,
+  PlaylistRightWrapper
+} from "./playlistsStyles";
+import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
 
 const Playlist = () => {
   const dispatch = useDispatch();
@@ -24,74 +27,82 @@ const Playlist = () => {
     { pathname } = useLocation();
 
   useEffect(() => {
-    if (!pathname.includes('/tracks')) dispatch(getPlaylistStart({ id }));
+    if (!pathname.includes("/tracks")) dispatch(getPlaylistStart({ id }));
     else dispatch(getUserTracksStart());
   }, [dispatch, id, pathname]);
 
   useEffect(() => {
     document.documentElement.style.setProperty(
-      '--color',
+      "--color",
       playlist.primary_color
     );
 
     return () =>
-      document.documentElement.style.setProperty('--color', '#121212');
+      document.documentElement.style.setProperty("--color", "#121212");
   }, [playlist]);
 
   if (loading || !Object.keys(playlist).length) {
-    document.documentElement.style.setProperty('--color', '#121212');
+    document.documentElement.style.setProperty("--color", "#121212");
     return <h1>loading</h1>;
   }
 
   return (
-    <div style={{ color: '#fff' }}>
-      {!pathname.includes('/tracks') && playlist ? (
+    <PlaylistContainer>
+      {!pathname.includes("/tracks") && playlist ? (
         <>
-          <PlaylistImage src={playlist?.images[0]?.url} alt='' />
-          <PlaylistTitle>{playlist?.name}</PlaylistTitle>
-          <PlaylistOwner>{playlist?.owner.display_name}</PlaylistOwner>
-          <PlaylistPlay>PLAY</PlaylistPlay>
-          <PlaylistTotalSongs>
-            {playlist?.tracks?.total} songs
-          </PlaylistTotalSongs>
-          <PlaylistIconsWrapper>
-            <HeartIcon fill='#fff' width={20} height={20} />
-          </PlaylistIconsWrapper>
-          {playlist?.tracks.items.map(track => (
-            <TrackItem
-              key={track.track.id}
-              added_at={track.added_at}
-              {...track.track}
-            />
-          ))}
-        </>
-      ) : (
-        <>
-          <PlaylistImage
-            src='https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
-            alt=''
-          />
-          <PlaylistTitle>Liked Songs</PlaylistTitle>
-          <PlaylistOwner></PlaylistOwner>
-          <PlaylistPlay>PLAY</PlaylistPlay>
-          <PlaylistTotalSongs>
-            {playlist?.tracks?.length} songs
-          </PlaylistTotalSongs>
-          <PlaylistIconsWrapper>
-            <HeartIcon fill='#fff' width={20} height={20} />
-          </PlaylistIconsWrapper>
-          {playlist &&
-            Array.isArray(playlist) &&
-            playlist?.map(track => (
+          <PlaylistLeftWrapper>
+            <PlaylistImage src={playlist?.images[0]?.url} alt="" />
+            <PlaylistTitle>{playlist?.name}</PlaylistTitle>
+            <PlaylistOwner>{playlist?.owner.display_name}</PlaylistOwner>
+            <PlaylistPlay>PLAY</PlaylistPlay>
+            <PlaylistTotalSongs>
+              {playlist?.tracks?.total} songs
+            </PlaylistTotalSongs>
+            <PlaylistIconsWrapper>
+              <HeartIcon fill="#fff" width={20} height={20} />
+            </PlaylistIconsWrapper>
+          </PlaylistLeftWrapper>
+          <PlaylistRightWrapper>
+            {playlist?.tracks.items.map(track => (
               <TrackItem
                 key={track.track.id}
                 added_at={track.added_at}
                 {...track.track}
               />
             ))}
+          </PlaylistRightWrapper>
+        </>
+      ) : (
+        <>
+          <PlaylistLeftWrapper>
+            <PlaylistImage
+              src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
+              alt=""
+            />
+            <PlaylistTitle>Liked Songs</PlaylistTitle>
+            <PlaylistOwner></PlaylistOwner>
+            <PlaylistPlay>PLAY</PlaylistPlay>
+            <PlaylistTotalSongs>
+              {playlist?.tracks?.length} songs
+            </PlaylistTotalSongs>
+            <PlaylistIconsWrapper>
+              <HeartIcon fill="#fff" width={20} height={20} />
+            </PlaylistIconsWrapper>
+          </PlaylistLeftWrapper>
+          <PlaylistRightWrapper>
+            {playlist &&
+              Array.isArray(playlist) &&
+              playlist?.map(track => (
+                <TrackItem
+                  key={track.track.id}
+                  added_at={track.added_at}
+                  {...track.track}
+                />
+              ))}
+          </PlaylistRightWrapper>
         </>
       )}
-    </div>
+    </PlaylistContainer>
   );
 };
 
