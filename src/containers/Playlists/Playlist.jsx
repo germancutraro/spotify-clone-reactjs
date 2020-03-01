@@ -26,6 +26,16 @@ const Playlist = () => {
     dispatch(getPlaylistStart({ id }));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--color",
+      playlist.primary_color
+    );
+
+    return () =>
+      document.documentElement.style.setProperty("--color", "#121212");
+  }, [playlist]);
+
   if (loading) return <h1>loading</h1>;
 
   return (

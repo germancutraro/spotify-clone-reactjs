@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     --opacity: 0;
+    --color: green;
   }
 
   a {

@@ -1,8 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 /* containers */
 export const NavContainer = styled.nav`
-  --color: red;
   height: 60px;
   padding: 0 2rem;
   width: 100%;
@@ -13,7 +12,7 @@ export const NavContainer = styled.nav`
 
   ::before,
   ::after {
-    content: '';
+    content: "";
     position: fixed;
     height: 60px; /* nav height */
     top: 0;
