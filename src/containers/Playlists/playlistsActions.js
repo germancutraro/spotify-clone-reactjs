@@ -29,3 +29,19 @@ export const getPlaylistFailure = payload => ({
   type: constants.GET_PLAYLIST_FAILURE,
   payload
 });
+
+// Tracks
+export const getUserTracksStart = payload => ({
+  type: constants.GET_USER_TRACKS_START,
+  payload
+});
+
+export const getUserTracksSuccess = payload => ({
+  type: constants.GET_USER_TRACKS_SUCCESS,
+  payload
+});
+
+export const getUserTracksFailure = payload => ({
+  type: constants.GET_USER_TRACKS_FAILURE,
+  payload
+});

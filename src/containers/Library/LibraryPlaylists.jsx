@@ -12,6 +12,7 @@ const LibraryPlaylists = () => {
         name='Liked Songs'
         cover='https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
         author=''
+        isLikedSongs
       />
       {playlists.map(({ id, name, images, description, owner }) => (
         <LibraryPlaylistItem

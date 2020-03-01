@@ -10,10 +10,16 @@ import {
   LibraryPlaylistPlay
 } from './playlistItemStyles';
 
-const LibraryItem = ({ id, name, cover, author }) => {
+const LibraryItem = ({ id, name, cover, author, isLikedSongs }) => {
   const history = useHistory();
+
+  const handleChangeRoute = () => {
+    if (!isLikedSongs) history.push(`/app/playlist/${id}`);
+    else history.push('/app/collection/tracks');
+  };
+
   return (
-    <LibraryPlaylistWrapper onClick={() => history.push(`/app/playlist/${id}`)}>
+    <LibraryPlaylistWrapper onClick={handleChangeRoute}>
       <LibraryPlaylistCover src={cover} alt='' />
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
       <LibraryPlaylistAuthor>{author}</LibraryPlaylistAuthor>

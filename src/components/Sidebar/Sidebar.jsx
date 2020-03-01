@@ -70,10 +70,12 @@ const Sidebar = () => {
         </LibraryItem>
         <LibraryItem gradient>
           <Item svgTransition={false}>
-            <IconSquare gradient>
-              <HeartIcon fill='#fff' width={16} height={16} />
-            </IconSquare>
-            <ItemText>Liked Songs</ItemText>
+            <ItemLink to='/app/collection/tracks'>
+              <IconSquare gradient>
+                <HeartIcon fill='#fff' width={16} height={16} />
+              </IconSquare>
+              <ItemText>Liked Songs</ItemText>
+            </ItemLink>
           </Item>
         </LibraryItem>
       </LibraryContainer>

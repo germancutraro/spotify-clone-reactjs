@@ -6,7 +6,7 @@ import { ItemContainer, ItemText } from './trackItemStyles';
 
 // const highlightStyle = { background: 'blue', color: '#fff' };
 
-const TrackItem = ({ name, artists, album, query }) => (
+const TrackItem = ({ name, artists, album }) => (
   <>
     <ItemContainer>
       {[name, artists[0].name, album.name].map((el, i) => (

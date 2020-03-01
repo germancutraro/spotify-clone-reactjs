@@ -21,7 +21,6 @@ function* getUserPlaylistsSaga() {
 function* getPlaylist({ payload: { id } }) {
   try {
     const playlist = yield services.getPlaylist(id);
-    console.log('toldo: ', playlist);
     if (playlist) yield put(actions.getPlaylistSuccess({ playlist }));
   } catch (err) {
     yield put(actions.getPlaylistFailure({ error: err.message }));
@@ -32,6 +31,26 @@ function* getPlaylistSaga() {
   yield takeLatest(constants.GET_PLAYLIST_START, getPlaylist);
 }
 
+// Tracks
+function* getUserTracks() {
+  try {
+    const tracks = yield services.getUserTracks();
+    console.log(tracks.items);
+    if (tracks)
+      yield put(actions.getUserTracksSuccess({ playlist: tracks.items }));
+  } catch (err) {
+    yield put(actions.getUserTracksFailure({ error: err.message }));
+  }
+}
+
+function* getUserTracksSaga() {
+  yield takeLatest(constants.GET_USER_TRACKS_START, getUserTracks);
+}
+
 export default function* playlistsSaga() {
-  yield all([fork(getUserPlaylistsSaga), fork(getPlaylistSaga)]);
+  yield all([
+    fork(getUserPlaylistsSaga),
+    fork(getPlaylistSaga),
+    fork(getUserTracksSaga)
+  ]);
 }
