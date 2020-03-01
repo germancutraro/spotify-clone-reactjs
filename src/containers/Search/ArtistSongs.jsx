@@ -11,8 +11,6 @@ const Artist = () => {
   const { name } = useParams();
   const { state } = useLocation();
 
-  alert(state.id);
-
   React.useEffect(() => {
     dispatch(getArtistSongsStart({ id: state.id }));
   }, [dispatch, state.id]);

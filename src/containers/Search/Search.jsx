@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Browse from '../Browse/Browse';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -101,17 +101,17 @@ const Search = () => {
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
-                <p
-                  onClick={() =>
-                    handleSeeAll(
-                      list?.artists?.items[0]?.id || list.tracks.items[0].id,
-                      'albums'
-                    )
-                  }
-                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                >
-                  SEE ALL
-                </p>
+                {list?.artists?.items.length && (
+                  <p
+                    onClick={() =>
+                      handleSeeAll(list?.artists?.items[0]?.id, 'albums')
+                    }
+                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                  >
+                    SEE ALL
+                  </p>
+                )}
+
                 {list.tracks &&
                   list.tracks.items.map(({ album }, i) => {
                     if (i < 6)
