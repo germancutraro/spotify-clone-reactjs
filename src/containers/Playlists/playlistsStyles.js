@@ -1,10 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
+export const PlaylistContainer = styled.div`
+  display: flex;
+  padding: 1.75rem 2rem 0;
+  color: #fff;
+`;
+
+export const PlaylistLeftWrapper = styled.div``;
+export const PlaylistRightWrapper = styled.div``;
 
 export const PlaylistImage = styled.img``;
 
 export const PlaylistTitle = styled.h1`
   color: #509bf5;
-  color: red
+  color: red;
 `;
 
 export const PlaylistOwner = styled.p`
