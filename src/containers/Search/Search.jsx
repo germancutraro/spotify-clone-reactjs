@@ -66,26 +66,36 @@ const Search = () => {
               <div>
                 <h1 style={{ color: '#fff' }}>Artists:</h1>
 
-                {list.artists.items.map(artist => (
-                  <Artists
-                    key={artist.id}
-                    name={artist.name}
-                    cover={artist.images.length ? artist.images[0].url : null}
-                  />
-                ))}
+                {list.artists.items.map((artist, i) => {
+                  if (i < 6)
+                    return (
+                      <Artists
+                        key={artist.id}
+                        name={artist.name}
+                        cover={
+                          artist.images.length ? artist.images[0].url : null
+                        }
+                      />
+                    );
+                  return null;
+                })}
               </div>
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
                 {list.tracks &&
-                  list.tracks.items.map(({ album }, i) => (
-                    <Albums
-                      key={i}
-                      name={album.name}
-                      cover={album.images[0].url}
-                      artist={album.artists[0].name}
-                    />
-                  ))}
+                  list.tracks.items.map(({ album }, i) => {
+                    if (i < 6)
+                      return (
+                        <Albums
+                          key={i}
+                          name={album.name}
+                          cover={album.images[0].url}
+                          artist={album.artists[0].name}
+                        />
+                      );
+                    return null;
+                  })}
               </div>
             </div>
           ) : (
