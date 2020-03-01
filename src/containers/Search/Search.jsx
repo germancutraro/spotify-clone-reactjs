@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Browse from '../Browse/Browse';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,6 +66,12 @@ const Search = () => {
 
               <div>
                 <h1 style={{ color: '#fff' }}>Artists:</h1>
+                <Link
+                  to={`/app/search/${searchValue.toLowerCase()}/artists`}
+                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                >
+                  SEE ALL
+                </Link>
 
                 {list.artists.items.map((artist, i) => {
                   if (i < 6)
@@ -83,6 +90,12 @@ const Search = () => {
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
+                <Link
+                  to={`/app/search/${searchValue.toLowerCase()}/albums`}
+                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                >
+                  SEE ALL
+                </Link>
                 {list.tracks &&
                   list.tracks.items.map(({ album }, i) => {
                     if (i < 6)

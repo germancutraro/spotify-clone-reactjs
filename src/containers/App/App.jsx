@@ -11,6 +11,8 @@ import Playlist from '../Playlists/Playlist';
 import LibraryPlaylists from '../Library/LibraryPlaylists';
 import Library from '../Library/Library';
 import Search from '../Search/Search';
+import Album from '../Search/Album';
+import Artist from '../Search/Artist';
 
 export default () => (
   <>
@@ -30,6 +32,8 @@ export default () => (
           <Route path='/' component={Login} exact />
           <Route path='/app' component={Dashboard} exact />
           <Route path='/app/search' component={Search} exact />
+          <Route path='/app/search/:name/albums' component={Album} exact />
+          <Route path='/app/search/:name/artists' component={Artist} exact />
           <Route path='/app/playlist/:id' component={Playlist} exact />
           <Route path='/app/collection' component={Library} />
           <Route path='/app/collection/tracks' component={Playlist} />
