@@ -22,6 +22,7 @@ const Artists = () => {
       {artists?.map(art => (
         <LibraryItem
           key={art.id}
+          id={art.id}
           name={art.name}
           cover={art.images[0].url}
           author='Artist'

@@ -8,3 +8,7 @@ export const GET_USER_PLAYLISTS_FAILURE =
 export const GET_PLAYLIST_START = 'app/Playlists/GET_PLAYLIST_START';
 export const GET_PLAYLIST_SUCCESS = 'app/Playlists/GET_PLAYLIST_SUCCESS';
 export const GET_PLAYLIST_FAILURE = 'app/Playlists/GET_PLAYLIST_FAILURE';
+
+export const GET_USER_TRACKS_START = 'app/Playlists/GET_USER_TRACKS_START';
+export const GET_USER_TRACKS_SUCCESS = 'app/Playlists/GET_USER_TRACKS_SUCCESS';
+export const GET_USER_TRACKS_FAILURE = 'app/Playlists/GET_USER_TRACKS_FAILURE';

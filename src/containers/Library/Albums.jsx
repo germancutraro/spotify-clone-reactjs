@@ -19,9 +19,9 @@ const Albums = () => {
     <div>
       <h1 style={{ color: '#fff' }}>Albums</h1>
       {albums.map(({ album }) => {
-        console.log(album);
         return (
           <LibraryItem
+            id={album.id}
             name={album.name}
             author={album.artists[0].name}
             cover={album.images[0].url}

@@ -7,6 +7,7 @@ import TopResult from '../../components/Results/TopResult';
 import Songs from '../../components/Results/Songs';
 import Artists from '../../components/Results/Artists';
 import Albums from '../../components/Results/Albums';
+import NoResults from '../../components/Results/NoResults';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -18,16 +19,28 @@ const Search = () => {
   }, [dispatch, searchValue]);
 
   if (loading) return <h1>loading</h1>;
-  console.log(list);
+  // console.log(list);
+
+  const canRender = () => {
+    if (Object.keys(list).length)
+      return list.artists.items.length || list.tracks.items.length;
+    return false;
+  };
+
   return (
     <div style={{ color: '#fff' }}>
       {searchValue.trim().length ? (
         <div>
-          {list.artists && (
+          {canRender() ? (
             <div>
               <TopResult
-                name={list.artists.items[0].name}
-                cover={list.artists.items[0].images[0].url}
+                name={
+                  list?.artists?.items[0]?.name || list.tracks.items[0].name
+                }
+                cover={
+                  list?.artists?.items[0]?.images[0]?.url ||
+                  list?.tracks.items[0]?.album?.images[0].url
+                }
               />
 
               {list.tracks && (
@@ -42,6 +55,7 @@ const Search = () => {
                           artists={track.artists
                             .map(art => art.name)
                             .join(', ')}
+                          cover={track?.album?.images[0].url}
                         />
                       );
                     return null;
@@ -60,21 +74,23 @@ const Search = () => {
                   />
                 ))}
               </div>
-            </div>
-          )}
 
-          <div>
-            <h1 style={{ color: '#fff' }}>Albums:</h1>
-            {list.tracks &&
-              list.tracks.items.map(({ album }, i) => (
-                <Albums
-                  key={i}
-                  name={album.name}
-                  cover={album.images[0].url}
-                  artist={album.artists[0].name}
-                />
-              ))}
-          </div>
+              <div>
+                <h1 style={{ color: '#fff' }}>Albums:</h1>
+                {list.tracks &&
+                  list.tracks.items.map(({ album }, i) => (
+                    <Albums
+                      key={i}
+                      name={album.name}
+                      cover={album.images[0].url}
+                      artist={album.artists[0].name}
+                    />
+                  ))}
+              </div>
+            </div>
+          ) : (
+            <NoResults searchValue={searchValue.trim()} />
+          )}
         </div>
       ) : (
         <Browse />

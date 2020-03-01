@@ -9,4 +9,6 @@ export const getPlaylist = id =>
   );
 
 export const getPlaylistTracks = id =>
-  api(`	https://api.spotify.com/v1/playlists/${id}/tracks`);
+  api(`https://api.spotify.com/v1/playlists/${id}/tracks`);
+
+export const getUserTracks = () => api(`https://api.spotify.com/v1/me/tracks`);
