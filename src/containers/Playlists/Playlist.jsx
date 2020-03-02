@@ -19,9 +19,12 @@ import {
   PlaylistHeader,
   PlaylistHeaderSubcontainer,
   PlaylistButtonsContainer,
-  PlaylistDescriptionContainer
+  PlaylistDescriptionContainer,
+  IconContainer,
+  PlaylistDescription
 } from "./playlistsStyles";
 import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
+import { ReactComponent as MoreIcon } from "../../assets/icons/more.svg";
 
 const Playlist = () => {
   const dispatch = useDispatch();
@@ -77,10 +80,18 @@ const Playlist = () => {
               <PlaylistButtonsContainer>
                 <PlaylistPlay onClick={() => alert("play")}>PLAY</PlaylistPlay>
                 <PlaylistIconsWrapper>
-                  <HeartIcon fill="#fff" width={20} height={20} />
+                  <IconContainer>
+                    <HeartIcon fill="#1db954" width={20} height={20} />
+                  </IconContainer>
+                  <IconContainer>
+                    <MoreIcon fill="#fff" width={20} />
+                  </IconContainer>
                 </PlaylistIconsWrapper>
               </PlaylistButtonsContainer>
               <PlaylistDescriptionContainer>
+                <PlaylistDescription>
+                  {playlist?.description}
+                </PlaylistDescription>
                 <PlaylistTotalSongs>
                   {playlist?.tracks?.total} songs
                 </PlaylistTotalSongs>

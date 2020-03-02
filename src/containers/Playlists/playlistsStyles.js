@@ -103,19 +103,33 @@ export const PlaylistPlay = styled.button`
     background-color: #1ed760;
   }
 `;
-export const PlaylistIconsWrapper = styled.div``;
+export const PlaylistIconsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.7rem;
+`;
+
+export const IconContainer = styled.div`
+  padding: 1rem;
+`;
 
 // PLAYLIST DESCRIPTION
 export const PlaylistDescriptionContainer = styled.div``;
 
-export const PlaylistTotalSongs = styled.p`
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0.015em;
+export const PlaylistDescription = styled.p`
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
   color: #b3b3b3;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
   color: #fff;
   opacity: 0.6;
+  margin-bottom: 0.8rem;
+  overflow-wrap: break-word;
+`;
+
+export const PlaylistTotalSongs = styled(PlaylistDescription)`
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16rem;
 `;
