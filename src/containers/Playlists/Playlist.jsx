@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 // components
 import TrackItem from "../../components/TrackItem/TrackItem";
 // redux
@@ -27,7 +27,8 @@ const Playlist = () => {
   const { playlist, loading } = useSelector(({ playlists }) => playlists);
 
   const { id } = useParams(),
-    { pathname } = useLocation();
+    { pathname } = useLocation(),
+    history = useHistory();
 
   useEffect(() => {
     if (!pathname.includes("/tracks")) dispatch(getPlaylistStart({ id }));
@@ -60,7 +61,15 @@ const Playlist = () => {
                   <PlaylistImage src={playlist?.images[0]?.url} alt="" />
                 </PlaylistImageContainer>
                 <PlaylistTitle>{playlist?.name}</PlaylistTitle>
-                <PlaylistOwner>{playlist?.owner.display_name}</PlaylistOwner>
+                <PlaylistOwner
+                  onClick={() =>
+                    history.push(`/app/user/${playlist?.owner.display_name}`, {
+                      id: playlist?.owner.id
+                    })
+                  }
+                >
+                  {playlist?.owner.display_name}
+                </PlaylistOwner>
               </PlaylistHeaderSubcontainer>
               <PlaylistPlay>PLAY</PlaylistPlay>
               <PlaylistTotalSongs>

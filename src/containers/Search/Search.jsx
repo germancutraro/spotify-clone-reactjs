@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Browse from '../Browse/Browse';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +15,17 @@ const Search = () => {
 
   const { list, searchValue, loading } = useSelector(({ search }) => search);
 
+  const history = useHistory();
+
   React.useEffect(() => {
     dispatch(searchStart({ query: searchValue }));
   }, [dispatch, searchValue]);
 
   if (loading) return <h1>loading</h1>;
+
+  const handleSeeAll = (id, type) => {
+    history.push(`/app/search/${searchValue.toLowerCase()}/${type}`, { id });
+  };
 
   const canRender = () => {
     if (Object.keys(list).length)
@@ -47,6 +53,20 @@ const Search = () => {
               {list.tracks && (
                 <div>
                   <h1 style={{ color: '#fff' }}>Songs:</h1>
+                  {list?.artists?.items.length ? (
+                    <p
+                      onClick={() =>
+                        handleSeeAll(
+                          list?.artists?.items[0]?.id ||
+                            list.tracks.items[0].id,
+                          'tracks'
+                        )
+                      }
+                      style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                    >
+                      SEE ALL
+                    </p>
+                  ) : null}
                   {list.tracks.items.map((track, i) => {
                     if (i < 3)
                       return (
@@ -63,39 +83,49 @@ const Search = () => {
                   })}
                 </div>
               )}
-
-              <div>
-                <h1 style={{ color: '#fff' }}>Artists:</h1>
-                <Link
-                  to={`/app/search/${searchValue.toLowerCase()}/artists`}
-                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                >
-                  SEE ALL
-                </Link>
-
-                {list.artists.items.map((artist, i) => {
-                  if (i < 6)
-                    return (
-                      <Artists
-                        key={artist.id}
-                        name={artist.name}
-                        cover={
-                          artist.images.length ? artist.images[0].url : null
-                        }
-                      />
-                    );
-                  return null;
-                })}
-              </div>
+              {list.artists.items.length ? (
+                <div>
+                  <h1 style={{ color: '#fff' }}>Artists:</h1>
+                  <p
+                    onClick={() =>
+                      handleSeeAll(
+                        list?.artists?.items[0]?.id || list.tracks.items[0].id,
+                        'artists'
+                      )
+                    }
+                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                  >
+                    SEE ALL
+                  </p>
+                  {list.artists.items.map((artist, i) => {
+                    if (i < 6)
+                      return (
+                        <Artists
+                          key={artist.id}
+                          name={artist.name}
+                          cover={
+                            artist.images.length ? artist.images[0].url : null
+                          }
+                        />
+                      );
+                    return null;
+                  })}
+                </div>
+              ) : null}
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
-                <Link
-                  to={`/app/search/${searchValue.toLowerCase()}/albums`}
-                  style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                >
-                  SEE ALL
-                </Link>
+                {list?.artists?.items.length ? (
+                  <p
+                    onClick={() =>
+                      handleSeeAll(list?.artists?.items[0]?.id, 'albums')
+                    }
+                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
+                  >
+                    SEE ALL
+                  </p>
+                ) : null}
+
                 {list.tracks &&
                   list.tracks.items.map(({ album }, i) => {
                     if (i < 6)

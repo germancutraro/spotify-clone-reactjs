@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ReactComponent as SearchIconSvg } from "../../assets/icons/search.svg";
+import styled from 'styled-components';
+import { ReactComponent as SearchIconSvg } from '../../assets/icons/search.svg';
 
 export const SearchContainer = styled.label`
   display: flex;
@@ -24,7 +24,10 @@ export const Input = styled.input`
   border: 0;
   border-radius: 100px;
   outline: none;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 400;
   letter-spacing: 0.015rem;
+  ::placeholder {
+    color: #757575;
+  }
 `;
