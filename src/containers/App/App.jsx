@@ -4,6 +4,7 @@ import GlobalStyle from '../../globalStyles';
 import { GridContainer, SectionContainer } from './appStyles';
 // components
 import Login from '../Auth/Login';
+import User from '../User/User';
 import Dashboard from '../Dashboard/Dashboard';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -32,6 +33,7 @@ export default () => (
         <Switch>
           <Route path='/' component={Login} exact />
           <Route path='/app' component={Dashboard} exact />
+          <Route path='/app/user/:name' component={User} exact />
           <Route path='/app/search' component={Search} exact />
           <Route
             path='/app/search/:name/albums'
