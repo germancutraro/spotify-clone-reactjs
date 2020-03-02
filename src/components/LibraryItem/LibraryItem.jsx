@@ -29,7 +29,16 @@ const LibraryItem = ({
     <LibraryPlaylistWrapper onClick={handleChangeRoute}>
       <LibraryPlaylistCover src={cover} alt='' />
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
-      <LibraryPlaylistAuthor>{author}</LibraryPlaylistAuthor>
+      {author && (
+        <LibraryPlaylistAuthor
+          onClick={() =>
+            history.push(`/app/user/${author.toLowerCase()}`, { id })
+          }
+        >
+          {author}
+        </LibraryPlaylistAuthor>
+      )}
+
       {isPlayable && (
         <LibraryPlaylistPlay>
           <PlayIcon fill='#fff' />

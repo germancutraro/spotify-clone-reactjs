@@ -2,16 +2,19 @@ import React from 'react';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
 import { getUserStart, getUserPlaylistsStart } from './userActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const User = () => {
   const dispatch = useDispatch();
 
   const { user, loading } = useSelector(({ user }) => user);
 
+  const { state } = useLocation();
+
   React.useEffect(() => {
-    dispatch(getUserStart({ id: 'k4wp05wgc21yzac4s9axvtz44' }));
-    dispatch(getUserPlaylistsStart({ id: 'k4wp05wgc21yzac4s9axvtz44' }));
-  }, [dispatch]);
+    dispatch(getUserStart({ id: state.id }));
+    dispatch(getUserPlaylistsStart({ id: state.id }));
+  }, [dispatch, state.id]);
 
   if (loading) return <h1>loading</h1>;
 
