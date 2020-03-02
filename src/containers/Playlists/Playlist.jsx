@@ -17,7 +17,9 @@ import {
   PlaylistRightWrapper,
   PlaylistImageContainer,
   PlaylistHeader,
-  PlaylistHeaderSubcontainer
+  PlaylistHeaderSubcontainer,
+  PlaylistButtonsContainer,
+  PlaylistDescriptionContainer
 } from "./playlistsStyles";
 import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
 
@@ -71,13 +73,18 @@ const Playlist = () => {
                   {playlist?.owner.display_name}
                 </PlaylistOwner>
               </PlaylistHeaderSubcontainer>
-              <PlaylistPlay>PLAY</PlaylistPlay>
-              <PlaylistTotalSongs>
-                {playlist?.tracks?.total} songs
-              </PlaylistTotalSongs>
-              <PlaylistIconsWrapper>
-                <HeartIcon fill="#fff" width={20} height={20} />
-              </PlaylistIconsWrapper>
+
+              <PlaylistButtonsContainer>
+                <PlaylistPlay>PLAY</PlaylistPlay>
+                <PlaylistIconsWrapper>
+                  <HeartIcon fill="#fff" width={20} height={20} />
+                </PlaylistIconsWrapper>
+              </PlaylistButtonsContainer>
+              <PlaylistDescriptionContainer>
+                <PlaylistTotalSongs>
+                  {playlist?.tracks?.total} songs
+                </PlaylistTotalSongs>
+              </PlaylistDescriptionContainer>
             </PlaylistHeader>
           </PlaylistLeftWrapper>
           <PlaylistRightWrapper>
