@@ -7,6 +7,7 @@ export const NavContainer = styled.nav`
   width: 100%;
   position: sticky;
   top: 0;
+  z-index: 1000;
   transition: background-color 0.25s;
   opacity: 1;
 
