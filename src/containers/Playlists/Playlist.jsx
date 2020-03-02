@@ -14,7 +14,10 @@ import {
   PlaylistImage,
   PlaylistContainer,
   PlaylistLeftWrapper,
-  PlaylistRightWrapper
+  PlaylistRightWrapper,
+  PlaylistImageContainer,
+  PlaylistHeader,
+  PlaylistHeaderSubcontainer
 } from "./playlistsStyles";
 import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
 
@@ -51,16 +54,22 @@ const Playlist = () => {
       {!pathname.includes("/tracks") && playlist ? (
         <>
           <PlaylistLeftWrapper>
-            <PlaylistImage src={playlist?.images[0]?.url} alt="" />
-            <PlaylistTitle>{playlist?.name}</PlaylistTitle>
-            <PlaylistOwner>{playlist?.owner.display_name}</PlaylistOwner>
-            <PlaylistPlay>PLAY</PlaylistPlay>
-            <PlaylistTotalSongs>
-              {playlist?.tracks?.total} songs
-            </PlaylistTotalSongs>
-            <PlaylistIconsWrapper>
-              <HeartIcon fill="#fff" width={20} height={20} />
-            </PlaylistIconsWrapper>
+            <PlaylistHeader>
+              <PlaylistHeaderSubcontainer>
+                <PlaylistImageContainer>
+                  <PlaylistImage src={playlist?.images[0]?.url} alt="" />
+                </PlaylistImageContainer>
+                <PlaylistTitle>{playlist?.name}</PlaylistTitle>
+                <PlaylistOwner>{playlist?.owner.display_name}</PlaylistOwner>
+              </PlaylistHeaderSubcontainer>
+              <PlaylistPlay>PLAY</PlaylistPlay>
+              <PlaylistTotalSongs>
+                {playlist?.tracks?.total} songs
+              </PlaylistTotalSongs>
+              <PlaylistIconsWrapper>
+                <HeartIcon fill="#fff" width={20} height={20} />
+              </PlaylistIconsWrapper>
+            </PlaylistHeader>
           </PlaylistLeftWrapper>
           <PlaylistRightWrapper>
             {playlist?.tracks.items.map(track => (
