@@ -75,7 +75,7 @@ const Playlist = () => {
               </PlaylistHeaderSubcontainer>
 
               <PlaylistButtonsContainer>
-                <PlaylistPlay>PLAY</PlaylistPlay>
+                <PlaylistPlay onClick={() => alert("play")}>PLAY</PlaylistPlay>
                 <PlaylistIconsWrapper>
                   <HeartIcon fill="#fff" width={20} height={20} />
                 </PlaylistIconsWrapper>

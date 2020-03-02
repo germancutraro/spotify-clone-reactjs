@@ -86,17 +86,22 @@ export const PlaylistPlay = styled.button`
   text-transform: uppercase;
   letter-spacing: 0.16rem;
   font-size: 11px;
+  font-weight: 900;
   min-width: 130px;
-  white-space: normal;
-  will-change: transform;
   line-height: 1.6;
-  vertical-align: middle;
-  touch-action: manipulation;
   user-select: none;
   border: 0;
   border-radius: 100px;
   transition-property: all;
   color: #fff;
+  outline: 0;
+  cursor: pointer;
+  transition: all 33ms cubic-bezier(0.3, 0, 0, 1);
+
+  :hover {
+    transform: scale(1.06);
+    background-color: #1ed760;
+  }
 `;
 export const PlaylistIconsWrapper = styled.div``;
 
