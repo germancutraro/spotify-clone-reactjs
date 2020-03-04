@@ -93,8 +93,10 @@ const Sidebar = () => {
       </PlaylistContainer>
 
       <InstallItem>
-        <DownloadIcon fill='#a8a8a8' width={20} height={20} />
-        <ItemText>Install App</ItemText>
+        <ItemLink to='/app/download'>
+          <DownloadIcon fill='#a8a8a8' width={20} height={20} />
+          <ItemText>Install App</ItemText>
+        </ItemLink>
       </InstallItem>
     </SideContainer>
   );

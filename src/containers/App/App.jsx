@@ -15,6 +15,7 @@ import Search from '../Search/Search';
 import ArtistSongs from '../Search/ArtistSongs';
 import ArtistAlbums from '../Search/ArtistAlbums';
 import RelatedArtists from '../Search/RelatedArtists';
+import Download from '../../components/Download/Download';
 
 export default () => (
   <>
@@ -58,6 +59,7 @@ export default () => (
             component={LibraryPlaylists}
             exact
           />
+          <Route path='/app/download' component={Download} exact />
         </Switch>
       </SectionContainer>
       <div
