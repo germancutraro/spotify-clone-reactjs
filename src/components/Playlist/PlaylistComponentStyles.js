@@ -108,7 +108,6 @@ export const PlaylistDescription = styled.p`
   color: #b3b3b3;
   color: #fff;
   opacity: 0.6;
-  margin-bottom: 0.8rem;
   overflow-wrap: break-word;
 `;
 
@@ -116,4 +115,5 @@ export const PlaylistTotalSongs = styled(PlaylistDescription)`
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.16rem;
+  margin-top: 0.8rem;
 `;

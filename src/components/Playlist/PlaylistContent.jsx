@@ -85,7 +85,8 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
               </PlaylistDescription>
             ) : null}
             <PlaylistTotalSongs>
-              {playlistData?.tracks?.total} songs
+              {playlistData?.tracks?.total ? playlistData?.tracks?.total : 0}{" "}
+              songs
             </PlaylistTotalSongs>
           </PlaylistDescriptionContainer>
         </PlaylistHeader>
@@ -93,9 +94,9 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
       <PlaylistRightWrapper>
         {playlistData?.tracks?.items.map(track => (
           <TrackItem
-            key={track.track.id}
-            added_at={track.added_at}
-            {...track.track}
+            key={track?.track?.id}
+            added_at={track?.added_at}
+            {...track?.track}
           />
         ))}
       </PlaylistRightWrapper>
