@@ -17,10 +17,6 @@ import { ReactComponent as MusicIcon } from "../../assets/icons/music.svg";
 import moment from "moment";
 
 const TrackItem = ({ name, artists, album, duration_ms }) => {
-  console.log(
-    moment.duration(duration_ms)._data.minutes,
-    moment.duration(duration_ms)._data.seconds
-  );
   return (
     <ItemContainer>
       <MusicIconContainer>
@@ -41,7 +37,9 @@ const TrackItem = ({ name, artists, album, duration_ms }) => {
       <DurationContainer>
         <Duration>
           {`${moment.duration(duration_ms)._data.minutes}:${
-            moment.duration(duration_ms)._data.seconds
+            moment.duration(duration_ms)._data.seconds > 9
+              ? moment.duration(duration_ms)._data.seconds
+              : `0${moment.duration(duration_ms)._data.seconds}`
           }`}
         </Duration>
       </DurationContainer>
