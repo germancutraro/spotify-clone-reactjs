@@ -2,13 +2,23 @@ import styled from "styled-components";
 
 export const ItemContainer = styled.div`
   display: flex;
-  height: 4.56em;
+  height: 4.56rem;
   user-select: none;
   position: relative;
   transition: background-color 0.2s linear;
 
+  svg:nth-child(2) {
+    display: none;
+  }
+
   :hover {
     background-color: hsla(0, 0%, 100%, 0.1);
+    svg:nth-child(1) {
+      display: none;
+    }
+    svg:nth-child(2) {
+      display: block;
+    }
   }
 `;
 

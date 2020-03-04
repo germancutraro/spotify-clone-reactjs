@@ -20,8 +20,8 @@ const TrackItem = ({ name, artists, album, duration_ms }) => {
   return (
     <ItemContainer>
       <MusicIconContainer>
-        <PlayIcon height="20" width="20" fill="#FFF" />
         <MusicIcon height="20" width="20" fill="#FFF" />
+        <PlayIcon height="20" width="20" fill="#FFF" />
       </MusicIconContainer>
 
       <TextContainer>

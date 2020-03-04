@@ -4,9 +4,12 @@ export const PlaylistLeftWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 0.5rem;
 `;
 
-export const PlaylistRightWrapper = styled.div``;
+export const PlaylistRightWrapper = styled.div`
+  padding: 0 0.5rem;
+`;
 
 // PLAYLIST HEADER
 export const PlaylistHeader = styled.header`
