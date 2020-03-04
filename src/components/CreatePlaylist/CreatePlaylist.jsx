@@ -39,7 +39,7 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
 };
 
 CreatePlaylist.propTypes = {
-  isOpen: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired
 };
 

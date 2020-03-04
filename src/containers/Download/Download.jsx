@@ -1,25 +1,32 @@
 import React from 'react';
 
+import {
+  DownloadContainer,
+  DownloadImage,
+  DownloadTitle,
+  DownloadSubtitle,
+  DownloadButton
+} from './downloadStyles';
+
 const Download = () => (
-  <div style={{ color: '#fff' }}>
-    <img
-      alt=''
+  <DownloadContainer>
+    <DownloadImage
       src='https://open.scdn.co/cdn/images/devices/mac.80dcea83.png'
+      alt=''
     />
-    <h1>Get our free app</h1>
-    <h2>
+    <DownloadTitle>Get our free app</DownloadTitle>
+    <DownloadSubtitle>
       Seamlessly listen to music you love. Download the Spotify app for your
       computer.
-    </h2>
-    <a
+    </DownloadSubtitle>
+    <DownloadButton
       href='https://www.spotify.com/download'
       target='_blank'
-      without
-      rel='noopener noreferrer'
+      without-rel='noopener noreferrer'
     >
       DOWNLOAD DESKTOP APP
-    </a>
-  </div>
+    </DownloadButton>
+  </DownloadContainer>
 );
 
 export default Download;
