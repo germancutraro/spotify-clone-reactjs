@@ -9,6 +9,8 @@ export const PlaylistLeftWrapper = styled.div`
 
 export const PlaylistRightWrapper = styled.div`
   padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 // PLAYLIST HEADER

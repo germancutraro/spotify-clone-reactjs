@@ -9,7 +9,12 @@ import {
   Artist,
   Album,
   DurationContainer,
-  Duration
+  Duration,
+  Separator,
+  ArtistContainer,
+  ArtistSeparator,
+  ArtistsContainer,
+  AlbumContainer
 } from "./trackItemStyles";
 
 import { ReactComponent as PlayIcon } from "../../assets/icons/play.svg";
@@ -20,18 +25,28 @@ const TrackItem = ({ name, artists, album, duration_ms }) => {
   return (
     <ItemContainer>
       <MusicIconContainer>
-        <MusicIcon height="20" width="20" fill="#FFF" />
-        <PlayIcon height="20" width="20" fill="#FFF" />
+        <MusicIcon height="20" width="18" fill="rgba(255, 255, 255, .6)" />
+        <PlayIcon height="22" width="22" fill="rgba(255, 255, 255, 1)" />
       </MusicIconContainer>
 
       <TextContainer>
         <Name>{name}</Name>
         <SubTextsContainer>
-          {artists.map((artist, i) => (
-            <Artist key={i}>{artist.name}</Artist>
-          ))}
+          <ArtistsContainer>
+            {artists.map((artist, i) => (
+              <ArtistContainer key={i}>
+                <Artist>{artist.name}</Artist>
+                {i + 1 !== artists.length ? (
+                  <ArtistSeparator>,</ArtistSeparator>
+                ) : null}
+              </ArtistContainer>
+            ))}
+          </ArtistsContainer>
+          <Separator>•</Separator>
 
-          <Album>{album.name}</Album>
+          <AlbumContainer>
+            <Album>{album.name}</Album>
+          </AlbumContainer>
         </SubTextsContainer>
       </TextContainer>
       <DurationContainer>
