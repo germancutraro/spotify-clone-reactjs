@@ -35,7 +35,6 @@ function* getPlaylistSaga() {
 function* getUserTracks() {
   try {
     const tracks = yield services.getUserTracks();
-    console.log(tracks.items);
     if (tracks)
       yield put(actions.getUserTracksSuccess({ playlist: tracks.items }));
   } catch (err) {
@@ -47,10 +46,56 @@ function* getUserTracksSaga() {
   yield takeLatest(constants.GET_USER_TRACKS_START, getUserTracks);
 }
 
+// getRandomTracks
+function* getRandomTracks() {
+  try {
+    const tracks = yield services.getRandomTracks();
+    if (tracks)
+      yield put(actions.getRandomTracksSuccess({ playlist: tracks.items }));
+  } catch (err) {
+    yield put(actions.getRandomTracksFailure({ error: err.message }));
+  }
+}
+
+function* getRandomTracksSaga() {
+  yield takeLatest(constants.GET_RANDOM_TRACKS_START, getRandomTracks);
+}
+
+// createPlaylist
+function* createPlaylist({ payload: { userId, name } }) {
+  try {
+    const playlist = yield services.createPlaylist(userId, name);
+    if (playlist) yield put(actions.createPlaylistSuccess({ playlist }));
+  } catch (err) {
+    yield put(actions.createPlaylistFailure({ error: err.message }));
+  }
+}
+
+function* createPlaylistSaga() {
+  yield takeLatest(constants.CREATE_PLAYLIST_START, createPlaylist);
+}
+
+// addTrackToPlaylist
+function* addTrackToPlaylist({ payload: { playlistId, tracks } }) {
+  try {
+    const playlist = yield services.addTrackToPlaylist(playlistId, tracks);
+    if (playlist) yield put(actions.addTrackToPlaylistSuccess({ playlist }));
+  } catch (err) {
+    yield put(actions.addTrackToPlaylistFailure({ error: err.message }));
+  }
+}
+
+function* addTrackToPlaylistSaga() {
+  yield takeLatest(constants.ADD_TRACK_TO_PLAYLIST_START, addTrackToPlaylist);
+}
+
 export default function* playlistsSaga() {
   yield all([
     fork(getUserPlaylistsSaga),
     fork(getPlaylistSaga),
-    fork(getUserTracksSaga)
+    fork(getUserTracksSaga),
+    fork(getRandomTracksSaga),
+    fork(createPlaylistSaga),
+    fork(addTrackToPlaylistSaga)
   ]);
 }
