@@ -18,11 +18,14 @@ export const SectionContainer = styled.div`
   background-color: ${({ color = "#121212" }) => color};
   background-image: linear-gradient(var(--color), rgba(0, 0, 0, 0.5) 40%);
   ::-webkit-scrollbar {
-    width: 16px;
+    width: 9px;
   }
-
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
   ::-webkit-scrollbar-thumb {
     background: #4f4f4f;
+    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #4f4f4f;
