@@ -65,7 +65,10 @@ function* getRandomTracksSaga() {
 function* createPlaylist({ payload: { userId, name } }) {
   try {
     const playlist = yield services.createPlaylist(userId, name);
-    if (playlist) yield put(actions.createPlaylistSuccess({ playlist }));
+    if (playlist) {
+      yield put(actions.createPlaylistSuccess({ playlist }));
+      yield getUserPlaylists();
+    }
   } catch (err) {
     yield put(actions.createPlaylistFailure({ error: err.message }));
   }

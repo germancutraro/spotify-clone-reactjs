@@ -15,15 +15,14 @@ export const getUserTracks = () => api(`https://api.spotify.com/v1/me/tracks`);
 
 export const getRandomTracks = () => api(`https://api.spotify.com/v1/tracks`);
 
-export const createPlaylist = (userId, name) =>
+export const createPlaylist = (userId, name = 'New Playlist') =>
   api(
     `https://api.spotify.com/v1/users/${userId}/playlists`,
     'POST',
     {},
     {
       name,
-      description: '',
-      public: false
+      public: true
     }
   );
 
