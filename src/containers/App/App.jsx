@@ -15,7 +15,7 @@ import Search from '../Search/Search';
 import ArtistSongs from '../Search/ArtistSongs';
 import ArtistAlbums from '../Search/ArtistAlbums';
 import RelatedArtists from '../Search/RelatedArtists';
-import Download from '../../components/Download/Download';
+import Download from '../Download/Download';
 
 export default () => (
   <>
