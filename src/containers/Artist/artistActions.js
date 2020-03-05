@@ -59,3 +59,35 @@ export const getArtistRelatedFailure = payload => ({
   type: constants.GET_ARTIST_RELATED_FAILURE,
   payload
 });
+
+// check if user follow the artist
+export const isUserFollowingStart = payload => ({
+  type: constants.IS_USER_FOLLOWING_START,
+  payload
+});
+
+export const isUserFollowingSuccess = payload => ({
+  type: constants.IS_USER_FOLLOWING_SUCCESS,
+  payload
+});
+
+export const isUserFollowingFailure = payload => ({
+  type: constants.IS_USER_FOLLOWING_FAILURE,
+  payload
+});
+// Follow / Unfollow
+
+export const followArtistStart = payload => ({
+  type: constants.FOLLOW_ARTIST_START,
+  payload
+});
+
+export const followArtistSuccess = payload => ({
+  type: constants.FOLLOW_ARTIST_SUCCESS,
+  payload
+});
+
+export const followArtistFailure = payload => ({
+  type: constants.FOLLOW_ARTIST_FAILURE,
+  payload
+});

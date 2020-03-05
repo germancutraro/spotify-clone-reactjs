@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getArtistStart,
   getArtistTracksStart,
-  getArtistAlbumsStart
+  getArtistAlbumsStart,
+  isUserFollowingStart,
+  followArtistStart
 } from './artistActions';
 // pages
 import ArtistAbout from './ArtistAbout';
@@ -16,7 +18,9 @@ import ArtistRelated from './ArtistRelated';
 
 const Artist = () => {
   const dispatch = useDispatch();
-  const { artist, tracks, loading } = useSelector(({ artist }) => artist);
+  const { artist, tracks, following, loading } = useSelector(
+    ({ artist }) => artist
+  );
   const { albums, singles, appears } = useSelector(
     ({ artist: { albums } }) => ({
       albums: albums.filter(({ album_type }) => album_type === 'album'),
@@ -32,7 +36,16 @@ const Artist = () => {
     dispatch(getArtistStart({ id }));
     dispatch(getArtistTracksStart({ id }));
     dispatch(getArtistAlbumsStart({ id }));
+    dispatch(isUserFollowingStart({ id }));
   }, [dispatch, id]);
+
+  const handleFollow = async () => {
+    // await is important here!
+    await dispatch(
+      followArtistStart({ id, action: following ? 'unfollow' : 'follow' })
+    );
+    dispatch(isUserFollowingStart({ id }));
+  };
 
   if (loading) return <h1>loading...</h1>;
 
@@ -43,6 +56,8 @@ const Artist = () => {
       )}
 
       <h1>{artist.name}</h1>
+
+      <h3 onClick={handleFollow}>{following ? 'UnFollow' : 'Follow'}</h3>
 
       <ul>
         <Link to={`${path}`}>OVERVIEW</Link>

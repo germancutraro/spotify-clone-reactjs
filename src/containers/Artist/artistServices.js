@@ -13,3 +13,14 @@ export const getArtistAlbums = artistId =>
 
 export const getArtistsRelated = artistId =>
   api(`https://api.spotify.com/v1/artists/${artistId}/related-artists`);
+
+export const isUserFollowing = artistId =>
+  api(
+    `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${artistId}`
+  );
+
+export const followUnfollow = (artistId, action = 'follow') =>
+  api(
+    `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`,
+    action === 'follow' ? 'PUT' : 'DELETE'
+  );
