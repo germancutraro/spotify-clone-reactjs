@@ -1,29 +1,29 @@
-import React from "react";
-import { Switch, Route, useParams } from "react-router-dom";
-import { Link } from "../../components/LibraryMenu/libraryMenuStyles";
+import React from 'react';
+import { Switch, Route, useParams } from 'react-router-dom';
+import { Link } from '../../components/LibraryMenu/libraryMenuStyles';
+import TrackItem from '../../components/TrackItem/TrackItem';
+import ArtistContentItem from '../../components/ArtistContentItem/ArtistContentItem';
 // redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getArtistStart,
   getArtistTracksStart,
   getArtistAlbumsStart
-} from "./artistActions";
+} from './artistActions';
 // pages
-import ArtistAbout from "./ArtistAbout";
-import ArtistRelated from "./ArtistRelated";
-import TrackItem from "../../components/TrackItem/TrackItem";
-import LibraryItem from "../../components/LibraryItem/LibraryItem";
+import ArtistAbout from './ArtistAbout';
+import ArtistRelated from './ArtistRelated';
 
 const Artist = () => {
   const dispatch = useDispatch();
   const { artist, tracks, loading } = useSelector(({ artist }) => artist);
-  const { albums, singles, appears } = useSelector(({ artist }) => ({
-    albums: artist.albums.filter(({ album_type }) => album_type === "album"),
-    singles: artist.albums.filter(({ album_type }) => album_type === "single"),
-    appears: artist.albums.filter(
-      ({ album_type }) => album_type === "compilation"
-    )
-  }));
+  const { albums, singles, appears } = useSelector(
+    ({ artist: { albums } }) => ({
+      albums: albums.filter(({ album_type }) => album_type === 'album'),
+      singles: albums.filter(({ album_type }) => album_type === 'single'),
+      appears: albums.filter(({ album_type }) => album_type === 'compilation')
+    })
+  );
 
   const { id } = useParams();
   const path = `/app/artist`;
@@ -37,9 +37,9 @@ const Artist = () => {
   if (loading) return <h1>loading...</h1>;
 
   return (
-    <div style={{ color: "#fff" }}>
+    <div style={{ color: '#fff' }}>
       {artist.images && (
-        <img src={artist?.images[0].url} alt="" width={200} height={200} />
+        <img src={artist?.images[0].url} alt='' width={200} height={200} />
       )}
 
       <h1>{artist.name}</h1>
@@ -61,37 +61,13 @@ const Artist = () => {
       ))}
 
       <h2>Albums</h2>
-      {albums.map(album => (
-        <LibraryItem
-          key={album.id}
-          id={album.id}
-          name={album.name}
-          author={album.artists[0].name}
-          cover={album.images[0].url}
-        />
-      ))}
+      <ArtistContentItem albums={albums} />
 
       <h2>Singles</h2>
-      {singles.map(album => (
-        <LibraryItem
-          key={album.id}
-          id={album.id}
-          name={album.name}
-          author={album.artists[0].name}
-          cover={album.images[0].url}
-        />
-      ))}
+      <ArtistContentItem albums={singles} />
 
       <h2>Appears on</h2>
-      {appears.map(album => (
-        <LibraryItem
-          key={album.id}
-          id={album.id}
-          name={album.name}
-          author={album.artists[0].name}
-          cover={album.images[0].url}
-        />
-      ))}
+      <ArtistContentItem albums={appears} />
     </div>
   );
 };
