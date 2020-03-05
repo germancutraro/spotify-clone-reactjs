@@ -16,17 +16,17 @@ export const ItemContainer = styled.div`
   transition: background-color 0.2s linear;
   padding: 0.7rem 1rem 0.7rem 0;
 
-  svg:nth-child(2) {
+  svg:nth-child(1) {
     display: none;
   }
 
   :hover {
     background-color: hsla(0, 0%, 100%, 0.1);
     svg:nth-child(1) {
-      display: none;
+      display: inline-block;
     }
     svg:nth-child(2) {
-      display: inline-block;
+      display: none;
     }
   }
 `;
@@ -100,9 +100,19 @@ export const AlbumContainer = styled.span`
 
 export const Album = styled(Artist)``;
 
+// options
+export const OptionButtonContainer = styled.div`
+  padding: 0 2rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+// duration
+
 export const DurationContainer = styled.div`
   margin-left: auto;
-  padding-left: 5rem;
 `;
 
 export const Duration = styled.span`
