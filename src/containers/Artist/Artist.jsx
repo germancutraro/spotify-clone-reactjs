@@ -26,7 +26,7 @@ const Artist = () => {
   );
 
   const { id } = useParams();
-  const path = `/app/artist/${id}`;
+  const path = `/app/artist`;
 
   React.useEffect(() => {
     dispatch(getArtistStart({ id }));
@@ -43,15 +43,16 @@ const Artist = () => {
       )}
 
       <h1>{artist.name}</h1>
+
       <ul>
         <Link to={`${path}`}>OVERVIEW</Link>
-        <Link to={`${path}/related`}>RELATED ARTISTS</Link>
-        <Link to={`${path}/about`}>ABOUT</Link>
+        <Link to={`${path}/${id}/related`}>RELATED ARTISTS</Link>
+        <Link to={`${path}/${id}/about`}>ABOUT</Link>
       </ul>
 
       <Switch>
-        <Route path={`${path}/about`} component={ArtistAbout} />
-        <Route path={`${path}/related`} component={ArtistRelated} />
+        <Route path={`${path}/:id/about`} component={ArtistAbout} exact />
+        <Route path={`${path}/:id/related`} component={ArtistRelated} exact />
       </Switch>
 
       <h3>Popular</h3>
