@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 const EllipsisOneLine = css`
   overflow: hidden;
@@ -71,7 +72,7 @@ const OpacityColor = css`
   opacity: 0.6;
 `;
 
-export const Artist = styled.a`
+export const Artist = styled(Link)`
   ${OpacityColor}
   transition: opacity 0.2s linear;
   border-bottom: 1px solid transparent;

@@ -35,7 +35,7 @@ const TrackItem = ({ name, artists, album, duration_ms }) => {
           <ArtistsContainer>
             {artists.map((artist, i) => (
               <ArtistContainer key={i}>
-                <Artist>{artist.name}</Artist>
+                <Artist to={`/app/artist/${artist.id}`}>{artist.name}</Artist>
                 {i + 1 !== artists.length ? (
                   <ArtistSeparator>,</ArtistSeparator>
                 ) : null}
@@ -45,7 +45,7 @@ const TrackItem = ({ name, artists, album, duration_ms }) => {
           <Separator>•</Separator>
 
           <AlbumContainer>
-            <Album>{album.name}</Album>
+            <Album to={`/app/album/${album.id}`}>{album.name}</Album>
           </AlbumContainer>
         </SubTextsContainer>
       </TextContainer>
