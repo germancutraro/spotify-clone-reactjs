@@ -10,6 +10,7 @@ import playlistsReducer from './containers/Playlists/playlistsReducer';
 import searchReducer from './containers/Search/searchReducer';
 import libraryReducer from './containers/Library/libraryReducer';
 import browseReducer from './containers/Browse/browseReducer';
+import artistReducer from './containers/Artist/artistReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -31,5 +32,6 @@ export default history =>
     search: searchReducer,
     browse: browseReducer,
     library: libraryReducer,
+    artist: artistReducer,
     router: connectRouter(history)
   });

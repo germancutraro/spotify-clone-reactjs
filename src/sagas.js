@@ -7,6 +7,7 @@ import librarySaga from './containers/Library/librarySaga';
 import searchSaga from './containers/Search/searchSaga';
 import browseSaga from './containers/Browse/browseSaga';
 import userSaga from './containers/User/userSaga';
+import artistSaga from './containers/Artist/artistSaga';
 
 export default function* root() {
   yield all([
@@ -15,6 +16,7 @@ export default function* root() {
     fork(playlistsSaga),
     fork(browseSaga),
     fork(searchSaga),
-    fork(librarySaga)
+    fork(librarySaga),
+    fork(artistSaga)
   ]);
 }

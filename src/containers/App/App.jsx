@@ -16,6 +16,7 @@ import ArtistSongs from '../Search/ArtistSongs';
 import ArtistAlbums from '../Search/ArtistAlbums';
 import RelatedArtists from '../Search/RelatedArtists';
 import Download from '../Download/Download';
+import Artist from '../Artist/Artist';
 
 export default () => (
   <>
@@ -36,6 +37,7 @@ export default () => (
           <Route path='/app' component={Dashboard} exact />
           <Route path='/app/user/:name' component={User} exact />
           <Route path='/app/search' component={Search} exact />
+          <Route path='/app/artist/:id' component={Artist} exact />
           <Route
             path='/app/search/:name/albums'
             component={ArtistAlbums}
