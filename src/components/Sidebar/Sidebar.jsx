@@ -77,7 +77,7 @@ const Sidebar = () => {
         </LibraryItem>
         <LibraryItem gradient>
           <Item svgTransition={false}>
-            <ItemLink to="/app/collection/tracks" padding={0}>
+            <ItemLink to="/app/collection/tracks" padding={0} bgc="transparent">
               <IconSquare gradient>
                 <HeartIcon fill="#fff" width={16} height={16} />
               </IconSquare>

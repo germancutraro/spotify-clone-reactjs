@@ -91,8 +91,14 @@ export const ItemLink = styled(NavLink)`
       color: #fff;
     }
   }
+
   &.active {
-    background-color: #282828;
+    ${({ bgc }) =>
+      bgc !== "transparent"
+        ? css`
+            background-color: #282828;
+          `
+        : null}
   }
 `;
 
