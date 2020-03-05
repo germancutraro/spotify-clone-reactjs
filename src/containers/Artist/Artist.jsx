@@ -16,9 +16,14 @@ import LibraryItem from '../../components/LibraryItem/LibraryItem';
 
 const Artist = () => {
   const dispatch = useDispatch();
-  const { artist, albums, tracks, loading } = useSelector(
-    ({ artist }) => artist
-  );
+  const { artist, tracks, loading } = useSelector(({ artist }) => artist);
+  const { albums, singles, appears } = useSelector(({ artist }) => ({
+    albums: artist.albums.filter(({ album_type }) => album_type === 'album'),
+    singles: artist.albums.filter(({ album_type }) => album_type === 'single'),
+    appears: artist.albums.filter(
+      ({ album_type }) => album_type === 'compilation'
+    )
+  }));
 
   const { id } = useParams();
   const path = `/app/artist/${id}`;
@@ -54,8 +59,30 @@ const Artist = () => {
         <TrackItem key={i} added_at={track?.added_at} {...track} />
       ))}
 
-      <h3>Albums</h3>
+      <h2>Albums</h2>
       {albums.map(album => (
+        <LibraryItem
+          key={album.id}
+          id={album.id}
+          name={album.name}
+          author={album.artists[0].name}
+          cover={album.images[0].url}
+        />
+      ))}
+
+      <h2>Singles</h2>
+      {singles.map(album => (
+        <LibraryItem
+          key={album.id}
+          id={album.id}
+          name={album.name}
+          author={album.artists[0].name}
+          cover={album.images[0].url}
+        />
+      ))}
+
+      <h2>Appears on</h2>
+      {appears.map(album => (
         <LibraryItem
           key={album.id}
           id={album.id}
