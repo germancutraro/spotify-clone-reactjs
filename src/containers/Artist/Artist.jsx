@@ -3,7 +3,11 @@ import { Switch, Route, useParams } from 'react-router-dom';
 import { Link } from '../../components/LibraryMenu/libraryMenuStyles';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getArtistStart } from './artistActions';
+import {
+  getArtistStart,
+  getArtistTracksStart,
+  getArtistAlbumsStart
+} from './artistActions';
 // pages
 import ArtistAbout from './ArtistAbout';
 import ArtistRelated from './ArtistRelated';
@@ -17,6 +21,8 @@ const Artist = () => {
 
   React.useEffect(() => {
     dispatch(getArtistStart({ id }));
+    dispatch(getArtistTracksStart({ id }));
+    dispatch(getArtistAlbumsStart({ id }));
   }, [dispatch, id]);
 
   if (loading) return <h1>loading...</h1>;

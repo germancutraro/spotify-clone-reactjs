@@ -20,8 +20,7 @@ function* getArtistSaga() {
 // Get artist Tracks
 function* getArtistTopTracks({ payload: { id } }) {
   try {
-    const tracks = yield services.getArtistTracks(id);
-    console.log(tracks);
+    const { tracks } = yield services.getArtistTracks(id);
     if (tracks) yield put(actions.getArtistTracksSuccess({ tracks }));
   } catch (err) {
     yield put(actions.getArtistTracksFailure({ error: err.message }));
@@ -36,7 +35,8 @@ function* getArtistTopTracksSaga() {
 function* getArtistAlbums({ payload: { id } }) {
   try {
     const albums = yield services.getArtistAlbums(id);
-    if (albums) yield put(actions.getArtistAlbumsSuccess({ albums }));
+    if (albums)
+      yield put(actions.getArtistAlbumsSuccess({ albums: albums.items }));
   } catch (err) {
     yield put(actions.getArtistAlbumsFailure({ error: err.message }));
   }
