@@ -4,6 +4,7 @@ const initialState = {
   list: [],
   playlist: {},
   tracks: [],
+  following: false,
   loading: true,
   error: null
 };
@@ -30,6 +31,14 @@ export default (state = initialState, { type, payload }) => {
         playlist: payload.playlist
       };
 
+    case constants.CHECK_USER_FOLLOW_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        following: payload.following
+      };
+
     // case constants.ADD_TRACK_TO_PLAYLIST_SUCCESS:
 
     case constants.GET_USER_PLAYLISTS_FAILURE:
@@ -38,6 +47,7 @@ export default (state = initialState, { type, payload }) => {
     case constants.GET_RANDOM_TRACKS_FAILURE:
     case constants.CREATE_PLAYLIST_SUCCESS:
     case constants.ADD_TRACK_TO_PLAYLIST_FAILURE:
+    case constants.CHECK_USER_FOLLOW_PLAYLIST_FAILURE:
       return { ...state, loading: false, error: payload.error };
     default:
       return state;

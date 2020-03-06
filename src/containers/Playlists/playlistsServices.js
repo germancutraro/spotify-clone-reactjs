@@ -31,3 +31,8 @@ export const addTrackToPlaylist = (playlistId, tracksUris) =>
     `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${tracksUris}`,
     'POST'
   );
+
+export const checkUserFollowPlaylist = (playlistId, userId) =>
+  api(
+    `https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${userId}`
+  );

@@ -85,7 +85,11 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
             {!isLikedSongs ? (
               <PlaylistIconsWrapper>
                 <IconContainer>
-                  <HeartIcon fill='#1db954' width={20} height={20} />
+                  {playlist.following ? (
+                    <HeartIcon fill='#1db954' width={20} height={20} />
+                  ) : (
+                    <HeartIcon fill='#fff' width={20} height={20} />
+                  )}
                 </IconContainer>
                 <IconContainer>
                   <MoreIcon fill='#fff' width={20} />

@@ -92,6 +92,29 @@ function* addTrackToPlaylistSaga() {
   yield takeLatest(constants.ADD_TRACK_TO_PLAYLIST_START, addTrackToPlaylist);
 }
 
+// Check user
+function* checkUserFollowThePlaylist({ payload: { playlistId, userId } }) {
+  try {
+    const following = yield services.checkUserFollowPlaylist(
+      playlistId,
+      userId
+    );
+    if (following)
+      yield put(
+        actions.checkUserFollowPlaylistSuccess({ following: following[0] })
+      );
+  } catch (err) {
+    yield put(actions.checkUserFollowPlaylistFailure({ error: err.message }));
+  }
+}
+
+function* checkUserFollowThePlaylistSaga() {
+  yield takeLatest(
+    constants.CHECK_USER_FOLLOW_PLAYLIST_START,
+    checkUserFollowThePlaylist
+  );
+}
+
 export default function* playlistsSaga() {
   yield all([
     fork(getUserPlaylistsSaga),
@@ -99,6 +122,7 @@ export default function* playlistsSaga() {
     fork(getUserTracksSaga),
     fork(getRandomTracksSaga),
     fork(createPlaylistSaga),
-    fork(addTrackToPlaylistSaga)
+    fork(addTrackToPlaylistSaga),
+    fork(checkUserFollowThePlaylistSaga)
   ]);
 }
