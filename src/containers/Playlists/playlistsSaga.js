@@ -115,6 +115,24 @@ function* checkUserFollowThePlaylistSaga() {
   );
 }
 
+// follow unfollow
+function* followUnfollowPlaylist({
+  payload: { playlistId, action = 'follow' }
+}) {
+  try {
+    yield services.followUnfollowPlaylist(playlistId, action);
+    yield put(actions.followPlaylistSuccess());
+
+    yield getUserPlaylists();
+  } catch (err) {
+    yield put(actions.followPlaylistFailure({ error: err.message }));
+  }
+}
+
+function* followUnfollowPlaylistSaga() {
+  yield takeLatest(constants.FOLLOW_PLAYLIST_START, followUnfollowPlaylist);
+}
+
 export default function* playlistsSaga() {
   yield all([
     fork(getUserPlaylistsSaga),
@@ -123,6 +141,7 @@ export default function* playlistsSaga() {
     fork(getRandomTracksSaga),
     fork(createPlaylistSaga),
     fork(addTrackToPlaylistSaga),
-    fork(checkUserFollowThePlaylistSaga)
+    fork(checkUserFollowThePlaylistSaga),
+    fork(followUnfollowPlaylistSaga)
   ]);
 }

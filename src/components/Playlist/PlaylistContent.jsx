@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
 import {
   PlaylistTitle,
   PlaylistOwner,
@@ -23,9 +24,13 @@ import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 
-const PlaylistContent = ({ playlist, isLikedSongs }) => {
+const PlaylistContent = ({
+  playlist,
+  isLikedSongs,
+  following,
+  handleFollow
+}) => {
   const history = useHistory();
-
   const playlistData = isLikedSongs
     ? {
         ...playlist,
@@ -44,7 +49,8 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
         }
       }
     : { ...playlist };
-  console.log(playlistData?.tracks?.items);
+  // console.log(playlistData?.tracks?.items);
+
   return (
     <>
       <PlaylistLeftWrapper>
@@ -85,11 +91,12 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
             {!isLikedSongs ? (
               <PlaylistIconsWrapper>
                 <IconContainer>
-                  {playlist.following ? (
-                    <HeartIcon fill='#1db954' width={20} height={20} />
-                  ) : (
-                    <HeartIcon fill='#fff' width={20} height={20} />
-                  )}
+                  <HeartIcon
+                    fill={following ? '#1db954' : '#fff'}
+                    width={20}
+                    height={20}
+                    onClick={handleFollow}
+                  />
                 </IconContainer>
                 <IconContainer>
                   <MoreIcon fill='#fff' width={20} />

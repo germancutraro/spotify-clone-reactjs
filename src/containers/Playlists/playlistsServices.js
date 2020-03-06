@@ -36,3 +36,9 @@ export const checkUserFollowPlaylist = (playlistId, userId) =>
   api(
     `https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${userId}`
   );
+
+export const followUnfollowPlaylist = (playlistId, action) =>
+  api(
+    `https://api.spotify.com/v1/playlists/${playlistId}/followers`,
+    action === 'follow' ? 'PUT' : 'DELETE'
+  );

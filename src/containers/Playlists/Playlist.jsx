@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getPlaylistStart,
   getUserTracksStart,
-  checkUserFollowPlaylistStart
+  checkUserFollowPlaylistStart,
+  followPlaylistStart
 } from './playlistsActions';
 import { PlaylistContainer } from './playlistsStyles';
 
@@ -44,10 +45,30 @@ const Playlist = () => {
     return <h1>loading</h1>;
   }
 
+  const handleFollow = () => {
+    dispatch(
+      followPlaylistStart({
+        playlistId: playlist.id,
+        action: following ? 'unfollow' : 'follow'
+      })
+    );
+    setTimeout(
+      () =>
+        dispatch(
+          checkUserFollowPlaylistStart({ playlistId: playlist.id, userId })
+        ),
+      100
+    );
+  };
+
   return (
     <PlaylistContainer>
       {!pathname.includes('/tracks') && playlist ? (
-        <PlaylistContent playlist={{ ...playlist, following }} />
+        <PlaylistContent
+          playlist={playlist}
+          following={following}
+          handleFollow={handleFollow}
+        />
       ) : (
         <PlaylistContent playlist={playlist} isLikedSongs />
       )}

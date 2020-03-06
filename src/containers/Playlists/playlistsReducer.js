@@ -48,6 +48,7 @@ export default (state = initialState, { type, payload }) => {
     case constants.CREATE_PLAYLIST_SUCCESS:
     case constants.ADD_TRACK_TO_PLAYLIST_FAILURE:
     case constants.CHECK_USER_FOLLOW_PLAYLIST_FAILURE:
+    case constants.FOLLOW_PLAYLIST_FAILURE:
       return { ...state, loading: false, error: payload.error };
     default:
       return state;

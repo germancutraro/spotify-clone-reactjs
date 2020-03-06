@@ -106,3 +106,18 @@ export const checkUserFollowPlaylistFailure = payload => ({
   type: constants.CHECK_USER_FOLLOW_PLAYLIST_FAILURE,
   payload
 });
+
+export const followPlaylistStart = payload => ({
+  type: constants.FOLLOW_PLAYLIST_START,
+  payload
+});
+
+export const followPlaylistSuccess = payload => ({
+  type: constants.FOLLOW_PLAYLIST_SUCCESS,
+  payload
+});
+
+export const followPlaylistFailure = payload => ({
+  type: constants.FOLLOW_PLAYLIST_FAILURE,
+  payload
+});
