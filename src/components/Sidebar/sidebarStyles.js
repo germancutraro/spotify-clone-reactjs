@@ -209,5 +209,5 @@ export const PlaylistItemText = styled(ItemText)`
 `;
 
 export const InstallItem = styled(Item)`
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 0.5rem 0.7rem 0;
 `;
