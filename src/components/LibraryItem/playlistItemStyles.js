@@ -1,57 +1,104 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ReactComponent as DefaultCoverIcon } from '../../assets/icons/defaultSong.svg';
 
-export const LibraryPlaylistWrapper = styled.div`
+const EllipsisOneLine = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1px;
+  margin-right: -1px;
+`;
+const EllipsisTwoLines = css`
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+
+export const LibraryItemsContainer = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+  padding: 0 2rem;
+  margin: 2rem 0;
+  grid-gap: 1rem;
+`;
+
+export const LibraryPlaylistContainer = styled.li`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+  background: #282828;
+  border-radius: 8px;
+  isolation: isolate;
+  list-style: none;
+  cursor: pointer;
+
+  :hover [data-value='play'] {
+    display: flex;
+  }
+`;
+
+export const LibraryPlaylistCoverContainer = styled.div`
+  height: 0;
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  margin-bottom: 16px;
   background-color: #333;
-  width: 200px;
-  height: 310px;
-  margin: 20px;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 `;
 
 export const LibraryPlaylistCover = styled.img`
-  width: 165px;
-  height: 165px;
-  margin: 20px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 export const LibraryPlaylistTitle = styled.p`
   color: #fff;
   font-size: 14px;
-  -webkit-font-smoothing: antialiased;
   font-weight: 700;
+  ${EllipsisOneLine}
 `;
 
 export const LibraryPlaylistAuthor = styled.span`
   color: #b3b3b3;
   font-size: 12px;
   line-height: 18px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #b3b3b3;
-  padding: 0;
   margin-top: 4px;
-  white-space: normal;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  -webkit-font-smoothing: antialiased;
+  ${EllipsisTwoLines}
 `;
 
 export const LibraryPlaylistPlay = styled.div`
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
   border-radius: 100%;
   background-color: #1db954;
+  box-shadow: 0 0 10px 10px #282828;
+  cursor: auto;
+
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.06);
   }
 `;
 
-export const DefaultContainer = styled.div`
-  height: 200px;
-  width: 95%;
-  background-color: #333;
+export const DefaultCover = styled(DefaultCoverIcon)`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 52.5%;
+  transform: translateX(-50%);
 `;

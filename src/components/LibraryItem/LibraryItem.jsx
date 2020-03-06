@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
-import { ReactComponent as DefaultCover } from '../../assets/icons/defaultSong.svg';
 import {
-  LibraryPlaylistWrapper,
+  LibraryPlaylistContainer,
+  LibraryPlaylistCoverContainer,
   LibraryPlaylistCover,
   LibraryPlaylistTitle,
   LibraryPlaylistAuthor,
   LibraryPlaylistPlay,
-  DefaultContainer
+  DefaultCover
 } from './playlistItemStyles';
 
 const LibraryItem = ({
@@ -28,13 +28,15 @@ const LibraryItem = ({
   };
 
   return (
-    <LibraryPlaylistWrapper onClick={handleChangeRoute}>
+    <LibraryPlaylistContainer onClick={handleChangeRoute}>
       {cover ? (
-        <LibraryPlaylistCover src={cover} alt='' />
+        <LibraryPlaylistCoverContainer>
+          <LibraryPlaylistCover src={cover} alt={name} />
+        </LibraryPlaylistCoverContainer>
       ) : (
-        <DefaultContainer>
-          <DefaultCover width={150} height={150} />
-        </DefaultContainer>
+        <LibraryPlaylistCoverContainer>
+          <DefaultCover />
+        </LibraryPlaylistCoverContainer>
       )}
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
       {author && (
@@ -48,11 +50,11 @@ const LibraryItem = ({
       )}
 
       {isPlayable && (
-        <LibraryPlaylistPlay>
+        <LibraryPlaylistPlay data-value='play'>
           <PlayIcon fill='#fff' />
         </LibraryPlaylistPlay>
       )}
-    </LibraryPlaylistWrapper>
+    </LibraryPlaylistContainer>
   );
 };
 
