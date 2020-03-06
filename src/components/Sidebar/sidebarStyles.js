@@ -151,7 +151,8 @@ export const IconSquare = styled.div`
 export const LibraryItem = styled.div`
   padding: 5px 0;
 
-  :hover {
+  :hover,
+  .active {
     ${ItemText} {
       color: #fff;
     }
@@ -208,5 +209,5 @@ export const PlaylistItemText = styled(ItemText)`
 `;
 
 export const InstallItem = styled(Item)`
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 0.5rem 0.7rem 0;
 `;

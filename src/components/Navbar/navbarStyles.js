@@ -90,6 +90,7 @@ export const UpgradeButton = styled.a`
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+  line-height: 18px;
 
   &:hover {
     transform: scale(1.06);
@@ -100,7 +101,7 @@ export const UpgradeText = styled.p`
   -webkit-font-smoothing: antialiased;
   text-transform: uppercase;
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 2.3px;
 `;
 

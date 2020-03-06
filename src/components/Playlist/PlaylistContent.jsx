@@ -36,11 +36,15 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
               url:
                 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
             }
-          ]
+          ],
+          tracks: {
+            items: [...playlist],
+            total: playlist?.length
+          }
         }
       }
     : { ...playlist };
-
+  console.log(playlistData?.tracks?.items);
   return (
     <>
       <PlaylistLeftWrapper>
@@ -49,7 +53,12 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
             <PlaylistImageContainer>
               {playlistData.images &&
                 (playlistData?.images[0]?.url ? (
-                  <PlaylistImage src={playlistData?.images[0]?.url} alt='' />
+                  <PlaylistImage
+                    src={
+                      playlistData?.images ? playlistData?.images[0]?.url : ''
+                    }
+                    alt=''
+                  />
                 ) : (
                   <DefaultSong width={100} height={100} />
                 ))}
@@ -66,7 +75,7 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
                   )
                 }
               >
-                {playlistData?.owner.display_name}
+                {playlistData?.owner?.display_name}
               </PlaylistOwner>
             ) : null}
           </PlaylistHeaderSubcontainer>
@@ -98,7 +107,7 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
         </PlaylistHeader>
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
-        {playlistData?.tracks?.items.map((track, i) => (
+        {playlistData?.tracks?.items?.map((track, i) => (
           <TrackItem key={i} added_at={track?.added_at} {...track?.track} />
         ))}
       </PlaylistRightWrapper>

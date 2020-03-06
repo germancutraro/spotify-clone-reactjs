@@ -15,8 +15,8 @@ export const SectionContainer = styled.div`
   max-height: 100%;
   overflow-y: auto;
   position: relative;
-  background-color: ${({ color = "#121212" }) => color};
-  background-image: linear-gradient(var(--color), rgba(0, 0, 0, 0.5) 40%);
+  background-color: var(--color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), #121212 40%);
   ::-webkit-scrollbar {
     width: 9px;
   }

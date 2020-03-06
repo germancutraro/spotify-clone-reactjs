@@ -8,9 +8,10 @@ export const PlaylistLeftWrapper = styled.div`
 `;
 
 export const PlaylistRightWrapper = styled.div`
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
 `;
 
 // PLAYLIST HEADER
