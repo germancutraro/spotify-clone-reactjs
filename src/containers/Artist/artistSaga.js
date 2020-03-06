@@ -60,11 +60,44 @@ function* getArtistRelatedSaga() {
   yield takeLatest(constants.GET_ARTIST_RELATED_START, getArtistRelated);
 }
 
+// Check if the user is following the artist
+function* checkFollow({ payload: { id } }) {
+  try {
+    const isFollowing = yield services.isUserFollowing(id);
+    if (isFollowing)
+      yield put(actions.isUserFollowingSuccess({ following: isFollowing[0] }));
+  } catch (err) {
+    yield put(actions.isUserFollowingFailure({ error: err.message }));
+  }
+}
+
+function* checkFollowSaga() {
+  yield takeLatest(constants.IS_USER_FOLLOWING_START, checkFollow);
+}
+
+// Follow / UnFollow
+function* followUnfollow({ payload: { id, action = 'follow' } }) {
+  try {
+    yield services.followUnfollow(id, action);
+
+    yield put(actions.followArtistSuccess());
+    // yield checkFollow({ id });
+  } catch (err) {
+    yield put(actions.followArtistFailure({ error: err.message }));
+  }
+}
+
+function* followUnfollowSaga() {
+  yield takeLatest(constants.FOLLOW_ARTIST_START, followUnfollow);
+}
+
 export default function* artistSaga() {
   yield all([
     fork(getArtistSaga),
     fork(getArtistTopTracksSaga),
     fork(getArtistAlbumsSaga),
-    fork(getArtistRelatedSaga)
+    fork(getArtistRelatedSaga),
+    fork(checkFollowSaga),
+    fork(followUnfollowSaga)
   ]);
 }

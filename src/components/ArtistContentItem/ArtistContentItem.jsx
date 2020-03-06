@@ -13,4 +13,4 @@ const ArtistContentItem = ({ albums }) => {
   ));
 };
 
-export default ArtistContentItem;
+export default React.memo(ArtistContentItem);
