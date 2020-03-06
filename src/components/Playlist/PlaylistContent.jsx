@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 import {
   PlaylistTitle,
   PlaylistOwner,
@@ -16,11 +16,11 @@ import {
   PlaylistDescriptionContainer,
   IconContainer,
   PlaylistDescription
-} from './PlaylistComponentStyles';
-import TrackItem from '../../components/TrackItem/TrackItem';
+} from "./PlaylistComponentStyles";
+import TrackItem from "../../components/TrackItem/TrackItem";
 
-import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
-import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
+import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
+import { ReactComponent as MoreIcon } from "../../assets/icons/more.svg";
 
 const PlaylistContent = ({ playlist, isLikedSongs }) => {
   const history = useHistory();
@@ -29,24 +29,31 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
     ? {
         ...playlist,
         ...{
-          name: 'Liked Songs',
+          name: "Liked Songs",
           images: [
             {
               url:
-                'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
+                "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
             }
-          ]
+          ],
+          tracks: {
+            items: [...playlist],
+            total: playlist?.length
+          }
         }
       }
     : { ...playlist };
-
+  console.log(playlistData?.tracks?.items);
   return (
     <>
       <PlaylistLeftWrapper>
         <PlaylistHeader>
           <PlaylistHeaderSubcontainer>
             <PlaylistImageContainer>
-              <PlaylistImage src={playlistData?.images[0]?.url} alt='' />
+              <PlaylistImage
+                src={playlistData?.images ? playlistData?.images[0]?.url : ""}
+                alt=""
+              />
             </PlaylistImageContainer>
             <PlaylistTitle>{playlistData?.name}</PlaylistTitle>
             {!isLikedSongs ? (
@@ -60,20 +67,20 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
                   )
                 }
               >
-                {playlistData?.owner.display_name}
+                {playlistData?.owner?.display_name}
               </PlaylistOwner>
             ) : null}
           </PlaylistHeaderSubcontainer>
 
           <PlaylistButtonsContainer>
-            <PlaylistPlay onClick={() => alert('play')}>PLAY</PlaylistPlay>
+            <PlaylistPlay onClick={() => alert("play")}>PLAY</PlaylistPlay>
             {!isLikedSongs ? (
               <PlaylistIconsWrapper>
                 <IconContainer>
-                  <HeartIcon fill='#1db954' width={20} height={20} />
+                  <HeartIcon fill="#1db954" width={20} height={20} />
                 </IconContainer>
                 <IconContainer>
-                  <MoreIcon fill='#fff' width={20} />
+                  <MoreIcon fill="#fff" width={20} />
                 </IconContainer>
               </PlaylistIconsWrapper>
             ) : null}
@@ -85,14 +92,14 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
               </PlaylistDescription>
             ) : null}
             <PlaylistTotalSongs>
-              {playlistData?.tracks?.total ? playlistData?.tracks?.total : 0}{' '}
+              {playlistData?.tracks?.total ? playlistData?.tracks?.total : 0}{" "}
               songs
             </PlaylistTotalSongs>
           </PlaylistDescriptionContainer>
         </PlaylistHeader>
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
-        {playlistData?.tracks?.items.map((track, i) => (
+        {playlistData?.tracks?.items?.map((track, i) => (
           <TrackItem key={i} added_at={track?.added_at} {...track?.track} />
         ))}
       </PlaylistRightWrapper>
