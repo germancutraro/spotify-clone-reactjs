@@ -49,3 +49,9 @@ export const LibraryPlaylistPlay = styled.div`
     transform: scale(1.1);
   }
 `;
+
+export const DefaultContainer = styled.div`
+  height: 200px;
+  width: 95%;
+  background-color: #333;
+`;

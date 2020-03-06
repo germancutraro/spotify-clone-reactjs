@@ -21,6 +21,7 @@ import TrackItem from '../../components/TrackItem/TrackItem';
 
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
+import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 
 const PlaylistContent = ({ playlist, isLikedSongs }) => {
   const history = useHistory();
@@ -46,7 +47,12 @@ const PlaylistContent = ({ playlist, isLikedSongs }) => {
         <PlaylistHeader>
           <PlaylistHeaderSubcontainer>
             <PlaylistImageContainer>
-              <PlaylistImage src={playlistData?.images[0]?.url} alt='' />
+              {playlistData.images &&
+                (playlistData?.images[0]?.url ? (
+                  <PlaylistImage src={playlistData?.images[0]?.url} alt='' />
+                ) : (
+                  <DefaultSong width={100} height={100} />
+                ))}
             </PlaylistImageContainer>
             <PlaylistTitle>{playlistData?.name}</PlaylistTitle>
             {!isLikedSongs ? (

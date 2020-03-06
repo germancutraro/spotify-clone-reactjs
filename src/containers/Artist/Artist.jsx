@@ -34,9 +34,9 @@ const Artist = () => {
 
   React.useEffect(() => {
     dispatch(getArtistStart({ id }));
+    dispatch(isUserFollowingStart({ id }));
     dispatch(getArtistTracksStart({ id }));
     dispatch(getArtistAlbumsStart({ id }));
-    dispatch(isUserFollowingStart({ id }));
   }, [dispatch, id]);
 
   const handleFollow = async () => {
@@ -61,13 +61,13 @@ const Artist = () => {
 
       <ul>
         <Link to={`${path}`}>OVERVIEW</Link>
-        <Link to={`${path}/${id}/related`}>RELATED ARTISTS</Link>
+        <Link to={`${path}/related`}>RELATED ARTISTS</Link>
         <Link to={`${path}/${id}/about`}>ABOUT</Link>
       </ul>
 
       <Switch>
-        <Route path={`${path}/:id/about`} component={ArtistAbout} exact />
-        <Route path={`${path}/:id/related`} component={ArtistRelated} exact />
+        <Route path={`${path}/about`} component={ArtistAbout} exact />
+        <Route path={`${path}/related`} component={ArtistRelated} exact />
       </Switch>
 
       <h3>Popular</h3>

@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
+import { ReactComponent as DefaultCover } from '../../assets/icons/defaultSong.svg';
 import {
   LibraryPlaylistWrapper,
   LibraryPlaylistCover,
   LibraryPlaylistTitle,
   LibraryPlaylistAuthor,
-  LibraryPlaylistPlay
+  LibraryPlaylistPlay,
+  DefaultContainer
 } from './playlistItemStyles';
 
 const LibraryItem = ({
@@ -27,7 +29,13 @@ const LibraryItem = ({
 
   return (
     <LibraryPlaylistWrapper onClick={handleChangeRoute}>
-      <LibraryPlaylistCover src={cover} alt='' />
+      {cover ? (
+        <LibraryPlaylistCover src={cover} alt='' />
+      ) : (
+        <DefaultContainer>
+          <DefaultCover width={150} height={150} />
+        </DefaultContainer>
+      )}
       <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
       {author && (
         <LibraryPlaylistAuthor
@@ -49,9 +57,9 @@ const LibraryItem = ({
 };
 
 LibraryItem.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
+  cover: PropTypes.string,
   author: PropTypes.string,
   isPlayable: PropTypes.bool
 };
