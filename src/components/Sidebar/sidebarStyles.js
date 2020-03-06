@@ -151,7 +151,8 @@ export const IconSquare = styled.div`
 export const LibraryItem = styled.div`
   padding: 5px 0;
 
-  :hover {
+  :hover,
+  .active {
     ${ItemText} {
       color: #fff;
     }
