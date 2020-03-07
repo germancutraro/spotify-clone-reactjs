@@ -10,7 +10,11 @@ import {
   getNewReleasesStart,
   getFeaturedPlaylistsStart
 } from './dashboardActions';
-import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
+import {
+  LibraryItemsContainer,
+  SectionTitleContainer,
+  SectionTitle
+} from '../../components/LibraryItem/playlistItemStyles';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -35,7 +39,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <h2 style={{ color: '#fff' }}>Recently played</h2>
+      <SectionTitleContainer>
+        <SectionTitle>Recently played</SectionTitle>
+      </SectionTitleContainer>
       <LibraryItemsContainer>
         {played.map(({ track }, i) => (
           <LibraryItem
@@ -48,8 +54,9 @@ const Dashboard = () => {
           />
         ))}
       </LibraryItemsContainer>
-
-      <h2 style={{ color: '#fff' }}>Country</h2>
+      <SectionTitleContainer>
+        <SectionTitle>Country</SectionTitle>
+      </SectionTitleContainer>
       <LibraryItemsContainer>
         {recommendations.country &&
           recommendations.country.map(({ name, id, album }, i) => (
@@ -63,8 +70,9 @@ const Dashboard = () => {
             />
           ))}
       </LibraryItemsContainer>
-
-      <h2 style={{ color: '#fff' }}>Classical</h2>
+      <SectionTitleContainer>
+        <SectionTitle>Classical</SectionTitle>
+      </SectionTitleContainer>
       <LibraryItemsContainer>
         {recommendations.classical &&
           recommendations.classical.map(({ name, id, album }, i) => (
@@ -78,8 +86,9 @@ const Dashboard = () => {
             />
           ))}
       </LibraryItemsContainer>
-
-      <h2 style={{ color: '#fff' }}>Featured Playlists</h2>
+      <SectionTitleContainer>
+        <SectionTitle>Featured Playlists</SectionTitle>
+      </SectionTitleContainer>
 
       <LibraryItemsContainer>
         {featured.map(({ id, name, images, owner: { display_name } }, i) => (
@@ -92,8 +101,9 @@ const Dashboard = () => {
           />
         ))}
       </LibraryItemsContainer>
-
-      <h2 style={{ color: '#fff' }}>New Releases</h2>
+      <SectionTitleContainer>
+        <SectionTitle>New Releases</SectionTitle>
+      </SectionTitleContainer>
 
       <LibraryItemsContainer>
         {releases.map(({ id, name, images, artists }, i) => (

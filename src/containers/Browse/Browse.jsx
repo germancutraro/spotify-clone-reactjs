@@ -2,12 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBrowseStart, getReleasesStart } from './browseActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
-import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
 import {
-  BrowseContainer,
+  LibraryItemsContainer,
   SectionTitleContainer,
   SectionTitle
-} from './browseStyles';
+} from '../../components/LibraryItem/playlistItemStyles';
+import { BrowseContainer } from './browseStyles';
 
 const Browse = () => {
   const dispatch = useDispatch();
