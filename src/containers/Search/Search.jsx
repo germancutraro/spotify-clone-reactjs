@@ -9,6 +9,12 @@ import Songs from '../../components/Results/Songs';
 import Artists from '../../components/Results/Artists';
 import Albums from '../../components/Results/Albums';
 import NoResults from '../../components/Results/NoResults';
+import { SearchContainer } from './searchStyles';
+import {
+  SectionTitleContainer,
+  SectionTitle,
+  SectionTitleSeeAll
+} from '../../components/LibraryItem/playlistItemStyles';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -34,11 +40,11 @@ const Search = () => {
   };
 
   return (
-    <div style={{ color: '#fff' }}>
+    <>
       {searchValue.trim().length ? (
         <div>
           {canRender() ? (
-            <div>
+            <SearchContainer>
               <TopResult
                 name={
                   list?.artists?.items[0]?.name || list.tracks.items[0].name
@@ -52,6 +58,22 @@ const Search = () => {
 
               {list.tracks && (
                 <div>
+                  <SectionTitleContainer>
+                    <SectionTitle>Songs</SectionTitle>
+                    {list?.artists?.items.length ? (
+                      <SectionTitleSeeAll
+                        onClick={() =>
+                          handleSeeAll(
+                            list?.artists?.items[0]?.id ||
+                              list.tracks.items[0].id,
+                            'tracks'
+                          )
+                        }
+                      >
+                        SEE ALL
+                      </SectionTitleSeeAll>
+                    ) : null}
+                  </SectionTitleContainer>
                   <h1 style={{ color: '#fff' }}>Songs:</h1>
                   {list?.artists?.items.length ? (
                     <p
@@ -85,18 +107,21 @@ const Search = () => {
               )}
               {list.artists.items.length ? (
                 <div>
-                  <h1 style={{ color: '#fff' }}>Artists:</h1>
-                  <p
-                    onClick={() =>
-                      handleSeeAll(
-                        list?.artists?.items[0]?.id || list.tracks.items[0].id,
-                        'artists'
-                      )
-                    }
-                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                  >
-                    SEE ALL
-                  </p>
+                  <SectionTitleContainer>
+                    <SectionTitle>Artists</SectionTitle>
+                    <SectionTitleSeeAll
+                      onClick={() =>
+                        handleSeeAll(
+                          list?.artists?.items[0]?.id ||
+                            list.tracks.items[0].id,
+                          'artists'
+                        )
+                      }
+                    >
+                      SEE ALL
+                    </SectionTitleSeeAll>
+                  </SectionTitleContainer>
+
                   {list.artists.items.map((artist, i) => {
                     if (i < 6)
                       return (
@@ -115,16 +140,18 @@ const Search = () => {
 
               <div>
                 <h1 style={{ color: '#fff' }}>Albums:</h1>
-                {list?.artists?.items.length ? (
-                  <p
-                    onClick={() =>
-                      handleSeeAll(list?.artists?.items[0]?.id, 'albums')
-                    }
-                    style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                  >
-                    SEE ALL
-                  </p>
-                ) : null}
+                <SectionTitleContainer>
+                  <SectionTitle>Artists</SectionTitle>
+                  {list?.artists?.items.length ? (
+                    <SectionTitleSeeAll
+                      onClick={() =>
+                        handleSeeAll(list?.artists?.items[0]?.id, 'albums')
+                      }
+                    >
+                      SEE ALL
+                    </SectionTitleSeeAll>
+                  ) : null}
+                </SectionTitleContainer>
 
                 {list.tracks &&
                   list.tracks.items.map(({ album }, i) => {
@@ -140,7 +167,7 @@ const Search = () => {
                     return null;
                   })}
               </div>
-            </div>
+            </SearchContainer>
           ) : (
             <NoResults searchValue={searchValue.trim()} />
           )}
@@ -148,7 +175,7 @@ const Search = () => {
       ) : (
         <Browse />
       )}
-    </div>
+    </>
   );
 };
 

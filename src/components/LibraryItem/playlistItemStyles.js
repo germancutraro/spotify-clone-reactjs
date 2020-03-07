@@ -39,6 +39,27 @@ export const SectionTitle = styled.h2`
   color: #fff;
 `;
 
+export const SectionTitleSeeAll = styled.span`
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 1.76px;
+  text-transform: uppercase;
+  border: 0;
+  background: transparent;
+  color: #b3b3b3;
+  flex: 0;
+  white-space: nowrap;
+  margin-left: 20px;
+  margin-top: 1px;
+  cursor: default;
+  border-bottom: 1px solid transparent;
+
+  :hover {
+    border-color: #b3b3b3;
+  }
+`;
+
 // item
 
 export const LibraryPlaylistContainer = styled.li`
