@@ -28,7 +28,10 @@ const LibraryItem = ({
   };
 
   return (
-    <LibraryPlaylistContainer onClick={handleChangeRoute}>
+    <LibraryPlaylistContainer
+      onClick={id ? handleChangeRoute : null}
+      isClickable={!!id}
+    >
       {cover ? (
         <LibraryPlaylistCoverContainer>
           <LibraryPlaylistCover src={cover} alt={name} />

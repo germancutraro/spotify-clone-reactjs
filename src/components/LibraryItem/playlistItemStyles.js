@@ -35,7 +35,12 @@ export const LibraryPlaylistContainer = styled.li`
   border-radius: 8px;
   isolation: isolate;
   list-style: none;
-  cursor: pointer;
+  ${({ isClickable }) =>
+    isClickable
+      ? css`
+          cursor: pointer;
+        `
+      : null};
 
   :hover [data-value='play'] {
     display: flex;
