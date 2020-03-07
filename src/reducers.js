@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 // reducers
 import authReducer from './containers/Auth/authReducer';
+import dashboardReducer from './containers/Dashboard/dashboardReducer';
 import userReducer from './containers/User/userReducer';
 import playlistsReducer from './containers/Playlists/playlistsReducer';
 import searchReducer from './containers/Search/searchReducer';
@@ -27,6 +28,7 @@ const playlistsPersistConfig = {
 export default history =>
   combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
+    dashboard: dashboardReducer,
     user: userReducer,
     playlists: persistReducer(playlistsPersistConfig, playlistsReducer),
     search: searchReducer,

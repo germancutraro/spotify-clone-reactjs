@@ -8,10 +8,12 @@ import searchSaga from './containers/Search/searchSaga';
 import browseSaga from './containers/Browse/browseSaga';
 import userSaga from './containers/User/userSaga';
 import artistSaga from './containers/Artist/artistSaga';
+import dashboardSaga from './containers/Dashboard/dashboardSaga';
 
 export default function* root() {
   yield all([
     fork(authSaga),
+    fork(dashboardSaga),
     fork(userSaga),
     fork(playlistsSaga),
     fork(browseSaga),
