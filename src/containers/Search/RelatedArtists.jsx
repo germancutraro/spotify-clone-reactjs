@@ -17,7 +17,6 @@ const RelatedArtists = () => {
   }, [dispatch, state.id]);
 
   if (loading) return <h1>loading</h1>;
-  console.log(artist);
 
   return (
     <div style={{ color: '#fff' }}>
