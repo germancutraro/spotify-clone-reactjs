@@ -3,6 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArtistAlbumsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
+import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
 
 const Album = () => {
   const dispatch = useDispatch();
@@ -20,15 +21,17 @@ const Album = () => {
   return (
     <div style={{ color: '#fff' }}>
       <h1>Showing Albums for "{name}"</h1>
-      {artist.map(album => (
-        <LibraryItem
-          key={album.id}
-          id={album.id}
-          name={album.name}
-          author={album.artists[0].name}
-          cover={album.images[0].url}
-        />
-      ))}
+      <LibraryItemsContainer>
+        {artist.map(album => (
+          <LibraryItem
+            key={album.id}
+            id={album.id}
+            name={album.name}
+            author={album.artists[0].name}
+            cover={album.images[0].url}
+          />
+        ))}
+      </LibraryItemsContainer>
     </div>
   );
 };

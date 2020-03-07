@@ -3,6 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRelatedArtistsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
+import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
 
 const RelatedArtists = () => {
   const dispatch = useDispatch();
@@ -16,20 +17,23 @@ const RelatedArtists = () => {
   }, [dispatch, state.id]);
 
   if (loading) return <h1>loading</h1>;
+  console.log(artist);
 
   return (
     <div style={{ color: '#fff' }}>
       <h1>Showing Artists for "{name}"</h1>
-      {artist.map(artist => (
-        <LibraryItem
-          key={artist.id}
-          id={artist.id}
-          name={artist.name}
-          author='Artist'
-          cover={artist.images[0].url}
-          isPlayable={false}
-        />
-      ))}
+      <LibraryItemsContainer>
+        {artist.map(artist => (
+          <LibraryItem
+            key={artist.id}
+            id={artist.id}
+            name={artist.name}
+            author='Artist'
+            cover={artist.images && artist.images[0].url}
+            isPlayable={false}
+          />
+        ))}
+      </LibraryItemsContainer>
     </div>
   );
 };
