@@ -18,13 +18,16 @@ const LibraryItem = ({
   cover,
   author,
   isLikedSongs,
-  isPlayable = true
+  isPlayable = true,
+  isAlbum = false
 }) => {
   const history = useHistory();
 
   const handleChangeRoute = () => {
-    if (!isLikedSongs) history.push(`/app/playlist/${id}`);
-    else history.push('/app/collection/tracks');
+    if (!isLikedSongs) {
+      const param = isAlbum ? 'album' : 'playlist';
+      history.push(`/app/${param}/${id}`);
+    } else history.push('/app/collection/tracks');
   };
 
   return (
@@ -66,7 +69,8 @@ LibraryItem.propTypes = {
   name: PropTypes.string.isRequired,
   cover: PropTypes.string,
   author: PropTypes.string,
-  isPlayable: PropTypes.bool
+  isPlayable: PropTypes.bool,
+  isAlbum: PropTypes.bool
 };
 
 export default React.memo(LibraryItem);

@@ -40,10 +40,11 @@ const Dashboard = () => {
         {played.map(({ track }, i) => (
           <LibraryItem
             key={i}
-            id={track.id}
+            id={track.album.id}
             name={track.name}
             author={track.artists[0].name}
             cover={track.album.images[0].url}
+            isAlbum
           />
         ))}
       </LibraryItemsContainer>
@@ -54,10 +55,11 @@ const Dashboard = () => {
           recommendations.country.map(({ name, id, album }, i) => (
             <LibraryItem
               key={i}
-              id={id}
+              id={album.id}
               name={name}
               author={album.artists[0].name}
               cover={album.images[0].url}
+              isAlbum
             />
           ))}
       </LibraryItemsContainer>
@@ -68,10 +70,11 @@ const Dashboard = () => {
           recommendations.classical.map(({ name, id, album }, i) => (
             <LibraryItem
               key={i}
-              id={id}
+              id={album.id}
               name={name}
               author={album.artists[0].name}
               cover={album.images[0].url}
+              isAlbum
             />
           ))}
       </LibraryItemsContainer>
@@ -100,6 +103,7 @@ const Dashboard = () => {
             name={name}
             author={artists[0].name}
             cover={images[0].url}
+            isAlbum
           />
         ))}
       </LibraryItemsContainer>

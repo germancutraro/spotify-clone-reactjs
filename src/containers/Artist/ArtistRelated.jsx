@@ -14,6 +14,7 @@ const ArtistRelated = () => {
   }, [dispatch, id]);
 
   if (loading) return <h1>loading</h1>;
+  console.log(related);
 
   return (
     <div style={{ color: '#Fff' }}>
