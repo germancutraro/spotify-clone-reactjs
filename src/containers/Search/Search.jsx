@@ -13,7 +13,8 @@ import { SearchContainer } from './searchStyles';
 import {
   SectionTitleContainer,
   SectionTitle,
-  SectionTitleSeeAll
+  SectionTitleSeeAll,
+  LibraryItemsContainer
 } from '../../components/LibraryItem/playlistItemStyles';
 import {
   SongsContainer,
@@ -73,6 +74,7 @@ const Search = () => {
                 <SongsContainer>
                   <SectionTitleContainer hasPadding={false}>
                     <SectionTitle>Songs</SectionTitle>
+
                     {list?.artists?.items.length ? (
                       <SectionTitleSeeAll
                         onClick={() =>
@@ -87,7 +89,6 @@ const Search = () => {
                       </SectionTitleSeeAll>
                     ) : null}
                   </SectionTitleContainer>
-
                   {list.tracks.items.map((track, i) => {
                     if (i < 3)
                       return (
@@ -122,20 +123,21 @@ const Search = () => {
                       SEE ALL
                     </SectionTitleSeeAll>
                   </SectionTitleContainer>
-
-                  {list.artists.items.map((artist, i) => {
-                    if (i < 6)
-                      return (
-                        <Artists
-                          key={artist.id}
-                          name={artist.name}
-                          cover={
-                            artist.images.length ? artist.images[0].url : null
-                          }
-                        />
-                      );
-                    return null;
-                  })}
+                  <LibraryItemsContainer hasPadding={false}>
+                    {list.artists.items.map((artist, i) => {
+                      if (i < 6)
+                        return (
+                          <Artists
+                            key={artist.id}
+                            name={artist.name}
+                            cover={
+                              artist.images.length ? artist.images[0].url : null
+                            }
+                          />
+                        );
+                      return null;
+                    })}
+                  </LibraryItemsContainer>
                 </ArtistsContainer>
               ) : null}
 
@@ -153,20 +155,21 @@ const Search = () => {
                     </SectionTitleSeeAll>
                   ) : null}
                 </SectionTitleContainer>
-
-                {list.tracks &&
-                  list.tracks.items.map(({ album }, i) => {
-                    if (i < 6)
-                      return (
-                        <Albums
-                          key={i}
-                          name={album.name}
-                          cover={album.images[0].url}
-                          artist={album.artists[0].name}
-                        />
-                      );
-                    return null;
-                  })}
+                <LibraryItemsContainer hasPadding={false}>
+                  {list.tracks &&
+                    list.tracks.items.map(({ album }, i) => {
+                      if (i < 6)
+                        return (
+                          <Albums
+                            key={i}
+                            name={album.name}
+                            cover={album.images[0].url}
+                            artist={album.artists[0].name}
+                          />
+                        );
+                      return null;
+                    })}
+                </LibraryItemsContainer>
               </AlbumsContainer>
             </SearchContainer>
           ) : (

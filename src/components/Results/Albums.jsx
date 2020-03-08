@@ -1,13 +1,8 @@
 import React from 'react';
+import LibraryItem from '../LibraryItem/LibraryItem';
 
 const Albums = ({ name, artist, cover }) => {
-  return (
-    <div>
-      <img src={cover} alt='' width={60} height={60} />
-      <p>{name}</p>
-      <p>{artist}</p>
-    </div>
-  );
+  return <LibraryItem cover={cover} name={name} type='ALBUM' author={artist} />;
 };
 
 export default React.memo(Albums);

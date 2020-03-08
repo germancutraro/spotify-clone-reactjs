@@ -1,16 +1,9 @@
 import React from 'react';
-import { ReactComponent as DefaultCover } from '../../assets/icons/defaultCover.svg';
+import LibraryItem from '../LibraryItem/LibraryItem';
 
 const Artists = ({ name, cover }) => {
   return (
-    <div>
-      {cover ? (
-        <img src={cover} alt='' width={100} height={100} />
-      ) : (
-        <DefaultCover width={100} height={100} />
-      )}
-      <p>{name}</p>
-    </div>
+    <LibraryItem cover={cover} name={name} type='ARTIST' author='Artist' />
   );
 };
 

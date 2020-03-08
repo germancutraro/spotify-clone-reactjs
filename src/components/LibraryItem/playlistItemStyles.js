@@ -20,9 +20,15 @@ const EllipsisTwoLines = css`
 export const LibraryItemsContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
-  padding: 0 2rem;
-  margin: 2rem 0;
+
   grid-gap: 1rem;
+  ${({ hasPadding = true }) =>
+    hasPadding
+      ? css`
+          padding: 0 2rem;
+          margin: 2rem 0;
+        `
+      : null};
 `;
 
 // title
