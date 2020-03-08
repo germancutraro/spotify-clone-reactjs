@@ -19,7 +19,9 @@ const LibraryItem = ({
   author,
   isLikedSongs,
   isPlayable = true,
-  isAlbum = false
+  isAlbum = false,
+  coverSize = 'xl',
+  type
 }) => {
   const history = useHistory();
 
@@ -36,8 +38,8 @@ const LibraryItem = ({
       isClickable={!!id}
     >
       {cover ? (
-        <LibraryPlaylistCoverContainer>
-          <LibraryPlaylistCover src={cover} alt={name} />
+        <LibraryPlaylistCoverContainer coverSize={coverSize} type={type}>
+          <LibraryPlaylistCover src={cover} alt={name} type={type} />
         </LibraryPlaylistCoverContainer>
       ) : (
         <LibraryPlaylistCoverContainer>

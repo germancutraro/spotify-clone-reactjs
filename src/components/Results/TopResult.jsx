@@ -8,6 +8,7 @@ const TopResult = props => {
       name={props.name}
       type={props.type}
       cover={props.cover}
+      coverSize='sm'
     ></TopResultItem>
   );
 };

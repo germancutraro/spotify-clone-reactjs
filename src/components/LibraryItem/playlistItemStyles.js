@@ -79,6 +79,7 @@ export const LibraryPlaylistContainer = styled.li`
   border-radius: 8px;
   isolation: isolate;
   list-style: none;
+  flex: 1;
   ${({ isClickable }) =>
     isClickable
       ? css`
@@ -99,6 +100,19 @@ export const LibraryPlaylistCoverContainer = styled.div`
   margin-bottom: 16px;
   background-color: #333;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  ${({ type }) =>
+    type === 'ARTIST'
+      ? css`
+          border-radius: 100px;
+        `
+      : null}
+  ${({ coverSize }) =>
+    coverSize === 'sm'
+      ? css`
+          width: 92px;
+          padding-top: 92px;
+        `
+      : null}
 `;
 
 export const LibraryPlaylistCover = styled.img`
@@ -107,6 +121,13 @@ export const LibraryPlaylistCover = styled.img`
   position: absolute;
   top: 0;
   left: 0;
+
+  ${({ type }) =>
+    type === 'ARTIST'
+      ? css`
+          border-radius: 100px;
+        `
+      : null}
 `;
 
 export const LibraryPlaylistTitle = styled.p`

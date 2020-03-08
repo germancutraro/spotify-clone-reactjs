@@ -3,6 +3,8 @@ import LibraryItem from '../LibraryItem/LibraryItem';
 
 export const TopResultContainer = styled.div`
   grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
 `;
 export const TopResultItem = styled(LibraryItem)``;
 
