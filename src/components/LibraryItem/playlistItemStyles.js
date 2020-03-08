@@ -31,7 +31,14 @@ export const SectionTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem 0;
+  ${({ hasPadding = true }) =>
+    hasPadding
+      ? css`
+          padding: 1rem 2rem 0;
+        `
+      : css`
+          padding: 1rem 0;
+        `};
 `;
 
 export const SectionTitle = styled.h2`

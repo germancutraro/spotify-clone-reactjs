@@ -15,6 +15,12 @@ import {
   SectionTitle,
   SectionTitleSeeAll
 } from '../../components/LibraryItem/playlistItemStyles';
+import {
+  SongsContainer,
+  ArtistsContainer,
+  AlbumsContainer,
+  TopResultContainer
+} from '../../components/Results/resultsStyles';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -45,20 +51,27 @@ const Search = () => {
         <div>
           {canRender() ? (
             <SearchContainer>
-              <TopResult
-                name={
-                  list?.artists?.items[0]?.name || list.tracks.items[0].name
-                }
-                cover={
-                  list?.artists?.items[0]?.images[0]?.url ||
-                  list?.tracks.items[0]?.album?.images[0].url
-                }
-                type={list?.artists?.items.length ? 'ARTIST' : 'SONG'}
-              />
+              {/* TOP RESULT */}
+              <TopResultContainer>
+                <SectionTitleContainer hasPadding={false}>
+                  <SectionTitle>Top result:</SectionTitle>
+                </SectionTitleContainer>
+                <TopResult
+                  name={
+                    list?.artists?.items[0]?.name || list.tracks.items[0].name
+                  }
+                  cover={
+                    list?.artists?.items[0]?.images[0]?.url ||
+                    list?.tracks.items[0]?.album?.images[0].url
+                  }
+                  type={list?.artists?.items.length ? 'ARTIST' : 'SONG'}
+                />
+              </TopResultContainer>
 
+              {/* SONGS */}
               {list.tracks && (
-                <div>
-                  <SectionTitleContainer>
+                <SongsContainer>
+                  <SectionTitleContainer hasPadding={false}>
                     <SectionTitle>Songs</SectionTitle>
                     {list?.artists?.items.length ? (
                       <SectionTitleSeeAll
@@ -74,21 +87,7 @@ const Search = () => {
                       </SectionTitleSeeAll>
                     ) : null}
                   </SectionTitleContainer>
-                  <h1 style={{ color: '#fff' }}>Songs:</h1>
-                  {list?.artists?.items.length ? (
-                    <p
-                      onClick={() =>
-                        handleSeeAll(
-                          list?.artists?.items[0]?.id ||
-                            list.tracks.items[0].id,
-                          'tracks'
-                        )
-                      }
-                      style={{ color: '#b3b3b3', margin: '20px 30px' }}
-                    >
-                      SEE ALL
-                    </p>
-                  ) : null}
+
                   {list.tracks.items.map((track, i) => {
                     if (i < 3)
                       return (
@@ -103,11 +102,13 @@ const Search = () => {
                       );
                     return null;
                   })}
-                </div>
+                </SongsContainer>
               )}
+
+              {/* ARTISTS */}
               {list.artists.items.length ? (
-                <div>
-                  <SectionTitleContainer>
+                <ArtistsContainer>
+                  <SectionTitleContainer hasPadding={false}>
                     <SectionTitle>Artists</SectionTitle>
                     <SectionTitleSeeAll
                       onClick={() =>
@@ -135,13 +136,13 @@ const Search = () => {
                       );
                     return null;
                   })}
-                </div>
+                </ArtistsContainer>
               ) : null}
 
-              <div>
-                <h1 style={{ color: '#fff' }}>Albums:</h1>
-                <SectionTitleContainer>
-                  <SectionTitle>Artists</SectionTitle>
+              {/* ALBUMS */}
+              <AlbumsContainer>
+                <SectionTitleContainer hasPadding={false}>
+                  <SectionTitle>Albums</SectionTitle>
                   {list?.artists?.items.length ? (
                     <SectionTitleSeeAll
                       onClick={() =>
@@ -166,7 +167,7 @@ const Search = () => {
                       );
                     return null;
                   })}
-              </div>
+              </AlbumsContainer>
             </SearchContainer>
           ) : (
             <NoResults searchValue={searchValue.trim()} />

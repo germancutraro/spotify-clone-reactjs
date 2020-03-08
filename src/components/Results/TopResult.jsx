@@ -1,20 +1,14 @@
 import React from 'react';
-import { TopResultContainer } from './resultsStyles';
-import {
-  SectionTitleContainer,
-  SectionTitle
-} from '../LibraryItem/playlistItemStyles';
+import { TopResultItem } from './resultsStyles';
 
-const TopResult = ({ name, cover, type = 'ARTIST' }) => {
+const TopResult = props => {
+  console.log(props);
   return (
-    <TopResultContainer>
-      <SectionTitleContainer>
-        <SectionTitle>Top result:</SectionTitle>
-      </SectionTitleContainer>
-      <img src={cover} alt='' width={100} height={100} />
-      <h3>{name}</h3>
-      <p>{type}</p>
-    </TopResultContainer>
+    <TopResultItem
+      name={props.name}
+      type={props.type}
+      cover={props.cover}
+    ></TopResultItem>
   );
 };
 
