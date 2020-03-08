@@ -10,7 +10,6 @@ export const TopResultItem = styled(LibraryItem)``;
 
 export const SongsContainer = styled.div`
   grid-column: 3 / -1;
-
   @media screen and (max-width: 1080px) {
     grid-column: 1 / -1;
   }
@@ -18,7 +17,6 @@ export const SongsContainer = styled.div`
 
 export const ArtistsContainer = styled.div`
   grid-column: 1 / -1;
+  margin-top: 2rem;
 `;
-export const AlbumsContainer = styled.div`
-  grid-column: 1 / -1;
-`;
+export const AlbumsContainer = styled(ArtistsContainer)``;
