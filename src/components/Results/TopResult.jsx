@@ -1,16 +1,15 @@
 import React from 'react';
 import { TopResultItem } from './resultsStyles';
 
-const TopResult = props => {
-  console.log(props);
-  return (
-    <TopResultItem
-      name={props.name}
-      type={props.type}
-      cover={props.cover}
-      coverSize='sm'
-    ></TopResultItem>
-  );
-};
+const TopResult = ({ id, name, type, cover }) => (
+  <TopResultItem
+    id={id}
+    name={name}
+    author={type}
+    type={type}
+    cover={cover}
+    coverSize='sm'
+  ></TopResultItem>
+);
 
 export default React.memo(TopResult);

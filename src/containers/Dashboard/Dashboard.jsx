@@ -50,7 +50,7 @@ const Dashboard = () => {
             name={track.name}
             author={track.artists[0].name}
             cover={track.album.images[0].url}
-            isAlbum
+            type='album'
           />
         ))}
       </LibraryItemsContainer>
@@ -66,7 +66,7 @@ const Dashboard = () => {
               name={name}
               author={album.artists[0].name}
               cover={album.images[0].url}
-              isAlbum
+              type='album'
             />
           ))}
       </LibraryItemsContainer>
@@ -82,7 +82,7 @@ const Dashboard = () => {
               name={name}
               author={album.artists[0].name}
               cover={album.images[0].url}
-              isAlbum
+              type='album'
             />
           ))}
       </LibraryItemsContainer>
@@ -98,6 +98,7 @@ const Dashboard = () => {
             name={name}
             author={display_name}
             cover={images[0].url}
+            type='playlist'
           />
         ))}
       </LibraryItemsContainer>
@@ -113,7 +114,7 @@ const Dashboard = () => {
             name={name}
             author={artists[0].name}
             cover={images[0].url}
-            isAlbum
+            type='album'
           />
         ))}
       </LibraryItemsContainer>

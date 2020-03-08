@@ -19,24 +19,25 @@ const LibraryItem = ({
   author,
   isLikedSongs,
   isPlayable = true,
-  isAlbum = false,
   coverSize = 'xl',
-  type
+  type = 'playlist'
 }) => {
   const history = useHistory();
 
   const handleChangeRoute = () => {
-    if (!isLikedSongs) {
-      const param = isAlbum ? 'album' : 'playlist';
-      history.push(`/app/${param}/${id}`);
+    if (!isLikedSongs && id) {
+      const PARAMS = {
+        artist: 'artist',
+        playlist: 'playlist',
+        album: 'album',
+        song: 'album'
+      };
+      history.push(`/app/${PARAMS[type.toLowerCase()]}/${id}`);
     } else history.push('/app/collection/tracks');
   };
 
   return (
-    <LibraryPlaylistContainer
-      onClick={id ? handleChangeRoute : null}
-      isClickable={!!id}
-    >
+    <LibraryPlaylistContainer onClick={handleChangeRoute} isClickable={!!id}>
       {cover ? (
         <LibraryPlaylistCoverContainer coverSize={coverSize} type={type}>
           <LibraryPlaylistCover src={cover} alt={name} type={type} />

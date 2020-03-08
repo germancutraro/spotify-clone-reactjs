@@ -22,6 +22,7 @@ const LibraryPlaylists = () => {
             id={id}
             name={name}
             cover={images[0]?.url}
+            type='playlist'
             author={description || `By ${owner.display_name}`}
           />
         ))}

@@ -29,7 +29,13 @@ const Browse = () => {
 
       <LibraryItemsContainer>
         {releases?.map(({ id, name, images }) => (
-          <LibraryItem key={name} id={id} name={name} cover={images[0].url} />
+          <LibraryItem
+            key={name}
+            id={id}
+            name={name}
+            cover={images[0].url}
+            type='album'
+          />
         ))}
       </LibraryItemsContainer>
       <SectionTitleContainer>
@@ -43,6 +49,7 @@ const Browse = () => {
             name={name}
             cover={icons[0]?.url}
             isPlayable={false}
+            type='album'
           />
         ))}
       </LibraryItemsContainer>

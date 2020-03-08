@@ -58,6 +58,7 @@ const Search = () => {
                   <SectionTitle>Top result:</SectionTitle>
                 </SectionTitleContainer>
                 <TopResult
+                  id={list?.artists?.items[0]?.id || list.tracks.items[0].id}
                   name={
                     list?.artists?.items[0]?.name || list.tracks.items[0].name
                   }
@@ -99,6 +100,7 @@ const Search = () => {
                             .map(art => art.name)
                             .join(', ')}
                           cover={track?.album?.images[0].url}
+                          type='album'
                         />
                       );
                     return null;
@@ -133,6 +135,7 @@ const Search = () => {
                             cover={
                               artist.images.length ? artist.images[0].url : null
                             }
+                            type='artist'
                           />
                         );
                       return null;
@@ -165,6 +168,7 @@ const Search = () => {
                             name={album.name}
                             cover={album.images[0].url}
                             artist={album.artists[0].name}
+                            type='album'
                           />
                         );
                       return null;
