@@ -33,7 +33,7 @@ const LibraryItem = ({
         song: 'album'
       };
       history.push(`/app/${PARAMS[type.toLowerCase()]}/${id}`);
-    } else history.push('/app/collection/tracks');
+    } else if (isLikedSongs) history.push('/app/collection/tracks');
   };
 
   return (
@@ -72,8 +72,7 @@ LibraryItem.propTypes = {
   name: PropTypes.string.isRequired,
   cover: PropTypes.string,
   author: PropTypes.string,
-  isPlayable: PropTypes.bool,
-  isAlbum: PropTypes.bool
+  isPlayable: PropTypes.bool
 };
 
 export default React.memo(LibraryItem);

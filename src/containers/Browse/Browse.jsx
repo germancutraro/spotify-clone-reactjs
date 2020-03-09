@@ -49,7 +49,6 @@ const Browse = () => {
             name={name}
             cover={icons[0]?.url}
             isPlayable={false}
-            type='album'
           />
         ))}
       </LibraryItemsContainer>
