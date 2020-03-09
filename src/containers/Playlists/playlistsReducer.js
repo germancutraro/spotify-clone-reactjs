@@ -17,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
     case constants.GET_RANDOM_TRACKS_START:
     case constants.CREATE_PLAYLIST_START:
     case constants.ADD_TRACK_TO_PLAYLIST_START:
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: true, error: null, playlist: {} };
 
     case constants.GET_USER_PLAYLISTS_SUCCESS:
       return { ...state, loading: false, error: null, list: payload.playlists };

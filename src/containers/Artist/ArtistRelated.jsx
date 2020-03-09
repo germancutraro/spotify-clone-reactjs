@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArtistRelatedStart } from './artistActions';
+import Loader from '../../components/Loader/Loader';
 
 const ArtistRelated = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const ArtistRelated = () => {
     dispatch(getArtistRelatedStart({ id }));
   }, [dispatch, id]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <Loader isLoading={loading} />;
   console.log(related);
 
   return (

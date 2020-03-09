@@ -22,6 +22,7 @@ import {
   AlbumsContainer,
   TopResultContainer
 } from '../../components/Results/resultsStyles';
+import Loader from '../../components/Loader/Loader';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const Search = () => {
     dispatch(searchStart({ query: searchValue }));
   }, [dispatch, searchValue]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   const handleSeeAll = (id, type) => {
     history.push(`/app/search/${searchValue.toLowerCase()}/${type}`, { id });

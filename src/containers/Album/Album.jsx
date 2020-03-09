@@ -26,6 +26,7 @@ import {
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
+import Loader from '../../components/Loader/Loader';
 
 const Album = () => {
   const dispatch = useDispatch();
@@ -38,9 +39,7 @@ const Album = () => {
     dispatch(getAlbumStart({ id }));
   }, [dispatch, id]);
 
-  if (loading) return <h1 style={{ color: '#fff' }}>loading...</h1>;
-
-  console.log('El album es: ', album);
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <>
@@ -56,7 +55,7 @@ const Album = () => {
                 ))}
             </PlaylistImageContainer>
             <PlaylistTitle>{album.name}</PlaylistTitle>
-            {album.artists.map(artist => (
+            {album?.artists.map(artist => (
               <PlaylistOwner
                 onClick={() => history.push(`/app/artist/${artist.id}`)}
               >

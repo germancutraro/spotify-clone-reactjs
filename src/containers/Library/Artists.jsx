@@ -4,6 +4,7 @@ import LibraryItem from '../../components/LibraryItem/LibraryItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopArtistsStart } from './libraryActions';
+import Loader from '../../components/Loader/Loader';
 
 const Artists = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Artists = () => {
     dispatch(getTopArtistsStart());
   }, [dispatch]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <div>

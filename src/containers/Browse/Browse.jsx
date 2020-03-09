@@ -8,6 +8,7 @@ import {
   SectionTitle
 } from '../../components/LibraryItem/playlistItemStyles';
 import { BrowseContainer } from './browseStyles';
+import Loader from '../../components/Loader/Loader';
 
 const Browse = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Browse = () => {
     dispatch(getReleasesStart());
   }, [dispatch]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <BrowseContainer>

@@ -15,6 +15,7 @@ import {
 // pages
 import ArtistAbout from './ArtistAbout';
 import ArtistRelated from './ArtistRelated';
+import Loader from '../../components/Loader/Loader';
 
 const Artist = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Artist = () => {
     dispatch(isUserFollowingStart({ id }));
   };
 
-  if (loading) return <h1>loading...</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <div style={{ color: '#fff' }}>

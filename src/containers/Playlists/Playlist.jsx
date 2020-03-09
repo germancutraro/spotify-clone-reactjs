@@ -12,6 +12,7 @@ import {
 import { PlaylistContainer } from './playlistsStyles';
 
 import PlaylistContent from '../../components/Playlist/PlaylistContent';
+import Loader from '../../components/Loader/Loader';
 
 const Playlist = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Playlist = () => {
 
   if (loading || !Object.keys(playlist).length) {
     document.documentElement.style.setProperty('--color', '#121212');
-    return <h1>loading</h1>;
+    return <Loader isLoading={loading} />;
   }
 
   const handleFollow = () => {

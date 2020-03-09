@@ -15,6 +15,7 @@ import {
   SectionTitleContainer,
   SectionTitle
 } from '../../components/LibraryItem/playlistItemStyles';
+import Loader from '../../components/Loader/Loader';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Dashboard = () => {
   }, [dispatch]);
 
   if (loading || authLoading || playlistLoading)
-    return <h1 style={{ color: '#fff' }}>loading</h1>;
+    return <Loader isLoading={loading || authLoading || playlistLoading} />;
 
   return (
     <>

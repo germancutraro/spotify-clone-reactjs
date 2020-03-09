@@ -3,6 +3,7 @@ import LibraryItem from '../../components/LibraryItem/LibraryItem';
 import { getUserStart, getUserPlaylistsStart } from './userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
 
 const User = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const User = () => {
     dispatch(getUserPlaylistsStart({ id: state.id }));
   }, [dispatch, state.id]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <div style={{ color: '#fff' }}>

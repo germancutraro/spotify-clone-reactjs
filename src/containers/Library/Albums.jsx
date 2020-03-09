@@ -3,6 +3,7 @@ import LibraryItem from '../../components/LibraryItem/LibraryItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getAlbumsStart } from './libraryActions';
+import Loader from '../../components/Loader/Loader';
 
 const Albums = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Albums = () => {
     dispatch(getAlbumsStart());
   }, [dispatch]);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <div>

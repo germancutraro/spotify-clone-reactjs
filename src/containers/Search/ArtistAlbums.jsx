@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getArtistAlbumsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
 import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
+import Loader from '../../components/Loader/Loader';
 
 const Album = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Album = () => {
     dispatch(getArtistAlbumsStart({ id: state.id }));
   }, [dispatch, state.id]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <Loader isLoading={loading} />;
 
   return (
     <div style={{ color: '#fff' }}>
