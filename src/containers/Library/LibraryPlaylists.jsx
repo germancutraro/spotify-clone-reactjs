@@ -11,19 +11,18 @@ const LibraryPlaylists = () => {
     <LibraryPlaylistContainer>
       <LibraryItemsContainer>
         <LibraryPlaylistItem
-          name='Liked Songs'
+          title='Liked Songs'
           cover='https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
-          author=''
           isLikedSongs
         />
         {playlists.map(({ id, name, images, description, owner }) => (
           <LibraryPlaylistItem
             key={id}
             id={id}
-            name={name}
+            title={name}
             cover={images[0]?.url}
             type='playlist'
-            author={description || `By ${owner.display_name}`}
+            subtitle={description || `By ${owner.display_name}`}
           />
         ))}
       </LibraryItemsContainer>
