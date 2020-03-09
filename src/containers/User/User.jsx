@@ -20,7 +20,7 @@ const User = () => {
 
   return (
     <div style={{ color: '#fff' }}>
-      <img src={user.images[0].url} alt='' />
+      {user.images && <img src={user.images[0].url} alt='' />}
       <h3>{user.display_name}</h3>
       {user.playlists &&
         user.playlists.map(playlist => (
