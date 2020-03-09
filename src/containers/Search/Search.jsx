@@ -92,18 +92,19 @@ const Search = () => {
                     ) : null}
                   </SectionTitleContainer>
                   {list.tracks.items.map((track, i) => {
-                    if (i < 3)
+                    if (i < 3) {
+                      console.log(track);
                       return (
                         <Songs
                           key={i}
                           name={track.name}
-                          artists={track.artists
-                            .map(art => art.name)
-                            .join(', ')}
+                          artists={track.artists}
                           cover={track?.album?.images[0].url}
                           type='album'
+                          album={track.album}
                         />
                       );
+                    }
                     return null;
                   })}
                 </SongsContainer>
