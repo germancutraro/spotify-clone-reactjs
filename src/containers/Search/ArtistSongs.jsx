@@ -27,8 +27,8 @@ const Artist = () => {
           <LibraryItem
             key={track.id}
             id={track.id}
-            name={track.name}
-            author={track.artists[0].name}
+            title={track.name}
+            subtitle={track.artists[0].name}
             cover={track.album.images[0].url}
           />
         ))}

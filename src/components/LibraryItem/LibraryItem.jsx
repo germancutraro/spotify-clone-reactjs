@@ -9,18 +9,20 @@ import {
   LibraryPlaylistTitle,
   LibraryPlaylistAuthor,
   LibraryPlaylistPlay,
-  DefaultCover
+  DefaultCover,
+  LibraryPlaylistTag
 } from './playlistItemStyles';
 
 const LibraryItem = ({
   id,
-  name,
+  title,
+  subtitle,
   cover,
-  author,
   isLikedSongs,
   isPlayable = true,
-  coverSize = 'xl',
-  type = 'playlist'
+  type = 'playlist',
+  cardType,
+  tag
 }) => {
   const history = useHistory();
 
@@ -39,28 +41,30 @@ const LibraryItem = ({
   return (
     <LibraryPlaylistContainer onClick={handleChangeRoute} isClickable={!!id}>
       {cover ? (
-        <LibraryPlaylistCoverContainer coverSize={coverSize} type={type}>
-          <LibraryPlaylistCover src={cover} alt={name} type={type} />
+        <LibraryPlaylistCoverContainer cardType={cardType} type={type}>
+          <LibraryPlaylistCover src={cover} alt={title} type={type} />
         </LibraryPlaylistCoverContainer>
       ) : (
         <LibraryPlaylistCoverContainer>
           <DefaultCover />
         </LibraryPlaylistCoverContainer>
       )}
-      <LibraryPlaylistTitle>{name}</LibraryPlaylistTitle>
-      {author && (
+      <LibraryPlaylistTitle cardType={cardType}>{title}</LibraryPlaylistTitle>
+      {subtitle && (
         <LibraryPlaylistAuthor
           onClick={() =>
-            history.push(`/app/user/${author.toLowerCase()}`, { id })
+            history.push(`/app/user/${subtitle.toLowerCase()}`, { id })
           }
         >
-          {author}
+          {subtitle}
         </LibraryPlaylistAuthor>
       )}
 
+      {tag ? <LibraryPlaylistTag>{tag}</LibraryPlaylistTag> : null}
+
       {isPlayable && (
-        <LibraryPlaylistPlay data-value='play'>
-          <PlayIcon fill='#fff' />
+        <LibraryPlaylistPlay data-value='play' cardType={cardType}>
+          <PlayIcon fill='#fff' width={cardType === 'topResult' ? 24 : 16} />
         </LibraryPlaylistPlay>
       )}
     </LibraryPlaylistContainer>
@@ -69,9 +73,9 @@ const LibraryItem = ({
 
 LibraryItem.propTypes = {
   id: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   cover: PropTypes.string,
-  author: PropTypes.string,
   isPlayable: PropTypes.bool
 };
 

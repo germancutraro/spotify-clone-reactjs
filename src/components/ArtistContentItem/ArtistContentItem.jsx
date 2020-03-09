@@ -6,8 +6,8 @@ const ArtistContentItem = ({ albums }) => {
     <LibraryItem
       key={album.id}
       id={album.id}
-      name={album.name}
-      author={album.artists[0].name}
+      title={album.name}
+      subtitle={album.artists[0].name}
       cover={album.images[0].url}
     />
   ));

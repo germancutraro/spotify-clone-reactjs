@@ -60,7 +60,7 @@ const Search = () => {
                 </SectionTitleContainer>
                 <TopResult
                   id={list?.artists?.items[0]?.id || list.tracks.items[0].id}
-                  name={
+                  title={
                     list?.artists?.items[0]?.name || list.tracks.items[0].name
                   }
                   cover={
@@ -132,7 +132,7 @@ const Search = () => {
                         return (
                           <Artists
                             key={artist.id}
-                            name={artist.name}
+                            title={artist.name}
                             cover={
                               artist.images.length ? artist.images[0].url : null
                             }
@@ -166,7 +166,7 @@ const Search = () => {
                         return (
                           <Albums
                             key={i}
-                            name={album.name}
+                            title={album.name}
                             cover={album.images[0].url}
                             artist={album.artists[0].name}
                             type='album'

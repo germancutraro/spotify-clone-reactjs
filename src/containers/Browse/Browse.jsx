@@ -33,7 +33,7 @@ const Browse = () => {
           <LibraryItem
             key={name}
             id={id}
-            name={name}
+            title={name}
             cover={images[0].url}
             type='album'
           />
@@ -47,7 +47,7 @@ const Browse = () => {
         {list?.map(({ name, icons }) => (
           <LibraryItem
             key={name}
-            name={name}
+            title={name}
             cover={icons[0]?.url}
             isPlayable={false}
           />

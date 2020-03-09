@@ -27,8 +27,8 @@ const RelatedArtists = () => {
           <LibraryItem
             key={artist.id}
             id={artist.id}
-            name={artist.name}
-            author='Artist'
+            title={artist.name}
+            subtitle='Artist'
             cover={artist.images && artist.images[0].url}
             isPlayable={false}
           />

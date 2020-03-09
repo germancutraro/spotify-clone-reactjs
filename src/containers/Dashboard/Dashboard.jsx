@@ -48,8 +48,8 @@ const Dashboard = () => {
           <LibraryItem
             key={i}
             id={track.album.id}
-            name={track.name}
-            author={track.artists[0].name}
+            title={track.name}
+            subtitle={track.artists[0].name}
             cover={track.album.images[0].url}
             type='album'
           />
@@ -64,8 +64,8 @@ const Dashboard = () => {
             <LibraryItem
               key={i}
               id={album.id}
-              name={name}
-              author={album.artists[0].name}
+              title={name}
+              subtitle={album.artists[0].name}
               cover={album.images[0].url}
               type='album'
             />
@@ -80,8 +80,8 @@ const Dashboard = () => {
             <LibraryItem
               key={i}
               id={album.id}
-              name={name}
-              author={album.artists[0].name}
+              title={name}
+              subtitle={album.artists[0].name}
               cover={album.images[0].url}
               type='album'
             />
@@ -96,8 +96,8 @@ const Dashboard = () => {
           <LibraryItem
             key={i}
             id={id}
-            name={name}
-            author={display_name}
+            title={name}
+            subtitle={display_name}
             cover={images[0].url}
             type='playlist'
           />
@@ -112,8 +112,8 @@ const Dashboard = () => {
           <LibraryItem
             key={i}
             id={id}
-            name={name}
-            author={artists[0].name}
+            title={name}
+            subtitle={artists[0].name}
             cover={images[0].url}
             type='album'
           />

@@ -24,9 +24,9 @@ const Artists = () => {
         <LibraryItem
           key={art.id}
           id={art.id}
-          name={art.name}
+          title={art.name}
           cover={art.images[0].url}
-          author='Artist'
+          subtitle='Artist'
         />
       ))}
     </div>

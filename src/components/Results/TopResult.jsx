@@ -1,14 +1,14 @@
 import React from 'react';
 import { TopResultItem } from './resultsStyles';
 
-const TopResult = ({ id, name, type, cover }) => (
+const TopResult = ({ id, title, type, cover }) => (
   <TopResultItem
     id={id}
-    name={name}
-    author={type}
+    title={title}
     type={type}
     cover={cover}
-    coverSize='sm'
+    cardType='topResult'
+    tag={type}
   ></TopResultItem>
 );
 

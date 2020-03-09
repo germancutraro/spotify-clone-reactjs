@@ -112,8 +112,8 @@ export const LibraryPlaylistCoverContainer = styled.div`
           border-radius: 100px;
         `
       : null}
-  ${({ coverSize }) =>
-    coverSize === 'sm'
+  ${({ cardType }) =>
+    cardType === 'topResult'
       ? css`
           width: 92px;
           padding-top: 92px;
@@ -141,6 +141,16 @@ export const LibraryPlaylistTitle = styled.p`
   font-size: 14px;
   font-weight: 700;
   ${EllipsisOneLine}
+
+  ${({ cardType }) =>
+    cardType === 'topResult'
+      ? css`
+          font-size: 28px;
+          line-height: 36px;
+          font-weight: 700;
+          letter-spacing: -0.36px;
+        `
+      : null}
 `;
 
 export const LibraryPlaylistAuthor = styled.span`
@@ -151,15 +161,34 @@ export const LibraryPlaylistAuthor = styled.span`
   ${EllipsisTwoLines}
 `;
 
+export const LibraryPlaylistTag = styled.span`
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 1.76px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 500px;
+  margin-right: auto;
+  margin-top: 4px;
+`;
+
 export const LibraryPlaylistPlay = styled.div`
+  --size: ${({ cardType }) => (cardType === 'topResult' ? '48px' : '40px')};
+
   display: none;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: var(--size);
+  height: var(--size);
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: ${({ cardType }) => (cardType === 'topResult' ? '1.5rem' : '1rem')};
+  bottom: ${({ cardType }) => (cardType === 'topResult' ? '2.25rem' : '1rem')};
   border-radius: 100%;
   background-color: #1db954;
   box-shadow: 0 0 10px 10px #282828;

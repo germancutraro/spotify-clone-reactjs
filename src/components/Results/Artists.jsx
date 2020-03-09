@@ -1,9 +1,9 @@
 import React from 'react';
 import LibraryItem from '../LibraryItem/LibraryItem';
 
-const Artists = ({ name, cover }) => {
+const Artists = ({ title, cover }) => {
   return (
-    <LibraryItem cover={cover} name={name} type='ARTIST' author='Artist' />
+    <LibraryItem cover={cover} title={title} type='ARTIST' subtitle='Artist' />
   );
 };
 

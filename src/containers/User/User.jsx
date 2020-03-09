@@ -28,8 +28,8 @@ const User = () => {
           <LibraryItem
             key={playlist.id}
             id={playlist.id}
-            name={playlist.name}
-            author={playlist.owner.display_name}
+            title={playlist.name}
+            subtitle={playlist.owner.display_name}
             cover={playlist.images[0].url}
           />
         ))}
