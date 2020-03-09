@@ -5,6 +5,11 @@ import LibraryItem from '../../components/LibraryItem/LibraryItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopArtistsStart } from './libraryActions';
 import Loader from '../../components/Loader/Loader';
+import {
+  SectionTitleContainer,
+  SectionTitle,
+  LibraryItemsContainer
+} from '../../components/LibraryItem/playlistItemStyles';
 
 const Artists = () => {
   const dispatch = useDispatch();
@@ -19,16 +24,21 @@ const Artists = () => {
 
   return (
     <div>
-      <h1 style={{ color: '#fff' }}>Artists</h1>
-      {artists?.map(art => (
-        <LibraryItem
-          key={art.id}
-          id={art.id}
-          title={art.name}
-          cover={art.images[0].url}
-          subtitle='Artist'
-        />
-      ))}
+      <SectionTitleContainer>
+        <SectionTitle>Artists</SectionTitle>
+      </SectionTitleContainer>
+      <LibraryItemsContainer>
+        {artists?.map(art => (
+          <LibraryItem
+            key={art.id}
+            id={art.id}
+            title={art.name}
+            cover={art.images[0].url}
+            type='ARTIST'
+            subtitle='Artist'
+          />
+        ))}
+      </LibraryItemsContainer>
     </div>
   );
 };
