@@ -96,6 +96,10 @@ export const LibraryPlaylistContainer = styled.li`
   :hover [data-value='play'] {
     display: flex;
   }
+
+  * {
+    user-select: none;
+  }
 `;
 
 export const LibraryPlaylistCoverContainer = styled.div`
