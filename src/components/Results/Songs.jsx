@@ -3,7 +3,8 @@ import {
   SongContainer,
   SongImageContainer,
   SongImage,
-  SongName
+  SongName,
+  PlayContainer
 } from './resultsStyles';
 import {
   TextContainer,
@@ -13,12 +14,16 @@ import {
   Artist,
   ArtistSeparator
 } from '../TrackItem/trackItemStyles';
+import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 
 const Songs = ({ name, artists, cover, album }) => {
   return (
     <SongContainer>
       <SongImageContainer>
         <SongImage src={cover} alt={name} />
+        <PlayContainer data-value='play' onClick={() => alert('play')}>
+          <PlayIcon fill='#fff' width={16} />
+        </PlayContainer>
       </SongImageContainer>
 
       <TextContainer>
