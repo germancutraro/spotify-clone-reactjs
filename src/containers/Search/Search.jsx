@@ -93,7 +93,6 @@ const Search = () => {
                   </SectionTitleContainer>
                   {list.tracks.items.map((track, i) => {
                     if (i < 3) {
-                      console.log(track);
                       return (
                         <Songs
                           key={i}
