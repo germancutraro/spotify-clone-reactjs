@@ -10,20 +10,21 @@ export const TopResultContainer = styled.div`
 
 export const SongsContainer = styled.div`
   grid-column: 3 / -1;
+  display: grid;
+  grid-gap: 0.5rem;
   @media screen and (max-width: 1080px) {
     grid-column: 1 / -1;
   }
-
-  display: grid;
-  grid-gap: 0.5rem;
 `;
 
 export const ArtistsContainer = styled.div`
   grid-column: 1 / -1;
   margin-top: 2rem;
 `;
+
 export const AlbumsContainer = styled(ArtistsContainer)``;
 
+const imageSize = '4.5rem';
 // song
 export const SongContainer = styled.div`
   display: flex;
@@ -31,13 +32,33 @@ export const SongContainer = styled.div`
   user-select: none;
   position: relative;
   transition: background-color 0.2s linear;
+
+  ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: ${imageSize};
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 1;
+  }
+
+  :hover {
+    background-color: #282828;
+  }
+
+  :hover::before {
+    display: block;
+  }
 `;
 
 export const SongImageContainer = styled.div`
   position: relative;
   margin-right: 1rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: ${imageSize};
+  height: ${imageSize};
 `;
 
 export const SongImage = styled.img`
