@@ -1,21 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ReactComponent as DefaultCoverIcon } from '../../assets/icons/defaultSong.svg';
-
-const EllipsisOneLine = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-right: 1px;
-  margin-right: -1px;
-`;
-const EllipsisTwoLines = css`
-  display: -webkit-box;
-  text-overflow: ellipsis;
-  white-space: normal;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-`;
+import { EllipsisOneLine, EllipsisTwoLines } from '../Text/textStyles';
 
 export const LibraryItemsContainer = styled.ul`
   display: grid;

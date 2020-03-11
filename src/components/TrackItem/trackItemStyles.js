@@ -1,13 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-
-const EllipsisOneLine = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-right: 1px;
-  margin-right: -1px;
-`;
+import { EllipsisOneLine } from '../Text/textStyles';
 
 export const ItemContainer = styled.div`
   display: flex;
@@ -50,6 +43,7 @@ export const Name = styled.h3`
   letter-spacing: 0.015rem;
   color: #fff;
   font-weight: 400;
+  ${EllipsisOneLine}
 `;
 
 export const SubTextsContainer = styled.div`

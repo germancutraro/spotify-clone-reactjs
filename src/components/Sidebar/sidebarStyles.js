@@ -1,5 +1,6 @@
-import styled, { css } from "styled-components";
-import { NavLink } from "react-router-dom";
+import styled, { css } from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { EllipsisOneLine } from '../Text/textStyles';
 
 export const SideContainer = styled.div`
   grid-area: sidebar;
@@ -29,15 +30,13 @@ export const NavItemsContainer = styled.div`
 export const ItemText = styled.p`
   color: #b3b3b3;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  ${EllipsisOneLine};
 
   font-size: 14px;
-  font-weight: ${({ light }) => (light ? "400" : "700")};
-  letter-spacing: ${({ light }) => (light ? ".015em" : "normal")};
+  font-weight: ${({ light }) => (light ? '400' : '700')};
+  letter-spacing: ${({ light }) => (light ? '.015em' : 'normal')};
 
-  margin-left: ${({ hasIcon = true }) => (hasIcon ? "16px" : 0)};
+  margin-left: ${({ hasIcon = true }) => (hasIcon ? '16px' : 0)};
   -webkit-font-smoothing: antialiased;
   transition: 0.3s all ease;
 `;
@@ -94,7 +93,7 @@ export const ItemLink = styled(NavLink)`
 
   &.active {
     ${({ bgc }) =>
-      bgc !== "transparent"
+      bgc !== 'transparent'
         ? css`
             background-color: #282828;
           `
@@ -120,7 +119,7 @@ export const SectionTitle = styled.p`
 const IconSquareGradientBackground = css`
   ::before {
     position: absolute;
-    content: "";
+    content: '';
     top: 0;
     right: 0;
     bottom: 0;
@@ -140,7 +139,7 @@ export const IconSquare = styled.div`
   justify-content: center;
   align-items: center;
   ${({ gradient }) =>
-    gradient ? IconSquareGradientBackground : "background-color: #9b9b9b"};
+    gradient ? IconSquareGradientBackground : 'background-color: #9b9b9b'};
   transition: 0.3s all ease;
 
   svg {

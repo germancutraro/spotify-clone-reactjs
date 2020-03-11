@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LibraryPlaylistPlay } from '../LibraryItem/playlistItemStyles';
 import { OptionButtonContainer } from '../TrackItem/trackItemStyles';
+import { EllipsisOneLine } from '../Text/textStyles';
 
 // containers
 export const TopResultContainer = styled.div`
@@ -86,6 +87,8 @@ export const SongName = styled(Link)`
   font-weight: 400;
   border-bottom: 1px solid transparent;
   margin-right: auto;
+
+  ${EllipsisOneLine};
 
   :hover {
     border-color: #fff;
