@@ -4,7 +4,8 @@ import {
   SongImageContainer,
   SongImage,
   SongName,
-  PlayContainer
+  PlayContainer,
+  OptionButton
 } from './resultsStyles';
 import {
   TextContainer,
@@ -14,7 +15,9 @@ import {
   Artist,
   ArtistSeparator
 } from '../TrackItem/trackItemStyles';
+// icons
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
+import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 
 const Songs = ({ name, artists, cover, album }) => {
   return (
@@ -41,9 +44,9 @@ const Songs = ({ name, artists, cover, album }) => {
           </ArtistsContainer>
         </SubTextsContainer>
       </TextContainer>
-      {/* <OptionButtonContainer  onClick={() => alert('more options')}>
+      <OptionButton onClick={() => alert('more options')} data-value='more'>
         <MoreIcon height='18' width='18' fill='rgba(255, 255, 255, 1)' />
-      </OptionButtonContainer> */}
+      </OptionButton>
     </SongContainer>
   );
 };

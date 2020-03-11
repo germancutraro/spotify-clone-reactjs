@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LibraryPlaylistPlay } from '../LibraryItem/playlistItemStyles';
+import { OptionButtonContainer } from '../TrackItem/trackItemStyles';
 
 // containers
 export const TopResultContainer = styled.div`
@@ -49,7 +50,8 @@ export const SongContainer = styled.div`
   :hover {
     background-color: #282828;
 
-    [data-value='play'] {
+    [data-value='play'],
+    [data-value='more'] {
       display: flex;
     }
   }
@@ -100,4 +102,8 @@ export const PlayContainer = styled(LibraryPlaylistPlay)`
   &:hover {
     transform: translate(-50%, -50%) scale(1.06);
   }
+`;
+
+export const OptionButton = styled(OptionButtonContainer)`
+  display: none;
 `;
