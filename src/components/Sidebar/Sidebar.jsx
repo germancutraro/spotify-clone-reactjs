@@ -5,7 +5,9 @@ import SpotifyWhite from '../../assets/images/spotify.png';
 import { ReactComponent as DownloadIcon } from '../../assets/icons/download.svg';
 import { ReactComponent as HomeOutline } from '../../assets/icons/home-outline.svg';
 import { ReactComponent as Search } from '../../assets/icons/search.svg';
+import { ReactComponent as SearchStrong } from '../../assets/icons/search-strong.svg';
 import { ReactComponent as LibraryIcon } from '../../assets/icons/library.svg';
+import { ReactComponent as LibraryStrongIcon } from '../../assets/icons/library-strong.svg';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as HomeSolid } from '../../assets/icons/home-solid.svg';
@@ -32,6 +34,12 @@ const Sidebar = () => {
   const { pathname } = useLocation();
   const [isNewPlaylistOpen, setNewPlaylistOpen] = React.useState(false);
 
+  const isLibraryActive = [
+    '/app/collection/playlists',
+    '/app/collection/albums',
+    '/app/collection/artists'
+  ].includes(pathname);
+
   return (
     <SideContainer>
       <CreatePlaylist
@@ -53,22 +61,26 @@ const Sidebar = () => {
         </Item>
         <Item>
           <ItemLink to='/app/search'>
-            <Search fill='#a8a8a8' width={23} height={23} />
+            {pathname === '/app/search' ? (
+              <SearchStrong fill='#a8a8a8' width={23} height={23} />
+            ) : (
+              <Search fill='#a8a8a8' width={23} height={23} />
+            )}
+
             <ItemText>Search</ItemText>
           </ItemLink>
         </Item>
         <Item>
           <ItemLink
             to='/app/collection/playlists'
-            isActive={() =>
-              [
-                '/app/collection/playlists',
-                '/app/collection/albums',
-                '/app/collection/artists'
-              ].includes(pathname)
-            }
+            isActive={() => isLibraryActive}
           >
-            <LibraryIcon fill='#a8a8a8' width={23} height={23} />
+            {isLibraryActive ? (
+              <LibraryStrongIcon fill='#a8a8a8' width={23} height={23} />
+            ) : (
+              <LibraryIcon fill='#a8a8a8' width={23} height={23} />
+            )}
+
             <ItemText>Your Library</ItemText>
           </ItemLink>
         </Item>
