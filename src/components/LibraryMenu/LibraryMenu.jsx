@@ -1,13 +1,13 @@
 import React from 'react';
-import { LibraryMenuContainer, Link } from './libraryMenuStyles';
+import { LibraryMenuContainer, LibraryLink } from './libraryMenuStyles';
 
 const path = '/app/collection';
 
 const LibraryMenu = () => (
   <LibraryMenuContainer>
-    <Link to={`${path}/playlists`}>PLAYLISTS</Link>
-    <Link to={`${path}/albums`}>ALBUMS</Link>
-    <Link to={`${path}/artists`}>ARTISTS</Link>
+    <LibraryLink to={`${path}/playlists`}>Playlists</LibraryLink>
+    <LibraryLink to={`${path}/albums`}>Albums</LibraryLink>
+    <LibraryLink to={`${path}/artists`}>Artists</LibraryLink>
   </LibraryMenuContainer>
 );
 

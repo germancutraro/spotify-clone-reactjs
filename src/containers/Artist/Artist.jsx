@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, useParams } from 'react-router-dom';
-import { Link } from '../../components/LibraryMenu/libraryMenuStyles';
+import { LibraryLink } from '../../components/LibraryMenu/libraryMenuStyles';
 import TrackItem from '../../components/TrackItem/TrackItem';
 import ArtistContentItem from '../../components/ArtistContentItem/ArtistContentItem';
 // redux
@@ -61,9 +61,9 @@ const Artist = () => {
       <h3 onClick={handleFollow}>{following ? 'UnFollow' : 'Follow'}</h3>
 
       <ul>
-        <Link to={`${path}`}>OVERVIEW</Link>
-        <Link to={`${path}/related`}>RELATED ARTISTS</Link>
-        <Link to={`${path}/${id}/about`}>ABOUT</Link>
+        <LibraryLink to={`${path}`}>OVERVIEW</LibraryLink>
+        <LibraryLink to={`${path}/related`}>RELATED ARTISTS</LibraryLink>
+        <LibraryLink to={`${path}/${id}/about`}>ABOUT</LibraryLink>
       </ul>
 
       <Switch>

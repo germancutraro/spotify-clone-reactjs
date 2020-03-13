@@ -3,24 +3,25 @@ import { NavLink } from 'react-router-dom';
 
 export const LibraryMenuContainer = styled.nav`
   display: flex;
-  justify-content: center;
-  margin-top: 2%;
+  align-items: center;
+  /* background-color: red; */
 `;
 
-export const Link = styled(NavLink)`
-  color: #b3b3b3;
-  margin: 5px;
+export const LibraryLink = styled(NavLink)`
+  margin-right: 0.5rem;
   font-size: 12px;
-  -webkit-font-smoothing: antialiased;
+  line-height: 16px;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  line-height: 2;
+  color: #fff;
+  position: relative;
+  border: 0;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   cursor: pointer;
-  &:hover {
-    color: #fff;
-  }
+
   &.active {
-    color: #fff;
-    border-bottom: 1.5px solid #1db954;
+    background-color: #333;
   }
 `;
