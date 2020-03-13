@@ -86,9 +86,10 @@ export const SongName = styled(Link)`
   color: #fff;
   font-weight: 400;
   border-bottom: 1px solid transparent;
-  margin-right: auto;
-
+  max-width: 100%;
+  display: inline-block;
   ${EllipsisOneLine};
+  margin-right: auto;
 
   :hover {
     border-color: #fff;
