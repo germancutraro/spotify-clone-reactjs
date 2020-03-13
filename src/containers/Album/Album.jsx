@@ -58,8 +58,9 @@ const Album = () => {
                 ))}
             </PlaylistImageContainer>
             <PlaylistTitle>{album.name}</PlaylistTitle>
-            {album?.artists.map(artist => (
+            {album?.artists.map((artist, i) => (
               <PlaylistOwner
+                key={i}
                 onClick={() => history.push(`/app/artist/${artist.id}`)}
               >
                 {artist.name}
