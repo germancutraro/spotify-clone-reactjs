@@ -18,6 +18,7 @@ import RelatedArtists from '../Search/RelatedArtists';
 import Download from '../Download/Download';
 import Artist from '../Artist/Artist';
 import Album from '../Album/Album';
+import Notifier from '../Notifier/Notifier';
 
 export default () => (
   <>
@@ -69,6 +70,7 @@ export default () => (
       <div
         style={{ gridArea: 'player', height: 90, backgroundColor: '#333' }}
       ></div>
+      <Notifier />
     </GridContainer>
   </>
 );
