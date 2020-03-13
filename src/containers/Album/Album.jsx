@@ -104,8 +104,8 @@ const Album = () => {
           padding: '0 5% 2em'
         }}
       >
-        {album?.copyrights.map(({ text }) => (
-          <p key={text}>{text}</p>
+        {album?.copyrights.map(({ text }, i) => (
+          <p key={i}>{text}</p>
         ))}
       </div>
     </>
