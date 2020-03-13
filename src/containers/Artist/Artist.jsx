@@ -16,6 +16,7 @@ import {
 import ArtistAbout from './ArtistAbout';
 import ArtistRelated from './ArtistRelated';
 import Loader from '../../components/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const Artist = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ const Artist = () => {
       appears: albums.filter(({ album_type }) => album_type === 'compilation')
     })
   );
+
+  useTitle(`Spotify - ${artist.name}`);
 
   const { id } = useParams();
   const path = `/app/artist`;

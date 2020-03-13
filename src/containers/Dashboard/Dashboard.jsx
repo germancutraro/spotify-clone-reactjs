@@ -16,9 +16,12 @@ import {
   SectionTitle
 } from '../../components/LibraryItem/playlistItemStyles';
 import Loader from '../../components/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+
+  useTitle('Spotify - Clone');
 
   const { played, recommendations, featured, releases, loading } = useSelector(
       ({ dashboard }) => dashboard
