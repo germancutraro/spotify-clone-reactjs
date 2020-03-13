@@ -85,7 +85,7 @@ export const ItemLink = styled(NavLink)`
   transition: 0.3s all ease;
 
   &:hover,
-  &:active {
+  &.active {
     p {
       color: #fff;
     }
