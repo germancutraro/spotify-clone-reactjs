@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Playlists from '../../containers/Playlists/Playlists';
 import SpotifyWhite from '../../assets/images/spotify.png';
 // Icons
@@ -46,8 +47,9 @@ const Sidebar = () => {
         isOpen={isNewPlaylistOpen}
         handleClose={() => setNewPlaylistOpen(false)}
       />
-
-      <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
+      <Link to='/app'>
+        <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
+      </Link>
       <NavItemsContainer>
         <Item>
           <ItemLink exact to='/app'>

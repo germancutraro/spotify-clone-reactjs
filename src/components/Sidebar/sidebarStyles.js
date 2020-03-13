@@ -17,6 +17,7 @@ export const SpotifyLogo = styled.img`
   margin: 0 0 18px 16px;
   width: 100%;
   max-width: 131px;
+  cursor: pointer;
 `;
 
 // nav
