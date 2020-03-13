@@ -31,6 +31,7 @@ const Albums = () => {
         {albums.map(({ album }) => {
           return (
             <LibraryItem
+              key={album.id}
               id={album.id}
               title={album.name}
               subtitle={album.artists[0].name}
