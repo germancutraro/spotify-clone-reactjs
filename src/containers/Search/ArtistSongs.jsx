@@ -5,10 +5,15 @@ import { getArtistSongsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
 import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
 import Loader from '../../components/Loader/Loader';
+import useNotifier from '../../hooks/useNotifier';
 
 const Artist = () => {
   const dispatch = useDispatch();
-  const { artist, loading } = useSelector(({ search }) => search);
+  const { artist, loading, error } = useSelector(({ search }) => search);
+
+  const { showSnackbar } = useNotifier({
+    message: 'Oooops something went wrong.'
+  });
 
   const { name } = useParams();
   const { state } = useLocation();
@@ -18,6 +23,7 @@ const Artist = () => {
   }, [dispatch, state.id]);
 
   if (loading) return <Loader isLoading={loading} />;
+  if (!loading && error) showSnackbar();
 
   return (
     <div style={{ color: '#fff' }}>

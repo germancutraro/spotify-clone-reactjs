@@ -24,11 +24,18 @@ import {
 } from '../../components/Results/resultsStyles';
 import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
+import useNotifier from '../../hooks/useNotifier';
 
 const Search = () => {
   const dispatch = useDispatch();
 
-  const { list, searchValue, loading } = useSelector(({ search }) => search);
+  const { list, searchValue, loading, error } = useSelector(
+    ({ search }) => search
+  );
+
+  const { showSnackbar } = useNotifier({
+    message: 'Oooops something went wrong.'
+  });
 
   useTitle('Spotify - Search');
 
@@ -49,6 +56,8 @@ const Search = () => {
       return list.artists.items.length || list.tracks.items.length;
     return false;
   };
+
+  if (!loading && error) showSnackbar();
 
   return (
     <>

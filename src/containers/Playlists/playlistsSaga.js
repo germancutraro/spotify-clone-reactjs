@@ -1,5 +1,4 @@
 import { all, fork, put, takeLatest } from 'redux-saga/effects';
-import { renderSnackbar } from '../../utils/snackbar';
 
 import * as constants from './playlistsConstants';
 import * as actions from './playlistsActions';
@@ -10,12 +9,6 @@ function* getUserPlaylists() {
     const { items: playlists } = yield services.getUserPlaylists();
     if (playlists) yield put(actions.getUserPlaylistsSuccess({ playlists }));
   } catch (err) {
-    yield put(
-      renderSnackbar(
-        'error',
-        'Oooops something went wrong while loading your playlists.'
-      )
-    );
     yield put(actions.getUserPlaylistsFailure({ error: err.message }));
   }
 }
@@ -30,12 +23,6 @@ function* getPlaylist({ payload: { id } }) {
     const playlist = yield services.getPlaylist(id);
     if (playlist) yield put(actions.getPlaylistSuccess({ playlist }));
   } catch (err) {
-    yield put(
-      renderSnackbar(
-        'error',
-        'Oooops something went wrong while loading your playlist.'
-      )
-    );
     yield put(actions.getPlaylistFailure({ error: err.message }));
   }
 }
@@ -51,12 +38,6 @@ function* getUserTracks() {
     if (tracks)
       yield put(actions.getUserTracksSuccess({ playlist: tracks.items }));
   } catch (err) {
-    yield put(
-      renderSnackbar(
-        'error',
-        'Oooops something went wrong while loading your tracks.'
-      )
-    );
     yield put(actions.getUserTracksFailure({ error: err.message }));
   }
 }
@@ -89,12 +70,6 @@ function* createPlaylist({ payload: { userId, name } }) {
       yield getUserPlaylists();
     }
   } catch (err) {
-    yield put(
-      renderSnackbar(
-        'error',
-        'Oooops something went wrong while creating your playlist.'
-      )
-    );
     yield put(actions.createPlaylistFailure({ error: err.message }));
   }
 }
@@ -109,7 +84,6 @@ function* addTrackToPlaylist({ payload: { playlistId, tracks } }) {
     const playlist = yield services.addTrackToPlaylist(playlistId, tracks);
     if (playlist) yield put(actions.addTrackToPlaylistSuccess({ playlist }));
   } catch (err) {
-    yield put(renderSnackbar('error', 'Oooops something went wrong.'));
     yield put(actions.addTrackToPlaylistFailure({ error: err.message }));
   }
 }
@@ -151,7 +125,6 @@ function* followUnfollowPlaylist({
 
     yield getUserPlaylists();
   } catch (err) {
-    yield put(renderSnackbar('error', 'Oooops something went wrong.'));
     yield put(actions.followPlaylistFailure({ error: err.message }));
   }
 }
