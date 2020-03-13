@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -13,18 +12,24 @@ import { PlaylistContainer } from './playlistsStyles';
 
 import PlaylistContent from '../../components/Playlist/PlaylistContent';
 import Loader from '../../components/Loader/Loader';
+// hooks
+import useNotifier from '../../hooks/useNotifier';
 import useTitle from '../../hooks/useTitle';
 
 const Playlist = () => {
   const dispatch = useDispatch();
 
-  const { playlist, following, loading } = useSelector(
+  const { playlist, following, loading, error } = useSelector(
       ({ playlists }) => playlists
     ),
     { id: userId } = useSelector(({ auth }) => auth.user);
 
   const { id } = useParams(),
     { pathname } = useLocation();
+
+  const { showSnackbar } = useNotifier({
+    message: 'Oooops something went wrong.'
+  });
 
   useTitle(`Spotify - ${playlist.name}`);
 
@@ -64,6 +69,8 @@ const Playlist = () => {
       100
     );
   };
+
+  if (!loading && error) showSnackbar();
 
   return (
     <PlaylistContainer>
