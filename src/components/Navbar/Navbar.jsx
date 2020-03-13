@@ -41,7 +41,11 @@ const Navbar = () => {
             </ArrowIconContainer>
           </ArrowsContainer>
           {pathname === '/app/search' && <SearchInput />}
-          {pathname.startsWith('/app/collection') && <LibraryMenu />}
+          {[
+            '/app/collection/playlists',
+            '/app/collection/albums',
+            '/app/collection/artists'
+          ].includes(pathname) && <LibraryMenu />}
         </NavLeftWrapper>
         <NavRightWrapper>
           <UpgradeButton
