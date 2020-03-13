@@ -116,6 +116,7 @@ export const LibraryPlaylistCover = styled.img`
   position: absolute;
   top: 0;
   left: 0;
+  object-fit: cover;
 
   ${({ type }) =>
     type === 'ARTIST'
