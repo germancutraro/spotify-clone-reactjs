@@ -23,11 +23,14 @@ import {
   TopResultContainer
 } from '../../components/Results/resultsStyles';
 import Loader from '../../components/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const Search = () => {
   const dispatch = useDispatch();
 
   const { list, searchValue, loading } = useSelector(({ search }) => search);
+
+  useTitle('Spotify - Search');
 
   const history = useHistory();
 

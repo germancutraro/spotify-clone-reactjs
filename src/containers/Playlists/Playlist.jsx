@@ -13,6 +13,7 @@ import { PlaylistContainer } from './playlistsStyles';
 
 import PlaylistContent from '../../components/Playlist/PlaylistContent';
 import Loader from '../../components/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const Playlist = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const Playlist = () => {
 
   const { id } = useParams(),
     { pathname } = useLocation();
+
+  useTitle(`Spotify - ${playlist.name}`);
 
   useEffect(() => {
     if (!pathname.includes('/tracks')) {

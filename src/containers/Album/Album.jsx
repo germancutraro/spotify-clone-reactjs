@@ -27,6 +27,7 @@ import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 import Loader from '../../components/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const Album = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ const Album = () => {
   const { id } = useParams();
 
   const history = useHistory();
+
+  useTitle(`Spotify - ${album.name}`);
 
   React.useEffect(() => {
     dispatch(getAlbumStart({ id }));
