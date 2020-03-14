@@ -10,16 +10,23 @@ import {
   LibraryItemsContainer
 } from '../../components/LibraryItem/playlistItemStyles';
 
+// hooks
+import useNotifier from '../../hooks/useNotifier';
+
 const Albums = () => {
   const dispatch = useDispatch();
 
-  const { albums, loading } = useSelector(({ library }) => library);
+  const { albums, loading, error } = useSelector(({ library }) => library);
+  const { showSnackbar } = useNotifier({
+    message: 'Oooops something went wrong.'
+  });
 
   React.useEffect(() => {
     dispatch(getAlbumsStart());
   }, [dispatch]);
 
   if (loading) return <Loader isLoading={loading} />;
+  if (!loading && error) showSnackbar();
 
   return (
     <div>
