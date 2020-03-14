@@ -4,8 +4,11 @@ import LibraryPlaylistItem from '../../components/LibraryItem/LibraryItem';
 // styles
 import { LibraryPlaylistContainer } from './libraryStyles';
 import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
+import useTitle from '../../hooks/useTitle';
 
 const LibraryPlaylists = () => {
+  useTitle('Spotify - Your Library');
+
   const playlists = useSelector(({ playlists }) => playlists.list);
   return (
     <LibraryPlaylistContainer>

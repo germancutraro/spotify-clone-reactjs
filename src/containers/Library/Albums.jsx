@@ -12,9 +12,11 @@ import {
 
 // hooks
 import useNotifier from '../../hooks/useNotifier';
+import useTitle from '../../hooks/useTitle';
 
 const Albums = () => {
   const dispatch = useDispatch();
+  useTitle('Spotify - Your Library');
 
   const { albums, loading, error } = useSelector(({ library }) => library);
   const { showSnackbar } = useNotifier({
@@ -27,7 +29,6 @@ const Albums = () => {
 
   if (loading) return <Loader isLoading={loading} />;
   if (!loading && error) showSnackbar();
-
   return (
     <div>
       <SectionTitleContainer>

@@ -10,7 +10,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Playlist from '../Playlists/Playlist';
 import LibraryPlaylists from '../Library/LibraryPlaylists';
-import Library from '../Library/Library';
+import Albums from '../Library/Albums';
+import Artists from '../Library/Artists';
 import Search from '../Search/Search';
 import ArtistSongs from '../Search/ArtistSongs';
 import ArtistAlbums from '../Search/ArtistAlbums';
@@ -57,7 +58,14 @@ export default () => (
             exact
           />
           <Route path='/app/playlist/:id' component={Playlist} exact />
-          <Route path='/app/collection' component={Library} />
+
+          <Route
+            path='/app/collection/playlists'
+            exact
+            component={LibraryPlaylists}
+          />
+          <Route path='/app/collection/albums' exact component={Albums} />
+          <Route path='/app/collection/artists' exact component={Artists} />
           <Route path='/app/collection/tracks' component={Playlist} />
           <Route
             path='/collection/playlists'
