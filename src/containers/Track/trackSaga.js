@@ -5,9 +5,7 @@ import * as actions from './trackActions';
 
 function* startSong({ payload: { song } }) {
   try {
-    const audio = yield new Audio(song.preview_url);
-    yield audio.play();
-    yield put(actions.setSong({ audio, song }));
+    yield put(actions.setSong({ song }));
   } catch (err) {
     console.log(err);
   }

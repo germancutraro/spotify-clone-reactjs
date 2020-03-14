@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
   #root {
     max-height: 100vh;
   }
- 
+
 `;
 
 export default GlobalStyle;

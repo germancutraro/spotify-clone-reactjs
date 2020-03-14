@@ -27,6 +27,12 @@ const playlistsPersistConfig = {
   whitelist: ['list']
 };
 
+const trackPersistConfig = {
+  key: 'track',
+  storage,
+  whitelist: ['song']
+};
+
 export default history =>
   combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
@@ -38,6 +44,6 @@ export default history =>
     library: libraryReducer,
     artist: artistReducer,
     album: albumReducer,
-    track: trackReducer,
+    track: persistReducer(trackPersistConfig, trackReducer),
     router: connectRouter(history)
   });

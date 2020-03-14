@@ -2,16 +2,23 @@ import * as constants from './trackConstants';
 
 const initialState = {
   song: {},
-  audio: null
+  isPlaying: false
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case constants.SET_SONG:
-      return { ...state, audio: payload.audio };
+      return { ...state, song: payload.song, isPlaying: true };
+    case constants.RESUME_SONG:
+      return {
+        ...state,
+        isPlaying: true
+      };
     case constants.PAUSE_SONG:
-      state.audio.pause();
-      return { ...state };
+      return {
+        ...state,
+        isPlaying: false
+      };
     default:
       return state;
   }
