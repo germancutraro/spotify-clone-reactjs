@@ -13,7 +13,6 @@ import libraryReducer from './containers/Library/libraryReducer';
 import browseReducer from './containers/Browse/browseReducer';
 import artistReducer from './containers/Artist/artistReducer';
 import albumReducer from './containers/Album/albumReducer';
-import notifierReducer from './containers/Notifier/notifierReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -38,6 +37,5 @@ export default history =>
     library: libraryReducer,
     artist: artistReducer,
     album: albumReducer,
-    notifier: notifierReducer,
     router: connectRouter(history)
   });

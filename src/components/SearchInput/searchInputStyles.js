@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIconSvg } from '../../assets/icons/search.svg';
+import { ReactComponent as CancelIconSvg } from '../../assets/icons/cancel.svg';
 
 export const SearchContainer = styled.label`
   display: flex;
@@ -12,6 +13,11 @@ export const SearchContainer = styled.label`
 export const SearchIcon = styled(SearchIconSvg)`
   position: absolute;
   left: 12px;
+`;
+
+export const CancelIcon = styled(CancelIconSvg)`
+  position: absolute;
+  right: 350px;
 `;
 
 export const Input = styled.input`
