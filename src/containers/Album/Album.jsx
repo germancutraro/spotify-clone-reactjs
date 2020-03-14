@@ -95,7 +95,7 @@ const Album = () => {
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
         {album.tracks.items?.map((track, i) => (
-          <TrackItem key={i} {...track} />
+          <TrackItem key={i} song={{ ...track }} />
         ))}
       </PlaylistRightWrapper>
       <div

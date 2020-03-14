@@ -18,6 +18,7 @@ import RelatedArtists from '../Search/RelatedArtists';
 import Download from '../Download/Download';
 import Artist from '../Artist/Artist';
 import Album from '../Album/Album';
+import Track from '../Track/Track';
 
 export default () => (
   <>
@@ -66,9 +67,7 @@ export default () => (
           <Route path='/app/download' component={Download} exact />
         </Switch>
       </SectionContainer>
-      <div
-        style={{ gridArea: 'player', height: 90, backgroundColor: '#333' }}
-      ></div>
+      <Track />
     </GridContainer>
   </>
 );

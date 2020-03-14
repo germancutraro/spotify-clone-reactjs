@@ -22,17 +22,27 @@ import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 import { ReactComponent as MusicIcon } from '../../assets/icons/music.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { startSong, pauseSong } from '../../containers/Track/trackActions';
 
-const TrackItem = ({ name, artists, album, duration_ms }) => {
+const TrackItem = ({ song }) => {
+  const dispatch = useDispatch();
+  const { name, artists, album, duration_ms } = song;
   return (
     <ItemContainer>
       <MusicIconContainer>
-        <PlayIcon height='22' width='22' fill='rgba(255, 255, 255, 1)' />
+        <PlayIcon
+          height='22'
+          width='22'
+          fill='rgba(255, 255, 255, 1)'
+          onClick={() => dispatch(startSong({ song }))}
+        />
+
         <MusicIcon height='20' width='18' fill='rgba(255, 255, 255, .6)' />
       </MusicIconContainer>
 
       <TextContainer>
-        <Name>{name}</Name>
+        <Name onClick={() => dispatch(pauseSong())}>{name}</Name>
         <SubTextsContainer>
           <ArtistsContainer>
             {artists.map((artist, i) => (

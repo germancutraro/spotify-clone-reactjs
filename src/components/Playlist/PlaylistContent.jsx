@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
 import {
   PlaylistTitle,
   PlaylistOwner,
@@ -49,7 +48,6 @@ const PlaylistContent = ({
         }
       }
     : { ...playlist };
-  // console.log(playlistData?.tracks?.items);
 
   return (
     <>
@@ -119,7 +117,11 @@ const PlaylistContent = ({
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
         {playlistData?.tracks?.items?.map((track, i) => (
-          <TrackItem key={i} added_at={track?.added_at} {...track?.track} />
+          <TrackItem
+            key={i}
+            added_at={track?.added_at}
+            song={{ ...track?.track }}
+          />
         ))}
       </PlaylistRightWrapper>
     </>
