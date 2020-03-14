@@ -57,7 +57,7 @@ const Search = () => {
     return false;
   };
 
-  if (!loading && error) showSnackbar();
+  if (!loading && error && error.includes('401')) showSnackbar();
 
   return (
     <>
