@@ -6,7 +6,8 @@ import {
   SearchContainer,
   Input,
   SearchIcon,
-  CancelIcon
+  CancelIcon,
+  SearchFullContainer
 } from './searchInputStyles';
 
 const SearchInput = () => {
@@ -24,24 +25,25 @@ const SearchInput = () => {
   };
 
   return (
-    <SearchContainer>
-      <SearchIcon fill='#121212' width={24} height={24} />
-      {value.trim().length && (
-        <CancelIcon
-          fill='#121212'
-          width={24}
-          height={24}
-          onClick={handleReset}
+    <SearchFullContainer>
+      <SearchContainer>
+        <SearchIcon fill='#121212' width={24} height={24} />
+        {value.trim().length ? (
+          <CancelIcon
+            fill='#121212'
+            width={24}
+            height={24}
+            onClick={handleReset}
+          />
+        ) : null}
+        <Input
+          type='text'
+          placeholder='Search for Artists, Songs or Podcasts'
+          value={value}
+          onChange={handleChange}
         />
-      )}
-
-      <Input
-        type='text'
-        placeholder='Search for Artists, Songs or Podcasts'
-        value={value}
-        onChange={handleChange}
-      />
-    </SearchContainer>
+      </SearchContainer>
+    </SearchFullContainer>
   );
 };
 

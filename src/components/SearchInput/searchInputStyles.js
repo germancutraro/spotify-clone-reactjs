@@ -2,12 +2,17 @@ import styled from 'styled-components';
 import { ReactComponent as SearchIconSvg } from '../../assets/icons/search.svg';
 import { ReactComponent as CancelIconSvg } from '../../assets/icons/cancel.svg';
 
+export const SearchFullContainer = styled.div`
+  margin-right: 1rem;
+  width: 100%;
+`;
+
 export const SearchContainer = styled.label`
   display: flex;
   align-items: center;
   position: relative;
-  margin-right: 1rem;
   width: 100%;
+  max-width: 360px;
 `;
 
 export const SearchIcon = styled(SearchIconSvg)`
@@ -17,7 +22,7 @@ export const SearchIcon = styled(SearchIconSvg)`
 
 export const CancelIcon = styled(CancelIconSvg)`
   position: absolute;
-  right: 350px;
+  right: 12px;
 `;
 
 export const Input = styled.input`
@@ -26,7 +31,6 @@ export const Input = styled.input`
   height: 40px;
   line-height: 40px;
   width: 100%;
-  max-width: 360px;
   border: 0;
   border-radius: 100px;
   outline: none;
