@@ -40,11 +40,7 @@ const PlaylistContent = ({
               url:
                 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
             }
-          ],
-          tracks: {
-            items: [...playlist],
-            total: playlist?.length
-          }
+          ]
         }
       }
     : { ...playlist };

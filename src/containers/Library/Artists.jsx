@@ -10,9 +10,11 @@ import {
   SectionTitle,
   LibraryItemsContainer
 } from '../../components/LibraryItem/playlistItemStyles';
+import useTitle from '../../hooks/useTitle';
 
 const Artists = () => {
   const dispatch = useDispatch();
+  useTitle('Spotify - Your Library');
 
   const { artists, loading } = useSelector(({ library }) => library);
 
