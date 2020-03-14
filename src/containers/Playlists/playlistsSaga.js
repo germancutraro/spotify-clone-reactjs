@@ -36,7 +36,7 @@ function* getUserTracks() {
   try {
     const tracks = yield services.getUserTracks();
     if (tracks)
-      yield put(actions.getUserTracksSuccess({ playlist: tracks.items }));
+      yield put(actions.getUserTracksSuccess({ playlist: { tracks } }));
   } catch (err) {
     yield put(actions.getUserTracksFailure({ error: err.message }));
   }
