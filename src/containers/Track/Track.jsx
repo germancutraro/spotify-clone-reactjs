@@ -9,11 +9,16 @@ import {
   PlayIcon,
   PauseIcon
 } from './trackStyles';
+import Volume from '../../components/TrackControls/Volume';
+import Duration from '../../components/TrackControls/Duration';
 
 const Track = () => {
   const dispatch = useDispatch();
   const { song, isPlaying } = useSelector(({ track }) => track);
   const audioRef = React.useRef();
+
+  const [timeElapsed, setTimeElapsed] = React.useState(0);
+  const [volume, setVolume] = React.useState(1.0);
 
   React.useEffect(() => {
     const { current: audio } = audioRef;
@@ -39,20 +44,19 @@ const Track = () => {
       <p>{song?.artists && song?.artists[0].name}</p>
 
       <PlayIconWrapper>
-        {!audioRef?.current?.paused ? (
+        {!isPlaying ? (
           <PlayIcon onClick={handleAudio} />
         ) : (
           <PauseIcon onClick={handleAudio} />
         )}
       </PlayIconWrapper>
 
-      {audioRef?.current?.currentTime ? (
-        <p>
-          {Math.floor(audioRef?.current?.currentTime) +
-            ' / ' +
-            Math.floor(audioRef?.current?.duration)}
-        </p>
-      ) : null}
+      <Duration
+        timeElapsed={timeElapsed}
+        setTimeElapsed={setTimeElapsed}
+        isPlaying={isPlaying}
+      />
+      <Volume ref={audioRef} volume={volume} setVolume={setVolume} />
     </TrackContainer>
   );
 };
