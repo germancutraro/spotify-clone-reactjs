@@ -4,7 +4,17 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPlaylistStart } from '../../containers/Playlists/playlistsActions';
 // styles
-import { ModalContainer, ModalDialog } from './createPlaylistStyles';
+import {
+  ModalContainer,
+  ModalDialog,
+  ModalCross,
+  ModalTitle,
+  ModalLabel,
+  ModalInputTitle,
+  ModalInput,
+  ModalButtonOutline,
+  ModalButton
+} from './createPlaylistStyles';
 
 const CreatePlaylist = ({ isOpen, handleClose }) => {
   const dispatch = useDispatch();
@@ -20,17 +30,23 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
   return (
     <ModalDialog
       style={{
-        display: isOpen ? 'block' : 'none'
+        display: !isOpen ? 'block' : 'none'
       }}
     >
       <ModalContainer>
-        <input
-          type='text'
-          placeholder='New Playlist'
-          onChange={e => setValue(e.target.value.trim())}
-        />
-        <button onClick={handleClose}>Cancel</button>
-        <button onClick={handleCreatePlaylist}>Create</button>
+        <ModalCross stroke='#fff' width={40} height={40} />
+        <ModalTitle>Create Playlist</ModalTitle>
+        <ModalLabel>
+          <ModalInputTitle>New playlist</ModalInputTitle>
+          <ModalInput
+            type='text'
+            placeholder='New Playlist'
+            onChange={e => setValue(e.target.value.trim())}
+          />
+        </ModalLabel>
+
+        <ModalButtonOutline onClick={handleClose}>Cancel</ModalButtonOutline>
+        <ModalButton onClick={handleCreatePlaylist}>Create</ModalButton>
       </ModalContainer>
     </ModalDialog>
   );
