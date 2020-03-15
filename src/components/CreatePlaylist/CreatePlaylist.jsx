@@ -30,11 +30,16 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
   return (
     <ModalDialog
       style={{
-        display: !isOpen ? 'block' : 'none'
+        display: isOpen ? 'block' : 'none'
       }}
     >
       <ModalContainer>
-        <ModalCross stroke='#fff' width={40} height={40} />
+        <ModalCross
+          onClick={handleClose}
+          stroke='#fff'
+          width={40}
+          height={40}
+        />
         <ModalTitle>Create Playlist</ModalTitle>
         <ModalLabel>
           <ModalInputTitle>New playlist</ModalInputTitle>
