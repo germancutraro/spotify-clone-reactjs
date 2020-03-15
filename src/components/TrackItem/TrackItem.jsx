@@ -35,6 +35,8 @@ const TrackItem = ({ song }) => {
     song: { id: songId }
   } = useSelector(({ track }) => track);
 
+  const isCurrentlyPlaying = songId === id;
+
   return (
     <ItemContainer>
       <MusicIconContainer>
@@ -42,14 +44,14 @@ const TrackItem = ({ song }) => {
           <PauseIcon
             height='16'
             width='16'
-            fill='rgba(255, 255, 255, 1)'
+            fill={isCurrentlyPlaying ? '#1ed760' : 'rgba(255, 255, 255, 1)'}
             onClick={() => dispatch(pauseSong())}
           />
         ) : (
           <PlayIcon
-            height='22'
-            width='22'
-            fill='rgba(255, 255, 255, 1)'
+            height='20'
+            width='20'
+            fill={isCurrentlyPlaying ? '#1ed760' : 'rgba(255, 255, 255, 1)'}
             onClick={() => {
               // if (songId !== id)  reset duration
               dispatch(startSong({ song }));
@@ -57,11 +59,15 @@ const TrackItem = ({ song }) => {
           />
         )}
 
-        <MusicIcon height='20' width='18' fill='rgba(255, 255, 255, .6)' />
+        <MusicIcon
+          height='20'
+          width='18'
+          fill={isCurrentlyPlaying ? '#1ed760' : 'rgba(255, 255, 255, .6)'}
+        />
       </MusicIconContainer>
 
       <TextContainer>
-        <Name>{name}</Name>
+        <Name current={isCurrentlyPlaying}>{name}</Name>
         <SubTextsContainer>
           <ArtistsContainer>
             {artists.map((artist, i) => (
