@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactComponent as SoundIcon } from '../../assets/icons/sound.svg';
 
 const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
   const handleVolume = ({ target }) => {
@@ -8,6 +9,7 @@ const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
   };
   return (
     <div>
+      <SoundIcon width={13} fill='#fff' />
       <input
         className='volume'
         type='range'
