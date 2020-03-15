@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as CrossIcon } from '../../assets/icons/cancel.svg';
 
 export const ModalDialog = styled.div`
   position: fixed;
@@ -11,5 +12,38 @@ export const ModalDialog = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  background-color: yellow;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
+
+export const ModalCrossContainer = styled.div`
+  padding: 1rem;
+  cursor: pointer;
+`;
+
+export const ModalCross = styled(CrossIcon)``;
+
+export const ModalTitle = styled.h1`
+  color: #fff;
+  font-size: 3rem;
+  line-height: 56px;
+  letter-spacing: -0.005rem;
+  font-weight: 900;
+  margin: 1rem 0;
+`;
+
+export const ModalLabel = styled.div`
+  background-color: yellow;
+  width: 100%;
+`;
+
+export const ModalInputTitle = styled.span``;
+
+export const ModalInput = styled.input``;
+
+export const ModalButtonOutline = styled.button``;
+
+export const ModalButton = styled.button``;
