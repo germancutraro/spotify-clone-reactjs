@@ -30,12 +30,8 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
       dispatch(createPlaylistStart({ userId: user?.id, name: value }));
   };
 
-  return (
-    <ModalDialog
-      style={{
-        display: isOpen ? 'block' : 'none'
-      }}
-    >
+  return isOpen ? (
+    <ModalDialog>
       <ModalContainer>
         <ModalCrossContainer onClick={handleClose}>
           <ModalCross stroke='#fff' width={52} height={52} />
@@ -59,7 +55,7 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
         </ModalButtonsContainer>
       </ModalContainer>
     </ModalDialog>
-  );
+  ) : null;
 };
 
 CreatePlaylist.propTypes = {
