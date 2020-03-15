@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactComponent as CrossIcon } from '../../assets/icons/cancel.svg';
 
 export const ModalDialog = styled.div`
@@ -20,29 +20,59 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalCrossContainer = styled.div`
-  padding: 1rem;
+  padding: 0.75rem;
   cursor: pointer;
 `;
 
 export const ModalCross = styled(CrossIcon)``;
 
-export const ModalTitle = styled.h1`
+const title = css`
   color: #fff;
   font-size: 3rem;
   line-height: 56px;
   letter-spacing: -0.005rem;
   font-weight: 900;
+`;
+
+export const ModalTitle = styled.h1`
+  ${title}
   margin: 1rem 0;
 `;
 
 export const ModalLabel = styled.div`
-  background-color: yellow;
   width: 100%;
+  background-color: #282828;
+  padding: 2rem 20%;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 1200px) {
+    padding: 2rem;
+  }
 `;
 
-export const ModalInputTitle = styled.span``;
+export const ModalInputTitle = styled.span`
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.015rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+`;
 
-export const ModalInput = styled.input``;
+export const ModalInput = styled.input`
+  ${title}
+  caret-color: #1db954;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+`;
+
+export const ModalButtonsContainer = styled.div`
+  display: flex;
+  padding: 1.75rem 0;
+`;
 
 export const ModalButtonOutline = styled.button``;
 
