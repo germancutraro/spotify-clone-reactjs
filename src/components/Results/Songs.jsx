@@ -17,15 +17,37 @@ import {
 } from '../TrackItem/trackItemStyles';
 // icons
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
+import { ReactComponent as PauseIcon } from '../../assets/icons/pause.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { startSong, pauseSong } from '../../containers/Track/trackActions';
 
-const Songs = ({ name, artists, cover, album }) => {
+const Songs = ({ name, artists, cover, album, song }) => {
+  const dispatch = useDispatch();
+  const {
+    isPlaying,
+    song: { id: songId }
+  } = useSelector(({ track }) => track);
+
   return (
     <SongContainer>
       <SongImageContainer>
         <SongImage src={cover} alt={name} />
-        <PlayContainer data-value='play' onClick={() => alert('play')}>
-          <PlayIcon fill='#fff' width={16} />
+        <PlayContainer data-value='play'>
+          {isPlaying && songId === song.id ? (
+            <PauseIcon
+              height='12'
+              width='12'
+              fill='rgba(255, 255, 255, 1)'
+              onClick={() => dispatch(pauseSong())}
+            />
+          ) : (
+            <PlayIcon
+              fill='#fff'
+              width={16}
+              onClick={() => dispatch(startSong({ song }))}
+            />
+          )}
         </PlayContainer>
       </SongImageContainer>
 
