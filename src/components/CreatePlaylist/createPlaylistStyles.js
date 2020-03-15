@@ -12,16 +12,27 @@ export const ModalDialog = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: green;
+  justify-content: center;
+`;
+
+export const ModalCrossContainer = styled.div`
+  padding: 1rem;
+  cursor: pointer;
 `;
 
 export const ModalCross = styled(CrossIcon)``;
 
 export const ModalTitle = styled.h1`
   color: #fff;
+  font-size: 3rem;
+  line-height: 56px;
+  letter-spacing: -0.005rem;
+  font-weight: 900;
+  margin: 1rem 0;
 `;
 
 export const ModalLabel = styled.div`

@@ -13,7 +13,8 @@ import {
   ModalInputTitle,
   ModalInput,
   ModalButtonOutline,
-  ModalButton
+  ModalButton,
+  ModalCrossContainer
 } from './createPlaylistStyles';
 
 const CreatePlaylist = ({ isOpen, handleClose }) => {
@@ -34,12 +35,9 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
       }}
     >
       <ModalContainer>
-        <ModalCross
-          onClick={handleClose}
-          stroke='#fff'
-          width={40}
-          height={40}
-        />
+        <ModalCrossContainer onClick={handleClose}>
+          <ModalCross stroke='#fff' width={55} height={55} />
+        </ModalCrossContainer>
         <ModalTitle>Create Playlist</ModalTitle>
         <ModalLabel>
           <ModalInputTitle>New playlist</ModalInputTitle>
