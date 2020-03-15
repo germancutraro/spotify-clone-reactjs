@@ -5,6 +5,11 @@ export const setSong = payload => ({
   payload
 });
 
+export const setList = payload => ({
+  type: constants.SET_LIST,
+  payload
+});
+
 export const startSong = payload => ({
   type: constants.PLAY_SONG,
   payload

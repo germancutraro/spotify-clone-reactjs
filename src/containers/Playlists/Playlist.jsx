@@ -9,6 +9,7 @@ import {
   followPlaylistStart
 } from './playlistsActions';
 import { PlaylistContainer } from './playlistsStyles';
+import { setList, startSong } from '../Track/trackActions';
 
 import PlaylistContent from '../../components/Playlist/PlaylistContent';
 import Loader from '../../components/Loader/Loader';
@@ -70,6 +71,11 @@ const Playlist = () => {
     );
   };
 
+  const startPlaylist = () => {
+    dispatch(setList({ list: playlist.tracks.items.filter(t => t.track) }));
+    dispatch(startSong({ song: playlist.tracks.items[0].track }));
+  };
+
   if (!loading && error) showSnackbar();
 
   return (
@@ -79,6 +85,7 @@ const Playlist = () => {
           playlist={playlist}
           following={following}
           handleFollow={handleFollow}
+          startPlaylist={startPlaylist}
         />
       ) : (
         <PlaylistContent playlist={playlist} isLikedSongs />

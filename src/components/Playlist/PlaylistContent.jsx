@@ -27,7 +27,8 @@ const PlaylistContent = ({
   playlist,
   isLikedSongs,
   following,
-  handleFollow
+  handleFollow,
+  startPlaylist
 }) => {
   const history = useHistory();
   const playlistData = isLikedSongs
@@ -81,7 +82,7 @@ const PlaylistContent = ({
           </PlaylistHeaderSubcontainer>
 
           <PlaylistButtonsContainer>
-            <PlaylistPlay onClick={() => alert('play')}>PLAY</PlaylistPlay>
+            <PlaylistPlay onClick={startPlaylist}>PLAY</PlaylistPlay>
             {!isLikedSongs ? (
               <PlaylistIconsWrapper>
                 <IconContainer>

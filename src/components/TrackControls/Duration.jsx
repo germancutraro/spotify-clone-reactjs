@@ -2,9 +2,15 @@ import React from 'react';
 import moment from 'moment';
 // redux
 import { useDispatch } from 'react-redux';
-import { pauseSong } from '../../containers/Track/trackActions';
+import { pauseSong, startSong } from '../../containers/Track/trackActions';
 
-const Duration = ({ timeElapsed, setTimeElapsed, isPlaying }) => {
+const Duration = ({
+  timeElapsed,
+  setTimeElapsed,
+  isPlaying,
+  songId,
+  songList
+}) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -12,11 +18,21 @@ const Duration = ({ timeElapsed, setTimeElapsed, isPlaying }) => {
       if (timeElapsed === 30) {
         clearInterval(interval);
         setTimeElapsed(0);
-        dispatch(pauseSong());
+
+        const nextSong =
+          songList.findIndex(({ track }) => track.id === songId) + 1;
+        if (songList[nextSong])
+          dispatch(
+            startSong({
+              song: songList[nextSong].track
+            })
+          );
+        else dispatch(pauseSong());
+        // end of queue
       } else if (isPlaying) setTimeElapsed(timeElapsed + 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [isPlaying, timeElapsed, setTimeElapsed, dispatch]);
+  }, [isPlaying, timeElapsed, setTimeElapsed, songId, songList, dispatch]);
 
   return (
     <div>

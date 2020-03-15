@@ -14,7 +14,7 @@ import Duration from '../../components/TrackControls/Duration';
 
 const Track = () => {
   const dispatch = useDispatch();
-  const { song, isPlaying } = useSelector(({ track }) => track);
+  const { song, isPlaying, list } = useSelector(({ track }) => track);
   const audioRef = React.useRef();
 
   const [timeElapsed, setTimeElapsed] = React.useState(0);
@@ -55,6 +55,8 @@ const Track = () => {
         timeElapsed={timeElapsed}
         setTimeElapsed={setTimeElapsed}
         isPlaying={isPlaying}
+        songId={song.id}
+        songList={list}
       />
       <Volume ref={audioRef} volume={volume} setVolume={setVolume} />
     </TrackContainer>
