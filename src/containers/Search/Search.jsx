@@ -108,6 +108,7 @@ const Search = () => {
                       return (
                         <Songs
                           key={i}
+                          song={{ ...track }}
                           name={track.name}
                           artists={track.artists}
                           cover={track?.album?.images[0].url}
