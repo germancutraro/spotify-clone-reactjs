@@ -145,11 +145,11 @@ const Search = () => {
                         return (
                           <Artists
                             key={artist.id}
+                            id={artist.id}
                             title={artist.name}
                             cover={
                               artist.images.length ? artist.images[0].url : null
                             }
-                            type='artist'
                           />
                         );
                       return null;
@@ -179,10 +179,10 @@ const Search = () => {
                         return (
                           <Albums
                             key={i}
+                            id={album.id}
                             title={album.name}
                             cover={album.images[0].url}
                             artist={album.artists[0].name}
-                            type='album'
                           />
                         );
                       return null;
