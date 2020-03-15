@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ReactComponent as CrossIcon } from '../../assets/icons/cancel.svg';
+import { PlaylistPlay } from '../Playlist/PlaylistComponentStyles';
+import { UpgradeButton, UpgradeText } from '../Navbar/navbarStyles';
 
 export const ModalDialog = styled.div`
   position: fixed;
@@ -67,6 +69,10 @@ export const ModalInput = styled.input`
   background-color: transparent;
   border: none;
   outline: 0;
+
+  ::placeholder {
+    color: #535353;
+  }
 `;
 
 export const ModalButtonsContainer = styled.div`
@@ -74,6 +80,7 @@ export const ModalButtonsContainer = styled.div`
   padding: 1.75rem 0;
 `;
 
-export const ModalButtonOutline = styled.button``;
+export const ModalButtonOutline = styled(UpgradeButton)``;
+export const ModalButtonOutlineText = styled(UpgradeText)``;
 
-export const ModalButton = styled.button``;
+export const ModalButton = styled(PlaylistPlay)``;
