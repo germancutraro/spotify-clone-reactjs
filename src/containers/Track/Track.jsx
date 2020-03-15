@@ -11,6 +11,7 @@ import {
 } from './trackStyles';
 import Volume from '../../components/TrackControls/Volume';
 import Duration from '../../components/TrackControls/Duration';
+import { useHistory } from 'react-router-dom';
 
 const Track = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const Track = () => {
 
   const [timeElapsed, setTimeElapsed] = React.useState(0);
   const [volume, setVolume] = React.useState(1.0);
+
+  const history = useHistory();
 
   React.useEffect(() => {
     const { current: audio } = audioRef;
@@ -31,6 +34,8 @@ const Track = () => {
     else dispatch(resumeSong());
   };
 
+  const handleChangeRoute = route => history.push(`/app/${route}`);
+
   return (
     <TrackContainer>
       <img
@@ -40,8 +45,18 @@ const Track = () => {
         alt=''
       />
       <audio src={song.preview_url} ref={audioRef}></audio>
-      <p>{song?.name}</p>
-      <p>{song?.artists && song?.artists[0].name}</p>
+      <p
+        style={{ padding: '.6rem' }}
+        onClick={() => handleChangeRoute(`album/${song.album.id}`)}
+      >
+        {song?.name}
+      </p>
+      <p
+        style={{ padding: '1rem' }}
+        onClick={() => handleChangeRoute(`artist/${song.artists[0].id}`)}
+      >
+        {song?.artists && song?.artists[0].name}
+      </p>
 
       <PlayIconWrapper>
         {!isPlaying ? (
