@@ -4,6 +4,7 @@ import TrackItem from '../../components/TrackItem/TrackItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getAlbumStart } from './albumActions';
+import { setList, startSong } from '../Track/trackActions';
 // styles
 
 import {
@@ -42,6 +43,11 @@ const Album = () => {
     dispatch(getAlbumStart({ id }));
   }, [dispatch, id]);
 
+  const startAlbum = () => {
+    dispatch(setList({ list: album.tracks.items.filter(track => track) }));
+    dispatch(startSong({ song: album.tracks.items[0] }));
+  };
+
   if (loading) return <Loader isLoading={loading} />;
 
   return (
@@ -69,7 +75,7 @@ const Album = () => {
           </PlaylistHeaderSubcontainer>
 
           <PlaylistButtonsContainer>
-            <PlaylistPlay onClick={() => alert('play')}>PLAY</PlaylistPlay>
+            <PlaylistPlay onClick={startAlbum}>PLAY</PlaylistPlay>
             <PlaylistIconsWrapper>
               <IconContainer>
                 <HeartIcon

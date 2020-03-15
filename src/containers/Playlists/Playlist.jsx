@@ -72,7 +72,9 @@ const Playlist = () => {
   };
 
   const startPlaylist = () => {
-    dispatch(setList({ list: playlist.tracks.items.filter(t => t.track) }));
+    dispatch(
+      setList({ list: playlist.tracks.items.map(({ track }) => track) })
+    );
     dispatch(startSong({ song: playlist.tracks.items[0].track }));
   };
 

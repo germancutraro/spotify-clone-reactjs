@@ -18,13 +18,11 @@ const Duration = ({
       if (timeElapsed === 30) {
         clearInterval(interval);
         setTimeElapsed(0);
-
-        const nextSong =
-          songList.findIndex(({ track }) => track.id === songId) + 1;
+        const nextSong = songList.findIndex(track => track.id === songId) + 1;
         if (songList[nextSong])
           dispatch(
             startSong({
-              song: songList[nextSong].track
+              song: songList[nextSong]
             })
           );
         else dispatch(pauseSong());

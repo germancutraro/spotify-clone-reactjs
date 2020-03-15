@@ -36,6 +36,7 @@ const Album = () => {
             title={album.name}
             subtitle={album.artists[0].name}
             cover={album.images[0].url}
+            type='album'
           />
         ))}
       </LibraryItemsContainer>

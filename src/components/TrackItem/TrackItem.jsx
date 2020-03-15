@@ -50,7 +50,10 @@ const TrackItem = ({ song }) => {
             height='22'
             width='22'
             fill='rgba(255, 255, 255, 1)'
-            onClick={() => dispatch(startSong({ song }))}
+            onClick={() => {
+              // if (songId !== id)  reset duration
+              dispatch(startSong({ song }));
+            }}
           />
         )}
 
@@ -58,7 +61,7 @@ const TrackItem = ({ song }) => {
       </MusicIconContainer>
 
       <TextContainer>
-        <Name onClick={() => dispatch(pauseSong())}>{name}</Name>
+        <Name>{name}</Name>
         <SubTextsContainer>
           <ArtistsContainer>
             {artists.map((artist, i) => (
