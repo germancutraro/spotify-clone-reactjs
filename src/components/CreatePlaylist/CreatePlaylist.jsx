@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPlaylistStart } from '../../containers/Playlists/playlistsActions';
 // styles
-import { ModalContainer } from './createPlaylistStyles';
+import { ModalContainer, ModalDialog } from './createPlaylistStyles';
 
 const CreatePlaylist = ({ isOpen, handleClose }) => {
   const dispatch = useDispatch();
@@ -18,23 +18,21 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
   };
 
   return (
-    <ModalContainer
+    <ModalDialog
       style={{
-        zIndex: 1000000,
-        backgroundColor: 'yellow',
-        width: '100vw',
-        height: '100vh',
         display: isOpen ? 'block' : 'none'
       }}
     >
-      <input
-        type='text'
-        placeholder='New Playlist'
-        onChange={e => setValue(e.target.value.trim())}
-      />
-      <button onClick={handleClose}>Cancel</button>
-      <button onClick={handleCreatePlaylist}>Create</button>
-    </ModalContainer>
+      <ModalContainer>
+        <input
+          type='text'
+          placeholder='New Playlist'
+          onChange={e => setValue(e.target.value.trim())}
+        />
+        <button onClick={handleClose}>Cancel</button>
+        <button onClick={handleCreatePlaylist}>Create</button>
+      </ModalContainer>
+    </ModalDialog>
   );
 };
 
