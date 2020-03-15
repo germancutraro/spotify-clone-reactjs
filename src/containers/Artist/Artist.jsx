@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useParams } from 'react-router-dom';
+import { Switch, useParams } from 'react-router-dom';
 import { LibraryLink } from '../../components/LibraryMenu/libraryMenuStyles';
 import TrackItem from '../../components/TrackItem/TrackItem';
 import ArtistContentItem from '../../components/ArtistContentItem/ArtistContentItem';
@@ -12,11 +12,10 @@ import {
   isUserFollowingStart,
   followArtistStart
 } from './artistActions';
-// pages
-import ArtistAbout from './ArtistAbout';
-import ArtistRelated from './ArtistRelated';
+
 import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
+import ArtistRoutes from './ArtistRoutes';
 
 const Artist = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,6 @@ const Artist = () => {
   useTitle(`Spotify - ${artist.name}`);
 
   const { id } = useParams();
-  const path = `/app/artist`;
 
   React.useEffect(() => {
     dispatch(getArtistStart({ id }));
@@ -64,14 +62,15 @@ const Artist = () => {
       <h3 onClick={handleFollow}>{following ? 'UnFollow' : 'Follow'}</h3>
 
       <ul>
-        <LibraryLink to={`${path}`}>OVERVIEW</LibraryLink>
-        <LibraryLink to={`${path}/related`}>RELATED ARTISTS</LibraryLink>
-        <LibraryLink to={`${path}/${id}/about`}>ABOUT</LibraryLink>
+        <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
+        <LibraryLink to={`/app/artist/${id}/related`}>
+          RELATED ARTISTS
+        </LibraryLink>
+        <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
       </ul>
 
       <Switch>
-        <Route path={`${path}/about`} component={ArtistAbout} exact />
-        <Route path={`${path}/related`} component={ArtistRelated} exact />
+        <ArtistRoutes />
       </Switch>
 
       <h3>Popular</h3>
