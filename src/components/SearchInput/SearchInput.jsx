@@ -30,7 +30,7 @@ const SearchInput = () => {
         <SearchIcon fill='#121212' width={24} height={24} />
         {value.trim().length ? (
           <CancelIcon
-            fill='#121212'
+            stroke='#121212'
             width={24}
             height={24}
             onClick={handleReset}
