@@ -4,6 +4,7 @@ import { EllipsisOneLine } from '../Text/textStyles';
 
 export const ItemContainer = styled.div`
   display: flex;
+  align-items: ${({ align }) => align};
   user-select: none;
   position: relative;
   transition: background-color 0.2s linear;
@@ -30,6 +31,15 @@ export const MusicIconContainer = styled.div`
   text-align: right;
 `;
 
+export const ImageContainer = styled.div`
+  margin-right: 1rem;
+`;
+
+export const Image = styled.img`
+  height: 50px;
+  width: 50px;
+`;
+
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,7 +52,7 @@ export const Name = styled.h3`
   line-height: 22px;
   letter-spacing: 0.015rem;
   color: ${({ current }) => (current ? '#1ed760' : '#fff')};
-  font-weight: 400;
+  font-weight: 40;
   ${EllipsisOneLine}
 `;
 
@@ -101,6 +111,7 @@ export const OptionButtonContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  align-self: center;
 `;
 
 // duration

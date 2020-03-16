@@ -15,7 +15,9 @@ import {
   ArtistSeparator,
   ArtistsContainer,
   AlbumContainer,
-  OptionButtonContainer
+  OptionButtonContainer,
+  ImageContainer,
+  Image
 } from './trackItemStyles';
 
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
@@ -26,7 +28,12 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSong, pauseSong } from '../../containers/Track/trackActions';
 
-const TrackItem = ({ song }) => {
+const TrackItem = ({
+  song,
+  hasImage,
+  hasSubtext = true,
+  align = 'flex-start'
+}) => {
   const dispatch = useDispatch();
   const { id, name, artists, album, duration_ms, cover } = song;
 
@@ -36,9 +43,8 @@ const TrackItem = ({ song }) => {
   } = useSelector(({ track }) => track);
 
   const isCurrentlyPlaying = songId === id;
-
   return (
-    <ItemContainer>
+    <ItemContainer align={align}>
       <MusicIconContainer>
         {isPlaying && songId === id ? (
           <PauseIcon
@@ -71,26 +77,34 @@ const TrackItem = ({ song }) => {
         />
       </MusicIconContainer>
 
+      {hasImage ? (
+        <ImageContainer>
+          <Image src={cover} />
+        </ImageContainer>
+      ) : null}
+
       <TextContainer>
         <Name current={isCurrentlyPlaying}>{name}</Name>
-        <SubTextsContainer>
-          <ArtistsContainer>
-            {artists.map((artist, i) => (
-              <ArtistContainer key={i}>
-                <Artist to={`/app/artist/${artist.id}`}>{artist.name}</Artist>
-                {i + 1 !== artists.length ? (
-                  <ArtistSeparator>,</ArtistSeparator>
-                ) : null}
-              </ArtistContainer>
-            ))}
-          </ArtistsContainer>
-          <Separator>•</Separator>
-          {album && (
-            <AlbumContainer>
-              <Album to={`/app/album/${album.id}`}>{album.name}</Album>
-            </AlbumContainer>
-          )}
-        </SubTextsContainer>
+        {hasSubtext ? (
+          <SubTextsContainer>
+            <ArtistsContainer>
+              {artists.map((artist, i) => (
+                <ArtistContainer key={i}>
+                  <Artist to={`/app/artist/${artist.id}`}>{artist.name}</Artist>
+                  {i + 1 !== artists.length ? (
+                    <ArtistSeparator>,</ArtistSeparator>
+                  ) : null}
+                </ArtistContainer>
+              ))}
+            </ArtistsContainer>
+            <Separator>•</Separator>
+            {album && (
+              <AlbumContainer>
+                <Album to={`/app/album/${album.id}`}>{album.name}</Album>
+              </AlbumContainer>
+            )}
+          </SubTextsContainer>
+        ) : null}
       </TextContainer>
       <OptionButtonContainer onClick={() => alert('more options')}>
         <MoreIcon height='18' width='18' fill='rgba(255, 255, 255, 1)' />

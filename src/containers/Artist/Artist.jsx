@@ -125,6 +125,9 @@ const Artist = () => {
             <TrackItem
               key={i}
               added_at={track?.added_at}
+              hasSubtext={false}
+              hasImage={true}
+              align='center'
               song={{
                 ...track,
                 cover: artist.images[0].url
