@@ -45,7 +45,7 @@ const Songs = ({ name, artists, cover, album, song }) => {
             <PlayIcon
               fill='#fff'
               width={16}
-              onClick={() => dispatch(startSong({ song }))}
+              onClick={() => dispatch(startSong({ song: { ...song, cover } }))}
             />
           )}
         </PlayContainer>

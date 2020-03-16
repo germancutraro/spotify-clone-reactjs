@@ -75,7 +75,6 @@ const Playlist = () => {
     dispatch(
       setList({ list: playlist.tracks.items.map(({ track }) => track) })
     );
-    console.log('suza: ', playlist.images[0].url);
     dispatch(
       startSong({
         song: {
