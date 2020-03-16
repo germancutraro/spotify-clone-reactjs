@@ -1,24 +1,35 @@
 import React from 'react';
-import LibraryItem from '../LibraryItem/LibraryItem';
 import {
   ItemContainer,
   ImageContainer,
   Image,
-  Title
+  Title,
+  PlayIconContainer
 } from './artistContentItemStyles';
 
+import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
+import { useHistory } from 'react-router-dom';
+
 const ArtistContentItem = ({ albums }) => {
-  return albums.map(album => (
-    // <LibraryItem
-    //   key={album.id}
-    //   id={album.id}
-    //   title={album.name}
-    //   subtitle={album.artists[0].name}
-    //   cover={album.images[0].url}
-    // />
-    <ItemContainer>
+  const history = useHistory();
+
+  const handleChangeRoute = id => {
+    history.push(`/app/album/${id}`);
+  };
+
+  return albums.map((album, i) => (
+    <ItemContainer key={i} onClick={() => handleChangeRoute(album.id)}>
       <ImageContainer>
         <Image src={album.images[0].url} />
+        <PlayIconContainer
+          data-value='play'
+          onClick={e => {
+            e.stopPropagation();
+            alert('play');
+          }}
+        >
+          <PlayIcon width='40' fill='#fff' />
+        </PlayIconContainer>
       </ImageContainer>
       <Title>{album.name}</Title>
     </ItemContainer>
