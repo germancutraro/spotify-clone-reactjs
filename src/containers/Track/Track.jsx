@@ -19,7 +19,9 @@ const Track = () => {
   const audioRef = React.useRef();
 
   const [timeElapsed, setTimeElapsed] = React.useState(0);
-  const [volume, setVolume] = React.useState(1.0);
+  const [volume, setVolume] = React.useState(
+    localStorage.getItem('volume') ?? 1.0
+  );
 
   const history = useHistory();
 
@@ -28,6 +30,10 @@ const Track = () => {
     if (isPlaying) audio.play();
     else audio.pause();
   }, [isPlaying, song]);
+
+  React.useEffect(() => {
+    if (audioRef) audioRef.current.volume = volume;
+  }, [audioRef, volume]);
 
   const handleAudio = () => {
     if (isPlaying) dispatch(pauseSong());

@@ -4,8 +4,9 @@ import { ReactComponent as SoundIcon } from '../../assets/icons/sound.svg';
 const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
   const handleVolume = ({ target }) => {
     const value = target.value / 100;
-    setVolume(value);
-    ref.current.volume = value;
+    localStorage.setItem('volume', value);
+    setVolume(localStorage.getItem('volume'));
+    ref.current.volume = localStorage.getItem('volume');
   };
   return (
     <div>
