@@ -75,7 +75,11 @@ const Playlist = () => {
     dispatch(
       setList({ list: playlist.tracks.items.map(({ track }) => track) })
     );
-    dispatch(startSong({ song: playlist.tracks.items[0].track }));
+    dispatch(
+      startSong({
+        song: playlist.tracks.items[0].track
+      })
+    );
   };
 
   if (!loading && error) showSnackbar();

@@ -75,7 +75,14 @@ const Artist = () => {
 
       <h3>Popular</h3>
       {tracks.map((track, i) => (
-        <TrackItem key={i} added_at={track?.added_at} song={{ ...track }} />
+        <TrackItem
+          key={i}
+          added_at={track?.added_at}
+          song={{
+            ...track,
+            cover: artist.images[0].url
+          }}
+        />
       ))}
 
       <h2>Albums</h2>

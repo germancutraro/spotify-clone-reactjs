@@ -117,7 +117,7 @@ const PlaylistContent = ({
           <TrackItem
             key={i}
             added_at={track?.added_at}
-            song={{ ...track?.track }}
+            song={{ ...track?.track, cover: playlistData.images[0].url }}
           />
         ))}
       </PlaylistRightWrapper>

@@ -54,7 +54,7 @@ const TrackItem = ({ song }) => {
             fill={isCurrentlyPlaying ? '#1ed760' : 'rgba(255, 255, 255, 1)'}
             onClick={() => {
               // if (songId !== id)  reset duration
-              dispatch(startSong({ song }));
+              dispatch(startSong({ song, cover: album.images[0].url }));
             }}
           />
         )}

@@ -38,12 +38,7 @@ const Track = () => {
 
   return (
     <TrackContainer>
-      <img
-        src={'https://i.scdn.co/image/ab67616d0000b2733ba0f99c6f2d716698cc5c90'}
-        width={50}
-        height={50}
-        alt=''
-      />
+      <img src={song.cover} width={50} height={50} alt='' />
       <audio src={song.preview_url} ref={audioRef}></audio>
       <p
         style={{ padding: '.6rem' }}
