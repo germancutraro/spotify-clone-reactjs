@@ -128,6 +128,7 @@ const Artist = () => {
               hasSubtext={false}
               hasImage={true}
               align='center'
+              hasPadding={false}
               song={{
                 ...track,
                 cover: artist.images[0].url

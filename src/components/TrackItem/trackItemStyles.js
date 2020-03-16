@@ -4,11 +4,18 @@ import { EllipsisOneLine } from '../Text/textStyles';
 
 export const ItemContainer = styled.div`
   display: flex;
-  align-items: ${({ align }) => align};
+  align-items: ${({ align = 'flex-start' }) => align};
   user-select: none;
   position: relative;
   transition: background-color 0.2s linear;
-  padding: 0.7rem 1rem 0.7rem 0;
+  ${({ hasPadding = true }) =>
+    hasPadding
+      ? css`
+          padding: 0.7rem 1rem 0.7rem 0;
+        `
+      : css`
+          padding: 0.15rem 1rem 0.15rem 0;
+        `};
 
   svg:nth-child(1) {
     display: none;
@@ -33,6 +40,8 @@ export const MusicIconContainer = styled.div`
 
 export const ImageContainer = styled.div`
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
 `;
 
 export const Image = styled.img`

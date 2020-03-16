@@ -32,7 +32,8 @@ const TrackItem = ({
   song,
   hasImage,
   hasSubtext = true,
-  align = 'flex-start'
+  align,
+  hasPadding
 }) => {
   const dispatch = useDispatch();
   const { id, name, artists, album, duration_ms, cover } = song;
@@ -44,7 +45,7 @@ const TrackItem = ({
 
   const isCurrentlyPlaying = songId === id;
   return (
-    <ItemContainer align={align}>
+    <ItemContainer align={align} hasPadding={hasPadding}>
       <MusicIconContainer>
         {isPlaying && songId === id ? (
           <PauseIcon
