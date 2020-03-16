@@ -45,7 +45,11 @@ const Album = () => {
 
   const startAlbum = () => {
     dispatch(setList({ list: album.tracks.items.filter(track => track) }));
-    dispatch(startSong({ song: album.tracks.items[0] }));
+    dispatch(
+      startSong({
+        song: { ...album.tracks.items[0], cover: album.images[0].url }
+      })
+    );
   };
 
   if (loading) return <Loader isLoading={loading} />;
