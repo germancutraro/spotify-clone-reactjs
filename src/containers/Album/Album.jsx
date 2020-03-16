@@ -99,7 +99,6 @@ const Album = () => {
                 <MoreIcon fill='#fff' width={20} />
               </IconContainer>
             </PlaylistIconsWrapper>
-            ) : null}
           </PlaylistButtonsContainer>
           <PlaylistDescriptionContainer>
             <PlaylistTotalSongs>
