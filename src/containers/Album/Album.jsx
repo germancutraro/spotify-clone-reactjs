@@ -4,7 +4,7 @@ import TrackItem from '../../components/TrackItem/TrackItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getAlbumStart } from './albumActions';
-import { setList, startSong } from '../Track/trackActions';
+import { setList, startSong, pauseSong } from '../Track/trackActions';
 // styles
 
 import {
@@ -33,6 +33,7 @@ import useTitle from '../../hooks/useTitle';
 const Album = () => {
   const dispatch = useDispatch();
   const { album, loading } = useSelector(({ album }) => album);
+  const isPlaying = useSelector(({ track }) => track.isPlaying);
   const { id } = useParams();
 
   const history = useHistory();
@@ -44,12 +45,15 @@ const Album = () => {
   }, [dispatch, id]);
 
   const startAlbum = () => {
-    dispatch(setList({ list: album.tracks.items.filter(track => track) }));
-    dispatch(
-      startSong({
-        song: { ...album.tracks.items[0], cover: album.images[0].url }
-      })
-    );
+    if (isPlaying) dispatch(pauseSong());
+    else {
+      dispatch(setList({ list: album.tracks.items.filter(track => track) }));
+      dispatch(
+        startSong({
+          song: { ...album.tracks.items[0], cover: album.images[0].url }
+        })
+      );
+    }
   };
 
   if (loading) return <Loader isLoading={loading} />;
@@ -79,7 +83,9 @@ const Album = () => {
           </PlaylistHeaderSubcontainer>
 
           <PlaylistButtonsContainer>
-            <PlaylistPlay onClick={startAlbum}>PLAY</PlaylistPlay>
+            <PlaylistPlay onClick={startAlbum}>
+              {isPlaying ? 'PAUSE' : 'PLAY'}
+            </PlaylistPlay>
             <PlaylistIconsWrapper>
               <IconContainer>
                 <HeartIcon

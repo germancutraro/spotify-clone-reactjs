@@ -9,7 +9,7 @@ import {
   followPlaylistStart
 } from './playlistsActions';
 import { PlaylistContainer } from './playlistsStyles';
-import { setList, startSong } from '../Track/trackActions';
+import { setList, startSong, pauseSong } from '../Track/trackActions';
 
 import PlaylistContent from '../../components/Playlist/PlaylistContent';
 import Loader from '../../components/Loader/Loader';
@@ -24,6 +24,8 @@ const Playlist = () => {
       ({ playlists }) => playlists
     ),
     { id: userId } = useSelector(({ auth }) => auth.user);
+
+  const isPlaying = useSelector(({ track: { isPlaying } }) => isPlaying);
 
   const { id } = useParams(),
     { pathname } = useLocation();
@@ -72,17 +74,20 @@ const Playlist = () => {
   };
 
   const startPlaylist = () => {
-    dispatch(
-      setList({ list: playlist.tracks.items.map(({ track }) => track) })
-    );
-    dispatch(
-      startSong({
-        song: {
-          ...playlist.tracks.items[0].track,
-          cover: playlist.images[0].url
-        }
-      })
-    );
+    if (isPlaying) dispatch(pauseSong());
+    else {
+      dispatch(
+        setList({ list: playlist.tracks.items.map(({ track }) => track) })
+      );
+      dispatch(
+        startSong({
+          song: {
+            ...playlist.tracks.items[0].track,
+            cover: playlist.images[0].url
+          }
+        })
+      );
+    }
   };
 
   if (!loading && error) showSnackbar();
@@ -95,6 +100,7 @@ const Playlist = () => {
           following={following}
           handleFollow={handleFollow}
           startPlaylist={startPlaylist}
+          isPlaying={isPlaying}
         />
       ) : (
         <PlaylistContent playlist={playlist} isLikedSongs />
