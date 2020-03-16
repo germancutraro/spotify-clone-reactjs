@@ -33,7 +33,8 @@ import {
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import {
   SectionTitleContainer,
-  SectionTitle
+  SectionTitle,
+  LibraryItemsContainer
 } from '../../components/LibraryItem/playlistItemStyles';
 
 const Artist = () => {
@@ -76,9 +77,9 @@ const Artist = () => {
     '#9A952B',
     '#509BF5',
     '#BA2323',
-    '#82233C',
-    '#350F21',
-    '#0D433B',
+    '#de681d',
+    '#de1d79',
+    '#2ad6bc',
     '#312883',
     '#BAF2F3'
   ];
@@ -141,21 +142,27 @@ const Artist = () => {
           <SectionTitleContainer hasPadding={false}>
             <SectionTitle>Albums</SectionTitle>
           </SectionTitleContainer>
-          <ArtistContentItem albums={albums} />
+          <LibraryItemsContainer hasPadding={false}>
+            <ArtistContentItem albums={albums} />
+          </LibraryItemsContainer>
         </ArtistSection>
 
         <ArtistSection>
           <SectionTitleContainer hasPadding={false}>
             <SectionTitle>Singles</SectionTitle>
           </SectionTitleContainer>
-          <ArtistContentItem albums={singles} />
+          <LibraryItemsContainer hasPadding={false}>
+            <ArtistContentItem albums={singles} />
+          </LibraryItemsContainer>
         </ArtistSection>
 
         <ArtistSection>
           <SectionTitleContainer hasPadding={false}>
             <SectionTitle>Appears on</SectionTitle>
           </SectionTitleContainer>
-          <ArtistContentItem albums={appears} />
+          <LibraryItemsContainer hasPadding={false}>
+            <ArtistContentItem albums={appears} />
+          </LibraryItemsContainer>
         </ArtistSection>
       </ArtistSubContainer>
     </ArtistContainer>
