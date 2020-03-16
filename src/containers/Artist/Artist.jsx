@@ -19,8 +19,17 @@ import ArtistRoutes from './ArtistRoutes';
 import {
   ArtistContainer,
   ArtistBackground,
-  ArtistSubContainer
+  ArtistSubContainer,
+  ArtistHeader,
+  ArtistName,
+  ArtistButtonsContainer,
+  ArtistPlayButton,
+  ArtistFollowContainer,
+  ArtitstFollowText,
+  ArtistMoreIconContainer
 } from './artistStyles';
+
+import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 
 const Artist = () => {
   const dispatch = useDispatch();
@@ -58,8 +67,8 @@ const Artist = () => {
 
   const randomColors = [
     '#1db954',
-    '#fff',
-    'transparent',
+    '#ffffff',
+    '#9A952B',
     '#509BF5',
     '#BA2323',
     '#82233C',
@@ -75,21 +84,29 @@ const Artist = () => {
         color={randomColors[artist.followers.total.toString()[0]]}
       />
       <ArtistSubContainer>
-        {artist.images && (
-          <img src={artist?.images[0].url} alt='' width={200} height={200} />
-        )}
-
-        <h1>{artist.name}</h1>
-
-        <h3 onClick={handleFollow}>{following ? 'UnFollow' : 'Follow'}</h3>
-
-        <ul>
-          <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
-          <LibraryLink to={`/app/artist/${id}/related`}>
-            RELATED ARTISTS
-          </LibraryLink>
-          <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
-        </ul>
+        <ArtistHeader>
+          <ArtistName>{artist.name}</ArtistName>
+          <ArtistButtonsContainer>
+            <ArtistPlayButton onClick={() => alert('play')}>
+              Play
+            </ArtistPlayButton>
+            <ArtistFollowContainer onClick={handleFollow}>
+              <ArtitstFollowText color={following ? '#1db954' : '#fff'}>
+                {following ? 'UnFollow' : 'Follow'}
+              </ArtitstFollowText>
+            </ArtistFollowContainer>
+            <ArtistMoreIconContainer onClick={() => alert('more')}>
+              <MoreIcon fill='#fff' width={24} />
+            </ArtistMoreIconContainer>
+          </ArtistButtonsContainer>
+          <ul>
+            <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
+            <LibraryLink to={`/app/artist/${id}/related`}>
+              RELATED ARTISTS
+            </LibraryLink>
+            <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
+          </ul>
+        </ArtistHeader>
 
         <Switch>
           <ArtistRoutes />
