@@ -16,6 +16,11 @@ import {
 import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
 import ArtistRoutes from './ArtistRoutes';
+import {
+  ArtistContainer,
+  ArtistBackground,
+  ArtistSubContainer
+} from './artistStyles';
 
 const Artist = () => {
   const dispatch = useDispatch();
@@ -51,49 +56,67 @@ const Artist = () => {
 
   if (loading) return <Loader isLoading={loading} />;
 
+  const randomColors = [
+    '#1db954',
+    '#fff',
+    'transparent',
+    '#509BF5',
+    '#BA2323',
+    '#82233C',
+    '#350F21',
+    '#0D433B',
+    '#312883',
+    '#BAF2F3'
+  ];
+
   return (
-    <div style={{ color: '#fff' }}>
-      {artist.images && (
-        <img src={artist?.images[0].url} alt='' width={200} height={200} />
-      )}
+    <ArtistContainer style={{ color: '#fff' }}>
+      <ArtistBackground
+        color={randomColors[artist.followers.total.toString()[0]]}
+      />
+      <ArtistSubContainer>
+        {artist.images && (
+          <img src={artist?.images[0].url} alt='' width={200} height={200} />
+        )}
 
-      <h1>{artist.name}</h1>
+        <h1>{artist.name}</h1>
 
-      <h3 onClick={handleFollow}>{following ? 'UnFollow' : 'Follow'}</h3>
+        <h3 onClick={handleFollow}>{following ? 'UnFollow' : 'Follow'}</h3>
 
-      <ul>
-        <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
-        <LibraryLink to={`/app/artist/${id}/related`}>
-          RELATED ARTISTS
-        </LibraryLink>
-        <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
-      </ul>
+        <ul>
+          <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
+          <LibraryLink to={`/app/artist/${id}/related`}>
+            RELATED ARTISTS
+          </LibraryLink>
+          <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
+        </ul>
 
-      <Switch>
-        <ArtistRoutes />
-      </Switch>
+        <Switch>
+          <ArtistRoutes />
+        </Switch>
 
-      <h3>Popular</h3>
-      {tracks.map((track, i) => (
-        <TrackItem
-          key={i}
-          added_at={track?.added_at}
-          song={{
-            ...track,
-            cover: artist.images[0].url
-          }}
-        />
-      ))}
+        <h3>Popular</h3>
+        {tracks.map((track, i) => (
+          <TrackItem
+            key={i}
+            added_at={track?.added_at}
+            song={{
+              ...track,
+              cover: artist.images[0].url
+            }}
+          />
+        ))}
 
-      <h2>Albums</h2>
-      <ArtistContentItem albums={albums} />
+        <h2>Albums</h2>
+        <ArtistContentItem albums={albums} />
 
-      <h2>Singles</h2>
-      <ArtistContentItem albums={singles} />
+        <h2>Singles</h2>
+        <ArtistContentItem albums={singles} />
 
-      <h2>Appears on</h2>
-      <ArtistContentItem albums={appears} />
-    </div>
+        <h2>Appears on</h2>
+        <ArtistContentItem albums={appears} />
+      </ArtistSubContainer>
+    </ArtistContainer>
   );
 };
 

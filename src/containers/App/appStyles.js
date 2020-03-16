@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const GridContainer = styled.div`
   display: grid;
   grid-template-areas:
-    "sidebar content"
-    "player player";
+    'sidebar content'
+    'player player';
 
   grid-template-columns: 230px 1fr;
   grid-template-rows: calc(100vh - 90px) 90px;
