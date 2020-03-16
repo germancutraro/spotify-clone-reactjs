@@ -26,10 +26,15 @@ import {
   ArtistPlayButton,
   ArtistFollowContainer,
   ArtitstFollowText,
-  ArtistMoreIconContainer
+  ArtistMoreIconContainer,
+  ArtistSection
 } from './artistStyles';
 
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
+import {
+  SectionTitleContainer,
+  SectionTitle
+} from '../../components/LibraryItem/playlistItemStyles';
 
 const Artist = () => {
   const dispatch = useDispatch();
@@ -112,26 +117,42 @@ const Artist = () => {
           <ArtistRoutes />
         </Switch>
 
-        <h3>Popular</h3>
-        {tracks.map((track, i) => (
-          <TrackItem
-            key={i}
-            added_at={track?.added_at}
-            song={{
-              ...track,
-              cover: artist.images[0].url
-            }}
-          />
-        ))}
+        <ArtistSection>
+          <SectionTitleContainer hasPadding={false}>
+            <SectionTitle>Popular</SectionTitle>
+          </SectionTitleContainer>
+          {tracks.map((track, i) => (
+            <TrackItem
+              key={i}
+              added_at={track?.added_at}
+              song={{
+                ...track,
+                cover: artist.images[0].url
+              }}
+            />
+          ))}
+        </ArtistSection>
 
-        <h2>Albums</h2>
-        <ArtistContentItem albums={albums} />
+        <ArtistSection>
+          <SectionTitleContainer hasPadding={false}>
+            <SectionTitle>Albums</SectionTitle>
+          </SectionTitleContainer>
+          <ArtistContentItem albums={albums} />
+        </ArtistSection>
 
-        <h2>Singles</h2>
-        <ArtistContentItem albums={singles} />
+        <ArtistSection>
+          <SectionTitleContainer hasPadding={false}>
+            <SectionTitle>Singles</SectionTitle>
+          </SectionTitleContainer>
+          <ArtistContentItem albums={singles} />
+        </ArtistSection>
 
-        <h2>Appears on</h2>
-        <ArtistContentItem albums={appears} />
+        <ArtistSection>
+          <SectionTitleContainer hasPadding={false}>
+            <SectionTitle>Appears on</SectionTitle>
+          </SectionTitleContainer>
+          <ArtistContentItem albums={appears} />
+        </ArtistSection>
       </ArtistSubContainer>
     </ArtistContainer>
   );

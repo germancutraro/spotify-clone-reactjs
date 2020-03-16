@@ -58,3 +58,7 @@ export const ArtistMoreIconContainer = styled.div`
   padding: 0.5rem;
   cursor: pointer;
 `;
+
+export const ArtistSection = styled.section`
+  margin: 0.5rem 0;
+`;
