@@ -138,32 +138,38 @@ const Artist = () => {
           ))}
         </ArtistSection>
 
-        <ArtistSection>
-          <SectionTitleContainer hasPadding={false}>
-            <SectionTitle>Albums</SectionTitle>
-          </SectionTitleContainer>
-          <LibraryItemsContainer hasPadding={false}>
-            <ArtistContentItem albums={albums} />
-          </LibraryItemsContainer>
-        </ArtistSection>
+        {albums.length ? (
+          <ArtistSection>
+            <SectionTitleContainer hasPadding={false}>
+              <SectionTitle>Albums</SectionTitle>
+            </SectionTitleContainer>
+            <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
+              <ArtistContentItem albums={albums} />
+            </LibraryItemsContainer>
+          </ArtistSection>
+        ) : null}
 
-        <ArtistSection>
-          <SectionTitleContainer hasPadding={false}>
-            <SectionTitle>Singles</SectionTitle>
-          </SectionTitleContainer>
-          <LibraryItemsContainer hasPadding={false}>
-            <ArtistContentItem albums={singles} />
-          </LibraryItemsContainer>
-        </ArtistSection>
+        {singles.length ? (
+          <ArtistSection>
+            <SectionTitleContainer hasPadding={false}>
+              <SectionTitle>Singles</SectionTitle>
+            </SectionTitleContainer>
+            <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
+              <ArtistContentItem albums={singles} />
+            </LibraryItemsContainer>
+          </ArtistSection>
+        ) : null}
 
-        <ArtistSection>
-          <SectionTitleContainer hasPadding={false}>
-            <SectionTitle>Appears on</SectionTitle>
-          </SectionTitleContainer>
-          <LibraryItemsContainer hasPadding={false}>
-            <ArtistContentItem albums={appears} />
-          </LibraryItemsContainer>
-        </ArtistSection>
+        {appears.length ? (
+          <ArtistSection>
+            <SectionTitleContainer hasPadding={false}>
+              <SectionTitle>Appears on</SectionTitle>
+            </SectionTitleContainer>
+            <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
+              <ArtistContentItem albums={appears} />
+            </LibraryItemsContainer>
+          </ArtistSection>
+        ) : null}
       </ArtistSubContainer>
     </ArtistContainer>
   );

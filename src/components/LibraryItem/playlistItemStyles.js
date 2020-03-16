@@ -4,7 +4,10 @@ import { EllipsisOneLine, EllipsisTwoLines } from '../Text/textStyles';
 
 export const LibraryItemsContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(${({ itemMinWidth = '164' }) => `${itemMinWidth}px`}, 1fr)
+  );
 
   grid-gap: 1rem;
   ${({ hasPadding = true }) =>
