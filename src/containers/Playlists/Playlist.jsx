@@ -83,7 +83,9 @@ const Playlist = () => {
         startSong({
           song: {
             ...playlist.tracks.items[0].track,
-            cover: playlist.images[0].url
+            cover: playlist.images
+              ? playlist.images[0].url
+              : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
           }
         })
       );
@@ -103,7 +105,12 @@ const Playlist = () => {
           isPlaying={isPlaying}
         />
       ) : (
-        <PlaylistContent playlist={playlist} isLikedSongs />
+        <PlaylistContent
+          playlist={playlist}
+          startPlaylist={startPlaylist}
+          isPlaying={isPlaying}
+          isLikedSongs
+        />
       )}
     </PlaylistContainer>
   );

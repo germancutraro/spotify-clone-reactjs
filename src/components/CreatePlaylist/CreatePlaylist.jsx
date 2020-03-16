@@ -36,10 +36,10 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
         <ModalCrossContainer onClick={handleClose}>
           <ModalCross stroke='#fff' width={52} height={52} />
         </ModalCrossContainer>
-        <ModalTitle>Create Playlist</ModalTitle>
+        <ModalTitle>Create new playlist</ModalTitle>
 
         <ModalLabel>
-          <ModalInputTitle>Playlist name</ModalInputTitle>
+          <ModalInputTitle>Playlist Name</ModalInputTitle>
           <ModalInput
             type='text'
             placeholder='New Playlist'

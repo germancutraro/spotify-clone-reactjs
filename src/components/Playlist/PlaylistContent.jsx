@@ -120,7 +120,12 @@ const PlaylistContent = ({
           <TrackItem
             key={i}
             added_at={track?.added_at}
-            song={{ ...track?.track, cover: playlistData.images[0].url }}
+            song={{
+              ...track?.track,
+              cover: playlistData.images
+                ? playlistData.images[0].url
+                : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
+            }}
           />
         ))}
       </PlaylistRightWrapper>
