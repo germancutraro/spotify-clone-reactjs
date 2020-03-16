@@ -60,5 +60,5 @@ export const ArtistMoreIconContainer = styled.div`
 `;
 
 export const ArtistSection = styled.section`
-  margin: 1.5rem 0 0.5rem;
+  margin: 2rem 0 0.5rem;
 `;
