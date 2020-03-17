@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PlaylistLeftWrapper = styled.div`
   display: flex;
@@ -122,4 +122,20 @@ export const PlaylistTotalSongs = styled(PlaylistDescription)`
   text-transform: uppercase;
   letter-spacing: 0.16rem;
   margin-top: 0.8rem;
+`;
+
+// COPYRIGHT
+
+export const PlaylistCopyrightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2.785rem;
+`;
+
+export const PlaylistCopyrightText = styled.span`
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.015rem;
+  color: #fff;
+  opacity: 0.6;
 `;

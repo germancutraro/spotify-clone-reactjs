@@ -98,11 +98,14 @@ const TrackItem = ({
                 </ArtistContainer>
               ))}
             </ArtistsContainer>
-            <Separator>•</Separator>
+
             {album && (
-              <AlbumContainer>
-                <Album to={`/app/album/${album.id}`}>{album.name}</Album>
-              </AlbumContainer>
+              <>
+                <Separator>•</Separator>
+                <AlbumContainer>
+                  <Album to={`/app/album/${album.id}`}>{album.name}</Album>
+                </AlbumContainer>
+              </>
             )}
           </SubTextsContainer>
         ) : null}

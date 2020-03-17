@@ -21,7 +21,9 @@ import {
   PlaylistHeaderSubcontainer,
   PlaylistButtonsContainer,
   PlaylistDescriptionContainer,
-  IconContainer
+  IconContainer,
+  PlaylistCopyrightContainer,
+  PlaylistCopyrightText
 } from '../../components/Playlist/PlaylistComponentStyles';
 
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
@@ -29,6 +31,7 @@ import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
+import { PlaylistContainer } from '../Playlists/playlistsStyles';
 
 const Album = () => {
   const dispatch = useDispatch();
@@ -59,7 +62,7 @@ const Album = () => {
   if (loading) return <Loader isLoading={loading} />;
 
   return (
-    <>
+    <PlaylistContainer>
       <PlaylistLeftWrapper>
         <PlaylistHeader>
           <PlaylistHeaderSubcontainer>
@@ -112,22 +115,13 @@ const Album = () => {
         {album.tracks.items?.map((track, i) => (
           <TrackItem key={i} song={{ ...track, cover: album.images[0].url }} />
         ))}
+        <PlaylistCopyrightContainer>
+          {album?.copyrights.map(({ text }, i) => (
+            <PlaylistCopyrightText key={i}>{text}</PlaylistCopyrightText>
+          ))}
+        </PlaylistCopyrightContainer>
       </PlaylistRightWrapper>
-      <div
-        style={{
-          fontSize: '12px',
-          lineHeight: '16px',
-          letterSpacing: '.015em',
-          color: '#fff',
-          opacity: '.6',
-          padding: '0 5% 2em'
-        }}
-      >
-        {album?.copyrights.map(({ text }, i) => (
-          <p key={i}>{text}</p>
-        ))}
-      </div>
-    </>
+    </PlaylistContainer>
   );
 };
 
