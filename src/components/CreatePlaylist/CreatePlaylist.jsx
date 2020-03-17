@@ -26,8 +26,10 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
   const { user } = useSelector(({ auth }) => auth);
 
   const handleCreatePlaylist = () => {
-    if (value.length)
-      dispatch(createPlaylistStart({ userId: user?.id, name: value }));
+    dispatch(
+      createPlaylistStart({ userId: user?.id, name: value || 'New playlist' })
+    );
+    handleClose();
   };
 
   return isOpen ? (
