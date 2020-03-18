@@ -1,14 +1,19 @@
 import React from 'react';
+import {
+  NoResultsContainer,
+  NoResultsTitle,
+  NoResultsSubtitle
+} from './resultsStyles';
 
 const NoResults = ({ searchValue }) => {
   return (
-    <div style={{ color: '#fff' }}>
-      <h2>No results found for "{searchValue}"</h2>
-      <small>
+    <NoResultsContainer>
+      <NoResultsTitle>No results found for "{searchValue}"</NoResultsTitle>
+      <NoResultsSubtitle>
         Please make sure your words are spelled correctly or use less or
         different keywords.
-      </small>
-    </div>
+      </NoResultsSubtitle>
+    </NoResultsContainer>
   );
 };
 

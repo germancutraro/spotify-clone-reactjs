@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LibraryPlaylistPlay } from '../LibraryItem/playlistItemStyles';
 import { OptionButtonContainer } from '../TrackItem/trackItemStyles';
@@ -110,4 +110,32 @@ export const PlayContainer = styled(LibraryPlaylistPlay)`
 
 export const OptionButton = styled(OptionButtonContainer)`
   display: none;
+`;
+
+// no results
+
+export const NoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 25%;
+`;
+
+const NoResultsText = css`
+  color: #fff;
+  overflow-wrap: break-word;
+  text-align: center;
+`;
+
+export const NoResultsTitle = styled.h2`
+  ${NoResultsText}
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.36px;
+  line-height: 1.6;
+`;
+
+export const NoResultsSubtitle = styled.p`
+  ${NoResultsText}
+  padding-top: 10px;
 `;
