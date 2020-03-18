@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const UserContainer = styled.div`
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
 `;
 
 export const UserHeader = styled.header`

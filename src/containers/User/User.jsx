@@ -17,6 +17,10 @@ const User = () => {
   React.useEffect(() => {
     dispatch(getUserStart({ id: state.id }));
     dispatch(getUserPlaylistsStart({ id: state.id }));
+    document.documentElement.style.setProperty('--color', 'rgb(128, 128, 128)');
+
+    return () =>
+      document.documentElement.style.setProperty('--color', '#121212');
   }, [dispatch, state.id]);
 
   if (loading) return <Loader isLoading={loading} />;
