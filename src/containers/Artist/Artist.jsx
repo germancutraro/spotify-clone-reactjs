@@ -87,7 +87,7 @@ const Artist = () => {
   return (
     <ArtistContainer style={{ color: '#fff' }}>
       <ArtistBackground
-        color={randomColors[artist.followers.total.toString()[0]]}
+        color={randomColors[artist?.followers?.total?.toString()[0]]}
       />
       <ArtistSubContainer>
         <ArtistHeader>
@@ -118,25 +118,27 @@ const Artist = () => {
           <ArtistRoutes />
         </Switch>
 
-        <ArtistSection>
-          <SectionTitleContainer hasPadding={false}>
-            <SectionTitle>Popular</SectionTitle>
-          </SectionTitleContainer>
-          {tracks.map((track, i) => (
-            <TrackItem
-              key={i}
-              added_at={track?.added_at}
-              hasSubtext={false}
-              hasImage={true}
-              align='center'
-              hasPadding={false}
-              song={{
-                ...track,
-                cover: artist.images[0].url
-              }}
-            />
-          ))}
-        </ArtistSection>
+        {tracks.length ? (
+          <ArtistSection>
+            <SectionTitleContainer hasPadding={false}>
+              <SectionTitle>Popular</SectionTitle>
+            </SectionTitleContainer>
+            {tracks.map((track, i) => (
+              <TrackItem
+                key={i}
+                added_at={track?.added_at}
+                hasSubtext={false}
+                hasImage={true}
+                align='center'
+                hasPadding={false}
+                song={{
+                  ...track,
+                  cover: artist.images[0].url
+                }}
+              />
+            ))}
+          </ArtistSection>
+        ) : null}
 
         {albums.length ? (
           <ArtistSection>
