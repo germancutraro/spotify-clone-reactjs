@@ -41,7 +41,7 @@ const User = () => {
               id={playlist.id}
               title={playlist.name}
               subtitle={playlist.owner.display_name}
-              cover={playlist.images[0].url}
+              cover={playlist.images[0] ? playlist.images[0].url : null}
             />
           ))}
         </LibraryItemsContainer>
