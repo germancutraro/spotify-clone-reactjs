@@ -105,6 +105,7 @@ export const Separator = styled.span`
   transform: translateY(-1px);
   font-size: 0.8rem;
   padding: 0 0.5rem;
+  margin-top: 3px;
 `;
 
 export const AlbumContainer = styled.span`

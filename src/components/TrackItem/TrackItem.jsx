@@ -89,7 +89,7 @@ const TrackItem = ({
         {hasSubtext ? (
           <SubTextsContainer>
             <ArtistsContainer>
-              {artists.map((artist, i) => (
+              {artists?.map((artist, i) => (
                 <ArtistContainer key={i}>
                   <Artist to={`/app/artist/${artist.id}`}>{artist.name}</Artist>
                   {i + 1 !== artists.length ? (
