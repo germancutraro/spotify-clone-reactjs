@@ -67,20 +67,20 @@ const Album = () => {
         <PlaylistHeader>
           <PlaylistHeaderSubcontainer>
             <PlaylistImageContainer>
-              {album.images &&
+              {album?.images &&
                 (album?.images[0]?.url ? (
-                  <PlaylistImage src={album.images[0].url} alt='' />
+                  <PlaylistImage src={album?.images[0].url} alt='' />
                 ) : (
                   <DefaultSong width={100} height={100} />
                 ))}
             </PlaylistImageContainer>
-            <PlaylistTitle>{album.name}</PlaylistTitle>
-            {album?.artists.map((artist, i) => (
+            <PlaylistTitle>{album?.name}</PlaylistTitle>
+            {album?.artists?.map((artist, i) => (
               <PlaylistOwner
                 key={i}
-                onClick={() => history.push(`/app/artist/${artist.id}`)}
+                onClick={() => history.push(`/app/artist/${artist?.id}`)}
               >
-                {artist.name}
+                {artist?.name}
               </PlaylistOwner>
             ))}
           </PlaylistHeaderSubcontainer>
@@ -112,11 +112,11 @@ const Album = () => {
         </PlaylistHeader>
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
-        {album.tracks.items?.map((track, i) => (
+        {album?.tracks?.items?.map((track, i) => (
           <TrackItem key={i} song={{ ...track, cover: album.images[0].url }} />
         ))}
         <PlaylistCopyrightContainer>
-          {album?.copyrights.map(({ text }, i) => (
+          {album?.copyrights?.map(({ text }, i) => (
             <PlaylistCopyrightText key={i}>{text}</PlaylistCopyrightText>
           ))}
         </PlaylistCopyrightContainer>

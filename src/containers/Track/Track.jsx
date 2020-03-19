@@ -7,7 +7,15 @@ import {
   TrackContainer,
   PlayIconWrapper,
   PlayIcon,
-  PauseIcon
+  PauseIcon,
+  PlayerCenter,
+  PlayerRight,
+  PlayerLeft,
+  SongImage,
+  SongTextContainer,
+  SongName,
+  SongArtist,
+  SongNameText
 } from './trackStyles';
 import Volume from '../../components/TrackControls/Volume';
 import Duration from '../../components/TrackControls/Duration';
@@ -41,40 +49,56 @@ const Track = () => {
   };
 
   const handleChangeRoute = route => history.push(`/app/${route}`);
-
   return (
     <TrackContainer>
-      <img src={song.cover} width={50} height={50} alt='' />
-      <audio src={song.preview_url} ref={audioRef}></audio>
-      <p
-        style={{ padding: '.6rem' }}
-        onClick={() => handleChangeRoute(`album/${song.album.id}`)}
-      >
-        {song?.name}
-      </p>
-      <p
-        style={{ padding: '1rem' }}
-        onClick={() => handleChangeRoute(`artist/${song.artists[0].id}`)}
-      >
-        {song?.artists && song?.artists[0].name}
-      </p>
+      <PlayerLeft>
+        <SongImage
+          src={song.cover}
+          alt={song.cover}
+          hasAlbum={song?.album?.id}
+          onClick={() =>
+            song?.album?.id
+              ? handleChangeRoute(`album/${song?.album?.id}`)
+              : null
+          }
+        />
 
-      <PlayIconWrapper>
-        {!isPlaying ? (
-          <PlayIcon onClick={handleAudio} />
-        ) : (
-          <PauseIcon onClick={handleAudio} />
-        )}
-      </PlayIconWrapper>
+        <audio src={song.preview_url} ref={audioRef}></audio>
+        <SongTextContainer>
+          {song?.album?.id ? (
+            <SongName to={`/app/album/${song?.album?.id}`}>
+              {song?.name}
+            </SongName>
+          ) : (
+            <SongNameText>{song?.name}</SongNameText>
+          )}
+          <SongArtist to={`/app/artist/${song.artists[0].id}`}>
+            {song?.artists && song?.artists[0].name}
+          </SongArtist>
+        </SongTextContainer>
+      </PlayerLeft>
 
-      <Duration
-        timeElapsed={timeElapsed}
-        setTimeElapsed={setTimeElapsed}
-        isPlaying={isPlaying}
-        songId={song.id}
-        songList={list}
-      />
-      <Volume ref={audioRef} volume={volume} setVolume={setVolume} />
+      <PlayerCenter>
+        <PlayIconWrapper>
+          {!isPlaying ? (
+            <PlayIcon onClick={handleAudio} />
+          ) : (
+            <PauseIcon onClick={handleAudio} />
+          )}
+        </PlayIconWrapper>
+
+        <Duration
+          timeElapsed={timeElapsed}
+          setTimeElapsed={setTimeElapsed}
+          isPlaying={isPlaying}
+          songId={song.id}
+          songList={list}
+        />
+      </PlayerCenter>
+
+      <PlayerRight>
+        <Volume ref={audioRef} volume={volume} setVolume={setVolume} />
+      </PlayerRight>
     </TrackContainer>
   );
 };

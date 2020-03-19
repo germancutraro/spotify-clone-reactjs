@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
     Arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
     letter-spacing: .015rem;
     font-weight: 400;
+    line-height: 20px;
+  font-size: 14px;
+
   }
 
   :root {
