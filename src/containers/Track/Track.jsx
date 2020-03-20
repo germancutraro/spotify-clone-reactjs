@@ -49,6 +49,7 @@ const Track = () => {
   };
 
   const handleChangeRoute = route => history.push(`/app/${route}`);
+
   return (
     <TrackContainer>
       <PlayerLeft>

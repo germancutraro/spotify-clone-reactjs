@@ -63,7 +63,10 @@ export const SongArtist = styled(SongName)`
 
 // center
 
-export const PlayerCenter = styled.div``;
+export const PlayerCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 // right
 
