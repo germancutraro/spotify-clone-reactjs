@@ -15,7 +15,9 @@ import {
   SongTextContainer,
   SongName,
   SongArtist,
-  SongNameText
+  SongNameText,
+  PlayerCenterButtonsContainer,
+  PlayerProgressContainer
 } from './trackStyles';
 import Volume from '../../components/TrackControls/Volume';
 import Duration from '../../components/TrackControls/Duration';
@@ -80,21 +82,25 @@ const Track = () => {
       </PlayerLeft>
 
       <PlayerCenter>
-        <PlayIconWrapper>
-          {!isPlaying ? (
-            <PlayIcon onClick={handleAudio} />
-          ) : (
-            <PauseIcon onClick={handleAudio} />
-          )}
-        </PlayIconWrapper>
+        <PlayerCenterButtonsContainer>
+          <PlayIconWrapper>
+            {!isPlaying ? (
+              <PlayIcon onClick={handleAudio} />
+            ) : (
+              <PauseIcon onClick={handleAudio} />
+            )}
+          </PlayIconWrapper>
+        </PlayerCenterButtonsContainer>
 
-        <Duration
-          timeElapsed={timeElapsed}
-          setTimeElapsed={setTimeElapsed}
-          isPlaying={isPlaying}
-          songId={song.id}
-          songList={list}
-        />
+        <PlayerProgressContainer>
+          <Duration
+            timeElapsed={timeElapsed}
+            setTimeElapsed={setTimeElapsed}
+            isPlaying={isPlaying}
+            songId={song.id}
+            songList={list}
+          />
+        </PlayerProgressContainer>
       </PlayerCenter>
 
       <PlayerRight>

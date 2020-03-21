@@ -66,6 +66,18 @@ export const SongArtist = styled(SongName)`
 export const PlayerCenter = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+`;
+
+export const PlayerCenterButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+`;
+
+export const PlayerProgressContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 // right

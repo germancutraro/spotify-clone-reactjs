@@ -33,7 +33,7 @@ const Duration = ({
   }, [isPlaying, timeElapsed, setTimeElapsed, songId, songList, dispatch]);
 
   return (
-    <div>
+    <>
       <p>
         {moment()
           .minutes(0)
@@ -55,7 +55,7 @@ const Duration = ({
           .second(30 - timeElapsed)
           .format('m:ss')}
       </p>
-    </div>
+    </>
   );
 };
 
