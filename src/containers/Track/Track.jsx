@@ -3,20 +3,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { pauseSong, resumeSong } from './trackActions';
 // styles
-import {
-  TrackContainer,
-  PlayIconWrapper,
-  PlayIcon,
-  PauseIcon,
-  PlayerCenter,
-  PlayerRight,
-  PlayerCenterButtonsContainer,
-  PlayerProgressContainer
-} from './trackStyles';
+import { TrackContainer, PlayerRight } from './trackStyles';
 import Volume from '../../components/TrackControls/Volume';
-import Duration from '../../components/TrackControls/Duration';
 import { useHistory } from 'react-router-dom';
 import TrackLeft from '../../components/Track/TrackLeft/TrackLeft';
+import TrackCenter from '../../components/Track/TrackCenter/TrackCenter';
 
 const Track = () => {
   const dispatch = useDispatch();
@@ -53,27 +44,14 @@ const Track = () => {
 
       <TrackLeft song={song} handleChangeRoute={handleChangeRoute} />
 
-      <PlayerCenter>
-        <PlayerCenterButtonsContainer>
-          <PlayIconWrapper>
-            {!isPlaying ? (
-              <PlayIcon onClick={handleAudio} />
-            ) : (
-              <PauseIcon onClick={handleAudio} />
-            )}
-          </PlayIconWrapper>
-        </PlayerCenterButtonsContainer>
-
-        <PlayerProgressContainer>
-          <Duration
-            timeElapsed={timeElapsed}
-            setTimeElapsed={setTimeElapsed}
-            isPlaying={isPlaying}
-            songId={song.id}
-            songList={list}
-          />
-        </PlayerProgressContainer>
-      </PlayerCenter>
+      <TrackCenter
+        handleAudio={handleAudio}
+        timeElapsed={timeElapsed}
+        setTimeElapsed={setTimeElapsed}
+        isPlaying={isPlaying}
+        songId={song.id}
+        songList={list}
+      />
 
       <PlayerRight>
         <Volume ref={audioRef} volume={volume} setVolume={setVolume} />
