@@ -10,18 +10,13 @@ import {
   PauseIcon,
   PlayerCenter,
   PlayerRight,
-  PlayerLeft,
-  SongImage,
-  SongTextContainer,
-  SongName,
-  SongArtist,
-  SongNameText,
   PlayerCenterButtonsContainer,
   PlayerProgressContainer
 } from './trackStyles';
 import Volume from '../../components/TrackControls/Volume';
 import Duration from '../../components/TrackControls/Duration';
 import { useHistory } from 'react-router-dom';
+import TrackLeft from '../../components/Track/TrackLeft/TrackLeft';
 
 const Track = () => {
   const dispatch = useDispatch();
@@ -54,32 +49,9 @@ const Track = () => {
 
   return (
     <TrackContainer>
-      <PlayerLeft>
-        <SongImage
-          src={song.cover}
-          alt={song.cover}
-          hasAlbum={song?.album?.id}
-          onClick={() =>
-            song?.album?.id
-              ? handleChangeRoute(`album/${song?.album?.id}`)
-              : null
-          }
-        />
+      <audio src={song.preview_url} ref={audioRef}></audio>
 
-        <audio src={song.preview_url} ref={audioRef}></audio>
-        <SongTextContainer>
-          {song?.album?.id ? (
-            <SongName to={`/app/album/${song?.album?.id}`}>
-              {song?.name}
-            </SongName>
-          ) : (
-            <SongNameText>{song?.name}</SongNameText>
-          )}
-          <SongArtist to={`/app/artist/${song.artists[0].id}`}>
-            {song?.artists && song?.artists[0].name}
-          </SongArtist>
-        </SongTextContainer>
-      </PlayerLeft>
+      <TrackLeft song={song} handleChangeRoute={handleChangeRoute} />
 
       <PlayerCenter>
         <PlayerCenterButtonsContainer>
