@@ -6,7 +6,8 @@ import { ReactComponent as SpeakerIconMute } from '../../assets/icons/speaker-mu
 import {
   VolumeContainer,
   VolumeIconContainer,
-  ProgressBar
+  ProgressBar,
+  ProgressBarContainer
 } from './trackControlsStyles';
 
 const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
@@ -17,28 +18,36 @@ const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
     ref.current.volume = localStorage.getItem('volume');
   };
 
+  const handleMuteVolume = () => {
+    volume === '0'
+      ? handleVolume({ target: { value: 50 } })
+      : handleVolume({ target: { value: 0 } });
+  };
+
   return (
-    <VolumeContainer>
-      <VolumeIconContainer>
-        {volume === '0' ? (
-          <SpeakerIconMute width={16} fill='#fff' />
-        ) : volume <= '0.4' ? (
-          <SpeakerIcon3 width={18} fill='#fff' />
-        ) : volume <= '0.8' ? (
-          <SpeakerIcon2 width={18} fill='#fff' />
-        ) : (
-          <SpeakerIcon width={18} fill='#fff' />
-        )}
-      </VolumeIconContainer>
-      <ProgressBar
-        className='volume'
-        type='range'
-        min={0}
-        max={100}
-        value={volume * 100}
-        onChange={handleVolume}
-      />
-    </VolumeContainer>
+    <ProgressBarContainer>
+      <VolumeContainer>
+        <VolumeIconContainer onClick={handleMuteVolume}>
+          {volume === '0' ? (
+            <SpeakerIconMute width={16} fill='#b3b3b3' />
+          ) : volume <= '0.4' ? (
+            <SpeakerIcon3 width={18} fill='#b3b3b3' />
+          ) : volume <= '0.8' ? (
+            <SpeakerIcon2 width={18} fill='#b3b3b3' />
+          ) : (
+            <SpeakerIcon width={18} fill='#b3b3b3' />
+          )}
+        </VolumeIconContainer>
+        <ProgressBar
+          className='volume'
+          type='range'
+          min={0}
+          max={100}
+          value={volume * 100}
+          onChange={handleVolume}
+        />
+      </VolumeContainer>
+    </ProgressBarContainer>
   );
 });
 

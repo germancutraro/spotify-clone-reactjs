@@ -6,7 +6,8 @@ import { pauseSong, startSong } from '../../containers/Track/trackActions';
 import {
   DurationContainer,
   ProgressBar,
-  ProgressBarTime
+  ProgressBarTime,
+  ProgressBarContainer
 } from './trackControlsStyles';
 
 const Duration = React.forwardRef(
@@ -44,16 +45,17 @@ const Duration = React.forwardRef(
             .second(timeElapsed)
             .format('m:ss')}
         </ProgressBarTime>
-
-        <ProgressBar
-          type='range'
-          min='0'
-          max='30'
-          step='1'
-          maxValue={30}
-          value={parseInt(timeElapsed)}
-          onChange={handleChangeRange}
-        />
+        <ProgressBarContainer>
+          <ProgressBar
+            type='range'
+            min='0'
+            max='30'
+            step='1'
+            maxValue={30}
+            value={parseInt(timeElapsed)}
+            onChange={handleChangeRange}
+          />
+        </ProgressBarContainer>
 
         <ProgressBarTime>
           {moment()

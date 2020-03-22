@@ -12,6 +12,12 @@ export const VolumeContainer = styled(DurationContainer)`
 
 export const VolumeIconContainer = styled(DurationContainer)`
   margin: 0 0.5rem;
+
+  :hover {
+    svg {
+      fill: #fff;
+    }
+  }
 `;
 
 export const ProgressBar = styled.input`
@@ -41,20 +47,26 @@ export const ProgressBar = styled.input`
     z-index: 100;
     transform: translateX(-20%);
   }
+`;
+
+export const ProgressBarContainer = styled.div`
+  width: 100%;
 
   :hover {
-    background-image: linear-gradient(
-      to right,
-      #1db954 calc(var(--value) * calc(var(--step) * 1%)),
-      #404040 0
-    );
+    ${ProgressBar} {
+      background-image: linear-gradient(
+        to right,
+        #1db954 calc(var(--value) * calc(var(--step) * 1%)),
+        #404040 0
+      );
 
-    ::-webkit-slider-thumb {
-      transform: translateX(0);
-      width: 12px;
-      height: 12px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      ::-webkit-slider-thumb {
+        transform: translateX(0);
+        width: 12px;
+        height: 12px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      }
     }
   }
 `;
