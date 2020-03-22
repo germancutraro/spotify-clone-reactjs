@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as SpeakerIcon } from '../../assets/icons/speaker.svg';
 import { ReactComponent as SpeakerIcon2 } from '../../assets/icons/speaker-2.svg';
 import { ReactComponent as SpeakerIcon3 } from '../../assets/icons/speaker-3.svg';
@@ -11,16 +11,21 @@ import {
 } from './trackControlsStyles';
 
 const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
+  const [lastVolume, setLastVolume] = useState(0.4);
+
   const handleVolume = ({ target }) => {
     const value = target.value / 100;
+    setLastVolume(localStorage.getItem('volume'));
     localStorage.setItem('volume', value);
     setVolume(localStorage.getItem('volume'));
     ref.current.volume = localStorage.getItem('volume');
   };
 
   const handleMuteVolume = () => {
-    volume === '0'
-      ? handleVolume({ target: { value: 50 } })
+    volume === '0' && lastVolume > '0.1'
+      ? handleVolume({ target: { value: lastVolume * 100 } })
+      : volume === '0'
+      ? handleVolume({ target: { value: 40 } })
       : handleVolume({ target: { value: 0 } });
   };
 
