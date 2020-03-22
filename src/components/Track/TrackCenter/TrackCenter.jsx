@@ -2,11 +2,11 @@ import React from 'react';
 import {
   PlayerCenter,
   PlayerCenterButtonsContainer,
-  PlayIconWrapper,
-  PlayIcon,
-  PauseIcon
+  PlayIconWrapper
 } from './trackCenterStyles';
 import Duration from '../../TrackControls/Duration';
+import { ReactComponent as PlayIconSvg } from '../../../assets/icons/play.svg';
+import { ReactComponent as PauseIconSvg } from '../../../assets/icons/pause.svg';
 
 const TrackCenter = React.forwardRef(
   (
@@ -16,11 +16,11 @@ const TrackCenter = React.forwardRef(
     return (
       <PlayerCenter>
         <PlayerCenterButtonsContainer>
-          <PlayIconWrapper>
+          <PlayIconWrapper onClick={handleAudio}>
             {!isPlaying ? (
-              <PlayIcon onClick={handleAudio} />
+              <PlayIconSvg fill='#fff' height='14' width='14' />
             ) : (
-              <PauseIcon onClick={handleAudio} />
+              <PauseIconSvg fill='#fff' height='14' width='14' />
             )}
           </PlayIconWrapper>
         </PlayerCenterButtonsContainer>
