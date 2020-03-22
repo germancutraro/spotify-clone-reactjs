@@ -2,7 +2,6 @@ import React from 'react';
 import {
   PlayerCenter,
   PlayerCenterButtonsContainer,
-  PlayerProgressContainer,
   PlayIconWrapper,
   PlayIcon,
   PauseIcon

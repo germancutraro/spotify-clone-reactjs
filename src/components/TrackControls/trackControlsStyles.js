@@ -5,7 +5,7 @@ export const DurationContainer = styled.div`
   align-items: center;
 `;
 
-export const DurationProgressBar = styled.input`
+export const ProgressBar = styled.input`
   --value: ${({ value }) => value};
 
   height: 4px;
@@ -47,4 +47,12 @@ export const DurationProgressBar = styled.input`
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     }
   }
+`;
+
+export const ProgressBarTime = styled.span`
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.015rem;
+  min-width: 40px;
+  text-align: center;
 `;

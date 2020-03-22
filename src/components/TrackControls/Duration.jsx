@@ -3,7 +3,11 @@ import moment from 'moment';
 // redux
 import { useDispatch } from 'react-redux';
 import { pauseSong, startSong } from '../../containers/Track/trackActions';
-import { DurationContainer, DurationProgressBar } from './trackControlsStyles';
+import {
+  DurationContainer,
+  ProgressBar,
+  ProgressBarTime
+} from './trackControlsStyles';
 
 const Duration = ({
   timeElapsed,
@@ -35,14 +39,14 @@ const Duration = ({
 
   return (
     <DurationContainer>
-      <p>
+      <ProgressBarTime>
         {moment()
           .minutes(0)
           .second(timeElapsed)
           .format('m:ss')}
-      </p>
+      </ProgressBarTime>
 
-      <DurationProgressBar
+      <ProgressBar
         type='range'
         min='0'
         max='30'
@@ -60,12 +64,12 @@ const Duration = ({
           }}
         />
       </div> */}
-      <p>
+      <ProgressBarTime>
         {moment()
           .minutes(0)
           .second(30 - timeElapsed)
           .format('m:ss')}
-      </p>
+      </ProgressBarTime>
     </DurationContainer>
   );
 };
