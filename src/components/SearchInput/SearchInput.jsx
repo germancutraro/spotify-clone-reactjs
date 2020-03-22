@@ -24,6 +24,8 @@ const SearchInput = () => {
     dispatch(setSearchValue({ query: '' }));
   };
 
+  React.useEffect(() => setValue(''), []);
+
   return (
     <SearchFullContainer>
       <SearchContainer>
