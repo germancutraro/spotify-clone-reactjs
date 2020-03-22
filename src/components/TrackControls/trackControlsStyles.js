@@ -5,8 +5,18 @@ export const DurationContainer = styled.div`
   align-items: center;
 `;
 
+export const VolumeContainer = styled(DurationContainer)`
+  max-width: 10rem;
+  margin-left: auto;
+`;
+
+export const VolumeIconContainer = styled(DurationContainer)`
+  margin: 0 0.5rem;
+`;
+
 export const ProgressBar = styled.input`
   --value: ${({ value }) => value};
+  --step: ${({ maxValue }) => 100 / (maxValue || 100)};
 
   height: 4px;
   width: 100%;
@@ -17,7 +27,7 @@ export const ProgressBar = styled.input`
   outline: 0;
   background-image: linear-gradient(
     to right,
-    #b3b3b3 calc(var(--value) * 3.3333%),
+    #b3b3b3 calc(var(--value) * calc(var(--step) * 1%)),
     #404040 0
   );
 
@@ -35,7 +45,7 @@ export const ProgressBar = styled.input`
   :hover {
     background-image: linear-gradient(
       to right,
-      #1db954 calc(var(--value) * 3.3333%),
+      #1db954 calc(var(--value) * calc(var(--step) * 1%)),
       #404040 0
     );
 

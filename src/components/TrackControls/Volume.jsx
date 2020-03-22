@@ -1,5 +1,10 @@
 import React from 'react';
 import { ReactComponent as SoundIcon } from '../../assets/icons/sound.svg';
+import {
+  VolumeContainer,
+  VolumeIconContainer,
+  ProgressBar
+} from './trackControlsStyles';
 
 const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
   const handleVolume = ({ target }) => {
@@ -9,9 +14,11 @@ const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
     ref.current.volume = localStorage.getItem('volume');
   };
   return (
-    <div>
-      <SoundIcon width={13} fill='#fff' />
-      <input
+    <VolumeContainer>
+      <VolumeIconContainer>
+        <SoundIcon width={13} fill='#fff' />
+      </VolumeIconContainer>
+      <ProgressBar
         className='volume'
         type='range'
         min={0}
@@ -19,7 +26,7 @@ const Volume = React.forwardRef(({ setVolume, volume }, ref) => {
         value={volume * 100}
         onChange={handleVolume}
       />
-    </div>
+    </VolumeContainer>
   );
 });
 
