@@ -23,15 +23,13 @@ export const DurationProgressBar = styled.input`
 
   ::-webkit-slider-thumb {
     -webkit-appearance: none;
-
-    background-color: #fff;
+    background-color: #b3b3b3;
     border: 0;
     border-radius: 50%;
-    width: 12px;
-    height: 12px;
+    width: 4px;
+    height: 4px;
     z-index: 100;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    transform: scale(0);
+    transform: translateX(-20%);
   }
 
   :hover {
@@ -40,8 +38,13 @@ export const DurationProgressBar = styled.input`
       #1db954 calc(var(--value) * 3.3333%),
       #404040 0
     );
+
     ::-webkit-slider-thumb {
-      transform: scale(1);
+      transform: translateX(0);
+      width: 12px;
+      height: 12px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     }
   }
 `;
