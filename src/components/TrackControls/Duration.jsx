@@ -37,6 +37,18 @@ const Duration = ({
     return () => clearInterval(interval);
   }, [isPlaying, timeElapsed, setTimeElapsed, songId, songList, dispatch]);
 
+  console.log(
+    timeElapsed,
+    moment()
+      .minutes(0)
+      .second(timeElapsed)
+      .format('m:ss'),
+    moment()
+      .minutes(0)
+      .second(30 - timeElapsed)
+      .format('m:ss')
+  );
+
   return (
     <DurationContainer>
       <ProgressBarTime>
@@ -51,8 +63,8 @@ const Duration = ({
         min='0'
         max='30'
         step='1'
-        value={timeElapsed}
-        onChange={e => setTimeElapsed(e.target.value)}
+        value={parseInt(timeElapsed)}
+        onChange={e => setTimeElapsed(parseInt(e.target.value))}
       />
       {/* 
       <div style={{ backgroundColor: 'blue', width: '495px', height: '10px' }}>
