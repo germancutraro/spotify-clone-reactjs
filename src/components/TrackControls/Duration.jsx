@@ -3,6 +3,7 @@ import moment from 'moment';
 // redux
 import { useDispatch } from 'react-redux';
 import { pauseSong, startSong } from '../../containers/Track/trackActions';
+import { DurationContainer, DurationProgressBar } from './trackControlsStyles';
 
 const Duration = ({
   timeElapsed,
@@ -33,13 +34,23 @@ const Duration = ({
   }, [isPlaying, timeElapsed, setTimeElapsed, songId, songList, dispatch]);
 
   return (
-    <>
+    <DurationContainer>
       <p>
         {moment()
           .minutes(0)
           .second(timeElapsed)
           .format('m:ss')}
       </p>
+
+      <DurationProgressBar
+        type='range'
+        min='0'
+        max='30'
+        step='1'
+        value={timeElapsed}
+        onChange={e => setTimeElapsed(e.target.value)}
+      />
+      {/* 
       <div style={{ backgroundColor: 'blue', width: '495px', height: '10px' }}>
         <div
           style={{
@@ -48,14 +59,14 @@ const Duration = ({
             height: '8px'
           }}
         />
-      </div>
+      </div> */}
       <p>
         {moment()
           .minutes(0)
           .second(30 - timeElapsed)
           .format('m:ss')}
       </p>
-    </>
+    </DurationContainer>
   );
 };
 

@@ -29,15 +29,13 @@ const TrackCenter = ({
         </PlayIconWrapper>
       </PlayerCenterButtonsContainer>
 
-      <PlayerProgressContainer>
-        <Duration
-          timeElapsed={timeElapsed}
-          setTimeElapsed={setTimeElapsed}
-          isPlaying={isPlaying}
-          songId={song?.id}
-          songList={list}
-        />
-      </PlayerProgressContainer>
+      <Duration
+        timeElapsed={timeElapsed}
+        setTimeElapsed={setTimeElapsed}
+        isPlaying={isPlaying}
+        songId={song?.id}
+        songList={list}
+      />
     </PlayerCenter>
   );
 };

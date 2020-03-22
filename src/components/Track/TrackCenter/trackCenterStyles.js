@@ -14,11 +14,6 @@ export const PlayerCenterButtonsContainer = styled.div`
   margin-bottom: 0.75rem;
 `;
 
-export const PlayerProgressContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const PlayIconWrapper = styled.div`
   width: 30px;
   height: 30px;
