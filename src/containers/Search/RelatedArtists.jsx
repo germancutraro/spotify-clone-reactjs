@@ -3,7 +3,11 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRelatedArtistsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
-import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
+import {
+  LibraryItemsContainer,
+  SectionTitleContainer,
+  SectionTitle
+} from '../../components/LibraryItem/playlistItemStyles';
 import Loader from '../../components/Loader/Loader';
 import useNotifier from '../../hooks/useNotifier';
 
@@ -26,8 +30,10 @@ const RelatedArtists = () => {
   if (!loading && error) showSnackbar();
 
   return (
-    <div style={{ color: '#fff' }}>
-      <h1>Showing Artists for "{name}"</h1>
+    <>
+      <SectionTitleContainer>
+        <SectionTitle>Showing Artists for "{name}"</SectionTitle>
+      </SectionTitleContainer>
       <LibraryItemsContainer>
         {artist.map(artist => (
           <LibraryItem
@@ -40,7 +46,7 @@ const RelatedArtists = () => {
           />
         ))}
       </LibraryItemsContainer>
-    </div>
+    </>
   );
 };
 

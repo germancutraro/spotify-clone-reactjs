@@ -3,7 +3,11 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArtistSongsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
-import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
+import {
+  LibraryItemsContainer,
+  SectionTitle,
+  SectionTitleContainer
+} from '../../components/LibraryItem/playlistItemStyles';
 import Loader from '../../components/Loader/Loader';
 import useNotifier from '../../hooks/useNotifier';
 
@@ -26,8 +30,10 @@ const Artist = () => {
   if (!loading && error) showSnackbar();
 
   return (
-    <div style={{ color: '#fff' }}>
-      <h1>Showing Songs for "{name}"</h1>
+    <>
+      <SectionTitleContainer>
+        <SectionTitle>Showing Songs for "{name}"</SectionTitle>
+      </SectionTitleContainer>
       <LibraryItemsContainer>
         {artist.map(track => (
           <LibraryItem
@@ -39,7 +45,7 @@ const Artist = () => {
           />
         ))}
       </LibraryItemsContainer>
-    </div>
+    </>
   );
 };
 

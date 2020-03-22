@@ -3,7 +3,11 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArtistAlbumsStart } from './searchActions';
 import LibraryItem from '../../components/LibraryItem/LibraryItem';
-import { LibraryItemsContainer } from '../../components/LibraryItem/playlistItemStyles';
+import {
+  LibraryItemsContainer,
+  SectionTitleContainer,
+  SectionTitle
+} from '../../components/LibraryItem/playlistItemStyles';
 import Loader from '../../components/Loader/Loader';
 import useNotifier from '../../hooks/useNotifier';
 
@@ -26,21 +30,23 @@ const Album = () => {
   if (!loading && error) showSnackbar();
 
   return (
-    <div style={{ color: '#fff' }}>
-      <h1>Showing Albums for "{name}"</h1>
+    <>
+      <SectionTitleContainer>
+        <SectionTitle>Showing Albums for "{name}"</SectionTitle>
+      </SectionTitleContainer>
       <LibraryItemsContainer>
         {artist.map(album => (
           <LibraryItem
             key={album.id}
             id={album.id}
             title={album.name}
-            subtitle={album.artists[0].name}
-            cover={album.images[0].url}
+            subtitle={album.artists && album.artists[0].name}
+            cover={album.images && album.images[0].url}
             type='album'
           />
         ))}
       </LibraryItemsContainer>
-    </div>
+    </>
   );
 };
 
