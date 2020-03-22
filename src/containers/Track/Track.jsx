@@ -51,6 +51,7 @@ const Track = () => {
         isPlaying={isPlaying}
         songId={song.id}
         songList={list}
+        ref={audioRef}
       />
 
       <PlayerRight>
