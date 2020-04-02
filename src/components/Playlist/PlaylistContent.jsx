@@ -33,6 +33,7 @@ const PlaylistContent = ({
   isPlaying
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
 
   const history = useHistory();
   const playlistData = isLikedSongs
@@ -50,9 +51,18 @@ const PlaylistContent = ({
       }
     : { ...playlist };
 
+  const handleOnClickMore = e => {
+    setIsMoreMenuOpen(true);
+    setMoreMenuPosition([e.pageX, e.pageY]);
+  };
+
   return (
     <>
-      <MoreMenu open={isMoreMenuOpen} />
+      <MoreMenu
+        open={isMoreMenuOpen}
+        close={() => setIsMoreMenuOpen(false)}
+        moreMenuPosition={moreMenuPosition}
+      />
       <PlaylistLeftWrapper>
         <PlaylistHeader>
           <PlaylistHeaderSubcontainer>
@@ -100,9 +110,7 @@ const PlaylistContent = ({
                     onClick={handleFollow}
                   />
                 </IconContainer>
-                <IconContainer
-                  onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
-                >
+                <IconContainer onClick={handleOnClickMore}>
                   <MoreIcon fill='#fff' width={20} />
                 </IconContainer>
               </PlaylistIconsWrapper>
