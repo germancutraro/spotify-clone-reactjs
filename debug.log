@@ -1,0 +1,4 @@
+[0401/173400.144:ERROR:process_info.cc(329)] VirtualQueryEx: Acceso denegado. (0x5)
+[0401/173400.146:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[0401/173400.146:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+[0401/173400.146:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Se intentó obtener acceso a un proceso que está cerrándose. (0xc000010a)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   PlaylistTitle,
@@ -22,6 +22,7 @@ import TrackItem from '../../components/TrackItem/TrackItem';
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
+import MoreMenu from '../MoreMenu/MoreMenu';
 
 const PlaylistContent = ({
   playlist,
@@ -31,6 +32,8 @@ const PlaylistContent = ({
   startPlaylist,
   isPlaying
 }) => {
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+
   const history = useHistory();
   const playlistData = isLikedSongs
     ? {
@@ -49,6 +52,7 @@ const PlaylistContent = ({
 
   return (
     <>
+      <MoreMenu open={isMoreMenuOpen} />
       <PlaylistLeftWrapper>
         <PlaylistHeader>
           <PlaylistHeaderSubcontainer>
@@ -96,7 +100,9 @@ const PlaylistContent = ({
                     onClick={handleFollow}
                   />
                 </IconContainer>
-                <IconContainer>
+                <IconContainer
+                  onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                >
                   <MoreIcon fill='#fff' width={20} />
                 </IconContainer>
               </PlaylistIconsWrapper>

@@ -51,6 +51,7 @@ export const ProgressBar = styled.input`
 
 export const ProgressBarContainer = styled.div`
   width: 100%;
+  display: flex;
 
   :hover {
     ${ProgressBar} {

@@ -26,7 +26,7 @@ const TrackLeft = ({ song, handleChangeRoute }) => {
         ) : (
           <SongNameText>{song?.name}</SongNameText>
         )}
-        <SongArtist to={`/app/artist/${song.artists[0].id}`}>
+        <SongArtist to={song?.artists && `/app/artist/${song?.artists[0].id}`}>
           {song?.artists && song?.artists[0].name}
         </SongArtist>
       </SongTextContainer>
