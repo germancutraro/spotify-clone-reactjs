@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --opacity: 0;
     --color: #121212;
+    --scroll-top: 0;
   }
 
   a {

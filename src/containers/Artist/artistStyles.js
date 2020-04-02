@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { EllipsisTwoLines } from '../../components/Text/textStyles';
 import { PlaylistPlay } from '../../components/Playlist/PlaylistComponentStyles';
 import {
@@ -57,6 +57,12 @@ export const ArtitstFollowText = styled(UpgradeText)`
 export const ArtistMoreIconContainer = styled.div`
   padding: 0.5rem;
   cursor: pointer;
+  position: relative;
+  ${({ active }) =>
+    active &&
+    css`
+      z-index: 100000;
+    `}
 `;
 
 export const ArtistSection = styled.section`

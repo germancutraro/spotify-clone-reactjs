@@ -110,6 +110,12 @@ export const PlayContainer = styled(LibraryPlaylistPlay)`
 
 export const OptionButton = styled(OptionButtonContainer)`
   display: none;
+  position: relative;
+  ${({ active }) =>
+    active &&
+    css`
+      z-index: 100000;
+    `}
 `;
 
 // no results

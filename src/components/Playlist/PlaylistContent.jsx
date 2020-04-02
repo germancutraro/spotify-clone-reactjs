@@ -62,6 +62,25 @@ const PlaylistContent = ({
         open={isMoreMenuOpen}
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
+        items={[
+          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
+          {
+            title: 'Guardar en canciones que te gustan',
+            onClick: () => alert('Guardar en canciones que te gustan')
+          },
+          {
+            title: 'Añadir a la cola',
+            onClick: () => alert('Añadir a la cola')
+          },
+          {
+            title: 'Añadir a playlist',
+            onClick: () => alert('Añadir a playlist')
+          },
+          {
+            title: 'Copiar enlace de la canción',
+            onClick: () => alert('Copiar enlace de la canción')
+          }
+        ]}
       />
       <PlaylistLeftWrapper>
         <PlaylistHeader>
@@ -110,7 +129,10 @@ const PlaylistContent = ({
                     onClick={handleFollow}
                   />
                 </IconContainer>
-                <IconContainer onClick={handleOnClickMore}>
+                <IconContainer
+                  onClick={handleOnClickMore}
+                  active={isMoreMenuOpen}
+                >
                   <MoreIcon fill='#fff' width={20} />
                 </IconContainer>
               </PlaylistIconsWrapper>

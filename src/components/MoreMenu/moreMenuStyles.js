@@ -1,16 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const MoreMenuContainer = styled.ul`
   position: fixed;
   background-color: #282828;
   top: ${({ y }) => y}px;
   left: ${({ x }) => x}px;
-  z-index: 1000000000;
+  z-index: 1000000;
   border: 1px solid rgba(0, 0, 0, 0.15);
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
   border-radius: 0.25rem;
+
+  ${({ align }) => css`
+    transform: translate(${align});
+  `}
 `;
 
 export const MoreMenuItem = styled.li`
@@ -19,6 +23,8 @@ export const MoreMenuItem = styled.li`
   line-height: 32px;
   white-space: nowrap;
   color: #b3b3b3;
+  cursor: default;
+  user-select: none;
 
   :hover {
     color: #fff;
@@ -34,5 +40,5 @@ export const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 100000000;
+  z-index: 10000;
 `;

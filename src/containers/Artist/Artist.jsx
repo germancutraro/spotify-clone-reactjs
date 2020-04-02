@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, useParams } from 'react-router-dom';
 import { LibraryLink } from '../../components/LibraryMenu/libraryMenuStyles';
 import TrackItem from '../../components/TrackItem/TrackItem';
@@ -36,8 +36,12 @@ import {
   SectionTitle,
   LibraryItemsContainer
 } from '../../components/LibraryItem/playlistItemStyles';
+import MoreMenu from '../../components/MoreMenu/MoreMenu';
 
 const Artist = () => {
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
+
   const dispatch = useDispatch();
   const { artist, tracks, following, loading } = useSelector(
     ({ artist }) => artist
@@ -69,6 +73,11 @@ const Artist = () => {
     dispatch(isUserFollowingStart({ id }));
   };
 
+  const handleOnClickMore = e => {
+    setIsMoreMenuOpen(true);
+    setMoreMenuPosition([e.pageX, e.pageY]);
+  };
+
   if (loading) return <Loader isLoading={loading} />;
 
   const randomColors = [
@@ -85,95 +94,124 @@ const Artist = () => {
   ];
 
   return (
-    <ArtistContainer style={{ color: '#fff' }}>
-      <ArtistBackground
-        color={randomColors[artist?.followers?.total?.toString()[0]]}
+    <>
+      <MoreMenu
+        open={isMoreMenuOpen}
+        close={() => setIsMoreMenuOpen(false)}
+        moreMenuPosition={moreMenuPosition}
+        items={[
+          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
+          {
+            title: 'Guardar en canciones que te gustan',
+            onClick: () => alert('Guardar en canciones que te gustan')
+          },
+          {
+            title: 'Añadir a la cola',
+            onClick: () => alert('Añadir a la cola')
+          },
+          {
+            title: 'Añadir a playlist',
+            onClick: () => alert('Añadir a playlist')
+          },
+          {
+            title: 'Copiar enlace de la canción',
+            onClick: () => alert('Copiar enlace de la canción')
+          }
+        ]}
       />
-      <ArtistSubContainer>
-        <ArtistHeader>
-          <ArtistName>{artist.name}</ArtistName>
-          <ArtistButtonsContainer>
-            <ArtistPlayButton onClick={() => alert('play')}>
-              Play
-            </ArtistPlayButton>
-            <ArtistFollowContainer onClick={handleFollow}>
-              <ArtitstFollowText color={following ? '#1db954' : '#fff'}>
-                {following ? 'UnFollow' : 'Follow'}
-              </ArtitstFollowText>
-            </ArtistFollowContainer>
-            <ArtistMoreIconContainer onClick={() => alert('more')}>
-              <MoreIcon fill='#fff' width={24} />
-            </ArtistMoreIconContainer>
-          </ArtistButtonsContainer>
-          <ul>
-            <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
-            <LibraryLink to={`/app/artist/${id}/related`}>
-              RELATED ARTISTS
-            </LibraryLink>
-            <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
-          </ul>
-        </ArtistHeader>
+      <ArtistContainer style={{ color: '#fff' }}>
+        <ArtistBackground
+          color={randomColors[artist?.followers?.total?.toString()[0]]}
+        />
+        <ArtistSubContainer>
+          <ArtistHeader>
+            <ArtistName>{artist.name}</ArtistName>
+            <ArtistButtonsContainer>
+              <ArtistPlayButton onClick={() => alert('play')}>
+                Play
+              </ArtistPlayButton>
+              <ArtistFollowContainer onClick={handleFollow}>
+                <ArtitstFollowText color={following ? '#1db954' : '#fff'}>
+                  {following ? 'UnFollow' : 'Follow'}
+                </ArtitstFollowText>
+              </ArtistFollowContainer>
+              <ArtistMoreIconContainer
+                onClick={handleOnClickMore}
+                active={isMoreMenuOpen}
+              >
+                <MoreIcon fill='#fff' width={24} />
+              </ArtistMoreIconContainer>
+            </ArtistButtonsContainer>
+            <ul>
+              <LibraryLink to={`/app/artist/${id}`}>OVERVIEW</LibraryLink>
+              <LibraryLink to={`/app/artist/${id}/related`}>
+                RELATED ARTISTS
+              </LibraryLink>
+              <LibraryLink to={`/app/artist/${id}/about`}>ABOUT</LibraryLink>
+            </ul>
+          </ArtistHeader>
 
-        <Switch>
-          <ArtistRoutes />
-        </Switch>
+          <Switch>
+            <ArtistRoutes />
+          </Switch>
 
-        {tracks.length ? (
-          <ArtistSection>
-            <SectionTitleContainer hasPadding={false}>
-              <SectionTitle>Popular</SectionTitle>
-            </SectionTitleContainer>
-            {tracks.map((track, i) => (
-              <TrackItem
-                key={i}
-                added_at={track?.added_at}
-                hasSubtext={false}
-                hasImage={true}
-                align='center'
-                hasPadding={false}
-                song={{
-                  ...track,
-                  cover: artist.images && artist.images[0].url
-                }}
-              />
-            ))}
-          </ArtistSection>
-        ) : null}
+          {tracks.length ? (
+            <ArtistSection>
+              <SectionTitleContainer hasPadding={false}>
+                <SectionTitle>Popular</SectionTitle>
+              </SectionTitleContainer>
+              {tracks.map((track, i) => (
+                <TrackItem
+                  key={i}
+                  added_at={track?.added_at}
+                  hasSubtext={false}
+                  hasImage={true}
+                  align='center'
+                  hasPadding={false}
+                  song={{
+                    ...track,
+                    cover: artist.images && artist.images[0].url
+                  }}
+                />
+              ))}
+            </ArtistSection>
+          ) : null}
 
-        {albums.length ? (
-          <ArtistSection>
-            <SectionTitleContainer hasPadding={false}>
-              <SectionTitle>Albums</SectionTitle>
-            </SectionTitleContainer>
-            <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
-              <ArtistContentItem albums={albums} />
-            </LibraryItemsContainer>
-          </ArtistSection>
-        ) : null}
+          {albums.length ? (
+            <ArtistSection>
+              <SectionTitleContainer hasPadding={false}>
+                <SectionTitle>Albums</SectionTitle>
+              </SectionTitleContainer>
+              <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
+                <ArtistContentItem albums={albums} />
+              </LibraryItemsContainer>
+            </ArtistSection>
+          ) : null}
 
-        {singles.length ? (
-          <ArtistSection>
-            <SectionTitleContainer hasPadding={false}>
-              <SectionTitle>Singles</SectionTitle>
-            </SectionTitleContainer>
-            <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
-              <ArtistContentItem albums={singles} />
-            </LibraryItemsContainer>
-          </ArtistSection>
-        ) : null}
+          {singles.length ? (
+            <ArtistSection>
+              <SectionTitleContainer hasPadding={false}>
+                <SectionTitle>Singles</SectionTitle>
+              </SectionTitleContainer>
+              <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
+                <ArtistContentItem albums={singles} />
+              </LibraryItemsContainer>
+            </ArtistSection>
+          ) : null}
 
-        {appears.length ? (
-          <ArtistSection>
-            <SectionTitleContainer hasPadding={false}>
-              <SectionTitle>Appears on</SectionTitle>
-            </SectionTitleContainer>
-            <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
-              <ArtistContentItem albums={appears} />
-            </LibraryItemsContainer>
-          </ArtistSection>
-        ) : null}
-      </ArtistSubContainer>
-    </ArtistContainer>
+          {appears.length ? (
+            <ArtistSection>
+              <SectionTitleContainer hasPadding={false}>
+                <SectionTitle>Appears on</SectionTitle>
+              </SectionTitleContainer>
+              <LibraryItemsContainer hasPadding={false} itemMinWidth={220}>
+                <ArtistContentItem albums={appears} />
+              </LibraryItemsContainer>
+            </ArtistSection>
+          ) : null}
+        </ArtistSubContainer>
+      </ArtistContainer>
+    </>
   );
 };
 

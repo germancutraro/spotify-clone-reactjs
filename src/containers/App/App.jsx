@@ -32,6 +32,10 @@ export default () => (
           opacity = opacity > 1 ? 1 : opacity;
 
           document.documentElement.style.setProperty('--opacity', opacity);
+          document.documentElement.style.setProperty(
+            '--scroll-top',
+            e.target.scrollTop
+          );
         }}
       >
         <Navbar />

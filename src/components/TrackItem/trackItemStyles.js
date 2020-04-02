@@ -122,6 +122,13 @@ export const OptionButtonContainer = styled.div`
   align-items: center;
   cursor: pointer;
   align-self: center;
+
+  position: relative;
+  ${({ active }) =>
+    active &&
+    css`
+      z-index: 100000;
+    `}
 `;
 
 // duration

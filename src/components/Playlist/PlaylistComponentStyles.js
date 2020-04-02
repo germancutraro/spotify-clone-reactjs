@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const PlaylistLeftWrapper = styled.div`
   display: flex;
@@ -102,6 +102,13 @@ export const PlaylistIconsWrapper = styled.div`
 
 export const IconContainer = styled.div`
   padding: 1rem;
+  cursor: pointer;
+  position: relative;
+  ${({ active }) =>
+    active &&
+    css`
+      z-index: 100000;
+    `}
 `;
 
 // PLAYLIST DESCRIPTION

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import TrackItem from '../../components/TrackItem/TrackItem';
 // redux
@@ -32,8 +32,12 @@ import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.sv
 import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
 import { PlaylistContainer } from '../Playlists/playlistsStyles';
+import MoreMenu from '../../components/MoreMenu/MoreMenu';
 
 const Album = () => {
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
+
   const dispatch = useDispatch();
   const { album, loading } = useSelector(({ album }) => album);
   const isPlaying = useSelector(({ track }) => track.isPlaying);
@@ -59,69 +63,106 @@ const Album = () => {
     }
   };
 
+  const handleOnClickMore = e => {
+    setIsMoreMenuOpen(true);
+    setMoreMenuPosition([e.pageX, e.pageY]);
+  };
+
   if (loading) return <Loader isLoading={loading} />;
 
   return (
-    <PlaylistContainer>
-      <PlaylistLeftWrapper>
-        <PlaylistHeader>
-          <PlaylistHeaderSubcontainer>
-            <PlaylistImageContainer>
-              {album?.images &&
-                (album?.images[0]?.url ? (
-                  <PlaylistImage src={album?.images[0].url} alt='' />
-                ) : (
-                  <DefaultSong width={100} height={100} />
-                ))}
-            </PlaylistImageContainer>
-            <PlaylistTitle>{album?.name}</PlaylistTitle>
-            {album?.artists?.map((artist, i) => (
-              <PlaylistOwner
-                key={i}
-                onClick={() => history.push(`/app/artist/${artist?.id}`)}
-              >
-                {artist?.name}
-              </PlaylistOwner>
-            ))}
-          </PlaylistHeaderSubcontainer>
+    <>
+      <MoreMenu
+        open={isMoreMenuOpen}
+        close={() => setIsMoreMenuOpen(false)}
+        moreMenuPosition={moreMenuPosition}
+        items={[
+          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
+          {
+            title: 'Guardar en canciones que te gustan',
+            onClick: () => alert('Guardar en canciones que te gustan')
+          },
+          {
+            title: 'Añadir a la cola',
+            onClick: () => alert('Añadir a la cola')
+          },
+          {
+            title: 'Añadir a playlist',
+            onClick: () => alert('Añadir a playlist')
+          },
+          {
+            title: 'Copiar enlace de la canción',
+            onClick: () => alert('Copiar enlace de la canción')
+          }
+        ]}
+      />
+      <PlaylistContainer>
+        <PlaylistLeftWrapper>
+          <PlaylistHeader>
+            <PlaylistHeaderSubcontainer>
+              <PlaylistImageContainer>
+                {album?.images &&
+                  (album?.images[0]?.url ? (
+                    <PlaylistImage src={album?.images[0].url} alt='' />
+                  ) : (
+                    <DefaultSong width={100} height={100} />
+                  ))}
+              </PlaylistImageContainer>
+              <PlaylistTitle>{album?.name}</PlaylistTitle>
+              {album?.artists?.map((artist, i) => (
+                <PlaylistOwner
+                  key={i}
+                  onClick={() => history.push(`/app/artist/${artist?.id}`)}
+                >
+                  {artist?.name}
+                </PlaylistOwner>
+              ))}
+            </PlaylistHeaderSubcontainer>
 
-          <PlaylistButtonsContainer>
-            <PlaylistPlay onClick={startAlbum}>
-              {isPlaying ? 'PAUSE' : 'PLAY'}
-            </PlaylistPlay>
-            <PlaylistIconsWrapper>
-              <IconContainer>
-                <HeartIcon
-                  fill={false ? '#1db954' : '#fff'}
-                  width={20}
-                  height={20}
-                  onClick={() => null}
-                />
-              </IconContainer>
-              <IconContainer>
-                <MoreIcon fill='#fff' width={20} />
-              </IconContainer>
-            </PlaylistIconsWrapper>
-          </PlaylistButtonsContainer>
-          <PlaylistDescriptionContainer>
-            <PlaylistTotalSongs>
-              {album?.tracks?.total ? album?.tracks?.total : 0}{' '}
-              {album?.tracks?.total > 1 ? 'songs' : 'song'}
-            </PlaylistTotalSongs>
-          </PlaylistDescriptionContainer>
-        </PlaylistHeader>
-      </PlaylistLeftWrapper>
-      <PlaylistRightWrapper>
-        {album?.tracks?.items?.map((track, i) => (
-          <TrackItem key={i} song={{ ...track, cover: album.images[0].url }} />
-        ))}
-        <PlaylistCopyrightContainer>
-          {album?.copyrights?.map(({ text }, i) => (
-            <PlaylistCopyrightText key={i}>{text}</PlaylistCopyrightText>
+            <PlaylistButtonsContainer>
+              <PlaylistPlay onClick={startAlbum}>
+                {isPlaying ? 'PAUSE' : 'PLAY'}
+              </PlaylistPlay>
+              <PlaylistIconsWrapper>
+                <IconContainer>
+                  <HeartIcon
+                    fill={false ? '#1db954' : '#fff'}
+                    width={20}
+                    height={20}
+                    onClick={() => null}
+                  />
+                </IconContainer>
+                <IconContainer
+                  onClick={handleOnClickMore}
+                  active={isMoreMenuOpen}
+                >
+                  <MoreIcon fill='#fff' width={20} />
+                </IconContainer>
+              </PlaylistIconsWrapper>
+            </PlaylistButtonsContainer>
+            <PlaylistDescriptionContainer>
+              <PlaylistTotalSongs>
+                {album?.tracks?.total ? album?.tracks?.total : 0}{' '}
+                {album?.tracks?.total > 1 ? 'songs' : 'song'}
+              </PlaylistTotalSongs>
+            </PlaylistDescriptionContainer>
+          </PlaylistHeader>
+        </PlaylistLeftWrapper>
+        <PlaylistRightWrapper>
+          {album?.tracks?.items?.map((track, i) => (
+            <TrackItem
+              key={i}
+              song={{ ...track, cover: album.images[0].url }}
+            />
           ))}
-        </PlaylistCopyrightContainer>
-      </PlaylistRightWrapper>
-    </PlaylistContainer>
+          <PlaylistCopyrightContainer>
+            {album?.copyrights?.map(({ text }, i) => (
+              <PlaylistCopyrightText key={i}>{text}</PlaylistCopyrightText>
+            ))}
+          </PlaylistCopyrightContainer>
+        </PlaylistRightWrapper>
+      </PlaylistContainer>
+    </>
   );
 };
 
