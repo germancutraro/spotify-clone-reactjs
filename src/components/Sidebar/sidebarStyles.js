@@ -28,18 +28,20 @@ export const NavItemsContainer = styled.div`
   padding-right: 8px;
 `;
 
-export const ItemText = styled.p`
+const ItemTextStyles = css`
   color: #b3b3b3;
-
   ${EllipsisOneLine};
-
   font-size: 14px;
   font-weight: ${({ light }) => (light ? '400' : '700')};
   letter-spacing: ${({ light }) => (light ? '.015em' : 'normal')};
 
-  margin-left: ${({ hasIcon = true }) => (hasIcon ? '16px' : 0)};
+  margin-left: ${({ hasicon = true }) => (hasicon ? '16px' : 0)};
   -webkit-font-smoothing: antialiased;
   transition: 0.3s all ease;
+`;
+
+export const ItemText = styled.p`
+  ${ItemTextStyles}
 `;
 
 export const Item = styled.div`
@@ -203,9 +205,15 @@ export const ScrollContainer = styled.div`
   }
 `;
 
-export const PlaylistItemText = styled(ItemText)`
+export const PlaylistItemText = styled(NavLink)`
+  ${ItemTextStyles};
   padding: 8px 0;
   transition: all 0.3s ease;
+
+  &.active,
+  :hover {
+    color: #fff;
+  }
 `;
 
 export const InstallItem = styled(Item)`

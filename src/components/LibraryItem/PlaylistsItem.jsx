@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Item, PlaylistItemText } from '../Sidebar/sidebarStyles';
-import { useHistory } from 'react-router-dom';
 import MoreMenu from '../MoreMenu/MoreMenu';
 
 const PlaylistsItem = ({ id, name }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
-
-  const history = useHistory();
 
   const handleOnClickMore = e => {
     e.preventDefault();
@@ -44,9 +41,9 @@ const PlaylistsItem = ({ id, name }) => {
       />
       <Item hasIcon={false}>
         <PlaylistItemText
-          hasIcon={false}
-          onClick={() => history.push(`/app/playlist/${id}`)}
-          light
+          hasicon={0}
+          to={`/app/playlist/${id}`}
+          light={1}
           onContextMenu={handleOnClickMore}
         >
           {name}
