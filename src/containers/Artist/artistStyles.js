@@ -3,7 +3,7 @@ import { EllipsisTwoLines } from '../../components/Text/textStyles';
 import { PlaylistPlay } from '../../components/Playlist/PlaylistComponentStyles';
 import {
   UpgradeButton,
-  UpgradeText
+  UpgradeText,
 } from '../../components/Navbar/navbarStyles';
 
 export const ArtistContainer = styled.div``;
@@ -21,6 +21,10 @@ export const ArtistSubContainer = styled.div`
   position: relative;
   z-index: 100;
   padding: 2rem;
+`;
+
+export const ArtistRouteContainer = styled.div`
+  padding-top: 2rem;
 `;
 
 export const ArtistHeader = styled.header``;
