@@ -88,7 +88,13 @@ export const PlaylistPlay = styled.button`
   cursor: pointer;
   transition: all 33ms cubic-bezier(0.3, 0, 0, 1);
 
-  :hover {
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          pointer-events: none;
+          opacity: 0.35;
+        `
+      : null} :hover {
     transform: scale(1.06);
     background-color: #1ed760;
   }
@@ -145,4 +151,33 @@ export const PlaylistCopyrightText = styled.span`
   letter-spacing: 0.015rem;
   color: #fff;
   opacity: 0.6;
+`;
+
+// EMPTY PLAYLIST
+export const EmptyPlaylistContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const EmptyPlaylistTitle = styled.h1`
+  text-align: center;
+  font-size: 48px;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.005rem;
+  font-weight: 900;
+  color: #fff;
+  text-transform: none;
+  text-align: center;
+  margin-bottom: 36px;
+`;
+
+export const EmptyPlaylistSubtitle = styled.p`
+  text-align: center;
+  color: #b3b3b3;
+`;
+
+export const EmptyPlaylistIconContainer = styled.div`
+  margin: 40px 0;
 `;

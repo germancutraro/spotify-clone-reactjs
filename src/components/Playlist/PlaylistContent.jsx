@@ -15,7 +15,7 @@ import {
   PlaylistButtonsContainer,
   PlaylistDescriptionContainer,
   IconContainer,
-  PlaylistDescription
+  PlaylistDescription,
 } from './PlaylistComponentStyles';
 import TrackItem from '../../components/TrackItem/TrackItem';
 
@@ -23,6 +23,7 @@ import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 import MoreMenu from '../MoreMenu/MoreMenu';
+import EmptyPlaylist from './EmptyPlaylist';
 
 const PlaylistContent = ({
   playlist,
@@ -30,7 +31,7 @@ const PlaylistContent = ({
   following,
   handleFollow,
   startPlaylist,
-  isPlaying
+  isPlaying,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -44,14 +45,14 @@ const PlaylistContent = ({
           images: [
             {
               url:
-                'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
-            }
-          ]
-        }
+                'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png',
+            },
+          ],
+        },
       }
     : { ...playlist };
 
-  const handleOnClickMore = e => {
+  const handleOnClickMore = (e) => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
@@ -66,20 +67,20 @@ const PlaylistContent = ({
           { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
           {
             title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan')
+            onClick: () => alert('Guardar en canciones que te gustan'),
           },
           {
             title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola')
+            onClick: () => alert('Añadir a la cola'),
           },
           {
             title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist')
+            onClick: () => alert('Añadir a playlist'),
           },
           {
             title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción')
-          }
+            onClick: () => alert('Copiar enlace de la canción'),
+          },
         ]}
       />
       <PlaylistLeftWrapper>
@@ -105,7 +106,7 @@ const PlaylistContent = ({
                   history.push(
                     `/app/user/${playlistData?.owner.display_name}`,
                     {
-                      id: playlistData?.owner.id
+                      id: playlistData?.owner.id,
                     }
                   )
                 }
@@ -116,7 +117,10 @@ const PlaylistContent = ({
           </PlaylistHeaderSubcontainer>
 
           <PlaylistButtonsContainer>
-            <PlaylistPlay onClick={startPlaylist}>
+            <PlaylistPlay
+              onClick={startPlaylist}
+              disabled={!playlistData?.tracks?.total}
+            >
               {isPlaying ? 'PAUSE' : 'PLAY'}
             </PlaylistPlay>
             {!isLikedSongs ? (
@@ -152,18 +156,22 @@ const PlaylistContent = ({
         </PlaylistHeader>
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
-        {playlistData?.tracks?.items?.map((track, i) => (
-          <TrackItem
-            key={i}
-            added_at={track?.added_at}
-            song={{
-              ...track?.track,
-              cover: playlistData.images
-                ? playlistData.images[0].url
-                : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
-            }}
-          />
-        ))}
+        {playlistData?.tracks?.items?.length ? (
+          playlistData?.tracks?.items?.map((track, i) => (
+            <TrackItem
+              key={i}
+              added_at={track?.added_at}
+              song={{
+                ...track?.track,
+                cover: playlistData.images
+                  ? playlistData.images[0].url
+                  : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png',
+              }}
+            />
+          ))
+        ) : (
+          <EmptyPlaylist />
+        )}
       </PlaylistRightWrapper>
     </>
   );

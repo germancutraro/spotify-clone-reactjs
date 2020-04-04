@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import GlobalStyle from '../../globalStyles';
 import { GridContainer, SectionContainer } from './appStyles';
 // components
@@ -21,13 +21,17 @@ import Artist from '../Artist/Artist';
 import Album from '../Album/Album';
 import Track from '../Track/Track';
 
+function AppRoute({ component: Component, ...rest }) {
+  return <Route {...rest} render={(props) => <Component {...props} />} />;
+}
+
 export default () => (
-  <>
+  <BrowserRouter>
     <GlobalStyle />
     <GridContainer>
       <Sidebar />
       <SectionContainer
-        onScroll={e => {
+        onScroll={(e) => {
           let opacity = (300 - (300 - e.target.scrollTop)) / 300;
           opacity = opacity > 1 ? 1 : opacity;
 
@@ -44,8 +48,10 @@ export default () => (
           <Route path='/app' component={Dashboard} exact />
           <Route path='/app/user/:name' component={User} exact />
           <Route path='/app/search' component={Search} exact />
-          <Route path='/app/artist/:id' component={Artist} exact />
+          <AppRoute path='/app/artist/:id' component={Artist} />
+
           <Route path='/app/album/:id' component={Album} exact />
+
           <Route
             path='/app/search/:name/albums'
             component={ArtistAlbums}
@@ -77,9 +83,14 @@ export default () => (
             exact
           />
           <Route path='/app/download' component={Download} exact />
+          <Route
+            path='*'
+            component={() => <h1 style={{ color: 'red' }}>not found</h1>}
+            exact
+          />
         </Switch>
       </SectionContainer>
       <Track />
     </GridContainer>
-  </>
+  </BrowserRouter>
 );

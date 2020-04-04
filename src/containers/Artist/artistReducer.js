@@ -7,7 +7,7 @@ const initialState = {
   related: [],
   following: false,
   loading: true,
-  error: null
+  error: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -25,7 +25,7 @@ export default (state = initialState, { type, payload }) => {
     case constants.GET_ARTIST_ALBUMS_SUCCESS:
       return { ...state, loading: false, albums: payload.albums };
     case constants.GET_ARTIST_RELATED_SUCCESS:
-      return { ...state, loading: false, related: payload.artists };
+      return { ...state, loading: false, related: payload.related };
     case constants.IS_USER_FOLLOWING_SUCCESS:
       return { ...state, loading: false, following: payload.following };
 

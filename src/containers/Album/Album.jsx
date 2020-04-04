@@ -23,7 +23,7 @@ import {
   PlaylistDescriptionContainer,
   IconContainer,
   PlaylistCopyrightContainer,
-  PlaylistCopyrightText
+  PlaylistCopyrightText,
 } from '../../components/Playlist/PlaylistComponentStyles';
 
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
@@ -47,23 +47,46 @@ const Album = () => {
 
   useTitle(`Spotify - ${album.name}`);
 
+  const randomColors = [
+    '#1db954',
+    '#ffffff',
+    '#9A952B',
+    '#509BF5',
+    '#BA2323',
+    '#de681d',
+    '#de1d79',
+    '#2ad6bc',
+    '#312883',
+    '#BAF2F3',
+  ];
+
   React.useEffect(() => {
     dispatch(getAlbumStart({ id }));
   }, [dispatch, id]);
 
+  React.useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--color',
+      randomColors[album?.popularity?.toString()[0]]
+    );
+
+    return () =>
+      document.documentElement.style.setProperty('--color', '#121212');
+  }, [album, randomColors]);
+
   const startAlbum = () => {
     if (isPlaying) dispatch(pauseSong());
     else {
-      dispatch(setList({ list: album.tracks.items.filter(track => track) }));
+      dispatch(setList({ list: album.tracks.items.filter((track) => track) }));
       dispatch(
         startSong({
-          song: { ...album.tracks.items[0], cover: album.images[0].url }
+          song: { ...album.tracks.items[0], cover: album.images[0].url },
         })
       );
     }
   };
 
-  const handleOnClickMore = e => {
+  const handleOnClickMore = (e) => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
@@ -80,20 +103,20 @@ const Album = () => {
           { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
           {
             title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan')
+            onClick: () => alert('Guardar en canciones que te gustan'),
           },
           {
             title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola')
+            onClick: () => alert('Añadir a la cola'),
           },
           {
             title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist')
+            onClick: () => alert('Añadir a playlist'),
           },
           {
             title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción')
-          }
+            onClick: () => alert('Copiar enlace de la canción'),
+          },
         ]}
       />
       <PlaylistContainer>
@@ -142,8 +165,8 @@ const Album = () => {
             </PlaylistButtonsContainer>
             <PlaylistDescriptionContainer>
               <PlaylistTotalSongs>
-                {album?.tracks?.total ? album?.tracks?.total : 0}{' '}
-                {album?.tracks?.total > 1 ? 'songs' : 'song'}
+                {album?.total_tracks ? album?.total_tracks : 0}{' '}
+                {album?.total_tracks > 1 ? 'songs' : 'song'}
               </PlaylistTotalSongs>
             </PlaylistDescriptionContainer>
           </PlaylistHeader>

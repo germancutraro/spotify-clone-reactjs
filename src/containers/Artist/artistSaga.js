@@ -49,8 +49,9 @@ function* getArtistAlbumsSaga() {
 // Get Artist Related
 function* getArtistRelated({ payload: { id } }) {
   try {
-    const artists = yield services.getArtistsRelated(id);
-    if (artists) yield put(actions.getArtistRelatedSuccess({ artists }));
+    const { artists } = yield services.getArtistsRelated(id);
+    if (artists)
+      yield put(actions.getArtistRelatedSuccess({ related: artists }));
   } catch (err) {
     yield put(actions.getArtistRelatedFailure({ error: err.message }));
   }
@@ -98,6 +99,6 @@ export default function* artistSaga() {
     fork(getArtistAlbumsSaga),
     fork(getArtistRelatedSaga),
     fork(checkFollowSaga),
-    fork(followUnfollowSaga)
+    fork(followUnfollowSaga),
   ]);
 }

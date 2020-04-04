@@ -6,7 +6,7 @@ import {
   getPlaylistStart,
   getUserTracksStart,
   checkUserFollowPlaylistStart,
-  followPlaylistStart
+  followPlaylistStart,
 } from './playlistsActions';
 import { PlaylistContainer } from './playlistsStyles';
 import { setList, startSong, pauseSong } from '../Track/trackActions';
@@ -31,7 +31,7 @@ const Playlist = () => {
     { pathname } = useLocation();
 
   const { showSnackbar } = useNotifier({
-    message: 'Oooops something went wrong.'
+    message: 'Oooops something went wrong.',
   });
 
   useTitle(`Spotify - ${playlist.name}`);
@@ -46,8 +46,13 @@ const Playlist = () => {
   useEffect(() => {
     document.documentElement.style.setProperty(
       '--color',
-      pathname.includes('/tracks') ? '#5f54a0' : playlist.primary_color
+      pathname.includes('/tracks')
+        ? '#5f54a0'
+        : playlist?.tracks?.items?.length
+        ? playlist.primary_color
+        : '#a0c3d2'
     );
+
     return () =>
       document.documentElement.style.setProperty('--color', '#121212');
   }, [pathname, playlist]);
@@ -61,7 +66,7 @@ const Playlist = () => {
     dispatch(
       followPlaylistStart({
         playlistId: playlist.id,
-        action: following ? 'unfollow' : 'follow'
+        action: following ? 'unfollow' : 'follow',
       })
     );
     setTimeout(
@@ -85,8 +90,8 @@ const Playlist = () => {
             ...playlist.tracks.items[0].track,
             cover: playlist.images
               ? playlist.images[0].url
-              : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'
-          }
+              : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png',
+          },
         })
       );
     }
