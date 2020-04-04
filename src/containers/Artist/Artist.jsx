@@ -75,7 +75,7 @@ const Artist = () => {
     dispatch(isUserFollowingStart({ id }));
   };
 
-  const handleOnClickMore = (e) => {
+  const handleOnClickMore = e => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };

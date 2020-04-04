@@ -9,7 +9,7 @@ export const LibraryMenuContainer = styled.nav`
 
 export const LibraryLink = styled(NavLink)`
   margin-right: 0.5rem;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   font-weight: 600;
   color: #fff;

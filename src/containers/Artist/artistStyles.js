@@ -72,3 +72,18 @@ export const ArtistMoreIconContainer = styled.div`
 export const ArtistSection = styled.section`
   margin: 2rem 0 0.5rem;
 `;
+
+// about
+
+export const AboutTitle = styled.h2`
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 1rem;
+`;
+
+export const AboutText = styled.p`
+  color: #b3b3b3;
+  margin-bottom: 1rem;
+`;

@@ -15,6 +15,7 @@ const ArtistRelated = () => {
       <LibraryItemsContainer hasPadding={false}>
         {related.map(({ id, name, images }) => (
           <LibraryItem
+            key={id}
             id={id}
             cover={images[0].url}
             title={name}
