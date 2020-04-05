@@ -125,7 +125,6 @@ const Album = () => {
 
           {
             title: 'Copy album link',
-            onClick: () => alert('Copy album link'),
           },
         ]}
       />

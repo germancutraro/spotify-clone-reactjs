@@ -1,7 +1,10 @@
 import React from 'react';
 import { MoreMenuContainer, Overlay, MoreMenuItem } from './moreMenuStyles';
+import useCopyToClipboard from '../../hooks/useCopyToClipboard';
 
 const MoreMenu = ({ open, moreMenuPosition = [0, 0], close, items }) => {
+  const { copyToClipboard } = useCopyToClipboard();
+
   const getAlign = () => {
     const xAlign =
       moreMenuPosition[0] + 200 > document.body.offsetWidth ? '-100%' : 0;
@@ -11,6 +14,12 @@ const MoreMenu = ({ open, moreMenuPosition = [0, 0], close, items }) => {
         : 0;
 
     return `${xAlign}, ${yAlign}`;
+  };
+
+  const handleClick = item => {
+    if (item.title.includes('Copy')) copyToClipboard();
+    else item.onClick();
+    close();
   };
 
   return (
@@ -25,7 +34,7 @@ const MoreMenu = ({ open, moreMenuPosition = [0, 0], close, items }) => {
           {items
             .filter(el => el)
             .map((item, i) => (
-              <MoreMenuItem key={i} onClick={item.onClick}>
+              <MoreMenuItem key={i} onClick={() => handleClick(item)}>
                 {item.title}
               </MoreMenuItem>
             ))}

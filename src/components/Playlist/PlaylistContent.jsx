@@ -85,11 +85,10 @@ const PlaylistContent = ({
               },
           isMyPlaylist && {
             title: 'Make secret',
-            onClick: () => alert('Delete playlist'),
+            onClick: () => alert('Make secret'),
           },
           {
             title: 'Copy playlist link',
-            onClick: () => alert('Copy playlist link'),
           },
         ]}
       />

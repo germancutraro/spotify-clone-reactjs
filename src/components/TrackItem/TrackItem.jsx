@@ -76,12 +76,7 @@ const TrackItem = ({
             onClick: () => alert('Save to songs you like'),
           },
           {
-            title: 'Play',
-            onClick: () => alert('Play'),
-          },
-          {
             title: 'Copy song link',
-            onClick: () => alert('Copy song link'),
           },
           isInPlaylist && {
             title: 'Remove from this playlist',

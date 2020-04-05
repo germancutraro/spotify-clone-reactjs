@@ -56,7 +56,6 @@ const Songs = ({ name, artists, cover, album, song }) => {
           },
           {
             title: 'Copy song link',
-            onClick: () => alert('Copy song link'),
           },
         ]}
       />
