@@ -67,12 +67,10 @@ const Artist = () => {
     dispatch(getArtistRelatedStart({ id }));
   }, [dispatch, id]);
 
-  const handleFollow = async () => {
-    // await is important here!
-    await dispatch(
+  const handleFollow = () => {
+    dispatch(
       followArtistStart({ id, action: following ? 'unfollow' : 'follow' })
     );
-    dispatch(isUserFollowingStart({ id }));
   };
 
   const handleOnClickMore = e => {
@@ -102,14 +100,8 @@ const Artist = () => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Play', onClick: () => alert('Play') },
-          {
-            title: 'Follow',
-            onClick: () => alert('Follow'),
-          },
           {
             title: 'Copy artist link',
-            onClick: () => alert('Añadir a playlist'),
           },
         ]}
       />

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Item, PlaylistItemText } from '../Sidebar/sidebarStyles';
 import MoreMenu from '../MoreMenu/MoreMenu';
+import { followPlaylistStart } from '../../containers/Playlists/playlistsActions';
 
 const PlaylistsItem = ({ id, name, userId, owner }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
+
+  const dispatch = useDispatch();
+
+  const following = useSelector(({ playlists }) => playlists.following);
 
   const handleOnClickMore = e => {
     e.preventDefault();
@@ -14,7 +20,15 @@ const PlaylistsItem = ({ id, name, userId, owner }) => {
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
 
-  const isMyPlaylist = owner?.id === userId;
+  const handleFollow = () => {
+    dispatch(
+      followPlaylistStart({
+        playlistId: id,
+        action: following ? 'unfollow' : 'follow',
+        userId,
+      })
+    );
+  };
 
   return (
     <>
@@ -23,22 +37,12 @@ const PlaylistsItem = ({ id, name, userId, owner }) => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          isMyPlaylist
-            ? {
-                title: 'Delete playlist',
-                onClick: () => alert('Delete playlist'),
-              }
-            : {
-                title: 'Remove from your library',
-                onClick: () => alert('Delete playlist'),
-              },
-          isMyPlaylist && {
-            title: 'Make secret',
-            onClick: () => alert('Delete playlist'),
+          {
+            title: 'Remove from your library',
+            onClick: () => handleFollow(),
           },
           {
             title: 'Copy playlist link',
-            onClick: () => alert('Copy playlist link'),
           },
         ]}
       />

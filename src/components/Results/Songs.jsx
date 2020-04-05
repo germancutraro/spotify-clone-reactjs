@@ -51,10 +51,6 @@ const Songs = ({ name, artists, cover, album, song }) => {
             onClick: () => alert('Save to songs you like'),
           },
           {
-            title: 'Play',
-            onClick: () => alert('Play'),
-          },
-          {
             title: 'Copy song link',
           },
         ]}

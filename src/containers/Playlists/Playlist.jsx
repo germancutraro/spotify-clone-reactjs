@@ -65,7 +65,7 @@ const Playlist = () => {
     return <Loader isLoading={loading} />;
   }
 
-  const handleFollow = async () => {
+  const handleFollow = () => {
     dispatch(
       followPlaylistStart({
         playlistId: playlist.id,

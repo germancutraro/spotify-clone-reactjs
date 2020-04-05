@@ -82,7 +82,7 @@ function* followUnfollow({ payload: { id, action = 'follow' } }) {
     yield services.followUnfollow(id, action);
 
     yield put(actions.followArtistSuccess());
-    // yield checkFollow({ id });
+    yield checkFollow({ payload: { id } });
   } catch (err) {
     yield put(actions.followArtistFailure({ error: err.message }));
   }

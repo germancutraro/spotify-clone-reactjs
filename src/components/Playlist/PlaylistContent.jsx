@@ -69,23 +69,9 @@ const PlaylistContent = ({
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          isMyPlaylist
-            ? {
-                title: 'Delete playlist',
-                onClick: () => alert('Delete playlist'),
-              }
-            : inLibrary
-            ? {
-                title: 'Remove from your library',
-                onClick: () => handleFollow(),
-              }
-            : {
-                title: 'Add to the library',
-                onClick: () => handleFollow(),
-              },
-          isMyPlaylist && {
-            title: 'Make secret',
-            onClick: () => alert('Make secret'),
+          {
+            title: `${inLibrary ? 'Remove' : 'Add'} from your library`,
+            onClick: () => handleFollow(),
           },
           {
             title: 'Copy playlist link',
