@@ -3,7 +3,7 @@ import * as constants from './trackConstants';
 const initialState = {
   list: [],
   song: {},
-  isPlaying: false
+  isPlaying: false,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -15,12 +15,12 @@ export default (state = initialState, { type, payload }) => {
     case constants.RESUME_SONG:
       return {
         ...state,
-        isPlaying: true
+        isPlaying: true,
       };
     case constants.PAUSE_SONG:
       return {
         ...state,
-        isPlaying: false
+        isPlaying: false,
       };
     default:
       return state;

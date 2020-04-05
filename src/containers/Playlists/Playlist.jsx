@@ -110,6 +110,7 @@ const Playlist = () => {
           handleFollow={handleFollow}
           startPlaylist={startPlaylist}
           isPlaying={isPlaying}
+          userId={userId}
         />
       ) : (
         <PlaylistContent
@@ -117,6 +118,7 @@ const Playlist = () => {
           startPlaylist={startPlaylist}
           isPlaying={isPlaying}
           isLikedSongs
+          userId={userId}
         />
       )}
     </PlaylistContainer>

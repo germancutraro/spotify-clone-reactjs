@@ -9,11 +9,13 @@ import {
   EmptySection,
 } from './PlaylistComponentStyles';
 import { ReactComponent as EmptyPlaylistIcon } from '../../assets/icons/empty-playlist.svg';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../Loader/Loader';
 import TrackItem from '../TrackItem/TrackItem';
+import { addTrackToPlaylistStart } from '../../containers/Playlists/playlistsActions';
 
-const EmptyPlaylist = () => {
+const EmptyPlaylist = ({ playlistId }) => {
+  const dispatch = useDispatch();
   const { randomTracks, loading } = useSelector(({ playlists }) => playlists);
 
   if (loading) return <Loader />;
@@ -38,7 +40,13 @@ const EmptyPlaylist = () => {
           song={track}
           hasDuration={false}
           hasOptions={false}
-          btn={{ title: 'ADD', onClick: () => alert('add') }}
+          btn={{
+            title: 'ADD',
+            onClick: () =>
+              dispatch(
+                addTrackToPlaylistStart({ playlistId, tracks: track.uri })
+              ),
+          }}
         />
       ))}
     </EmptyPlaylistContainer>

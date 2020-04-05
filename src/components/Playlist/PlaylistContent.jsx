@@ -32,6 +32,7 @@ const PlaylistContent = ({
   handleFollow,
   startPlaylist,
   isPlaying,
+  userId,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -125,14 +126,16 @@ const PlaylistContent = ({
             </PlaylistPlay>
             {!isLikedSongs ? (
               <PlaylistIconsWrapper>
-                <IconContainer>
-                  <HeartIcon
-                    fill={following ? '#1db954' : '#fff'}
-                    width={20}
-                    height={20}
-                    onClick={handleFollow}
-                  />
-                </IconContainer>
+                {playlistData?.owner?.id !== userId ? (
+                  <IconContainer>
+                    <HeartIcon
+                      fill={following ? '#1db954' : '#fff'}
+                      width={20}
+                      height={20}
+                      onClick={handleFollow}
+                    />
+                  </IconContainer>
+                ) : null}
                 <IconContainer
                   onClick={handleOnClickMore}
                   active={isMoreMenuOpen}
@@ -170,7 +173,7 @@ const PlaylistContent = ({
             />
           ))
         ) : (
-          <EmptyPlaylist />
+          <EmptyPlaylist playlistId={playlistData.id} />
         )}
       </PlaylistRightWrapper>
     </>

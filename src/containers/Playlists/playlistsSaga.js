@@ -83,7 +83,10 @@ function* createPlaylistSaga() {
 function* addTrackToPlaylist({ payload: { playlistId, tracks } }) {
   try {
     const playlist = yield services.addTrackToPlaylist(playlistId, tracks);
-    if (playlist) yield put(actions.addTrackToPlaylistSuccess({ playlist }));
+    if (playlist) {
+      yield put(actions.addTrackToPlaylistSuccess({ playlist }));
+      yield getPlaylist({ payload: { id: playlistId } });
+    }
   } catch (err) {
     yield put(actions.addTrackToPlaylistFailure({ error: err.message }));
   }

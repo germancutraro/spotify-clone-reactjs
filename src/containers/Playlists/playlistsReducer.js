@@ -47,7 +47,11 @@ export default (state = initialState, { type, payload }) => {
         following: payload.following,
       };
 
-    // case constants.ADD_TRACK_TO_PLAYLIST_SUCCESS:
+    case constants.ADD_TRACK_TO_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
 
     case constants.GET_USER_PLAYLISTS_FAILURE:
     case constants.GET_PLAYLIST_FAILURE:
