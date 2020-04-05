@@ -13,7 +13,10 @@ export const getPlaylistTracks = id =>
 
 export const getUserTracks = () => api(`https://api.spotify.com/v1/me/tracks`);
 
-export const getRandomTracks = () => api(`https://api.spotify.com/v1/tracks`);
+export const getRandomTracks = () =>
+  api(
+    `https://api.spotify.com/v1/tracks?ids=3n3Ppam7vgaVa1iaRUc9Lp%2C3twNvmDtFQtAd5gMKedhLD,7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B`
+  );
 
 export const createPlaylist = (userId, name = 'New Playlist') =>
   api(
@@ -22,7 +25,7 @@ export const createPlaylist = (userId, name = 'New Playlist') =>
     {},
     {
       name,
-      public: true
+      public: true,
     }
   );
 

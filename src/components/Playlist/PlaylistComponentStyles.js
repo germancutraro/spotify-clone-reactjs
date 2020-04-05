@@ -156,8 +156,14 @@ export const PlaylistCopyrightText = styled.span`
 // EMPTY PLAYLIST
 export const EmptyPlaylistContainer = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+export const EmptySection = styled.div`
+  display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 64px;
 `;
 
 export const EmptyPlaylistTitle = styled.h1`
@@ -180,4 +186,17 @@ export const EmptyPlaylistSubtitle = styled.p`
 
 export const EmptyPlaylistIconContainer = styled.div`
   margin: 40px 0;
+`;
+
+export const RandomTracksContainer = styled.div`
+  padding-top: 30px;
+`;
+
+export const RandomTracksTitle = styled.p`
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 900;
+  color: #fff;
+  margin-left: 1rem;
+  margin-bottom: 20px;
 `;

@@ -17,7 +17,8 @@ import {
   AlbumContainer,
   OptionButtonContainer,
   ImageContainer,
-  Image
+  Image,
+  ButtonContainer,
 } from './trackItemStyles';
 
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
@@ -28,13 +29,17 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSong, pauseSong } from '../../containers/Track/trackActions';
 import MoreMenu from '../MoreMenu/MoreMenu';
+import { UpgradeButton, UpgradeText } from '../Navbar/navbarStyles';
 
 const TrackItem = ({
   song,
   hasImage,
   hasSubtext = true,
+  hasDuration = true,
+  hasOptions = true,
+  btn,
   align,
-  hasPadding
+  hasPadding,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -44,7 +49,7 @@ const TrackItem = ({
 
   const {
     isPlaying,
-    song: { id: songId }
+    song: { id: songId },
   } = useSelector(({ track }) => track);
 
   const isCurrentlyPlaying = songId === id;
@@ -64,20 +69,20 @@ const TrackItem = ({
           { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
           {
             title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan')
+            onClick: () => alert('Guardar en canciones que te gustan'),
           },
           {
             title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola')
+            onClick: () => alert('Añadir a la cola'),
           },
           {
             title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist')
+            onClick: () => alert('Añadir a playlist'),
           },
           {
             title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción')
-          }
+            onClick: () => alert('Copiar enlace de la canción'),
+          },
         ]}
       />
       <ItemContainer align={align} hasPadding={hasPadding}>
@@ -99,7 +104,7 @@ const TrackItem = ({
                 dispatch(
                   startSong({
                     song,
-                    cover
+                    cover,
                   })
                 );
               }}
@@ -147,22 +152,35 @@ const TrackItem = ({
             </SubTextsContainer>
           ) : null}
         </TextContainer>
-        <OptionButtonContainer
-          onClick={handleOnClickMore}
-          active={isMoreMenuOpen}
-        >
-          <MoreIcon height='18' width='18' fill='rgba(255, 255, 255, 1)' />
-        </OptionButtonContainer>
 
-        <DurationContainer>
-          <Duration>
-            {`${moment.duration(duration_ms)._data.minutes}:${
-              moment.duration(duration_ms)._data.seconds > 9
-                ? moment.duration(duration_ms)._data.seconds
-                : `0${moment.duration(duration_ms)._data.seconds}`
-            }`}
-          </Duration>
-        </DurationContainer>
+        {btn && (
+          <ButtonContainer>
+            <UpgradeButton onClick={btn.onClick}>
+              <UpgradeText>{btn.title}</UpgradeText>
+            </UpgradeButton>
+          </ButtonContainer>
+        )}
+
+        {hasOptions && (
+          <OptionButtonContainer
+            onClick={handleOnClickMore}
+            active={isMoreMenuOpen}
+          >
+            <MoreIcon height='18' width='18' fill='rgba(255, 255, 255, 1)' />
+          </OptionButtonContainer>
+        )}
+
+        {hasDuration && (
+          <DurationContainer>
+            <Duration>
+              {`${moment.duration(duration_ms)._data.minutes}:${
+                moment.duration(duration_ms)._data.seconds > 9
+                  ? moment.duration(duration_ms)._data.seconds
+                  : `0${moment.duration(duration_ms)._data.seconds}`
+              }`}
+            </Duration>
+          </DurationContainer>
+        )}
       </ItemContainer>
     </>
   );

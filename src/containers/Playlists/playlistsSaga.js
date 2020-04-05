@@ -50,9 +50,8 @@ function* getUserTracksSaga() {
 // getRandomTracks
 function* getRandomTracks() {
   try {
-    const tracks = yield services.getRandomTracks();
-    if (tracks)
-      yield put(actions.getRandomTracksSuccess({ playlist: tracks.items }));
+    const { tracks } = yield services.getRandomTracks();
+    if (tracks) yield put(actions.getRandomTracksSuccess({ tracks }));
   } catch (err) {
     yield put(actions.getRandomTracksFailure({ error: err.message }));
   }
@@ -119,7 +118,7 @@ function* checkUserFollowThePlaylistSaga() {
 
 // follow unfollow
 function* followUnfollowPlaylist({
-  payload: { playlistId, action = 'follow' }
+  payload: { playlistId, action = 'follow' },
 }) {
   try {
     yield services.followUnfollowPlaylist(playlistId, action);
@@ -144,6 +143,6 @@ export default function* playlistsSaga() {
     fork(createPlaylistSaga),
     fork(addTrackToPlaylistSaga),
     fork(checkUserFollowThePlaylistSaga),
-    fork(followUnfollowPlaylistSaga)
+    fork(followUnfollowPlaylistSaga),
   ]);
 }

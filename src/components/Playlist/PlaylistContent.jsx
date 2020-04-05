@@ -52,7 +52,7 @@ const PlaylistContent = ({
       }
     : { ...playlist };
 
-  const handleOnClickMore = (e) => {
+  const handleOnClickMore = e => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
@@ -156,6 +156,7 @@ const PlaylistContent = ({
         </PlaylistHeader>
       </PlaylistLeftWrapper>
       <PlaylistRightWrapper>
+        {console.log(playlistData?.tracks?.items?.length)}
         {playlistData?.tracks?.items?.length ? (
           playlistData?.tracks?.items?.map((track, i) => (
             <TrackItem

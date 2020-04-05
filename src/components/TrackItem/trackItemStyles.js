@@ -140,3 +140,9 @@ export const DurationContainer = styled.div`
 export const Duration = styled.span`
   ${OpacityColor}
 `;
+
+// button
+export const ButtonContainer = styled.div`
+  align-self: center;
+  display: flex;
+`;
