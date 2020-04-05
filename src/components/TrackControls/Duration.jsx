@@ -1,18 +1,21 @@
 import React from 'react';
 import moment from 'moment';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { pauseSong, startSong } from '../../containers/Track/trackActions';
 import {
   DurationContainer,
   ProgressBar,
   ProgressBarTime,
-  ProgressBarContainer
+  ProgressBarContainer,
 } from './trackControlsStyles';
 
 const Duration = React.forwardRef(
   ({ timeElapsed, setTimeElapsed, isPlaying, songId, songList }, ref) => {
     const dispatch = useDispatch();
+    const existSong = useSelector(
+      ({ track }) => Object.keys(track.song).length
+    );
 
     React.useEffect(() => {
       const interval = setInterval(() => {
@@ -25,7 +28,7 @@ const Duration = React.forwardRef(
           if (songList && songList[nextSong])
             dispatch(
               startSong({
-                song: songList[nextSong]
+                song: songList[nextSong],
               })
             );
           else dispatch(pauseSong());
@@ -42,16 +45,13 @@ const Duration = React.forwardRef(
     return (
       <DurationContainer>
         <ProgressBarTime>
-          {moment()
-            .minutes(0)
-            .second(timeElapsed)
-            .format('m:ss')}
+          {moment().minutes(0).second(timeElapsed).format('m:ss')}
         </ProgressBarTime>
         <ProgressBarContainer>
           <ProgressBar
             type='range'
             min='0'
-            max='30'
+            max={existSong ? '30' : '0'}
             step='1'
             maxValue={30}
             value={parseInt(timeElapsed)}
@@ -62,7 +62,7 @@ const Duration = React.forwardRef(
         <ProgressBarTime>
           {moment()
             .minutes(0)
-            .second(30 - timeElapsed)
+            .second(existSong ? 30 : 0 - timeElapsed)
             .format('m:ss')}
         </ProgressBarTime>
       </DurationContainer>

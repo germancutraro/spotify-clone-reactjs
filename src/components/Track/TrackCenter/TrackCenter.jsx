@@ -2,7 +2,7 @@ import React from 'react';
 import {
   PlayerCenter,
   PlayerCenterButtonsContainer,
-  PlayIconWrapper
+  PlayIconWrapper,
 } from './trackCenterStyles';
 import Duration from '../../TrackControls/Duration';
 import { ReactComponent as PlayIconSvg } from '../../../assets/icons/play.svg';

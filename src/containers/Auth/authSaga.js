@@ -8,7 +8,6 @@ import * as services from './authServices';
 function* getUser() {
   try {
     const user = yield services.getUser();
-    // console.log('user from saga: ', user);
     if (user) yield put(actions.getUserSuccess({ user }));
   } catch (err) {
     yield put(actions.getUserFailure({ error: err.message }));

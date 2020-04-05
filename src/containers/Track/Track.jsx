@@ -32,8 +32,10 @@ const Track = () => {
   }, [audioRef, volume]);
 
   const handleAudio = () => {
-    if (isPlaying) dispatch(pauseSong());
-    else dispatch(resumeSong());
+    if (Object.keys(song).length) {
+      if (isPlaying) dispatch(pauseSong());
+      else dispatch(resumeSong());
+    }
   };
 
   const handleChangeRoute = route => history.push(`/app/${route}`);

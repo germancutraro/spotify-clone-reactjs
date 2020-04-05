@@ -2,7 +2,6 @@ import React from 'react';
 import { ArtistRouteContainer, AboutTitle, AboutText } from './artistStyles';
 
 const ArtistAbout = () => {
-  console.log('about');
   return (
     <ArtistRouteContainer>
       <AboutTitle>Biography</AboutTitle>
