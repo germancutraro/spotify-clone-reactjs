@@ -3,7 +3,11 @@ import { useParams, useHistory } from 'react-router-dom';
 import TrackItem from '../../components/TrackItem/TrackItem';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getAlbumStart } from './albumActions';
+import {
+  getAlbumStart,
+  saveAlbumStart,
+  removeAlbumStart,
+} from './albumActions';
 import { setList, startSong, pauseSong } from '../Track/trackActions';
 // styles
 
@@ -96,6 +100,11 @@ const Album = () => {
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
 
+  const iLikeTheAlbum = React.useMemo(
+    () => albums.some(({ album: { id } }) => id === album.id),
+    [album.id, albums]
+  );
+
   if (loading || albumsLoading) return <Loader isLoading={loading} />;
 
   return (
@@ -105,15 +114,14 @@ const Album = () => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          albums.some(({ album: { id } }) => id === album.id)
-            ? {
-                title: 'Remove in the library',
-                onClick: () => alert('Remove in the library'),
-              }
-            : {
-                title: 'Save in the library',
-                onClick: () => alert('Save in the library'),
-              },
+          {
+            title: `${iLikeTheAlbum ? 'Remove' : 'Save'} in the library`,
+            onClick: () =>
+              iLikeTheAlbum
+                ? dispatch(removeAlbumStart({ id: album.id }))
+                : dispatch(saveAlbumStart({ id: album.id })),
+          },
+
           {
             title: 'Copy album link',
             onClick: () => alert('Copy album link'),
@@ -150,7 +158,7 @@ const Album = () => {
               <PlaylistIconsWrapper>
                 <IconContainer>
                   <HeartIcon
-                    fill={false ? '#1db954' : '#fff'}
+                    fill={iLikeTheAlbum ? '#1db954' : '#fff'}
                     width={20}
                     height={20}
                     onClick={() => null}

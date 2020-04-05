@@ -3,7 +3,7 @@ import * as constants from './albumConstants';
 const initialState = {
   album: {},
   loading: true,
-  error: null
+  error: null,
 };
 
 export default (state = initialState, { type, payload }) => {
