@@ -22,11 +22,13 @@ const MoreMenu = ({ open, moreMenuPosition = [0, 0], close, items }) => {
           y={moreMenuPosition[1]}
           align={() => getAlign()}
         >
-          {items?.map((item, i) => (
-            <MoreMenuItem key={i} onClick={item.onClick}>
-              {item.title}
-            </MoreMenuItem>
-          ))}
+          {items
+            .filter(el => el)
+            .map((item, i) => (
+              <MoreMenuItem key={i} onClick={item.onClick}>
+                {item.title}
+              </MoreMenuItem>
+            ))}
         </MoreMenuContainer>
       </>
     )

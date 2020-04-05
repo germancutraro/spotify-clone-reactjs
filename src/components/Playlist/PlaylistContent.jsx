@@ -33,6 +33,7 @@ const PlaylistContent = ({
   startPlaylist,
   isPlaying,
   userId,
+  inLibrary,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -58,6 +59,8 @@ const PlaylistContent = ({
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
 
+  const isMyPlaylist = playlistData?.owner?.id === userId;
+
   return (
     <>
       <MoreMenu
@@ -65,22 +68,27 @@ const PlaylistContent = ({
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
-          {
-            title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan'),
+          isMyPlaylist
+            ? {
+                title: 'Delete playlist',
+                onClick: () => alert('Delete playlist'),
+              }
+            : inLibrary
+            ? {
+                title: 'Remove from your library',
+                onClick: () => alert('Delete playlist'),
+              }
+            : {
+                title: 'Add to the library',
+                onClick: () => alert('Add to the library'),
+              },
+          isMyPlaylist && {
+            title: 'Make secret',
+            onClick: () => alert('Delete playlist'),
           },
           {
-            title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola'),
-          },
-          {
-            title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist'),
-          },
-          {
-            title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción'),
+            title: 'Copy playlist link',
+            onClick: () => alert('Copy playlist link'),
           },
         ]}
       />
@@ -126,7 +134,7 @@ const PlaylistContent = ({
             </PlaylistPlay>
             {!isLikedSongs ? (
               <PlaylistIconsWrapper>
-                {playlistData?.owner?.id !== userId ? (
+                {!isMyPlaylist ? (
                   <IconContainer>
                     <HeartIcon
                       fill={following ? '#1db954' : '#fff'}
@@ -164,6 +172,7 @@ const PlaylistContent = ({
             <TrackItem
               key={i}
               added_at={track?.added_at}
+              isInPlaylist={isMyPlaylist}
               song={{
                 ...track?.track,
                 cover: playlistData.images

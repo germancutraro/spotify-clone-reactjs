@@ -102,22 +102,14 @@ const Artist = () => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
+          { title: 'Play', onClick: () => alert('Play') },
           {
-            title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan'),
+            title: 'Follow',
+            onClick: () => alert('Follow'),
           },
           {
-            title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola'),
-          },
-          {
-            title: 'Añadir a playlist',
+            title: 'Copy artist link',
             onClick: () => alert('Añadir a playlist'),
-          },
-          {
-            title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción'),
           },
         ]}
       />

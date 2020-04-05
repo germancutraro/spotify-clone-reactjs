@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Item, PlaylistItemText } from '../Sidebar/sidebarStyles';
 import MoreMenu from '../MoreMenu/MoreMenu';
 
-const PlaylistsItem = ({ id, name }) => {
+const PlaylistsItem = ({ id, name, userId, owner }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
 
@@ -13,6 +13,9 @@ const PlaylistsItem = ({ id, name }) => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
+
+  const isMyPlaylist = owner?.id === userId;
+
   return (
     <>
       <MoreMenu
@@ -20,23 +23,23 @@ const PlaylistsItem = ({ id, name }) => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
-          {
-            title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan')
+          isMyPlaylist
+            ? {
+                title: 'Delete playlist',
+                onClick: () => alert('Delete playlist'),
+              }
+            : {
+                title: 'Remove from your library',
+                onClick: () => alert('Delete playlist'),
+              },
+          isMyPlaylist && {
+            title: 'Make secret',
+            onClick: () => alert('Delete playlist'),
           },
           {
-            title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola')
+            title: 'Copy playlist link',
+            onClick: () => alert('Copy playlist link'),
           },
-          {
-            title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist')
-          },
-          {
-            title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción')
-          }
         ]}
       />
       <Item hasIcon={false}>
@@ -54,7 +57,7 @@ const PlaylistsItem = ({ id, name }) => {
 };
 
 PlaylistsItem.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 export default React.memo(PlaylistsItem);

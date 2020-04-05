@@ -40,6 +40,7 @@ const TrackItem = ({
   btn,
   align,
   hasPadding,
+  isInPlaylist,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -66,22 +67,25 @@ const TrackItem = ({
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
           {
-            title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan'),
+            title: 'Add to playlist',
+            onClick: () => alert('Add to playlist'),
           },
           {
-            title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola'),
+            title: 'Save to songs you like',
+            onClick: () => alert('Save to songs you like'),
           },
           {
-            title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist'),
+            title: 'Play',
+            onClick: () => alert('Play'),
           },
           {
-            title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción'),
+            title: 'Copy song link',
+            onClick: () => alert('Copy song link'),
+          },
+          isInPlaylist && {
+            title: 'Remove from this playlist',
+            onClick: () => alert('Remove from this playlist'),
           },
         ]}
       />

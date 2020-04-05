@@ -5,7 +5,7 @@ import {
   SongImage,
   SongName,
   PlayContainer,
-  OptionButton
+  OptionButton,
 } from './resultsStyles';
 import {
   TextContainer,
@@ -13,7 +13,7 @@ import {
   ArtistsContainer,
   ArtistContainer,
   Artist,
-  ArtistSeparator
+  ArtistSeparator,
 } from '../TrackItem/trackItemStyles';
 // icons
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
@@ -30,7 +30,7 @@ const Songs = ({ name, artists, cover, album, song }) => {
   const dispatch = useDispatch();
   const {
     isPlaying,
-    song: { id: songId }
+    song: { id: songId },
   } = useSelector(({ track }) => track);
 
   const handleOnClickMore = e => {
@@ -45,23 +45,19 @@ const Songs = ({ name, artists, cover, album, song }) => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
+          { title: 'Add to playlist', onClick: () => alert('Add to playlist') },
           {
-            title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan')
+            title: 'Save to songs you like',
+            onClick: () => alert('Save to songs you like'),
           },
           {
-            title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola')
+            title: 'Play',
+            onClick: () => alert('Play'),
           },
           {
-            title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist')
+            title: 'Copy song link',
+            onClick: () => alert('Copy song link'),
           },
-          {
-            title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción')
-          }
         ]}
       />
       <SongContainer>

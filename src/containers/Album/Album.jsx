@@ -33,6 +33,7 @@ import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
 import { PlaylistContainer } from '../Playlists/playlistsStyles';
 import MoreMenu from '../../components/MoreMenu/MoreMenu';
+import { getAlbumsStart } from '../Library/libraryActions';
 
 const Album = () => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
@@ -40,6 +41,9 @@ const Album = () => {
 
   const dispatch = useDispatch();
   const { album, loading } = useSelector(({ album }) => album);
+  const { albums, loading: albumsLoading } = useSelector(
+    ({ library }) => library
+  );
   const isPlaying = useSelector(({ track }) => track.isPlaying);
   const { id } = useParams();
 
@@ -62,6 +66,7 @@ const Album = () => {
 
   React.useEffect(() => {
     dispatch(getAlbumStart({ id }));
+    dispatch(getAlbumsStart());
   }, [dispatch, id]);
 
   React.useEffect(() => {
@@ -77,7 +82,7 @@ const Album = () => {
   const startAlbum = () => {
     if (isPlaying) dispatch(pauseSong());
     else {
-      dispatch(setList({ list: album.tracks.items.filter((track) => track) }));
+      dispatch(setList({ list: album.tracks.items.filter(track => track) }));
       dispatch(
         startSong({
           song: { ...album.tracks.items[0], cover: album.images[0].url },
@@ -86,12 +91,12 @@ const Album = () => {
     }
   };
 
-  const handleOnClickMore = (e) => {
+  const handleOnClickMore = e => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
 
-  if (loading) return <Loader isLoading={loading} />;
+  if (loading || albumsLoading) return <Loader isLoading={loading} />;
 
   return (
     <>
@@ -100,22 +105,18 @@ const Album = () => {
         close={() => setIsMoreMenuOpen(false)}
         moreMenuPosition={moreMenuPosition}
         items={[
-          { title: 'Iniciar Radio', onClick: () => alert('Iniciar radio') },
+          albums.some(({ album: { id } }) => id === album.id)
+            ? {
+                title: 'Remove in the library',
+                onClick: () => alert('Remove in the library'),
+              }
+            : {
+                title: 'Save in the library',
+                onClick: () => alert('Save in the library'),
+              },
           {
-            title: 'Guardar en canciones que te gustan',
-            onClick: () => alert('Guardar en canciones que te gustan'),
-          },
-          {
-            title: 'Añadir a la cola',
-            onClick: () => alert('Añadir a la cola'),
-          },
-          {
-            title: 'Añadir a playlist',
-            onClick: () => alert('Añadir a playlist'),
-          },
-          {
-            title: 'Copiar enlace de la canción',
-            onClick: () => alert('Copiar enlace de la canción'),
+            title: 'Copy album link',
+            onClick: () => alert('Copy album link'),
           },
         ]}
       />

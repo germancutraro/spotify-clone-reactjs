@@ -5,7 +5,7 @@ import {
   SongTextContainer,
   SongName,
   SongNameText,
-  SongArtist
+  SongArtist,
 } from './trackLeftStyles';
 
 const TrackLeft = ({ song, handleChangeRoute }) => {
@@ -26,7 +26,9 @@ const TrackLeft = ({ song, handleChangeRoute }) => {
         ) : (
           <SongNameText>{song?.name}</SongNameText>
         )}
-        <SongArtist to={song?.artists && `/app/artist/${song?.artists[0].id}`}>
+        <SongArtist
+          to={song?.artists ? `/app/artist/${song?.artists[0].id}` : ' '}
+        >
           {song?.artists && song?.artists[0].name}
         </SongArtist>
       </SongTextContainer>

@@ -24,7 +24,8 @@ const Playlist = () => {
   const { playlist, following, loading, error } = useSelector(
       ({ playlists }) => playlists
     ),
-    { id: userId } = useSelector(({ auth }) => auth.user);
+    { id: userId } = useSelector(({ auth }) => auth.user),
+    { list: playlistsList } = useSelector(({ playlists }) => playlists);
 
   const isPlaying = useSelector(({ track: { isPlaying } }) => isPlaying);
 
@@ -111,6 +112,7 @@ const Playlist = () => {
           startPlaylist={startPlaylist}
           isPlaying={isPlaying}
           userId={userId}
+          inLibrary={playlistsList.some(pl => pl.id === playlist.id)}
         />
       ) : (
         <PlaylistContent
