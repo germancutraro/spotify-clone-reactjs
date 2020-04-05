@@ -31,6 +31,7 @@ import {
 } from '../../components/Playlist/PlaylistComponentStyles';
 
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
+import { ReactComponent as HeartOutlineIcon } from '../../assets/icons/heart-outline.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 import Loader from '../../components/Loader/Loader';
@@ -157,12 +158,23 @@ const Album = () => {
               </PlaylistPlay>
               <PlaylistIconsWrapper>
                 <IconContainer>
-                  <HeartIcon
-                    fill={iLikeTheAlbum ? '#1db954' : '#fff'}
-                    width={20}
-                    height={20}
-                    onClick={() => null}
-                  />
+                  {iLikeTheAlbum ? (
+                    <HeartIcon
+                      fill='#1db954'
+                      width={20}
+                      height={20}
+                      onClick={() =>
+                        dispatch(removeAlbumStart({ id: album.id }))
+                      }
+                    />
+                  ) : (
+                    <HeartOutlineIcon
+                      fill='#fff'
+                      width={20}
+                      height={20}
+                      onClick={() => dispatch(saveAlbumStart({ id: album.id }))}
+                    />
+                  )}
                 </IconContainer>
                 <IconContainer
                   onClick={handleOnClickMore}
