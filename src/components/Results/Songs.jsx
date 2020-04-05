@@ -22,6 +22,7 @@ import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSong, pauseSong } from '../../containers/Track/trackActions';
 import MoreMenu from '../MoreMenu/MoreMenu';
+import { likeSongStart } from '../../containers/Playlists/playlistsActions';
 
 const Songs = ({ name, artists, cover, album, song }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
@@ -48,7 +49,8 @@ const Songs = ({ name, artists, cover, album, song }) => {
           { title: 'Add to playlist', onClick: () => alert('Add to playlist') },
           {
             title: 'Save to songs you like',
-            onClick: () => alert('Save to songs you like'),
+            onClick: () =>
+              dispatch(likeSongStart({ songId, action: 'follow' })),
           },
           {
             title: 'Copy song link',

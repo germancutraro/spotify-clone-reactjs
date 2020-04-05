@@ -137,6 +137,18 @@ function* followUnfollowPlaylistSaga() {
   yield takeLatest(constants.FOLLOW_PLAYLIST_START, followUnfollowPlaylist);
 }
 
+function* likeSong({ payload: { songId, action } }) {
+  try {
+    yield services.likeSong(songId, action);
+  } catch (err) {
+    yield put(actions.likeSongFailure({ error: err.message }));
+  }
+}
+
+function* likeSongSaga() {
+  yield takeLatest(constants.LIKE_SONG_START, likeSong);
+}
+
 export default function* playlistsSaga() {
   yield all([
     fork(getUserPlaylistsSaga),
@@ -147,5 +159,6 @@ export default function* playlistsSaga() {
     fork(addTrackToPlaylistSaga),
     fork(checkUserFollowThePlaylistSaga),
     fork(followUnfollowPlaylistSaga),
+    fork(likeSongSaga),
   ]);
 }

@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startSong, pauseSong } from '../../containers/Track/trackActions';
 import MoreMenu from '../MoreMenu/MoreMenu';
 import { UpgradeButton, UpgradeText } from '../Navbar/navbarStyles';
+import { likeSongStart } from '../../containers/Playlists/playlistsActions';
 
 const TrackItem = ({
   song,
@@ -55,6 +56,8 @@ const TrackItem = ({
 
   const isCurrentlyPlaying = songId === id;
 
+  //const isLiked = useSelector();
+
   const handleOnClickMore = e => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
@@ -73,7 +76,8 @@ const TrackItem = ({
           },
           {
             title: 'Save to songs you like',
-            onClick: () => alert('Save to songs you like'),
+            onClick: () =>
+              dispatch(likeSongStart({ songId: id, action: 'follow' })),
           },
           {
             title: 'Copy song link',

@@ -120,3 +120,13 @@ export const followPlaylistFailure = payload => ({
   type: constants.FOLLOW_PLAYLIST_FAILURE,
   payload,
 });
+
+export const likeSongStart = payload => ({
+  type: constants.LIKE_SONG_START,
+  payload,
+});
+
+export const likeSongFailure = payload => ({
+  type: constants.LIKE_SONG_FAILURE,
+  payload,
+});

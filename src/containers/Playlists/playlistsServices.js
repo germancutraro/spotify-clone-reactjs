@@ -45,3 +45,9 @@ export const followUnfollowPlaylist = (playlistId, action) =>
     `https://api.spotify.com/v1/playlists/${playlistId}/followers`,
     action === 'follow' ? 'PUT' : 'DELETE'
   );
+
+export const likeSong = (songId, action) =>
+  api(
+    `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
+    action === 'follow' ? 'PUT' : 'DELETE'
+  );
