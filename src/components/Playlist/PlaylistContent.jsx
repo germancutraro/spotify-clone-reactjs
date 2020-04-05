@@ -76,11 +76,11 @@ const PlaylistContent = ({
             : inLibrary
             ? {
                 title: 'Remove from your library',
-                onClick: () => alert('Delete playlist'),
+                onClick: () => handleFollow(),
               }
             : {
                 title: 'Add to the library',
-                onClick: () => alert('Add to the library'),
+                onClick: () => handleFollow(),
               },
           isMyPlaylist && {
             title: 'Make secret',

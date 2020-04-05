@@ -121,12 +121,12 @@ function* checkUserFollowThePlaylistSaga() {
 
 // follow unfollow
 function* followUnfollowPlaylist({
-  payload: { playlistId, action = 'follow' },
+  payload: { playlistId, action = 'follow', userId },
 }) {
   try {
     yield services.followUnfollowPlaylist(playlistId, action);
     yield put(actions.followPlaylistSuccess());
-
+    yield checkUserFollowThePlaylist({ payload: { playlistId, userId } });
     yield getUserPlaylists();
   } catch (err) {
     yield put(actions.followPlaylistFailure({ error: err.message }));

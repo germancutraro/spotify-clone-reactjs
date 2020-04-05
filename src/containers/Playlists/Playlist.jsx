@@ -65,19 +65,13 @@ const Playlist = () => {
     return <Loader isLoading={loading} />;
   }
 
-  const handleFollow = () => {
+  const handleFollow = async () => {
     dispatch(
       followPlaylistStart({
         playlistId: playlist.id,
         action: following ? 'unfollow' : 'follow',
+        userId,
       })
-    );
-    setTimeout(
-      () =>
-        dispatch(
-          checkUserFollowPlaylistStart({ playlistId: playlist.id, userId })
-        ),
-      100
     );
   };
 
