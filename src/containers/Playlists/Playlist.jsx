@@ -9,6 +9,7 @@ import {
   followPlaylistStart,
   getRandomTracksStart,
   checkLikeSongStart,
+  cleanPlaylist,
 } from './playlistsActions';
 import { PlaylistContainer } from './playlistsStyles';
 import { setList, startSong, pauseSong } from '../Track/trackActions';
@@ -42,11 +43,16 @@ const Playlist = () => {
   useEffect(() => {
     if (!pathname.includes('/tracks')) {
       dispatch(getPlaylistStart({ id }));
-      dispatch(checkUserFollowPlaylistStart({ playlistId: id, userId }));
-      dispatch(getRandomTracksStart());
-      dispatch(checkLikeSongStart());
     } else dispatch(getUserTracksStart());
+
+    return () => dispatch(cleanPlaylist());
   }, [dispatch, id, pathname, userId]);
+
+  useEffect(() => {
+    if (playlist?.tracks?.items.length === 0) dispatch(getRandomTracksStart());
+    dispatch(checkUserFollowPlaylistStart({ playlistId: id, userId }));
+    dispatch(checkLikeSongStart());
+  }, [playlist, dispatch, id, userId]);
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -61,11 +67,6 @@ const Playlist = () => {
     return () =>
       document.documentElement.style.setProperty('--color', '#121212');
   }, [pathname, playlist]);
-
-  if (loading || !Object.keys(playlist).length) {
-    document.documentElement.style.setProperty('--color', '#121212');
-    return <Loader isLoading={loading} />;
-  }
 
   const handleFollow = () => {
     dispatch(
@@ -95,6 +96,10 @@ const Playlist = () => {
       );
     }
   };
+  if (loading || !Object.keys(playlist).length) {
+    document.documentElement.style.setProperty('--color', '#121212');
+    return <Loader isLoading={loading} />;
+  }
 
   if (!loading && error) showSnackbar();
 

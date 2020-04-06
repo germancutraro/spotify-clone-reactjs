@@ -62,6 +62,9 @@ export default (state = initialState, { type, payload }) => {
         loading: false,
       };
 
+    case constants.CLEAN_PLAYLIST:
+      return { ...state, playlist: {}, loading: true };
+
     case constants.GET_USER_PLAYLISTS_FAILURE:
     case constants.GET_PLAYLIST_FAILURE:
     case constants.GET_USER_TRACKS_FAILURE:

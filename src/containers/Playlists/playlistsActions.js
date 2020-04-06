@@ -145,3 +145,7 @@ export const checkLikeSongFailure = payload => ({
   type: constants.CHECK_LIKE_SONG_FAILURE,
   payload,
 });
+
+export const cleanPlaylist = () => ({
+  type: constants.CLEAN_PLAYLIST,
+});
