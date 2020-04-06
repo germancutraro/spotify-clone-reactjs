@@ -26,10 +26,11 @@ import {
   LibraryItem,
   ScrollContainer,
   PlaylistContainer,
-  InstallItem
+  InstallItem,
 } from './sidebarStyles';
 import { useLocation } from 'react-router-dom';
 import CreatePlaylist from '../CreatePlaylist/CreatePlaylist';
+import AddTrack from '../AddTrackModal/AddTrack';
 
 const Sidebar = () => {
   const { pathname } = useLocation();
@@ -38,7 +39,7 @@ const Sidebar = () => {
   const isLibraryActive = [
     '/app/collection/playlists',
     '/app/collection/albums',
-    '/app/collection/artists'
+    '/app/collection/artists',
   ].includes(pathname);
 
   return (
@@ -47,6 +48,7 @@ const Sidebar = () => {
         isOpen={isNewPlaylistOpen}
         handleClose={() => setNewPlaylistOpen(false)}
       />
+      <AddTrack />
       <Link to='/app'>
         <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
       </Link>

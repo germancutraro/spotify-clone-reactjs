@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { EllipsisTwoLines } from '../Text/textStyles';
 
 export const ItemContainer = styled.div`
@@ -7,11 +7,13 @@ export const ItemContainer = styled.div`
   margin-bottom: 2rem;
   cursor: pointer;
 
-  :hover img {
-    filter: brightness(0.3);
-  }
-
-  :hover [data-value='play'] {
+  ${({ hasAnimation = true }) =>
+    hasAnimation &&
+    css`
+      :hover img {
+        filter: brightness(0.3);
+      }
+    `} :hover [data-value='play'] {
     display: flex;
   }
 `;
@@ -64,4 +66,9 @@ export const Title = styled.h3`
   width: 100%;
   text-align: center;
   font-size: 14px;
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${color};
+    `}
 `;

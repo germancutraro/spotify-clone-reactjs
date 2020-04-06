@@ -3,6 +3,7 @@ import { ReactComponent as DefaultCoverIcon } from '../../assets/icons/defaultSo
 import { EllipsisOneLine, EllipsisTwoLines } from '../Text/textStyles';
 
 export const LibraryItemsContainer = styled.ul`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(
     auto-fill,

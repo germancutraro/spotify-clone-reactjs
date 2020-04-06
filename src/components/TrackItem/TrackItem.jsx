@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // styles
 import {
   ItemContainer,
@@ -31,11 +31,14 @@ import { startSong, pauseSong } from '../../containers/Track/trackActions';
 import MoreMenu from '../MoreMenu/MoreMenu';
 import { UpgradeButton, UpgradeText } from '../Navbar/navbarStyles';
 import { likeSongStart } from '../../containers/Playlists/playlistsActions';
+import { ModalsContext } from '../ModalsContext/ModalsContextContainer';
 
 const TrackItem = ({
   song,
   hasImage,
+  playIconOnImage,
   hasSubtext = true,
+  hasAlbum = true,
   hasDuration = true,
   hasOptions = true,
   btn,
@@ -49,7 +52,11 @@ const TrackItem = ({
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
 
   const dispatch = useDispatch();
-  const { id, name, artists, album, duration_ms, cover } = song;
+  const { id, name, artists, album, duration_ms, cover, uri } = song;
+
+  const modalsContext = useContext(ModalsContext);
+
+  let { addTrack } = modalsContext;
 
   const {
     isPlaying,
@@ -62,7 +69,7 @@ const TrackItem = ({
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
-
+  console.log(song);
   return (
     <>
       <MoreMenu
@@ -72,7 +79,7 @@ const TrackItem = ({
         items={[
           {
             title: 'Add to playlist',
-            onClick: () => alert('Add to playlist'),
+            onClick: () => addTrack.setAddTrackData({ isVisible: true, uri }),
           },
           {
             title:
@@ -131,7 +138,7 @@ const TrackItem = ({
 
         {hasImage ? (
           <ImageContainer>
-            <Image src={cover} />
+            <Image src={cover || album?.images[0].url} />
           </ImageContainer>
         ) : null}
 
@@ -152,7 +159,7 @@ const TrackItem = ({
                 ))}
               </ArtistsContainer>
 
-              {album && (
+              {album && hasAlbum && (
                 <>
                   <Separator>•</Separator>
                   <AlbumContainer>

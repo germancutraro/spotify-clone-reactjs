@@ -182,6 +182,7 @@ export const PlaylistContainer = styled.div`
   min-height: 0;
   display: flex;
   flex-direction: column;
+  margin-bottom: auto;
 `;
 
 export const ScrollContainer = styled.div`
