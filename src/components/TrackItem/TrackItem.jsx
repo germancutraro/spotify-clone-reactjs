@@ -43,6 +43,7 @@ const TrackItem = ({
   hasPadding,
   isInPlaylist,
   liked,
+  isLikedSongs = false,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -74,7 +75,10 @@ const TrackItem = ({
             onClick: () => alert('Add to playlist'),
           },
           {
-            title: !liked ? 'Save to songs you like' : 'Remove from your songs',
+            title:
+              !liked && !isLikedSongs
+                ? 'Save to songs you like'
+                : 'Remove from your songs',
             onClick: () =>
               dispatch(
                 likeSongStart({

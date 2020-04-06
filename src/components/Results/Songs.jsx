@@ -46,8 +46,6 @@ const Songs = ({ name, artists, cover, album, song }) => {
     dispatch(checkLikeSongStart({ songId }));
   }, [dispatch, songId]);
 
-  console.log('tiop tipsion');
-
   return (
     <>
       <MoreMenu
