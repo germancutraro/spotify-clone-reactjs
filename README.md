@@ -1,1 +1,1 @@
-Spotify Clone - React.js + Redux Saga
+# Spotify Clone - React.js + Redux Saga
