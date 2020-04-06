@@ -16,7 +16,9 @@ import { addTrackToPlaylistStart } from '../../containers/Playlists/playlistsAct
 
 const EmptyPlaylist = ({ playlistId }) => {
   const dispatch = useDispatch();
-  const { randomTracks, loading } = useSelector(({ playlists }) => playlists);
+  const { randomTracks, likedSongs, loading } = useSelector(
+    ({ playlists }) => playlists
+  );
 
   if (loading) return <Loader />;
 
@@ -47,6 +49,7 @@ const EmptyPlaylist = ({ playlistId }) => {
                 addTrackToPlaylistStart({ playlistId, tracks: track.uri })
               ),
           }}
+          liked={likedSongs.includes(track.id)}
         />
       ))}
     </EmptyPlaylistContainer>

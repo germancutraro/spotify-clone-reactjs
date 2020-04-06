@@ -42,6 +42,7 @@ const TrackItem = ({
   align,
   hasPadding,
   isInPlaylist,
+  liked,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
@@ -55,8 +56,6 @@ const TrackItem = ({
   } = useSelector(({ track }) => track);
 
   const isCurrentlyPlaying = songId === id;
-
-  //const isLiked = useSelector();
 
   const handleOnClickMore = e => {
     setIsMoreMenuOpen(true);
@@ -75,9 +74,14 @@ const TrackItem = ({
             onClick: () => alert('Add to playlist'),
           },
           {
-            title: 'Save to songs you like',
+            title: !liked ? 'Save to songs you like' : 'Remove from your songs',
             onClick: () =>
-              dispatch(likeSongStart({ songId: id, action: 'follow' })),
+              dispatch(
+                likeSongStart({
+                  songId: id,
+                  action: !liked ? 'follow' : 'unfollow',
+                })
+              ),
           },
           {
             title: 'Copy song link',

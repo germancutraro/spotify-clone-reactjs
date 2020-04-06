@@ -39,6 +39,7 @@ import useTitle from '../../hooks/useTitle';
 import { PlaylistContainer } from '../Playlists/playlistsStyles';
 import MoreMenu from '../../components/MoreMenu/MoreMenu';
 import { getAlbumsStart } from '../Library/libraryActions';
+import { checkLikeSongStart } from '../Playlists/playlistsActions';
 
 const Album = () => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
@@ -48,6 +49,9 @@ const Album = () => {
   const { album, loading } = useSelector(({ album }) => album);
   const { albums, loading: albumsLoading } = useSelector(
     ({ library }) => library
+  );
+  const { likedSongs, loading: playlistLoading } = useSelector(
+    ({ playlists }) => playlists
   );
   const isPlaying = useSelector(({ track }) => track.isPlaying);
   const { id } = useParams();
@@ -72,6 +76,7 @@ const Album = () => {
   React.useEffect(() => {
     dispatch(getAlbumStart({ id }));
     dispatch(getAlbumsStart());
+    dispatch(checkLikeSongStart());
   }, [dispatch, id]);
 
   React.useEffect(() => {
@@ -106,7 +111,8 @@ const Album = () => {
     [album.id, albums]
   );
 
-  if (loading || albumsLoading) return <Loader isLoading={loading} />;
+  if (loading || albumsLoading || playlistLoading)
+    return <Loader isLoading={loading} />;
 
   return (
     <>
@@ -196,6 +202,7 @@ const Album = () => {
             <TrackItem
               key={i}
               song={{ ...track, cover: album.images[0].url }}
+              liked={likedSongs.includes(track.id)}
             />
           ))}
           <PlaylistCopyrightContainer>

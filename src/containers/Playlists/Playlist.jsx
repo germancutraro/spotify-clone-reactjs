@@ -8,6 +8,7 @@ import {
   checkUserFollowPlaylistStart,
   followPlaylistStart,
   getRandomTracksStart,
+  checkLikeSongStart,
 } from './playlistsActions';
 import { PlaylistContainer } from './playlistsStyles';
 import { setList, startSong, pauseSong } from '../Track/trackActions';
@@ -43,6 +44,7 @@ const Playlist = () => {
       dispatch(getPlaylistStart({ id }));
       dispatch(checkUserFollowPlaylistStart({ playlistId: id, userId }));
       dispatch(getRandomTracksStart());
+      dispatch(checkLikeSongStart());
     } else dispatch(getUserTracksStart());
   }, [dispatch, id, pathname, userId]);
 

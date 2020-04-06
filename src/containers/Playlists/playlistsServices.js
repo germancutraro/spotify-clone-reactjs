@@ -51,3 +51,5 @@ export const likeSong = (songId, action) =>
     `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
     action === 'follow' ? 'PUT' : 'DELETE'
   );
+
+export const getUserSongs = () => api(`https://api.spotify.com/v1/me/tracks`);

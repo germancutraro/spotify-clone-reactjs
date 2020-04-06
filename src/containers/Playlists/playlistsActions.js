@@ -130,3 +130,18 @@ export const likeSongFailure = payload => ({
   type: constants.LIKE_SONG_FAILURE,
   payload,
 });
+
+export const checkLikeSongStart = payload => ({
+  type: constants.CHECK_LIKE_SONG_START,
+  payload,
+});
+
+export const checkLikeSongSuccess = payload => ({
+  type: constants.CHECK_LIKE_SONG_SUCCESS,
+  payload,
+});
+
+export const checkLikeSongFailure = payload => ({
+  type: constants.CHECK_LIKE_SONG_FAILURE,
+  payload,
+});

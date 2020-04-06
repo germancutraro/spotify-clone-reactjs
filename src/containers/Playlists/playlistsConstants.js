@@ -43,3 +43,7 @@ export const FOLLOW_PLAYLIST_FAILURE = 'app/Playlists/FOLLOW_PLAYLIST_FAILURE';
 
 export const LIKE_SONG_START = 'app/Playlists/LIKE_SONG_START';
 export const LIKE_SONG_FAILURE = 'app/Playlists/LIKE_SONG_FAILURE';
+
+export const CHECK_LIKE_SONG_START = 'app/Playlists/CHECK_LIKE_SONG_START';
+export const CHECK_LIKE_SONG_SUCCESS = 'app/Playlists/CHECK_LIKE_SONG_SUCCESS';
+export const CHECK_LIKE_SONG_FAILURE = 'app/Playlists/CHECK_LIKE_SONG_FAILURE';

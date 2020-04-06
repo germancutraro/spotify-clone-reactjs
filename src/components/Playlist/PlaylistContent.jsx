@@ -25,6 +25,7 @@ import { ReactComponent as MoreIcon } from '../../assets/icons/more.svg';
 import { ReactComponent as DefaultSong } from '../../assets/icons/defaultSong.svg';
 import MoreMenu from '../MoreMenu/MoreMenu';
 import EmptyPlaylist from './EmptyPlaylist';
+import { useSelector } from 'react-redux';
 
 const PlaylistContent = ({
   playlist,
@@ -38,6 +39,8 @@ const PlaylistContent = ({
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
+
+  const { likedSongs } = useSelector(({ playlists }) => playlists);
 
   const history = useHistory();
   const playlistData = isLikedSongs
@@ -174,6 +177,7 @@ const PlaylistContent = ({
                   ? playlistData.images[0].url
                   : 'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png',
               }}
+              liked={likedSongs.includes(track.track.id)}
             />
           ))
         ) : (

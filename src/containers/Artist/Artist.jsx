@@ -38,12 +38,16 @@ import {
   LibraryItemsContainer,
 } from '../../components/LibraryItem/playlistItemStyles';
 import MoreMenu from '../../components/MoreMenu/MoreMenu';
+import { checkLikeSongStart } from '../Playlists/playlistsActions';
 
 const Artist = () => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
 
   const dispatch = useDispatch();
+  const { likedSongs, loading: playlistLoading } = useSelector(
+    ({ playlists }) => playlists
+  );
   const { artist, tracks, following, loading } = useSelector(
     ({ artist }) => artist
   );
@@ -65,6 +69,7 @@ const Artist = () => {
     dispatch(getArtistTracksStart({ id }));
     dispatch(getArtistAlbumsStart({ id }));
     dispatch(getArtistRelatedStart({ id }));
+    dispatch(checkLikeSongStart());
   }, [dispatch, id]);
 
   const handleFollow = () => {
@@ -78,7 +83,7 @@ const Artist = () => {
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
 
-  if (loading) return <Loader isLoading={loading} />;
+  if (loading || playlistLoading) return <Loader isLoading={loading} />;
 
   const randomColors = [
     '#1db954',
@@ -164,6 +169,7 @@ const Artist = () => {
                             ...track,
                             cover: artist.images && artist.images[0].url,
                           }}
+                          liked={likedSongs.includes(track.id)}
                         />
                       ))}
                     </ArtistSection>

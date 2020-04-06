@@ -137,9 +137,28 @@ function* followUnfollowPlaylistSaga() {
   yield takeLatest(constants.FOLLOW_PLAYLIST_START, followUnfollowPlaylist);
 }
 
+function* checkLikeSong() {
+  try {
+    const { items } = yield services.getUserTracks();
+    if (items.length)
+      yield put(
+        actions.checkLikeSongSuccess({
+          songs: items.map(({ track }) => track.id),
+        })
+      );
+  } catch (err) {
+    yield put(actions.checkLikeSongFailure({ error: err.message }));
+  }
+}
+
+function* checkLikeSongSaga() {
+  yield takeLatest(constants.CHECK_LIKE_SONG_START, checkLikeSong);
+}
+
 function* likeSong({ payload: { songId, action } }) {
   try {
     yield services.likeSong(songId, action);
+    yield checkLikeSong();
   } catch (err) {
     yield put(actions.likeSongFailure({ error: err.message }));
   }
@@ -160,5 +179,6 @@ export default function* playlistsSaga() {
     fork(checkUserFollowThePlaylistSaga),
     fork(followUnfollowPlaylistSaga),
     fork(likeSongSaga),
+    fork(checkLikeSongSaga),
   ]);
 }
