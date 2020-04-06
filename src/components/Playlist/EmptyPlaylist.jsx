@@ -39,6 +39,7 @@ const EmptyPlaylist = ({ playlistId }) => {
       </RandomTracksContainer>
       {randomTracks.map(track => (
         <TrackItem
+          key={track.id}
           song={track}
           hasDuration={false}
           hasOptions={false}

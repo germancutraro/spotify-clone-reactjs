@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { createPlaylistStart } from '../../containers/Playlists/playlistsActions';
@@ -16,26 +15,31 @@ import {
   ModalButton,
   ModalCrossContainer,
   ModalButtonsContainer,
-  ModalButtonOutlineText
+  ModalButtonOutlineText,
 } from './createPlaylistStyles';
+import { ModalsContext } from '../ModalsContext/ModalsContextContainer';
 
-const CreatePlaylist = ({ isOpen, handleClose }) => {
-  const dispatch = useDispatch();
-  const [value, setValue] = React.useState('');
-
+const CreatePlaylist = () => {
   const { user } = useSelector(({ auth }) => auth);
 
-  const handleCreatePlaylist = () => {
-    dispatch(
+  const [value, setValue] = React.useState('');
+
+  const dispatch = useDispatch();
+
+  const { createPlaylist } = useContext(ModalsContext);
+
+  const handleCreatePlaylist = async () => {
+    await dispatch(
       createPlaylistStart({ userId: user?.id, name: value || 'New playlist' })
     );
-    handleClose();
+
+    createPlaylist.setIsVisible(false);
   };
 
-  return isOpen ? (
+  return createPlaylist.isVisible ? (
     <ModalDialog>
       <ModalContainer>
-        <ModalCrossContainer onClick={handleClose}>
+        <ModalCrossContainer onClick={() => createPlaylist.setIsVisible(false)}>
           <ModalCross stroke='#fff' width={52} height={52} />
         </ModalCrossContainer>
         <ModalTitle>Create new playlist</ModalTitle>
@@ -50,7 +54,9 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
         </ModalLabel>
 
         <ModalButtonsContainer>
-          <ModalButtonOutline onClick={handleClose}>
+          <ModalButtonOutline
+            onClick={() => createPlaylist.setIsVisible(false)}
+          >
             <ModalButtonOutlineText>Cancel</ModalButtonOutlineText>
           </ModalButtonOutline>
           <ModalButton onClick={handleCreatePlaylist}>Create</ModalButton>
@@ -58,11 +64,6 @@ const CreatePlaylist = ({ isOpen, handleClose }) => {
       </ModalContainer>
     </ModalDialog>
   ) : null;
-};
-
-CreatePlaylist.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired
 };
 
 export default CreatePlaylist;

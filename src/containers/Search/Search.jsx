@@ -5,7 +5,6 @@ import Browse from '../Browse/Browse';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchStart } from './searchActions';
 import TopResult from '../../components/Results/TopResult';
-import Songs from '../../components/Results/Songs';
 import Artists from '../../components/Results/Artists';
 import Albums from '../../components/Results/Albums';
 import NoResults from '../../components/Results/NoResults';
@@ -14,17 +13,18 @@ import {
   SectionTitleContainer,
   SectionTitle,
   SectionTitleSeeAll,
-  LibraryItemsContainer
+  LibraryItemsContainer,
 } from '../../components/LibraryItem/playlistItemStyles';
 import {
   SongsContainer,
   ArtistsContainer,
   AlbumsContainer,
-  TopResultContainer
+  TopResultContainer,
 } from '../../components/Results/resultsStyles';
 import Loader from '../../components/Loader/Loader';
 import useTitle from '../../hooks/useTitle';
 import useNotifier from '../../hooks/useNotifier';
+import TrackItem from '../../components/TrackItem/TrackItem';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Search = () => {
   );
 
   const { showSnackbar } = useNotifier({
-    message: 'Oooops something went wrong.'
+    message: 'Oooops something went wrong.',
   });
 
   useTitle('Spotify - Search');
@@ -106,14 +106,11 @@ const Search = () => {
                   {list.tracks.items.map((track, i) => {
                     if (i < 3) {
                       return (
-                        <Songs
-                          key={i}
+                        <TrackItem
                           song={{ ...track }}
-                          name={track.name}
-                          artists={track.artists}
-                          cover={track?.album?.images[0].url}
-                          type='album'
-                          album={track.album}
+                          hasImage={true}
+                          hasDuration={false}
+                          hasAlbum={false}
                         />
                       );
                     }

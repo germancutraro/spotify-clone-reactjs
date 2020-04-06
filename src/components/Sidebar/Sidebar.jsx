@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Playlists from '../../containers/Playlists/Playlists';
 import SpotifyWhite from '../../assets/images/spotify.png';
@@ -31,10 +31,11 @@ import {
 import { useLocation } from 'react-router-dom';
 import CreatePlaylist from '../CreatePlaylist/CreatePlaylist';
 import AddTrack from '../AddTrackModal/AddTrack';
+import { ModalsContext } from '../ModalsContext/ModalsContextContainer';
 
 const Sidebar = () => {
   const { pathname } = useLocation();
-  const [isNewPlaylistOpen, setNewPlaylistOpen] = React.useState(false);
+  const { createPlaylist } = useContext(ModalsContext);
 
   const isLibraryActive = [
     '/app/collection/playlists',
@@ -44,11 +45,10 @@ const Sidebar = () => {
 
   return (
     <SideContainer>
-      <CreatePlaylist
-        isOpen={isNewPlaylistOpen}
-        handleClose={() => setNewPlaylistOpen(false)}
-      />
+      {/* MODALS */}
       <AddTrack />
+      <CreatePlaylist />
+
       <Link to='/app'>
         <SpotifyLogo src={SpotifyWhite} alt='spotify logo' />
       </Link>
@@ -92,7 +92,7 @@ const Sidebar = () => {
 
       <LibraryContainer>
         <SectionTitle>PLAYLISTS</SectionTitle>
-        <LibraryItem onClick={() => setNewPlaylistOpen(true)}>
+        <LibraryItem onClick={() => createPlaylist.setIsVisible(true)}>
           <Item svgTransition={false}>
             <IconSquare>
               <PlusIcon fill='#333' width={23} height={23} />

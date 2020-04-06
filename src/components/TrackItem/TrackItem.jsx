@@ -69,7 +69,7 @@ const TrackItem = ({
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
   };
-  console.log(song);
+
   return (
     <>
       <MoreMenu

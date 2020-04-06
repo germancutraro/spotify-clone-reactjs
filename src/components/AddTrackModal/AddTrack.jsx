@@ -18,22 +18,23 @@ import {
   Image,
   Title,
 } from '../ArtistContentItem/artistContentItemStyles';
+import { useHistory } from 'react-router-dom';
 
 const AddTrack = () => {
   const playlists = useSelector(({ playlists }) => playlists),
     { id: userId } = useSelector(({ auth }) => auth.user);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const modalsContext = useContext(ModalsContext);
-
-  let { addTrack } = modalsContext;
+  const { addTrack, createPlaylist } = useContext(ModalsContext);
 
   const handleOnClick = playlistId => {
     dispatch(
       addTrackToPlaylistStart({ playlistId, tracks: addTrack.addTrackData.uri })
     );
     addTrack.setAddTrackData({ isVisible: false, uri: '' });
+    history.push(`/app/playlist/${playlistId}`);
   };
 
   return addTrack.addTrackData.isVisible ? (
@@ -49,7 +50,7 @@ const AddTrack = () => {
         <AddTrackTitle>Add to playlist</AddTrackTitle>
 
         <ModalButtonsContainer>
-          <ModalButton onClick={() => alert('new playlist')}>
+          <ModalButton onClick={() => createPlaylist.setIsVisible(true)}>
             New playlist
           </ModalButton>
         </ModalButtonsContainer>
@@ -63,7 +64,7 @@ const AddTrack = () => {
                 onClick={() => handleOnClick(playlist.id)}
               >
                 <ImageContainer>
-                  <Image src={playlist.images[0].url} />
+                  <Image src={playlist?.images[0]?.url} />
                 </ImageContainer>
                 <Title color='#fff'>{playlist.name}</Title>
               </ItemContainer>

@@ -1,4 +1,4 @@
-import { all, fork, put, takeLatest } from 'redux-saga/effects';
+import { all, fork, put, takeLatest, delay } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import * as constants from './playlistsConstants';
@@ -68,6 +68,8 @@ function* createPlaylist({ payload: { userId, name } }) {
     if (playlist) {
       yield put(actions.createPlaylistSuccess({ playlist }));
       yield getUserPlaylists();
+      yield getPlaylist({ payload: { id: playlist.id } });
+      yield delay(0);
       yield put(push(`/app/playlist/${playlist.id}`));
     }
   } catch (err) {
@@ -85,7 +87,7 @@ function* addTrackToPlaylist({ payload: { playlistId, tracks } }) {
     const playlist = yield services.addTrackToPlaylist(playlistId, tracks);
     if (playlist) {
       yield put(actions.addTrackToPlaylistSuccess({ playlist }));
-      yield getPlaylist({ payload: { id: playlistId } });
+      yield put(actions.getPlaylistStart({ id: playlistId }));
     }
   } catch (err) {
     yield put(actions.addTrackToPlaylistFailure({ error: err.message }));

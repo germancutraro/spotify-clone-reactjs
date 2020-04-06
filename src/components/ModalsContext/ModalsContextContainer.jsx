@@ -7,6 +7,7 @@ const ModalsContextContainer = ({ children }) => {
     isVisible: false,
     uri: '',
   });
+  const [isCreatePlaylistVisible, setIsCreatePlaylistVisible] = useState(false);
 
   return (
     <ModalsContext.Provider
@@ -14,6 +15,10 @@ const ModalsContextContainer = ({ children }) => {
         addTrack: {
           addTrackData: addTrackData,
           setAddTrackData: setAddTrackData,
+        },
+        createPlaylist: {
+          isVisible: isCreatePlaylistVisible,
+          setIsVisible: setIsCreatePlaylistVisible,
         },
       }}
     >
