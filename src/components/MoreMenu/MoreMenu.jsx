@@ -1,9 +1,12 @@
 import React from 'react';
 import { MoreMenuContainer, Overlay, MoreMenuItem } from './moreMenuStyles';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard';
+import { useHistory } from 'react-router-dom';
 
 const MoreMenu = ({ open, moreMenuPosition = [0, 0], close, items }) => {
   const { copyToClipboard } = useCopyToClipboard();
+
+  const history = useHistory();
 
   const getAlign = () => {
     const xAlign =
@@ -16,9 +19,12 @@ const MoreMenu = ({ open, moreMenuPosition = [0, 0], close, items }) => {
     return `${xAlign}, ${yAlign}`;
   };
 
-  const handleClick = item => {
-    if (item.title.includes('Copy')) copyToClipboard();
-    else item.onClick();
+  const handleClick = ({ title, onClick }) => {
+    if (title.includes('Copy')) copyToClipboard();
+    else if (title.includes('Remove from your library')) {
+      onClick();
+      history.push('/app/collection/playlists');
+    } else onClick();
     close();
   };
 
