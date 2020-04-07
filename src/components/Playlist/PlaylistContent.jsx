@@ -179,6 +179,7 @@ const PlaylistContent = ({
               }}
               liked={likedSongs.includes(track?.track?.id)}
               isLikedSongs={isLikedSongs}
+              playlistId={playlistData.id}
             />
           ))
         ) : (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,6 +42,11 @@ const Duration = React.forwardRef(
       setTimeElapsed(parseInt(target.value));
       ref.current.currentTime = target.value;
     };
+
+    useEffect(() => {
+      if (ref.current.currentTime < 0.5) setTimeElapsed(0);
+    });
+
     return (
       <DurationContainer>
         <ProgressBarTime>

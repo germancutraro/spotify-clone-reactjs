@@ -29,10 +29,10 @@ export const createPlaylist = (userId, name = 'New Playlist') =>
     }
   );
 
-export const addTrackToPlaylist = (playlistId, tracksUris) =>
+export const addTrackToPlaylist = (playlistId, tracksUris, method = 'POST') =>
   api(
     `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${tracksUris}`,
-    'POST'
+    method
   );
 
 export const checkUserFollowPlaylist = (playlistId, userId) =>

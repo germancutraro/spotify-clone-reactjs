@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { pauseSong, resumeSong } from './trackActions';
@@ -12,22 +12,20 @@ import TrackCenter from '../../components/Track/TrackCenter/TrackCenter';
 const Track = () => {
   const dispatch = useDispatch();
   const { song, isPlaying, list } = useSelector(({ track }) => track);
-  const audioRef = React.useRef();
+  const audioRef = useRef();
 
-  const [timeElapsed, setTimeElapsed] = React.useState(0);
-  const [volume, setVolume] = React.useState(
-    localStorage.getItem('volume') ?? 1.0
-  );
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [volume, setVolume] = useState(localStorage.getItem('volume') ?? 1.0);
 
   const history = useHistory();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const { current: audio } = audioRef;
     if (isPlaying) audio.play();
     else audio.pause();
   }, [isPlaying, song]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (audioRef) audioRef.current.volume = volume;
   }, [audioRef, volume]);
 
@@ -40,9 +38,11 @@ const Track = () => {
 
   const handleChangeRoute = route => history.push(`/app/${route}`);
 
+  const { preview_url } = song;
+
   return (
     <TrackContainer>
-      <audio src={song.preview_url} ref={audioRef}></audio>
+      <audio src={preview_url} ref={audioRef}></audio>
 
       <TrackLeft song={song} handleChangeRoute={handleChangeRoute} />
 

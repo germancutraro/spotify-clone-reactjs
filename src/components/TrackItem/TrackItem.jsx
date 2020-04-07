@@ -30,13 +30,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startSong, pauseSong } from '../../containers/Track/trackActions';
 import MoreMenu from '../MoreMenu/MoreMenu';
 import { UpgradeButton, UpgradeText } from '../Navbar/navbarStyles';
-import { likeSongStart } from '../../containers/Playlists/playlistsActions';
+import {
+  likeSongStart,
+  addTrackToPlaylistStart,
+} from '../../containers/Playlists/playlistsActions';
 import { ModalsContext } from '../ModalsContext/ModalsContextContainer';
 
 const TrackItem = ({
   song,
   hasImage,
-  playIconOnImage,
   hasSubtext = true,
   hasAlbum = true,
   hasDuration = true,
@@ -47,12 +49,22 @@ const TrackItem = ({
   isInPlaylist,
   liked,
   isLikedSongs = false,
+  playlistId,
 }) => {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [moreMenuPosition, setMoreMenuPosition] = useState([0, 0]);
 
   const dispatch = useDispatch();
-  const { id, name, artists, album, duration_ms, cover, uri } = song;
+  const {
+    id,
+    name,
+    artists,
+    album,
+    duration_ms,
+    cover,
+    uri,
+    preview_url,
+  } = song;
 
   const modalsContext = useContext(ModalsContext);
 
@@ -68,6 +80,17 @@ const TrackItem = ({
   const handleOnClickMore = e => {
     setIsMoreMenuOpen(true);
     setMoreMenuPosition([e.pageX, e.pageY]);
+  };
+
+  const handlePlay = () => {
+    if (preview_url) {
+      dispatch(
+        startSong({
+          song,
+          cover,
+        })
+      );
+    }
   };
 
   return (
@@ -94,16 +117,24 @@ const TrackItem = ({
                 })
               ),
           },
-          {
-            title: 'Copy song link',
-          },
           isInPlaylist && {
             title: 'Remove from this playlist',
-            onClick: () => alert('Remove from this playlist'),
+            onClick: () =>
+              dispatch(
+                addTrackToPlaylistStart({
+                  playlistId,
+                  tracks: uri,
+                  method: 'DELETE',
+                })
+              ),
           },
         ]}
       />
-      <ItemContainer align={align} hasPadding={hasPadding}>
+      <ItemContainer
+        align={align}
+        hasPadding={hasPadding}
+        isDisabled={!preview_url}
+      >
         <MusicIconContainer>
           {isPlaying && songId === id ? (
             <PauseIcon
@@ -117,15 +148,7 @@ const TrackItem = ({
               height='20'
               width='20'
               fill={isCurrentlyPlaying ? '#1ed760' : 'rgba(255, 255, 255, 1)'}
-              onClick={() => {
-                // if (songId !== id)  reset duration
-                dispatch(
-                  startSong({
-                    song,
-                    cover,
-                  })
-                );
-              }}
+              onClick={handlePlay}
             />
           )}
 
@@ -184,7 +207,12 @@ const TrackItem = ({
             onClick={handleOnClickMore}
             active={isMoreMenuOpen}
           >
-            <MoreIcon height='18' width='18' fill='rgba(255, 255, 255, 1)' />
+            <MoreIcon
+              height='18'
+              width='18'
+              fill='rgba(255, 255, 255, 1)'
+              data-type='more'
+            />
           </OptionButtonContainer>
         )}
 

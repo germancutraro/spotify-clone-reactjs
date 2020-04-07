@@ -21,15 +21,31 @@ export const ItemContainer = styled.div`
     display: none;
   }
 
+  ${({ isDisabled }) =>
+    !isDisabled &&
+    css`
+      :hover {
+        background-color: hsla(0, 0%, 100%, 0.1);
+        svg:nth-child(1) {
+          display: inline-block;
+        }
+        svg:nth-child(2) {
+          display: none;
+        }
+      }
+    `};
   :hover {
-    background-color: hsla(0, 0%, 100%, 0.1);
-    svg:nth-child(1) {
+    svg[data-type='more'] {
       display: inline-block;
     }
-    svg:nth-child(2) {
-      display: none;
-    }
   }
+
+  ${({ isDisabled }) =>
+    isDisabled &&
+    css`
+      opacity: 0.5;
+      cursor: not-allowed;
+    `};
 `;
 
 export const MusicIconContainer = styled.div`

@@ -82,9 +82,13 @@ function* createPlaylistSaga() {
 }
 
 // addTrackToPlaylist
-function* addTrackToPlaylist({ payload: { playlistId, tracks } }) {
+function* addTrackToPlaylist({ payload: { playlistId, tracks, method } }) {
   try {
-    const playlist = yield services.addTrackToPlaylist(playlistId, tracks);
+    const playlist = yield services.addTrackToPlaylist(
+      playlistId,
+      tracks,
+      method
+    );
     if (playlist) {
       yield put(actions.addTrackToPlaylistSuccess({ playlist }));
       yield put(actions.getPlaylistStart({ id: playlistId }));
